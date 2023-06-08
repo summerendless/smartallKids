@@ -1,0 +1,214 @@
+<html>
+
+<head>
+    <title>스마트올 키즈</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 검색 엔진에 의해 검색되는 단어를 지정합니다. -->
+    <meta name="KeyWORDs" content="" />
+    <!-- 검색 결과에 표시되는 문자를 지정합니다. -->
+    <meta name="Description" content="" />
+    <!-- 검색 로봇 제어 -->
+    <meta name="Robots" content="all" />
+    <!-- 홈페이지 주제를 지정 -->
+    <meta http-equiv="Subject" content="" />
+    <!-- 제목을 지정 -->
+    <meta http-equiv="Title" content="" />
+    <!-- 페이지를 작성한 제작자명을 지정 -->
+    <meta http-equiv="Author" content="onflou " />
+    <!-- 제작사를 지정 -->
+    <meta http-equiv="Publisher" content="" />
+
+    <!-- 브라우저 호환성을 지정 -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chorme=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="../../../COMM/CSS/COMMON.CSS" />
+    <link rel="stylesheet" href="../../../COMM/CSS/JQUERY_UI.CSS" />
+    <link rel="stylesheet" href="../../../COMM/CSS/STYLE.CSS" />
+</head>
+
+<body>
+    <div id="wrap" class="">
+        <header>
+            <!-- <div class="left">
+                <button class=" btn-back"><img src="../../../COMM/IMG/BACK.PNG" alt=""></button>
+                <div class=" title">자석의 이용</div>
+            </div> -->
+            <div class="indicate">
+                <!-- <button onclick="result()" class="answerbtn">정답 보기</button> -->
+                <ul class="paging">
+                    <li class="page on"><img src="../../COMM/IMG/ICON_CANDY_ON.PNG"/></li>
+                    <li class="page off"><img src="../../COMM/IMG/ICON_CANDY_OFF.PNG"/></li>
+                    <li class="page off"><img src="../../COMM/IMG/ICON_CANDY_OFF.PNG"/></li>
+                    <li class="page off"><img src="../../COMM/IMG/ICON_CANDY_OFF.PNG"/></li>
+                </ul>
+            </div>
+            
+
+        </header>
+
+        <div class="wrapper "><!-- zoomBox -->            
+            <div class="zoomInner">
+                <section class="section section1">
+                    <div class="pageContents">
+                        <!-- <img src="../../COMM/IMG/KR_WORD_1/1_1/WORD_1_1_1.PNG" id="Tutorial One"> -->
+                        <!-- <img src="../../COMM/IMG/KR_WORD_1/1_1/WORD_1_1_2.PNG" id="Tutorial Two"> -->
+
+                        <canvas id="myCanvas" class="myCanvas"></canvas>
+                        <!-- <img src="../../COMM/IMG/KR_WORD_1/1_1/ITEM_1_1.png"/> -->
+                    </div>
+                    <div class="color-palette">
+                        <input id="line-width" type="range" min="1" max="10" value="5" step="0.5"></input>
+                        <input id="color" type="color" />
+                        <div class="color-items">
+                            <div
+                            class="color-option color-red"                            
+                            data-color="#ff0000"
+                            ><img src="../../COMM/IMG/CRAYON_BV.PNG" alt="랜덤"/></div>
+                            <div
+                            class="color-option color-red"                            
+                            data-color="#ff0000"
+                            ><img src="../../COMM/IMG/CRAYON_RD.PNG" alt="빨강"/></div>
+                            <div
+                                class="color-option color-orange"                            
+                                data-color="#ff8c00"
+                            ><img src="../../COMM/IMG/CRAYON_OR.png" alt="주황"/></div>
+                            <div
+                                class="color-option color-yellow"                            
+                                data-color="#ffff00"
+                            ><img src="../../COMM/IMG/CRAYON_YL.png" alt="노랑"/></div>
+                            <div
+                                class="color-option color-green"                             
+                                data-color="#008000"
+                            ><img src="../../COMM/IMG/CRAYON_GN.png" alt="초록"/></div>
+                            <div
+                                class="color-option color-blue"                            
+                                data-color="#0000ff"
+                            ><img src="../../COMM/IMG/CRAYON_BL.PNG" alt="파랑"/></div>
+                            <div
+                                class="color-option color-purple"                            
+                                data-color="#800080"
+                            ><img src="../../COMM/IMG/CRAYON_PR.png" alt="보라"/></div>
+                        </div>
+                        <div class="icon-bin">
+                            <img src="../../COMM/IMG/ICON_BIN_UN.png" alt="쓰레기통 비활성화"/>
+                            <!-- <img src="../../COMM/IMG/ICON_BIN_EN.png" alt="쓰레기통 활성화"/> -->
+                        </div>
+                    </div>
+                </section>
+                <!-- //section1 -->
+                <!-- 
+                <section class="section section2">
+                    <div class="pageContents">
+                        <div class="science-wrap science-left">
+                            <div class="answer answer11" data-answer=00></div>
+                            <div class="answer answer12" data-answer=01></div>
+                            <div class="answer answer13" data-answer=02></div>
+                            <img src="../../../COMM/IMG/SCIENCE/JIHAKSA/3_1_3_BODY1_1.PNG" alt="">
+                        </div>
+                        <div class="science-wrap science-right">
+                            <div class="answer2 answer14" data-answer=200></div>
+                            <div class="answer2 answer15" data-answer=201></div>
+                            <div class="answer2 answer16" data-answer=202></div>
+                            <img src="../../../COMM/IMG/SCIENCE/JIHAKSA/3_1_3_BODY1_2.PNG" alt="">
+                        </div>
+                    </div>
+                </section> -->
+                <!-- //section2 -->
+            </div>
+        </div>
+
+
+        <button class="next-btn"> <img src="../../../COMM/IMG/BTN_NEXT_UN.PNG" alt=""> </button>
+        <!-- <button class="done-btn active"> <img src="../../../COMM/IMG/BTN_DONE.PNG" alt=""> </button> -->
+        <!-- <div id="wordWrap"></div> -->
+
+    </div>
+    <!-- wrap -->
+
+<SCRIPT SRC="../../../COMM/JS/JQUERY-3.5.1.MIN.JS"></SCRIPT>
+<!-- <SCRIPT SRC="../../../COMM/JS/JQUERY_UI.MIN.JS"></SCRIPT> -->
+<!-- <SCRIPT SRC="../../../COMM/JS/COMMON.JS"></SCRIPT> -->
+<SCRIPT SRC="../../../COMM/JS/TOUCH.JS"></SCRIPT>
+<SCRIPT SRC="../../../COMM/JS/ZOOM.JS"></SCRIPT>
+<SCRIPT SRC="../../../COMM/JS/COLOR.JS"></SCRIPT>
+<SCRIPT type="text/javascript">
+    // var type = "science"; // type 써주세요
+    var words = [
+            ["철","알루미늄","날 부분"],
+        ]; //단어들 정답 순서대로 작성
+        
+
+
+    const drawImage = (url) => {
+        let canvas2 = document.getElementById("myCanvas");
+        let ctx = canvas2.getContext("2d"); 
+
+        const image = new Image();
+        image.src = '../../COMM/IMG/KR_WORD_1/1_1/WORD_1_1_1.PNG';
+        image.onload = () => {
+        ctx.drawImage(image, 100, 0)
+        }
+    }
+    drawImage()
+
+
+    // 캔버스 요소 참조
+    // const canvas = document.querySelector('#my-canvas');
+    // // 콘텍스트 가져오기
+    // const context = canvas.getContext('2d');
+
+    // // Image 인스턴스 생성
+    // const img = new Image();
+    // // 이미지 로딩 후 처리
+    // img.onload = () => {
+    //     // 콘텍스트로 캔버스에 그리기
+    //     context.drawImage(img, 0, 0);
+    // };
+    // // 이미지 로딩 시작
+    // img.src = 'sample.jpg';
+</SCRIPT>
+
+<style>
+    
+
+/* section1 */
+.answer11{
+    top: 14.4%;
+    left: 14.1%;
+    width: 5%;
+}
+.answer12{
+    top: 38.5%;
+    left: 5.8%;
+    width: 10%;
+}
+.answer13{
+    top: 72%;
+    left: 8.1%;
+    width: 9.3%;
+}
+.answer14{
+    top: 28.4%;
+    left: 64.03%;
+    width: 6.7%;
+}
+.answer15{
+    top: 60.8%;
+    left: 60.4%;
+    width: 5%;
+}
+.answer16{
+    top: 70.3%;
+    left: 59.3%;
+    width: 5%;
+    /* width: 6.7%; */
+}
+
+</style>
+</body>
+
+</html>
