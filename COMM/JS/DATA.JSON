@@ -1,0 +1,1995 @@
+const dataset = {
+    "data" : { //ai 한자 어휘
+            "bgm" : "../../../COMM/MP3/WORDBOX_BGM.WAV",
+            "title" : "../../../COMM/IMG/TITLE_AI.PNG",
+            "title_kr" : "ai 한자 어휘",
+            "map_data": [
+                // 1단계 시작
+                {
+                    "page_id": "1_11",
+                    "num_intro_imgs": 2,
+                    "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
+                    "contents" : [
+                        { 
+                            "id"             : "1",             // key
+                            "prevId"         : "",              //뒤로 갈 수 없는 단어 
+                            "title"          : "배울",            //뜻
+                            "title2"         : "학" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 1, // ai 추천한자 노출 여부
+                            "circle_words"   : [
+                                {
+                                    "main_word"        : "학생",
+                                    "part_word"        : "생",
+                                    "box_side"         : "left",
+                                    "imgText"          : "학교에서 공부하고 <p>배우는(學)</p> 사람.",
+                                },
+                                {
+                                    "main_word"        : "입학",
+                                    "part_word"        : "입",
+                                    "box_side"         : "right",
+                                    "imgText"          : "학생이 되어 <p>공부하기(學)</p> 위해 <br> 학교에 들어감.",
+                                },
+                                {
+                                    "main_word"        : "학용품",
+                                    "part_word"        : "용품",
+                                    "box_side"         : "left",
+                                    "imgText"          : "공책·연필·자·지우개처럼 <br> 학생이 <p>공부할(學)</p> 때에 쓰는 물건.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "학생",
+                                    "innerWords"    : [ "선생" ],
+                                    "innerColors"   : [ "red" ]
+                                },
+                                {
+                                    "word"          : "학용품",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word"          : "입학",
+                                    "innerWords"    : [ "졸업", "퇴학" ],
+                                    "innerColors"   : [ "red", "red" ]
+                                }
+                            ],
+
+                            "depth2_words"    : [
+                                {
+                                    "word": "학습",
+                                    "innerWords": ["공부"],
+                                    "innerColors"   : [ "green"]
+                                },
+                                {
+                                    "word": "학비",
+                                    "innerWords"    : ["학자금"],
+                                    "innerColors"   : [ "green"]
+                                },
+                                {
+                                    "word": "방학",
+                                    "innerWords"    : ["개학"],
+                                    "innerColors"   : [ "red"]
+                                },
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"          : "익힐",            
+                                    "title2"         : "습" ,  
+                                    "wordType"       : "비슷한 뜻",
+                                    "wordColors"     : "GREEN",
+                                    "position"       : "left_top"
+                                },
+                                { 
+                                    "title"          : "물을",            
+                                    "title2"         : "문" ,  
+                                    "wordType"       : "반대 뜻",
+                                    "wordColors"     : "RED"      ,
+                                    "position"       : "right_top"                           
+                                },
+                                { 
+                                    "title"          : "가르칠",            
+                                    "title2"         : "훈" ,  
+                                    "wordType"       : "반대 뜻",
+                                    "wordColors"     : "RED",
+                                    "position"       : "left_bottom"
+                                },
+                                { 
+                                    "title"          : "효도",            
+                                    "title2"         : "효" ,  
+                                    "wordType"       : "같은 부수",
+                                    "wordColors"     : "YL",
+                                    "position"       : "right_bottom"
+                                },
+                            ],
+                        },
+                        { 
+                            "id"             : "2",             // key
+                            "prevId"         : "1",             //뒤로 갈 수 있는 단어 
+                            "title"          : "먼저",            //뜻
+                            "title2"         : "선" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 0,
+                            "circle_words"   : [
+                                {
+                                    "main_word"        : "선생",
+                                    "part_word"        : "생",
+                                    "box_side"         : "left",
+                                    "imgText"          : "학생을 <p>가르치는(先)</p> 사람을 <br> 두루 이르는 말.",
+                                },
+                                {
+                                    "main_word"        : "선두",
+                                    "part_word"        : "두",
+                                    "box_side"         : "left",
+                                    "imgText"          : "여럿이 나아가거나 무슨 일을 꾀할 때 <br> <p>맨 앞(先)</p>에 서는 사람, 또는 그 위치.",
+                                },
+                                {
+                                    "main_word"        : "선배",
+                                    "part_word"        : "배",
+                                    "box_side"         : "left",
+                                    "imgText"          : "한 분야에 속한 사람들 중에서 <br> 자기보다 <p>먼저(先)</p> 일을 시작한 사람.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word" : "선생",
+                                    "innerWords": [ "제자" ],
+                                    "innerColors"   : [ "red" ]
+                                },
+                                {
+                                    "word": "선두",
+                                    "innerWords": [ "후미" ],
+                                    "innerColors"   : [ "red"]
+                                },
+                                {
+                                    "word": "선배",
+                                    "innerWords": [ "후배" ],
+                                    "innerColors"   : [ "red" ]
+                                },
+                                
+                            ],
+                            "depth2_words"    : [
+                                {
+                                    "word": "선불",
+                                    "innerWords": [ "후불", "선금" ],
+                                    "innerColors"   : [ "red", "green" ]
+                                },
+                                {
+                                    "word": "선조",
+                                    "innerWords"    : ["후손"],
+                                    "innerColors"   : ["red"]
+                                },
+                              
+                                {
+                                    "word": "선약",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                             
+                            ],
+                            "ai_words"   : [
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColor"      : ""
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColor"     : ""                                 
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColor"     : ""
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColor"     : ""
+                                },
+                            ],
+
+                        },
+                    ], //contents 
+                },
+                {
+                    "page_id": "1_12",
+                    "num_intro_imgs": 2,
+                    "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
+                    "contents" : [
+                        { 
+                            "id"             : "3",             // key
+                            "prevId"         : "",              //뒤로 갈 수 없는 단어 
+                            "title"          : "아비",            //뜻
+                            "title2"         : "부" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 0, // ai 추천한자 노출 여부
+                            "circle_words"   : [
+                                {
+                                    "main_word"        : "부모",
+                                    "part_word"        : "모",
+                                    "box_side"         : "left",
+                                    "imgText"          : "<P>아버지(父)</P>와 어머니.",
+                                },
+                                {
+                                    "main_word"        : "부자",
+                                    "part_word"        : "자",
+                                    "box_side"         : "left",
+                                    "imgText"          : "한 가족의 <p>아버지(父)</p>와 아들.",
+                                },
+                                {
+                                    "main_word"        : "부녀",
+                                    "part_word"        : "녀",
+                                    "box_side"         : "left",
+                                    "imgText"          : "한 가족의 <p>아버지(父)</p>와 딸.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "부모",
+                                    "innerWords"    : [ "양친", "어버이" ],
+                                    "innerColors"   : [ "green", "green" ]
+                                },
+                                {
+                                    "word"          : "부자",
+                                    "innerWords"    : [ "모녀" ],
+                                    "innerColors"   : [ "red" ]
+                                },
+                                {
+                                    "word"          : "부녀",
+                                    "innerWords"    : [ "모자" ],
+                                    "innerColors"   : [ "red" ]
+                                }
+                            ],
+
+                            "depth2_words"    : [
+                                {
+                                    "word": "조부모",
+                                    "innerWords": [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word": "숙부",
+                                    "innerWords"    : ["숙모", "삼촌"],
+                                    "innerColors"   : [ "red", "green"]
+                                },
+                                {
+                                    "word": "사부",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""                           
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""
+                                },
+                            ],
+                        },
+                        { 
+                            "id"             : "4",             // key
+                            "prevId"         : "1",             //뒤로 갈 수 있는 단어 
+                            "title"          : "어미",            //뜻
+                            "title2"         : "모" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 1,
+                            "circle_words"   : [
+                                {
+                                    "main_word"        : "이모",
+                                    "part_word"        : "이",
+                                    "box_side"         : "right",
+                                    "imgText"          : "<p>어머니(母)</p>의 언니나 여동생.",
+                                },
+                                {
+                                    "main_word"        : "모성애",
+                                    "part_word"        : "성애",
+                                    "box_side"         : "left",
+                                    "imgText"          : "자식에 대한 <p>어머니(母)</p>의 본능적인 사랑.",
+                                },
+                                {
+                                    "main_word"        : "노모",
+                                    "part_word"        : "노",
+                                    "box_side"         : "right",
+                                    "imgText"          : "늙은 <p>어머니(母)</p>.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word" : "이모",
+                                    "innerWords": [ "", "고모" ],
+                                    "innerColors"   : [ "", "red" ]
+                                },
+                                {
+                                    "word": "모성애",
+                                    "innerWords": [ "부성애" ],
+                                    "innerColors"   : [ "red"]
+                                },
+                                {
+                                    "word": "노모",
+                                    "innerWords": [],
+                                    "innerColors"   : []
+                                },
+                                
+                            ],
+                            "depth2_words"    : [
+                                {
+                                    "word": "모교",
+                                    "innerWords": [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word": "모유",
+                                    "innerWords"    : ["어미젖"],
+                                    "innerColors"   : ["green"]
+                                },
+                              
+                                {
+                                    "word": "모국",
+                                    "innerWords"    : ["타국","조국","모국어"],
+                                    "innerColors"   : ["red","green","pur"]
+                                },
+                             
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"          : "아비",            
+                                    "title2"         : "부" ,  
+                                    "wordType"       : "반대 뜻",
+                                    "wordColors"     : "RED",
+                                    "position"       : "left_top"
+                                },
+                                { 
+                                    "title"          : "말",            
+                                    "title2"         : "무" ,  
+                                    "wordType"       : "비슷한 모양",
+                                    "wordColors"     : "PURPLE"      ,
+                                    "position"       : "right_top"                           
+                                },
+                                { 
+                                    "title"          : "매양",            
+                                    "title2"         : "매" ,  
+                                    "wordType"       : "같은 부수",
+                                    "wordColors"     : "YL", 
+                                    "position"       : "left_bottom"
+                                },
+                                { 
+                                    "title"          : "아들",            
+                                    "title2"         : "자" ,  
+                                    "wordType"       : "반대 뜻",
+                                    "wordColors"     : "RED",
+                                    "position"       : "right_bottom"
+                                },
+                            ],
+
+                        },
+                    ], //contents 
+                },
+                {
+                    "page_id": "1_13",
+                    "num_intro_imgs": 2,
+                    "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
+                    "contents" : [
+                        { 
+                            "id"             : "5",             // key
+                            "prevId"         : "",              //뒤로 갈 수 없는 단어 
+                            "title"          : "한국",            //뜻
+                            "title2"         : "한" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 0, // ai 추천한자 노출 여부
+                            "circle_words"   : [
+                                {
+                                    "main_word"        : "한복",
+                                    "part_word"        : "복",
+                                    "box_side"         : "left",
+                                    "imgText"          : "<p>한국(韓)</p> 사람이 입는 전통적인 옷.",
+                                },
+                                {
+                                    "main_word"        : "한국",
+                                    "part_word"        : "국",
+                                    "box_side"         : "left",
+                                    "imgText"          : "우리나라. <p>'대한민국'(韓)</p>의 줄임말.",
+                                },
+                                {
+                                    "main_word"        : "한옥",
+                                    "part_word"        : "옥",
+                                    "box_side"         : "left",
+                                    "imgText"          : "<p>한국(韓)</p>의 전통 가옥.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "한복",
+                                    "innerWords"    : [ "양복" ],
+                                    "innerColors"   : [ "red" ]
+                                },
+                                {
+                                    "word"          : "한국",
+                                    "innerWords"    : [ "한국어", "한국인" ],
+                                    "innerColors"   : [ "pur", "pur" ]
+                                },
+                                {
+                                    "word"          : "한옥",
+                                    "innerWords"    : [ "한식집" ],
+                                    "innerColors"   : [ "green" ]
+                                }
+                            ],
+
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "한우",
+                                    "innerWords"    : ["한국소"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "한지",
+                                    "innerWords"    : ["창호지"],
+                                    "innerColors"   : [ "green"]
+                                },
+                                {
+                                    "word": "한식",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""                           
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""
+                                },
+                            ],
+                        },
+                        { 
+                            "id"             : "6",             // key
+                            "prevId"         : "1",             //뒤로 갈 수 있는 단어 
+                            "title"          : "나라",            //뜻
+                            "title2"         : "국" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 1,
+                            "circle_words"   : [
+                                {
+                                    "main_word"        : "국기",
+                                    "part_word"        : "기",
+                                    "box_side"         : "left",
+                                    "imgText"          : "한 <p>나라(國)</p>를 나타내는 깃발.",
+                                },
+                                {
+                                    "main_word"        : "국어",
+                                    "part_word"        : "어",
+                                    "box_side"         : "left",
+                                    "imgText"          : "한 <p>나라(國)</p>의 국민이 쓰는 말.",
+                                },
+                                {
+                                    "main_word"        : "애국가",
+                                    "part_word"        : "애",
+                                    "part_word2"       : "가",
+                                    "box_side"         : "center",
+                                    "imgText"          : "<p>대한민국(國)</p>의 국가.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word" : "국기",
+                                    "innerWords"    : [ ],
+                                    "innerColors"   : [ ]
+                                },
+                                {
+                                    "word": "국어",
+                                    "innerWords": [ "나라말", "우리말"],
+                                    "innerColors"   : [ "green", "green"]
+                                },
+                                {
+                                    "word": "애국가",
+                                    "innerWords": [],
+                                    "innerColors"   : []
+                                },
+                                
+                            ],
+                            "depth2_words"    : [
+                                {
+                                    "word": "국화",
+                                    "innerWords": ["나라꽃"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word": "국악",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word": "국산",
+                                    "innerWords"    : ["외국산","국내산"],
+                                    "innerColors"   : ["red", "green"]
+                                },
+                                {
+                                    "word": "국방",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                             
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"          : "나라",            
+                                    "title2"         : "방" ,  
+                                    "wordType"       : "비슷한 뜻",
+                                    "wordColors"     : "GREEN",
+                                    "position"       : "left_top"
+                                },
+                                { 
+                                    "title"          : "넉",            
+                                    "title2"         : "사" ,  
+                                    "wordType"       : "같은 부수",
+                                    "wordColors"     : "YL"      ,
+                                    "position"       : "right_top"                           
+                                },
+                                { 
+                                    "title"          : "그림",            
+                                    "title2"         : "도" ,  
+                                    "wordType"       : "같은 부수",
+                                    "wordColors"     : "YL", 
+                                    "position"       : "right_bottom"
+                                }
+                            ],
+
+                        },
+                    ], //contents 
+                },
+                {
+                    "page_id": "1_14",
+                    "num_intro_imgs": 2,
+                    "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
+                    "contents" : [
+                        { 
+                            "id"             : "7",             // key
+                            "prevId"         : "",              //뒤로 갈 수 없는 단어 
+                            "title"          : "학교",            //뜻
+                            "title2"         : "교" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 0, // ai 추천한자 노출 여부
+                            "circle_words"   : [
+                                {
+                                    "main_word"        : "학교",
+                                    "part_word"        : "학",
+                                    "box_side"         : "right",
+                                    "imgText"          : "학생을 가르치는 공공의 <p>교육 기관(校)</p>, <br> 또는 그 장소로 쓰이는 건물.",
+                                },
+                                {
+                                    "main_word"        : "교복",
+                                    "part_word"        : "복",
+                                    "box_side"         : "left",
+                                    "imgText"          : "<p>학교(校)</p>에서 특별히 정하여 <br> 전교의 학생들이 입게 하는 옷.",
+                                },
+                                {
+                                    "main_word"        : "등교",
+                                    "part_word"        : "등",
+                                    "box_side"         : "right",
+                                    "imgText"          : "학생이 정한 시간에 <p>학교(校)</p>에 가는 것.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "교복",
+                                    "innerWords"    : [ "학생복"],
+                                    "innerColors"   : [ "green" ]
+                                },
+                                {
+                                    "word"          : "등교",
+                                    "innerWords"    : [ "하교", "출석" ],
+                                    "innerColors"   : [ "red", "green" ]
+                                },
+                                {
+                                    "word"          : "학교",
+                                    "innerWords"    : [ "초등학교" ,"중학교", "고등학교"],
+                                    "innerColors"   : [ "pur", "pur", "pur" ]
+                                }
+                            ],
+
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "교문",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word"          : "교가",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word": "개교",
+                                    "innerWords"    : ["폐교"],
+                                    "innerColors"   : ["red"]
+                                },
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""                           
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""
+                                },
+                                { 
+                                    "title"          : "",            
+                                    "title2"         : "" ,  
+                                    "wordType"       : "",
+                                    "wordColors"     : "",
+                                    "position"       : ""
+                                },
+                            ],
+                        },
+                        { 
+                            "id"             : "8",             // key
+                            "prevId"         : "1",             //뒤로 갈 수 있는 단어 
+                            "title"          : "집",            //뜻
+                            "title2"         : "실" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 1,
+                            "circle_words"   : [
+                                {
+                                    "main_word"        : "화장실",
+                                    "part_word"        : "화장",
+                                    "box_side"         : "right",
+                                    "imgText"          : "대변과 소변을 볼 수 있게 <br> 만들어 놓은 <p>곳(室)</p>.",
+                                },
+                                {
+                                    "main_word"        : "병실",
+                                    "part_word"        : "병",
+                                    "box_side"         : "right",
+                                    "imgText"          : "병원에서 병을 치료하기 위하여 <br> 환자가 들어 머무는 <p>방(室)</p>.",
+                                },
+                                {
+                                    "main_word"        : "침실",
+                                    "part_word"        : "침",
+                                    "box_side"         : "right",
+                                    "imgText"          : "잠을 자는 <p>방(室)</p>.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word" : "화장실",
+                                    "innerWords"    : ["변소"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word": "병실",
+                                    "innerWords": [ "환자실"],
+                                    "innerColors"   : [ "green"]
+                                },
+                                {
+                                    "word": "침실",
+                                    "innerWords": ["침방"],
+                                    "innerColors"   : ["green"]
+                                },
+                                
+                            ],
+                            "depth2_words"    : [
+                                {
+                                    "word": "온실",
+                                    "innerWords": ["냉실"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word": "객실",
+                                    "innerWords"    : ["주실"],
+                                    "innerColors"   : ["red"]
+                                },
+                              
+                                {
+                                    "word": "화실",
+                                    "innerWords"    : ["화방"],
+                                    "innerColors"   : ["green"]
+                                },
+                             
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"          : "집",            
+                                    "title2"         : "가" ,  
+                                    "wordType"       : "비슷한 뜻",
+                                    "wordColors"     : "GREEN",
+                                    "position"       : "left_top"
+                                },
+                                { 
+                                    "title"          : "집",            
+                                    "title2"         : "택" ,  
+                                    "wordType"       : "비슷한 뜻",
+                                    "wordColors"     : "GREEN"      ,
+                                    "position"       : "right_top"                           
+                                },
+                                { 
+                                    "title"          : "집",            
+                                    "title2"         : "당" ,  
+                                    "wordType"       : "비슷한 모양",
+                                    "wordColors"     : "PURPLE"      ,
+                                    "position"       : "left_bottom"                           
+                                },
+                                { 
+                                    "title"          : "손",            
+                                    "title2"         : "객" ,  
+                                    "wordType"       : "같은 부수",
+                                    "wordColors"     : "YL", 
+                                    "position"       : "right_bottom"
+                                }
+                            ],
+
+                        },
+                    ], //contents 
+                },
+                {
+                    "page_id": "1_15",
+                    "num_intro_imgs": 2,
+                    "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
+                    "contents" : [
+                        { 
+                            "id"             : "9",             // key
+                            "prevId"         : "",              //뒤로 갈 수 없는 단어 
+                            "title"          : "푸를",            //뜻
+                            "title2"         : "청" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 0, // ai 추천한자 노출 여부
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "청년",
+                                    "part_word"     : "년",
+                                    "box_side"      : "left",
+                                    "imgText"       : "신체적·정신적으로 한창 성장하거나 <br> <p>무르익은(靑)</p> 시기에 있는 사람.",
+                                },
+                                {
+                                    "main_word"     : "청색",
+                                    "part_word"     : "색",
+                                    "box_side"      : "left",
+                                    "imgText"       : "<p>푸른(靑)</p> 빛깔.",
+                                },
+                                {
+                                    "main_word"     : "청군",
+                                    "part_word"     : "군",
+                                    "box_side"      : "left",
+                                    "imgText"       : "운동 경기 등에서 여러 편으로 갈라 겨룰 때, <br> <p>푸른(靑)</p> 빛깔을 상징으로 쓰는 편.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "청군",
+                                    "innerWords"    : [ ],
+                                    "innerColors"   : [ ]
+                                },
+                                {
+                                    "word"          : "청색",
+                                    "innerWords"    : [ "푸른색" ],
+                                    "innerColors"   : [ "green" ]
+                                },
+                                {
+                                    "word"          : "청년",
+                                    "innerWords"    : [ "젊은이" ,"노인", "노년"],
+                                    "innerColors"   : [ "green", "red", "red" ]
+                                }
+                            ],
+
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "청춘",
+                                    "innerWords"    : ["청년기"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "청신호",
+                                    "innerWords"    : ["적신호"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "청소년",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""                           
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                            ],
+                        },
+                        { 
+                            "id"             : "10",             // key
+                            "prevId"         : "1",             //뒤로 갈 수 있는 단어 
+                            "title"          : "군사",            //뜻
+                            "title2"         : "군" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 1,
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "군인",
+                                    "part_word"     : "인",
+                                    "box_side"      : "left",
+                                    "imgText"       : "군대·국방·전쟁 등에 관한 훈련을 받고 <br> <p>군(軍)</p>에 속하여 일하는 사람.",
+                                },
+                                {
+                                    "main_word"     : "장군",
+                                    "part_word"     : "장",
+                                    "box_side"      : "right",
+                                    "imgText"       : "군대를 통솔하고 지휘하는 <p>군인(軍)</p>, <br> 또는 군인의 성이나 이름 다음에 쓰는 호칭.",
+                                },
+                                {
+                                    "main_word"     : "해군",
+                                    "part_word"     : "해",
+                                    "box_side"      : "right",
+                                    "imgText"       : "바다에서 활동하는 <p>군대(軍)</p>.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "군인",
+                                    "innerWords"    : ["군사"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "장군",
+                                    "innerWords"    : [ "장성"],
+                                    "innerColors"   : [ "green"]
+                                },
+                                {
+                                    "word"          : "해군",
+                                    "innerWords"    : ["", "육군","공군"],
+                                    "innerColors"   : ["", "pur","pur"]
+                                },
+                                
+                            ],
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "적군",
+                                    "innerWords"    : ["아군"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "군복",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                              
+                                {
+                                    "word"          : "군대",
+                                    "innerWords"    : ["군"],
+                                    "innerColors"   : ["green"]
+                                },
+                             
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"         : "병사",            
+                                    "title2"        : "병" ,  
+                                    "wordType"      : "비슷한 뜻",
+                                    "wordColors"    : "GREEN",
+                                    "position"      : "left_top"
+                                },
+                                { 
+                                    "title"         : "선비",            
+                                    "title2"        : "사" ,  
+                                    "wordType"      : "비슷한 뜻",
+                                    "wordColors"    : "GREEN"      ,
+                                    "position"      : "right_top"                           
+                                },
+                                { 
+                                    "title"         : "가벼울",            
+                                    "title2"        : "경" ,  
+                                    "wordType"      : "같은 부수",
+                                    "wordColors"    : "YL"      ,
+                                    "position"      : "left_bottom"                           
+                                },
+                                { 
+                                    "title"         : "구를",            
+                                    "title2"        : "전" ,  
+                                    "wordType"      : "같은 부수",
+                                    "wordColors"    : "YL", 
+                                    "position"      : "right_bottom"
+                                }
+                            ],
+
+                        },
+                    ], //contents 
+                },
+                {
+                    "page_id": "1_16",
+                    "num_intro_imgs": 2,
+                    "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
+                    "contents" : [
+                        { 
+                            "id"             : "11",             // key
+                            "prevId"         : "",              //뒤로 갈 수 없는 단어 
+                            "title"          : "스스로",            //뜻
+                            "title2"         : "자" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 1, // ai 추천한자 노출 여부
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "자신",
+                                    "part_word"     : "신",
+                                    "box_side"      : "left",
+                                    "imgText"       : "자기 <p>스스로(自)</p>. <br> 자기 또는 자기의 몸.",
+                                },
+                                {
+                                    "main_word"     : "자연",
+                                    "part_word"     : "연",
+                                    "box_side"      : "left",
+                                    "imgText"       : "사람이 만든 것이 아니고 <p>저절로(自)</p> <br> 이루어져 있는 세상의 모든 사물.",
+                                },
+                                {
+                                    "main_word"     : "자유",
+                                    "part_word"     : "유",
+                                    "box_side"      : "left",
+                                    "imgText"       : "남에게 얽매이거나 무엇에 구속받지 않고 <br> 자기가 책임지고 <p>스스로(自)</p>의 <br> 뜻에 따라 행동하는 것.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "자유",
+                                    "innerWords"    : ["구속"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "자신",
+                                    "innerWords"    : [ "타인", "자기" ],
+                                    "innerColors"   : [ "red","green" ]
+                                },
+                                {
+                                    "word"          : "자연",
+                                    "innerWords"    : [ "인조" ,"천연"],
+                                    "innerColors"   : [ "red", "green"]
+                                }
+                            ],
+
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "자동",
+                                    "innerWords"    : ["수동"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "자립",
+                                    "innerWords"    : ["의존"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "자백",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"         : "몸",            
+                                    "title2"        : "신" ,  
+                                    "wordType"      : "비슷한 뜻",
+                                    "wordColors"    : "GREEN",
+                                    "position"      : "left_top"
+                                },
+                                { 
+                                    "title"         : "다를",            
+                                    "title2"        : "타" ,  
+                                    "wordType"      : "반대 뜻",
+                                    "wordColors"    : "RED"      ,
+                                    "position"      : "right_top"                           
+                                },
+                                { 
+                                    "title"         : "흰",            
+                                    "title2"        : "백" ,  
+                                    "wordType"      : "비슷한 모양",
+                                    "wordColors"    : "PURPLE"      ,
+                                    "position"      : "left_bottom"                           
+                                },
+                                { 
+                                    "title"         : "냄새",            
+                                    "title2"        : "취" ,  
+                                    "wordType"      : "같은 부수",
+                                    "wordColors"    : "YL", 
+                                    "position"      : "right_bottom"
+                                }
+                            ],
+                            
+                        },
+                        { 
+                            "id"             : "12",             // key
+                            "prevId"         : "1",             //뒤로 갈 수 있는 단어 
+                            "title"          : "힘",            //뜻
+                            "title2"         : "력" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 0,
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "노력",
+                                    "part_word"     : "노",
+                                    "box_side"      : "right",
+                                    "imgText"       : "어떤 일을 이루기 위해 <br> <p>힘(力)</p>을 들이고 애를 쓰는 것.",
+                                },
+                                {
+                                    "main_word"     : "속력",
+                                    "part_word"     : "속",
+                                    "box_side"      : "right",
+                                    "imgText"       : "빠른 정도. 또는 속도를 이루는 <p>힘(力)</p>.",
+                                },
+                                {
+                                    "main_word"     : "실력",
+                                    "part_word"     : "실",
+                                    "box_side"      : "right",
+                                    "imgText"       : "실제로 어떤 일을 해낼 수 있는 <p>능력(力)</p>.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "실력",
+                                    "innerWords"    : ["능력"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "속력",
+                                    "innerWords"    : [ "속도"],
+                                    "innerColors"   : [ "green"]
+                                },
+                                {
+                                    "word"          : "노력",
+                                    "innerWords"    : ["주력", "매진"],
+                                    "innerColors"   : ["green", "green"]
+                                },
+                                
+                            ],
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "권력",
+                                    "innerWords"    : ["권한"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "병력",
+                                    "innerWords"    : ["전투력"],
+                                    "innerColors"   : ["green"]
+                                },
+                              
+                                {
+                                    "word"          : "폭력",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                             
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""                           
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                            ],
+
+                        },
+                    ], //contents 
+                },
+                {
+                    "page_id": "1_17",
+                    "num_intro_imgs": 2,
+                    "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
+                    "contents" : [
+                        { 
+                            "id"             : "13",             // key
+                            "prevId"         : "",              //뒤로 갈 수 없는 단어 
+                            "title"          : "곧을",            //뜻
+                            "title2"         : "직" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 1, // ai 추천한자 노출 여부
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "직접",
+                                    "part_word"     : "접",
+                                    "box_side"      : "left",
+                                    "imgText"       : "중간에 다른 것이 끼이지 않고 <br> <p>바로(直)</p> 연결되는 관계.",
+                                },
+                                {
+                                    "main_word"     : "직진",
+                                    "part_word"     : "진",
+                                    "box_side"      : "left",
+                                    "imgText"       : "<p>곧장(直)</p> 앞으로 나아가는 것.",
+                                },
+                                {
+                                    "main_word"     : "정직",
+                                    "part_word"     : "정",
+                                    "box_side"      : "right",
+                                    "imgText"       : "마음에 거짓이 없고 바르고 <p>곧음(直)</p>.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "직진",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word"          : "정직",
+                                    "innerWords"    : [ "솔직", "진실" ],
+                                    "innerColors"   : [ "green","green" ]
+                                },
+                                {
+                                    "word"          : "직접",
+                                    "innerWords"    : [ "간접" ,"대신"],
+                                    "innerColors"   : [ "red", "red"]
+                                }
+                            ],
+
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "직선",
+                                    "innerWords"    : ["곡선"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "직행",
+                                    "innerWords"    : ["직통"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "직립",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"         : "바를",            
+                                    "title2"        : "정" ,  
+                                    "wordType"      : "비슷한 뜻",
+                                    "wordColors"    : "GREEN",
+                                    "position"      : "left_top"
+                                },
+                                { 
+                                    "title"         : "굽을",            
+                                    "title2"        : "곡" ,  
+                                    "wordType"      : "반대 뜻",
+                                    "wordColors"    : "RED"      ,
+                                    "position"      : "right_top"                           
+                                },
+                                { 
+                                    "title"         : "길",            
+                                    "title2"        : "도" ,  
+                                    "wordType"      : "비슷한 모양",
+                                    "wordColors"    : "PURPLE"      ,
+                                    "position"      : "left_bottom"                           
+                                },
+                                { 
+                                    "title"         : "서로",            
+                                    "title2"        : "상" ,  
+                                    "wordType"      : "같은 부수",
+                                    "wordColors"    : "YL", 
+                                    "position"      : "right_bottom"
+                                }
+                            ],
+                            
+                        },
+                        { 
+                            "id"             : "14",             // key
+                            "prevId"         : "1",             //뒤로 갈 수 있는 단어 
+                            "title"          : "평평할",            //뜻
+                            "title2"         : "평" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 0,
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "평평",
+                                    "part_word"     : "평",
+                                    "box_side"      : "left",
+                                    "imgText"       : "높낮이가 없이 바닥이 <p>고르고(平)</p> 반듯함.",
+                                },
+                                {
+                                    "main_word"     : "평야",
+                                    "part_word"     : "야",
+                                    "box_side"      : "left",
+                                    "imgText"       : "<p>평평하고(平)</p> 넓은 들.",
+                                },
+                                {
+                                    "main_word"     : "평화",
+                                    "part_word"     : "화",
+                                    "box_side"      : "left",
+                                    "imgText"       : "<p>평온하고(平)</p> 화목함. ",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "평평",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word"          : "평야",
+                                    "innerWords"    : [ "평원"],
+                                    "innerColors"   : [ "green"]
+                                },
+                                {
+                                    "word"          : "평화",
+                                    "innerWords"    : ["전쟁", "평온"],
+                                    "innerColors"   : ["red", "green"]
+                                },
+                                
+                            ],
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "평일",
+                                    "innerWords"    : ["휴일"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "평범",
+                                    "innerWords"    : ["비범"],
+                                    "innerColors"   : ["red"]
+                                },
+                              
+                                {
+                                    "word"          : "평소",
+                                    "innerWords"    : ["평상시"],
+                                    "innerColors"   : ["green"]
+                                },
+                             
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""                           
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                            ],
+
+                        },
+                    ], //contents 
+                },
+                {
+                    "page_id": "1_18",
+                    "num_intro_imgs": 2,
+                    "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
+                    "contents" : [
+                        { 
+                            "id"             : "15",             // key
+                            "prevId"         : "",              //뒤로 갈 수 없는 단어 
+                            "title"          : "빌",            //뜻
+                            "title2"         : "공" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 1, // ai 추천한자 노출 여부
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "공간",
+                                    "part_word"     : "간",
+                                    "box_side"      : "left",
+                                    "imgText"       : "특정한 사물이 들어 있지 않은, <br> <p>비어 있는(空)</p> 곳이나 자리.", 
+                                },
+                                {
+                                    "main_word"     : "공책",
+                                    "part_word"     : "책",
+                                    "box_side"      : "left",
+                                    "imgText"       : "글씨를 쓰거나 그림을 그리도록, <br> 아무것도 적지 않은 <p>비어 있는(空)</p> <br> 종이로 매어 놓은 책.",
+                                },
+                                {
+                                    "main_word"     : "공기",
+                                    "part_word"     : "기",
+                                    "box_side"      : "left",
+                                    "imgText"       : "아무것도 담겨 있지 않은 <p>빈(空)</P> 그릇. <br> 또는 위가 벌어지고 밑이 좁은 작은 그릇.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "공간",
+                                    "innerWords"    : ["공중"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "공책",
+                                    "innerWords"    : [ "필기장" ],
+                                    "innerColors"   : [ "green" ]
+                                },
+                                {
+                                    "word"          : "공기 ",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                }
+                            ],
+
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "공복",
+                                    "innerWords"    : ["허기"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "공백",
+                                    "innerWords"    : ["여백"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "공허",
+                                    "innerWords"    : ["충실","허무"],
+                                    "innerColors"   : ["red","green"]
+                                },
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"         : "없을",            
+                                    "title2"        : "무" ,  
+                                    "wordType"      : "비슷한 뜻",
+                                    "wordColors"    : "GREEN",
+                                    "position"      : "left_top"
+                                },
+                                { 
+                                    "title"         : "있을",            
+                                    "title2"        : "유" ,  
+                                    "wordType"      : "반대 뜻",
+                                    "wordColors"    : "RED"      ,
+                                    "position"      : "right_top"                           
+                                },
+                                { 
+                                    "title"         : "집",            
+                                    "title2"        : "실" ,  
+                                    "wordType"      : "비슷한 모양",
+                                    "wordColors"    : "PURPLE"      ,
+                                    "position"      : "left_bottom"                           
+                                },
+                                { 
+                                    "title"         : "연구할",            
+                                    "title2"        : "구" ,  
+                                    "wordType"      : "같은 부수",
+                                    "wordColors"    : "YL", 
+                                    "position"      : "right_bottom"
+                                }
+                            ],
+                            
+                        },
+                        { 
+                            "id"             : "16",             // key
+                            "prevId"         : "1",             //뒤로 갈 수 있는 단어 
+                            "title"          : "기운",            //뜻
+                            "title2"         : "기" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 0,
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "감기",
+                                    "part_word"     : "감",
+                                    "box_side"      : "right",
+                                    "imgText"       : "기침·콧물·두통 따위의 <br> <p>증세(氣)</p>를 보이는 호흡기 계통의 병.",
+                                },
+                                {
+                                    "main_word"     : "기분",
+                                    "part_word"     : "분",
+                                    "box_side"      : "left",
+                                    "imgText"       : "마음속에 생기는 <br> 기쁨·슬픔·우울함 등의 <p>감정 상태(氣)</p>.",
+                                },
+                                {
+                                    "main_word"     : "기온",
+                                    "part_word"     : "온",
+                                    "box_side"      : "left",
+                                    "imgText"       : "<p>공기(氣)</p>의 온도.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "감기",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word"          : "기분",
+                                    "innerWords"    : [ "마음","감정"],
+                                    "innerColors"   : [ "green","green"]
+                                },
+                                {
+                                    "word"          : "기온",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                
+                            ],
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "공기",
+                                    "innerWords"    : ["대기"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "기력",
+                                    "innerWords"    : ["정력","근력"],
+                                    "innerColors"   : ["green","green"]
+                                },
+                              
+                                {
+                                    "word"          : "기세",
+                                    "innerWords"    : ["형세"],
+                                    "innerColors"   : ["green"]
+                                },
+                             
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""                           
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                            ],
+
+                        },
+                    ], //contents 
+                },
+                {
+                    "page_id": "1_19",
+                    "num_intro_imgs": 2,
+                    "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
+                    "contents" : [
+                        { 
+                            "id"             : "17",             // key
+                            "prevId"         : "",              //뒤로 갈 수 없는 단어 
+                            "title"          : "안",            //뜻
+                            "title2"         : "내" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 0, // ai 추천한자 노출 여부
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "실내화",
+                                    "part_word"     : "실",
+                                    "part_word2"    : "화",
+                                    "box_side"      : "center",
+                                    "imgText"       : "건물의 <p>안(內)</p>에서만 신는 신발.",
+                                },
+                                {
+                                    "main_word"     : "내과",
+                                    "part_word"     : "과",
+                                    "box_side"      : "left",
+                                    "imgText"       : "몸 <p>안(內)</p>의 질병에 대한 <br> 진단과 예방과 치료를 하는 의학의 한 분과.",
+                                },
+                                {
+                                    "main_word"     : "내의",
+                                    "part_word"     : "의",
+                                    "box_side"      : "left",
+                                    "imgText"       : "겉옷이 살에 닿지 않도록 <br> <p>속(內)</p>에 입는 옷.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "실내화",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word"          : "내과",
+                                    "innerWords"    : [ "외과" ],
+                                    "innerColors"   : [ "red" ]
+                                },
+                                {
+                                    "word"          : "내의",
+                                    "innerWords"    : [ "내복"],
+                                    "innerColors"   : [ "green"]
+                                }
+                            ],
+
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "시내",
+                                    "innerWords"    : ["시외"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "내전",
+                                    "innerWords"    : ["내란"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "내용",
+                                    "innerWords"    : ["외관","형식"],
+                                    "innerColors"   : ["red", "red"]
+                                },
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""                           
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                            ],
+                        },
+                        { 
+                            "id"             : "18",             // key
+                            "prevId"         : "1",             //뒤로 갈 수 있는 단어 
+                            "title"          : "아닐",            //뜻
+                            "title2"         : "불" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 1,
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "불편",
+                                    "part_word"     : "편",
+                                    "box_side"      : "left",
+                                    "imgText"       : "편하지 <p>않음(不)</p>.",
+                                },
+                                {
+                                    "main_word"     : "불가능",
+                                    "part_word"     : "가능",
+                                    "box_side"      : "left",
+                                    "imgText"       : "할 수 <p>없거나(不)</p> 될 수 <p>없는(不)</p> 것.",
+                                },
+                                {
+                                    "main_word"     : "불안",
+                                    "part_word"     : "안",
+                                    "box_side"      : "left",
+                                    "imgText"       : "마음이 편하지 <p>않고(不)</p> 조마조마함.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "불편",
+                                    "innerWords"    : ["편리"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "불가능",
+                                    "innerWords"    : [ "가능", "불능"],
+                                    "innerColors"   : [ "red", "green"]
+                                },
+                                {
+                                    "word"          : "불안",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                
+                            ],
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "불결",
+                                    "innerWords"    : ["청결"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "불량",
+                                    "innerWords"    : ["우량"],
+                                    "innerColors"   : ["red"]
+                                },
+                              
+                                {
+                                    "word"          : "불만",
+                                    "innerWords"    : ["불평"],
+                                    "innerColors"   : ["green"]
+                                },
+                             
+                            ],
+
+                                "ai_words"   : [ // ai 추천단어
+                                    { 
+                                        "title"         : "아닐",            
+                                        "title2"        : "비" ,  
+                                        "wordType"      : "비슷한 뜻",
+                                        "wordColors"    : "GREEN",
+                                        "position"      : "left_top"
+                                    },
+                                    { 
+                                        "title"         : "옳을",            
+                                        "title2"        : "가" ,  
+                                        "wordType"      : "반대 뜻",
+                                        "wordColors"    : "RED"      ,
+                                        "position"      : "right_top"                           
+                                    },
+                                    { 
+                                        "title"         : "나무",            
+                                        "title2"        : "목" ,  
+                                        "wordType"      : "비슷한 모양",
+                                        "wordColors"    : "PURPLE"      ,
+                                        "position"      : "left_bottom"                           
+                                    },
+                                    { 
+                                        "title"         : "아래",            
+                                        "title2"        : "하" ,  
+                                        "wordType"      : "같은 부수",
+                                        "wordColors"    : "YL", 
+                                        "position"      : "right_bottom"
+                                    }
+                            ],
+
+                        },
+                    ], //contents 
+                },
+                {
+                    "page_id": "1_20",
+                    "num_intro_imgs": 2,
+                    "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
+                    "contents" : [
+                        { 
+                            "id"             : "19",             // key
+                            "prevId"         : "",              //뒤로 갈 수 없는 단어 
+                            "title"          : "편안",            //뜻
+                            "title2"         : "안" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 1, // ai 추천한자 노출 여부
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "안전",
+                                    "part_word"     : "전",
+                                    "box_side"      : "left",
+                                    "imgText"       : "<p>편안하여(安)</p> 아무 탈이 없고 <br> 위험이 없는 것.",
+                                },
+                                {
+                                    "main_word"     : "안심",
+                                    "part_word"     : "심",
+                                    "box_side"      : "left",
+                                    "imgText"       : "근심 걱정이 없이 <p>편한(安)</p> 마음.",
+                                },
+                                {
+                                    "main_word"     : "병문안",
+                                    "part_word"     : "병문",
+                                    "box_side"      : "right",
+                                    "imgText"       : "앓고 있는 사람을 찾아가서 병세를 알아보고 <br> 위로하여 마음을 <p>편하게(安)</p> 하는 일.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "안전",
+                                    "innerWords"    : ["위험"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "안심",
+                                    "innerWords"    : [ "걱정" ],
+                                    "innerColors"   : [ "red" ]
+                                },
+                                {
+                                    "word"          : "병문안",
+                                    "innerWords"    : [ "문병"],
+                                    "innerColors"   : [ "green"]
+                                }
+                            ],
+
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "안부",
+                                    "innerWords"    : ["소식"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "안정",
+                                    "innerWords"    : ["흥분"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "편안",
+                                    "innerWords"    : ["불안"],
+                                    "innerColors"   : ["red"]
+                                },
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"         : "편할",            
+                                    "title2"        : "편" ,  
+                                    "wordType"      : "비슷한 뜻",
+                                    "wordColors"    : "GREEN",
+                                    "position"      : "left_top"
+                                },
+                                { 
+                                    "title"         : "위태할",            
+                                    "title2"        : "위" ,  
+                                    "wordType"      : "반대 뜻",
+                                    "wordColors"    : "RED"      ,
+                                    "position"      : "right_top"                           
+                                },
+                                { 
+                                    "title"         : "글자",            
+                                    "title2"        : "자" ,  
+                                    "wordType"      : "비슷한 모양",
+                                    "wordColors"    : "PURPLE"      ,
+                                    "position"      : "left_bottom"                           
+                                },
+                                { 
+                                    "title"         : "집",            
+                                    "title2"        : "가" ,  
+                                    "wordType"      : "같은 부수",
+                                    "wordColors"    : "YL", 
+                                    "position"      : "right_bottom"
+                                }
+                            ],
+                            
+                        },
+                        { 
+                            "id"             : "20",             // key
+                            "prevId"         : "1",             //뒤로 갈 수 있는 단어 
+                            "title"          : "번개",            //뜻
+                            "title2"         : "전" ,           // 음
+                            "title3"            : "" ,           // 음
+                            "needs_new_title"   : 0, //
+                            "needs_colors"   : 0,
+                            "circle_words"   : [
+                                {
+                                    "main_word"     : "전철",
+                                    "part_word"     : "철",
+                                    "box_side"      : "left",
+                                    "imgText"       : "<p>전기(電)</p>의 힘으로 철길 위로 달리는, <br> 한 번에 많은 사람을 태워 나르는 차.",
+                                },
+                                {
+                                    "main_word"     : "전구",
+                                    "part_word"     : "구",
+                                    "box_side"      : "left",
+                                    "imgText"       : "<p>전기(電)</p>를 이용하여 빛을 내는 유리 기구.",
+                                },
+                                {
+                                    "main_word"     : "전선",
+                                    "part_word"     : "선",
+                                    "box_side"      : "left",
+                                    "imgText"       : "<p>전기(電)</p>가 흐르도록 만든 줄.",
+                                },
+                            ],
+                            "depth1_words"   : [
+                                { 
+                                    "word"          : "전철",
+                                    "innerWords"    : ["전기철도"],
+                                    "innerColors"   : ["green"]
+                                },
+                                {
+                                    "word"          : "전구",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word"          : "전선",
+                                    "innerWords"    : ["전기선", "전깃줄"],
+                                    "innerColors"   : ["green", "green"]
+                                },
+                                
+                            ],
+                            "depth2_words"    : [
+                                {
+                                    "word"          : "전기",
+                                    "innerWords"    : ["정전기"],
+                                    "innerColors"   : ["pur"]
+                                },
+                                {
+                                    "word"          : "전력",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                                {
+                                    "word"          : "충전",
+                                    "innerWords"    : ["방전"],
+                                    "innerColors"   : ["red"]
+                                },
+                                {
+                                    "word"          : "감전",
+                                    "innerWords"    : [],
+                                    "innerColors"   : []
+                                },
+                            ],
+                            "ai_words"   : [ // ai 추천단어
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""                           
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                                { 
+                                    "title"         : "",            
+                                    "title2"        : "" ,  
+                                    "wordType"      : "",
+                                    "wordColors"    : "",
+                                    "position"      : ""
+                                },
+                            ],
+
+                        },
+                    ], //contents 
+                },
+                // 1단계 끝
+            ]
+           
+    }, // data
+}

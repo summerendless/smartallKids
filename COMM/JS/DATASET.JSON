@@ -1,0 +1,65 @@
+{ 
+  "data": [
+    {
+      "page_id": "1_11",
+      "num_intro_imgs": 2,
+      "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
+      "contents" : [
+          { 
+              "id"             : "1",
+              "title"          : "토끼",
+              "circle_words"   : [
+                  {
+                      "main_word"        : "학생",
+                      "part_word"        : "생",
+                      "box_side"         : "left",
+                      "imgText"          : "학교에서 공부하고 <p>배우는(學)</p> 사람."
+                  },
+                  {
+                      "main_word"        : "입학",
+                      "part_word"        : "입",
+                      "box_side"         : "right",
+                      "imgText"          : "학생이 되어 <p>공부하기(學)</p> 위해 <br> 학교에 들어감."
+                  },
+                  {
+                      "main_word"        : "학용품",
+                      "part_word"        : "용품",
+                      "box_side"         : "left",
+                      "imgText"          : "공책·연필·자·지우개처럼 <br> 학생이 <p>공부할(學)</p> 때에 쓰는 물건."
+                  }
+              ],
+              "ai_words"   : [
+                  { 
+                      "title"          : "익힐",            
+                      "title2"         : "습" ,  
+                      "wordType"       : "비슷한 뜻",
+                      "wordColors"     : "GREEN",
+                      "position"       : "left_top"
+                  },
+                  { 
+                      "title"          : "물을",            
+                      "title2"         : "문" ,  
+                      "wordType"       : "반대 뜻",
+                      "wordColors"     : "RED"      ,
+                      "position"       : "right_top"                           
+                  },
+                  { 
+                      "title"          : "가르칠",            
+                      "title2"         : "훈" ,  
+                      "wordType"       : "반대 뜻",
+                      "wordColors"     : "RED",
+                      "position"       : "left_bottom"
+                  },
+                  { 
+                      "title"          : "효도",            
+                      "title2"         : "효" ,  
+                      "wordType"       : "같은 부수",
+                      "wordColors"     : "YL",
+                      "position"       : "right_bottom"
+                  }
+              ]
+          }
+      ]
+    }
+  ]
+}

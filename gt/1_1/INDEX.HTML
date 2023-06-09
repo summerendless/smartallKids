@@ -30,6 +30,26 @@
     <link rel="stylesheet" href="../../../COMM/CSS/STYLE.CSS" />
 </head>
 
+<style type="text/css">
+
+    #canvas_result{
+
+        width:1536px; height:1215px; background-color:#ffffff;  
+
+        position: relative; z-index: 1000; display: table;
+
+        -moz-transform-origin: top left;
+
+        -webkit-transform-origin: top left;
+
+        -ms-transform-origin: top left;
+
+        transform-origin: top left;
+
+    }
+
+</style>
+
 <body>
     <div id="wrap" class="">
         <header>
@@ -40,7 +60,7 @@
             <div class="indicate">
                 <!-- <button onclick="result()" class="answerbtn">정답 보기</button> -->
                 <ul class="paging">
-                    <li class="page on"><img src="../../COMM/IMG/ICON_CANDY_ON.PNG"/></li>
+                    <li class="page off"><img src="../../COMM/IMG/ICON_CANDY_ON.PNG"/></li>
                     <li class="page off"><img src="../../COMM/IMG/ICON_CANDY_OFF.PNG"/></li>
                     <li class="page off"><img src="../../COMM/IMG/ICON_CANDY_OFF.PNG"/></li>
                     <li class="page off"><img src="../../COMM/IMG/ICON_CANDY_OFF.PNG"/></li>
@@ -50,15 +70,14 @@
 
         </header>
 
-        <div class="wrapper "><!-- zoomBox -->            
+        <div class="wrapper ">
             <div class="zoomInner">
                 <section class="section section1">
                     <div class="pageContents">
-                        <!-- <img src="../../COMM/IMG/KR_WORD_1/1_1/WORD_1_1_1.PNG" id="Tutorial One"> -->
-                        <!-- <img src="../../COMM/IMG/KR_WORD_1/1_1/WORD_1_1_2.PNG" id="Tutorial Two"> -->
-
-                        <canvas id="myCanvas" class="myCanvas"></canvas>
-                        <!-- <img src="../../COMM/IMG/KR_WORD_1/1_1/ITEM_1_1.png"/> -->
+                        <div id="canvasContainer">
+                            <canvas id="canvasFront" class="canvas2" width="600" height="600" style="border:solid 3px #CCC;position: absolute;"></canvas>
+                            <canvas id="canvas" class="canvas1" width="600" height="600" style="border:solid 3px #CCC;position: absolute;"></canvas>
+                        </div>
                     </div>
                     <div class="color-palette">
                         <input id="line-width" type="range" min="1" max="10" value="5" step="0.5"></input>
@@ -98,32 +117,26 @@
                             <!-- <img src="../../COMM/IMG/ICON_BIN_EN.png" alt="쓰레기통 활성화"/> -->
                         </div>
                     </div>
+                    <button class="next-btn"> <img src="../../../COMM/IMG/BTN_NEXT_UN.PNG" alt=""> </button>
+                    <!-- <button class="done-btn active"> <img src="../../../COMM/IMG/BTN_DONE.PNG" alt=""> </button> -->
                 </section>
                 <!-- //section1 -->
-                <!-- 
+                
                 <section class="section section2">
                     <div class="pageContents">
-                        <div class="science-wrap science-left">
-                            <div class="answer answer11" data-answer=00></div>
-                            <div class="answer answer12" data-answer=01></div>
-                            <div class="answer answer13" data-answer=02></div>
-                            <img src="../../../COMM/IMG/SCIENCE/JIHAKSA/3_1_3_BODY1_1.PNG" alt="">
-                        </div>
-                        <div class="science-wrap science-right">
-                            <div class="answer2 answer14" data-answer=200></div>
-                            <div class="answer2 answer15" data-answer=201></div>
-                            <div class="answer2 answer16" data-answer=202></div>
-                            <img src="../../../COMM/IMG/SCIENCE/JIHAKSA/3_1_3_BODY1_2.PNG" alt="">
-                        </div>
+                        <!-- <div class="answer answer11" data-answer=00></div>
+                        <div class="answer answer12" data-answer=01></div>
+                        <div class="answer answer13" data-answer=02></div>
+                        <div class="answer answer14" data-answer=03></div>
+                        <div class="answer answer15" data-answer=04></div> -->
+                        <img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt="">
                     </div>
-                </section> -->
+                </section>
                 <!-- //section2 -->
             </div>
         </div>
 
 
-        <button class="next-btn"> <img src="../../../COMM/IMG/BTN_NEXT_UN.PNG" alt=""> </button>
-        <!-- <button class="done-btn active"> <img src="../../../COMM/IMG/BTN_DONE.PNG" alt=""> </button> -->
         <!-- <div id="wordWrap"></div> -->
 
     </div>
@@ -133,45 +146,269 @@
 <!-- <SCRIPT SRC="../../../COMM/JS/JQUERY_UI.MIN.JS"></SCRIPT> -->
 <!-- <SCRIPT SRC="../../../COMM/JS/COMMON.JS"></SCRIPT> -->
 <SCRIPT SRC="../../../COMM/JS/TOUCH.JS"></SCRIPT>
-<SCRIPT SRC="../../../COMM/JS/ZOOM.JS"></SCRIPT>
+<SCRIPT SRC="../../../COMM/JS/FABRIC_S.JS"></SCRIPT>
 <SCRIPT SRC="../../../COMM/JS/COLOR.JS"></SCRIPT>
 <SCRIPT type="text/javascript">
     // var type = "science"; // type 써주세요
     var words = [
-            ["철","알루미늄","날 부분"],
-        ]; //단어들 정답 순서대로 작성
+        ["철","알루미늄","날 부분"],
+    ]; //단어들 정답 순서대로 작성
         
+</SCRIPT>
+<SCRIPT>
 
-
-    const drawImage = (url) => {
-        let canvas2 = document.getElementById("myCanvas");
-        let ctx = canvas2.getContext("2d"); 
-
-        const image = new Image();
-        image.src = '../../COMM/IMG/KR_WORD_1/1_1/WORD_1_1_1.PNG';
-        image.onload = () => {
-        ctx.drawImage(image, 100, 0)
+    $(function(){
+        $("input[type=range]").rangeslider({
+        polyfill: false,
+        onSlideEnd: function(position, value){
+        }
+    });
+    
+        $('.text-editer').on( 'keyup', 'textarea', function (e){
+            $(this).css('height', 'auto' );
+            $(this).height( this.scrollHeight );
+            // console.log($('textarea').prop('scrollHeight'))
+          });
+          $('.text-editer').find( 'textarea' ).keyup();
+    })
+    
+    // 캔버스 개발 
+    fabric.Object.prototype.objectCaching = false;
+    fabric.Object.prototype.targetFindTolerance = 2;
+    fabric.Canvas.prototype.orderObjects = function(compare) {
+       this._objects.sort(compare);
+       this.renderAll();
+    }
+    
+    
+    
+    
+    var objleft = 20;
+    var objtop = 200;
+    var objFontSize = 100;
+    
+    var state = [];
+    var mods = 0;
+    
+    //phone 
+    var background, backgroundBG;
+    var overlay; 
+    var w = $('#canvasContainer').width();
+    var h = $('#canvasContainer').height();
+    let ratio;
+    let dataN;
+    if(dataN == undefined){
+        dataN = "galaxy21";
+    }
+    
+    // var center = {x:w / 2, y:h / 2);
+        let center =canvas.getCenter();
+        var clipingRect = new fabric.Rect({
+            originX: 'center',
+            originY: 'center',
+            width:600,
+            // rx: 100,
+            // ry: 100,
+            fill:"rgba(255,255,255,0)",
+            //strokeDashArray: [5, 5],
+            stroke: 10, 
+            strokeWidth: 1, 
+        });
+        
+        var mainIMG = new fabric.Image.fromURL(phonUrl, function (objects, options) {
+            background = objects;
+            let objW = objects.width + 36;
+            let objH = objects.height + 36;
+            ratio = objects.width / objects.height  ;
+            background.set({
+                originX: 'center',
+                originY: 'center',
+                selectable: false,
+                preserveObjectStacking:true,
+                centeredScaling: true ,
+            });
+            //this.__canvases.push(canvas);
+            //background.scaleToHeight(200);
+            //background.scaleToWidth(200);
+            canvas.add(background);
+            canvas.centerObject(background);
+            canvas.renderAll();
+            updateModifications(true);
+    
+            clipingRect.set('width', objW).set('height', objH);
+            //// clipingRect.scaleToHeight(200);
+            //clipingRect.scaleToWidth(250);
+            canvas.centerObject(clipingRect);
+               
+    
+        }, { crossOrigin: 'anonymous' });
+             
+        // console.log( (canvas.width / 2) - (clipingRect.width/2 ) +330)
+        let bg =  canvas.setBackgroundImage(clipingRect , canvas.renderAll.bind(canvas), {
+            originX: 'center',
+            originY: 'center',
+            left: center.left,
+            top: center.top
+        });
+        
+    undo = function undo() {
+        if (mods+1 < state.length) {
+            // console.log(mods)
+            // console.log(state)
+            canvas.clear().renderAll();
+            canvas.loadFromJSON(state[state.length - 1 - mods - 1]);
+            canvas.renderAll();
+            //console.log("geladen " + (state.length-1-mods-1));
+            //console.log("state " + state.length);
+            mods += 1;
+            //console.log("mods " + mods);
         }
     }
-    drawImage()
-
-
-    // 캔버스 요소 참조
-    // const canvas = document.querySelector('#my-canvas');
-    // // 콘텍스트 가져오기
-    // const context = canvas.getContext('2d');
-
-    // // Image 인스턴스 생성
-    // const img = new Image();
-    // // 이미지 로딩 후 처리
-    // img.onload = () => {
-    //     // 콘텍스트로 캔버스에 그리기
-    //     context.drawImage(img, 0, 0);
-    // };
-    // // 이미지 로딩 시작
-    // img.src = 'sample.jpg';
+    
+    redo = function redo() {
+        if (mods > 0) {
+            canvas.clear().renderAll();
+            canvas.loadFromJSON(state[state.length - 1 - mods + 1]);
+            canvas.renderAll();
+            //console.log("geladen " + (state.length-1-mods+1));
+            mods -= 1;
+            //console.log("state " + state.length);
+            //console.log("mods " + mods);
+        }
+    }
+       
+   function text(){
+        var textbox = new fabric.IText('TEXT', {
+            left: objleft,
+            top: objtop,
+            fontSize: objFontSize,
+            fontFamily: 'Noto Sans KR',
+            fill: 'black',
+            lineHeight:'1',
+            underline:false,
+            linethrough: false,
+            editable: false,
+            originX: 'center',
+            originY: 'center',
+            globalCompositeOperation: 'source-atop'
+        });
+        canvas.add(textbox).centerObject(textbox).setActiveObject(textbox);
+    
+        updateModifications(true);
+    
+    }
+    
+    // // controlr img
+    // var deleteIcon = "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg version='1.1' id='Ebene_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='595.275px' height='595.275px' viewBox='200 215 230 470' xml:space='preserve'%3E%3Ccircle style='fill:%23F44336;' cx='299.76' cy='439.067' r='218.516'/%3E%3Cg%3E%3Crect x='267.162' y='307.978' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -222.6202 340.6915)' style='fill:white;' width='65.545' height='262.18'/%3E%3Crect x='266.988' y='308.153' transform='matrix(0.7071 0.7071 -0.7071 0.7071 398.3889 -83.3116)' style='fill:white;' width='65.544' height='262.179'/%3E%3C/g%3E%3C/svg%3E";
+    // var img = document.createElement('img');
+    // img.src = deleteIcon;
+    // controlr option 
+    fabric.Object.prototype.transparentCorners = false;
+    fabric.Object.prototype.cornerColor = '#A0CEFF';
+    fabric.Object.prototype.cornerStrokeColor ="#1A89FF";
+    fabric.Object.prototype.borderColor = "#1A89FF";
+    fabric.Object.prototype.cornerStyle = 'circle';
+    fabric.Object.prototype.cornerSize = "15";
+    
+    fabric.Object.prototype.setControlsVisibility({
+        mt: false, // middle top disable
+        mb: false, // midle bottom
+        ml: false, // middle left
+        mr: false, // I think you get it
+    });
+    
+    function renderIcon(ctx, left, top, styleOverride, fabricObject) {
+        var size = this.cornerSize;
+        ctx.save();
+        ctx.translate(left, top);
+        ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
+        ctx.drawImage(img, -size/2, -size/2, size, size);
+        ctx.restore();
+      }
+    
+      
+    //button 
+        
+    // function deleteObject() {
+        
+    //     if( !($(this).hasClass('disable'))){
+    //     var activeObject = canvas.getActiveObjects();
+        
+    //     if (activeObject) {
+    //         activeObject.forEach(function(object) {
+    //         canvas.remove(object);
+    //     });
+    //         canvas.discardActiveObject();
+    //     }
+    //     canvas.renderAll();
+    //     }
+    
+    // }
+    
+    window.addEventListener('resize', resizeCanvas, false);
+        function resizeCanvas() {
+            var w = $('#canvasContainer').width();
+            var h = $('#canvasContainer').height();
+            canvas.setDimensions({
+                width: w,
+                height: h
+            });
+            
+            // canvas.forEachObject(function(obj){
+            //     obj.set({
+            //         left:(w/2) - (obj.get('left')),
+            //         top : (obj.get('top')),
+            //     });
+            //     obj.setCoords();
+    
+            // });
+            
+            // var topimg = canvas.setOverlayImage('../images/diy/galaxy21-4.png', canvas.renderAll.bind(canvas), {
+            //     scaleY:0.4,
+            //     scaleX: 0.4,
+            //     originX: 'left',
+            //     originY: 'top',
+            //     left:(w/2) - 141,
+            //     top:(h/2) - 272,
+            //     width:200
+            // });
+    
+                // TEST 떄문에 숨김
+                var topimg = canvas.setOverlayImage(phonUrl2, function() {
+                //canvas.overlayImage && canvas.overlayImage.scaleToWidth(200);
+                canvas.centerObject(canvas.overlayImage);
+                canvas.renderAll()
+            }, {
+                // Needed to position overlayImage at 0/0
+                originX: 'center',
+                originY: 'center',
+                crossOrigin: 'anonymous'
+            });
+    
+    
+            // var topimg2 = canvas.setOverlayImage('../images/diy/1.png', canvas.renderAll.bind(canvas), {
+            //     scaleY:0.3,
+            //     scaleX: 0.3,
+            //     originX: 'left',
+            //     originY: 'top',
+            //     left:(w/2) - 141,
+            //     top:(h/2) - 272,
+            // });
+            if(background != undefined ){
+                canvas.centerObject(background);
+            }
+      
+          // obj.setCoords();
+    
+             canvas.centerObject(clipingRect);
+            //  console.log(background.width)
+    
+            
+    
+        }
+        resizeCanvas();
+    
 </SCRIPT>
-
 <style>
     
 

@@ -837,6 +837,14 @@ header > div.left .title > div.new-title{
     background: url(../IMG/BG_1.PNG) no-repeat;
     background-size: 100% 100%;
 }
+.section2 {
+    background: url(../IMG/BG_2.PNG) no-repeat;
+    background-size: 100% 100%;
+}
+.section3 {
+    background: url(../IMG/BG_3.PNG) no-repeat;
+    background-size: 100% 100%;
+}
 header {
     height: 80px;
     position: fixed;
@@ -873,13 +881,12 @@ header {
 }
 
 canvas {
-    position: absolute;
+    /* position: absolute;
     transform: translateX(-50%);
     left: 50%;
     bottom: 200px;
     width: calc(100% - 266px);
-    height: 45%;
-    /* z-index: 99999999999; */
+    height: 45%; */
     border: 1px solid #000;
 }
 .color-palette {
