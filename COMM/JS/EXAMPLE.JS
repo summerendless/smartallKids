@@ -1,20 +1,4 @@
 
-
-    $(function(){
-        $("input[type=range]").rangeslider({
-        polyfill: false,
-        onSlideEnd: function(position, value){
-        }
-    });
-    
-        $('.text-editer').on( 'keyup', 'textarea', function (e){
-            $(this).css('height', 'auto' );
-            $(this).height( this.scrollHeight );
-            // console.log($('textarea').prop('scrollHeight'))
-          });
-          $('.text-editer').find( 'textarea' ).keyup();
-    })
-    
     // 캔버스 개발 
     fabric.Object.prototype.objectCaching = false;
     fabric.Object.prototype.targetFindTolerance = 2;
@@ -23,7 +7,35 @@
        this.renderAll();
     }
     
-    
+    function stopPainting() {
+        painting = false; //그리기를 멈춘다
+    }
+
+    function startPainting() {
+        painting = true;
+    }
+
+    function onMouseMove(event) {
+        const x = event.offsetX; //offset은 캔버스만 관계된 좌표
+        const y = event.offsetY;
+        if (!painting) {
+            //그림 그리지 않을때
+            ctx.beginPath(); //path(선)의 시작
+            ctx.moveTo(x, y); //(보이진 않지만) 이동할때 좌표생성
+        } else {
+            ctx.lineTo(x, y); //lineTo의 좌표에 path가 그려진다(보이진 않지만)
+            ctx.stroke(); //stroke는 path를 선으로 그린다
+        } //lineTo와 stroke는 마우스를 움직일때마다 생긴다
+    }
+
+    function handleColorClick(event) {
+        // const color = event.target.style.backgroundColor;
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active');
+        const color = event.target.dataset.color;
+        ctx.strokeStyle = color; //선의 색을 클릭한 색으로 바꾼다
+        ctx.fillStyle = ctx.strokeStyle; //채우기 색과  선의 색이 같게 한다
+    }
     
     
     var objleft = 20;
@@ -121,7 +133,7 @@
     }
        
    function text(){
-        var textbox = new fabric.IText('TEXT', {
+        var textbox = new fabric.Path('path', {
             left: objleft,
             top: objtop,
             fontSize: objFontSize,
@@ -168,26 +180,7 @@
         ctx.drawImage(img, -size/2, -size/2, size, size);
         ctx.restore();
       }
-    
-      
-    //button 
-        
-    // function deleteObject() {
-        
-    //     if( !($(this).hasClass('disable'))){
-    //     var activeObject = canvas.getActiveObjects();
-        
-    //     if (activeObject) {
-    //         activeObject.forEach(function(object) {
-    //         canvas.remove(object);
-    //     });
-    //         canvas.discardActiveObject();
-    //     }
-    //     canvas.renderAll();
-    //     }
-    
-    // }
-    
+
     window.addEventListener('resize', resizeCanvas, false);
         function resizeCanvas() {
             var w = $('#canvasContainer').width();
@@ -206,15 +199,15 @@
     
             // });
             
-            // var topimg = canvas.setOverlayImage('../images/diy/galaxy21-4.png', canvas.renderAll.bind(canvas), {
-            //     scaleY:0.4,
-            //     scaleX: 0.4,
-            //     originX: 'left',
-            //     originY: 'top',
-            //     left:(w/2) - 141,
-            //     top:(h/2) - 272,
-            //     width:200
-            // });
+            var topimg = canvas.setOverlayImage('../../COMM/IMG/WORD/1_1/WORD_1_1_1.PNG', canvas.renderAll.bind(canvas), {
+                scaleY:0.4,
+                scaleX: 0.4,
+                originX: 'left',
+                originY: 'top',
+                left:(w/2) - 141,
+                top:(h/2) - 272,
+                width:200
+            });
     
                 // TEST 떄문에 숨김
                 var topimg = canvas.setOverlayImage(phonUrl2, function() {

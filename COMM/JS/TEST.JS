@@ -22,7 +22,7 @@
     canvas.width = CANVAS_SIZE;
     canvas.height = CANVAS_SIZE;
 
-    ctx.fillStyle = 'white'; //canvas 기본 배경색을 흰색으로 한다
+    ctx.fillStyle = 'transparent'; //canvas 기본 배경색을 흰색으로 한다
     ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
     ctx.strokeStyle = INITIAL_COLOR; //context안에 있는 선의 색
     ctx.fillStyle = INITIAL_COLOR;
@@ -32,18 +32,22 @@
     let filling = false; //채우기 기본값은 false
 
     let image = new Image();
+    image.src = '../../COMM/IMG/WORD/1_1/WORD_1_1_1.PNG';
+
     image.onload = () => {
         ctx.drawImage(image, 0,0,240,223)
+        var pattern = ctx.createPattern(this, "repeat");
+            // ctx.strokeRect(1, 1, image.width + 7, image.height + 7);
+
+            ctx.fillStyle = pattern;
+            ctx.fill();
+        // ctxImg.globalCompositeOperation = 'destination-atop';
     }
-    image.src = '../../COMM/IMG/WORD/1_1/WORD_1_1_1.PNG';
-    // ctx.globalCompositeOperation = "source-atop";
 
-    //  var img = new Image();
-    // img.onload = function(){
-    // context.drawImage(img, 0,0,240,223);
-    // }
-    // img.src = "http://example.com/image/bobtail-1503869_960_720.png";
-
+    // img.addEventListener('load', () => {
+    //     ctx.drawImage(image, 0,0,240,223);
+    //     ctx.globalCompositeOperation = 'destination-atop';
+    // })
 
     function stopPainting() {
         painting = false; //그리기를 멈춘다
