@@ -120,8 +120,12 @@
         crossOrigin:'anonymous'
     };
     
-    let canvas = this.__canvas = new fabric.Canvas('canvas',_fabricConfig);
-    
+    const canvas = this.__canvas = new fabric.Canvas(
+        // 'canvas',
+        // _fabricConfig
+        'canvas', 
+        _fabricConfig
+    );
   </script>
   <!-- <SCRIPT SRC="../../../COMM/JS/CONTROLS.JS"></SCRIPT> -->
   <script>
@@ -188,9 +192,7 @@
             var canvasHeight = $(window).height();
             // canvas.zoomToPoint(new fabric.Point(canvas.width / 2, canvas.height / 2), zoomLevel);    
         }, { crossOrigin: 'anonymous' });
-    
-        
-    
+
         // console.log( (canvas.width / 2) - (clipingRect.width/2 ) +330)
         // let bg =  canvas.setBackgroundImage(clipingRect , canvas.renderAll.bind(canvas), {
         //     originX: 'center',
