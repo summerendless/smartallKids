@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Canvas Image Coloring</title>
+        <style>
+            canvas {
+                border: 1px solid black;
+                cursor: crosshair;
+            }
+        </style>
+    </head>
+
+    <body>
+        <canvas id="canvas"></canvas>
+        <input type="color" id="colorPicker">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+    <script>
+        var canvas = new fabric.Canvas("canvas");
+        var colorPicker = document.getElementById("colorPicker");
+
+        function loadImage(src, callback) {
+            var img = new Image();
+            img.onload = function () {
+                callback(img);
+            };
+            img.src = src;
+        }
+
+        var imageSrc = "../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG";
+        loadImage(imageSrc, function (img) {
+            canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+                scaleX: canvas.width / img.width,
+                scaleY: canvas.height / img.height
+            });
+        });
+
+        canvas.clipTo = function (ctx) {
+            var rect = canvas.getObjects()[0].getBoundingRect();
+            ctx.rect(rect.left, rect.top, rect.width, rect.height);
+        };
+
+        var isDrawing = false;
+
+        canvas.on("mouse:down", function (options) {
+            isDrawing = true;
+            var pointer = canvas.getPointer(options.e);
+            var points = [pointer.x, pointer.y, pointer.x, pointer.y];
+            var line = new fabric.Line(points, {
+                strokeWidth: 3,
+                fill: colorPicker.value,
+                stroke: colorPicker.value,
+                originX: "center",
+                originY: "center"
+            });
+            canvas.add(line);
+        });
+
+        canvas.on("mouse:move", function (options) {
+            if (!isDrawing) return;
+            var pointer = canvas.getPointer(options.e);
+            var activeLine = canvas.getActiveObject();
+            activeLine.set({ x2: pointer.x, y2: pointer.y });
+            canvas.renderAll();
+        });
+
+        canvas.on("mouse:up", function (options) {
+            isDrawing = false;
+        });
+    </script>
+    </body>
+
+</html>

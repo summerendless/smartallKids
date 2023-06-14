@@ -48,7 +48,7 @@
                 <section class="section section1">
                     <div class="pageContents">
                         <div id="canvasContainer">                           
-                            <canvas id="drawing" class="canvas" width="600" height="600" style="border:solid 3px #CCC;"></canvas>
+                            <canvas id="canvas" class="canvas" width="600" height="600" style="border:solid 3px #CCC;"></canvas>
                         </div>
                     </div>
                     <div class="controls">
@@ -103,7 +103,7 @@
 <SCRIPT SRC="../../../COMM/JS/FABRIC_S.JS"></SCRIPT>
 <script src="../../../COMM/JS/guidelines.js"></script>
 <script src="../../../COMM/JS/DATA.JSON"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.4.5/fabric.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.4.5/fabric.min.js"></script> -->
 
 <!-- <SCRIPT SRC="../../../COMM/JS/CONTROLS.JS"></SCRIPT> -->
 <script>
@@ -129,7 +129,7 @@
     // );
 
     const canvas = new fabric.Canvas(
-    'drawing', 
+    'canvas', 
     { isDrawingMode: true }
     );
     canvas.freeDrawingBrush.color = 'red'

@@ -47,8 +47,10 @@
             <div class="zoomInner">
                 <section class="section section1">
                     <div class="pageContents">
-                        <div id="canvasContainer">                           
-                            <canvas id="canvas" class="canvas" width="600" height="600" style="border:solid 3px #CCC;"></canvas>
+                        <div id="canvasContainer">           
+                            <canvas id="main-canvas" width="400" height="400"></canvas>
+                            <canvas id="clip-canvas" width="400" height="400"></canvas>
+                            <!-- <canvas id="canvas" class="canvas" width="600" height="600" style="border:solid 3px #CCC;"></canvas> -->
                             <!-- <canvas id="Jscanvas" class="Jscanvas" width="600" height="600" style="border:solid 3px #CCC;"></canvas> -->
                         </div>
                     </div>
@@ -103,10 +105,11 @@
 <!-- <SCRIPT SRC="../../../COMM/JS/JQUERY_UI.MIN.JS"></SCRIPT> -->
 <!-- <SCRIPT SRC="../../../COMM/JS/COMMON.JS"></SCRIPT> -->
 <!-- <SCRIPT SRC="../../../COMM/JS/TOUCH.JS"></SCRIPT> -->
+<!-- <SCRIPT SRC="../../../COMM/JS/IMAGEFILTER.JS"></SCRIPT> -->
 <SCRIPT SRC="../../../COMM/JS/FABRIC_S.JS"></SCRIPT>
 <script src="../../../COMM/JS/guidelines.js"></script>
 <script src="../../../COMM/JS/DATA.JSON"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.6.0/fabric.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
 
 <!-- <SCRIPT SRC="../../../COMM/JS/CONTROLS.JS"></SCRIPT> -->
 <script>
@@ -158,35 +161,90 @@
        this.renderAll();
     }
     
-    function stopPainting() {
-        painting = false; //그리기를 멈춘다
-    }
+    // function stopPainting() {
+    //     painting = false; //그리기를 멈춘다
+    // }
 
-    function startPainting() {
-        painting = true;
-    }
+    // function startPainting() {
+    //     painting = true;
+    // }
 
-    function onMouseMove(event) {
-        const x = event.offsetX; //offset은 캔버스만 관계된 좌표
-        const y = event.offsetY;
-        if (!painting) {
-            //그림 그리지 않을때
-            ctx.beginPath(); //path(선)의 시작
-            ctx.moveTo(x, y); //(보이진 않지만) 이동할때 좌표생성
-        } else {
-            ctx.lineTo(x, y); //lineTo의 좌표에 path가 그려진다(보이진 않지만)
-            ctx.stroke(); //stroke는 path를 선으로 그린다
-        } //lineTo와 stroke는 마우스를 움직일때마다 생긴다
-    }
+    // function onMouseMove(event) {
+    //     const x = event.offsetX; //offset은 캔버스만 관계된 좌표
+    //     const y = event.offsetY;
+    //     if (!painting) {
+    //         //그림 그리지 않을때
+    //         ctx.beginPath(); //path(선)의 시작
+    //         ctx.moveTo(x, y); //(보이진 않지만) 이동할때 좌표생성
+    //     } else {
+    //         ctx.lineTo(x, y); //lineTo의 좌표에 path가 그려진다(보이진 않지만)
+    //         ctx.stroke(); //stroke는 path를 선으로 그린다
+    //     } //lineTo와 stroke는 마우스를 움직일때마다 생긴다
+    // }
 
-    function handleColorClick(event) {
-        // const color = event.target.style.backgroundColor;
-        $(this).addClass('active');
-        $(this).siblings().removeClass('active');
-        const color = event.target.dataset.color;
-        ctx.strokeStyle = color; //선의 색을 클릭한 색으로 바꾼다
-        ctx.fillStyle = ctx.strokeStyle; //채우기 색과  선의 색이 같게 한다
-    }
+    // function handleColorClick(event) {
+    //     // const color = event.target.style.backgroundColor;
+    //     $(this).addClass('active');
+    //     $(this).siblings().removeClass('active');
+    //     const color = event.target.dataset.color;
+    //     ctx.strokeStyle = color; //선의 색을 클릭한 색으로 바꾼다
+    //     ctx.fillStyle = ctx.strokeStyle; //채우기 색과  선의 색이 같게 한다
+    // }
+
+    // 드로잉
+    // Create the main canvas
+        var canvas = new fabric.Canvas('canvas');
+
+        // Set the initial brush size and color
+        var brushSize = 5;
+        var brushColor = '#000000';
+
+        // Variable to keep track of the drawing state
+        var isDrawing = false;
+
+        // Event listeners for mouse down, move, and up
+        canvas.on('mouse:down', function (event) {
+            isDrawing = true;
+            var pointer = canvas.getPointer(event.e);
+            var points = [pointer.x, pointer.y, pointer.x, pointer.y];
+            var line = new fabric.Line(points, {
+                strokeWidth: brushSize,
+                stroke: brushColor,
+                strokeLineCap: 'round',
+                selectable: false
+            });
+            canvas.add(line);
+        });
+
+        canvas.on('mouse:move', function (event) {
+            if (!isDrawing) return;
+            var pointer = canvas.getPointer(event.e);
+            var activeObject = canvas.getActiveObject();
+            activeObject.set({ x2: pointer.x, y2: pointer.y });
+            activeObject.setCoords();
+            canvas.renderAll();
+        });
+
+        canvas.on('mouse:up', function (event) {
+            isDrawing = false;
+        });
+
+        // Function to change the brush size
+        function changeBrushSize(size) {
+            brushSize = size;
+        }
+
+        // Function to change the brush color
+        function changeBrushColor(color) {
+            brushColor = color;
+        }
+
+        // Function to clear the canvas
+        function clearCanvas() {
+            canvas.clear();
+        }
+
+    // 드로잉 끝
     
     
  
@@ -194,18 +252,44 @@
     var h = $('#canvasContainer').height();
     let ratio;
     // let center =canvas.getCenter();
+    // var clipingRect = new fabric.Rect({
+    //     originX: 'center',
+    //     originY: 'center',
+    //     width:600,
+    //     // rx: 100,
+    //     // ry: 100,
+    //     fill:"rgba(255,255,255,0)",
+    //     //strokeDashArray: [5, 5],
+    //     stroke: 10, 
+    //     strokeWidth: 1, 
+    // });
+    var line = new fabric.Line([50, 50, 200, 200], {
+        stroke: 'red',
+        strokeWidth: 2
+    });
+    var clipCanvas = new fabric.StaticCanvas();
+
     var clipingRect = new fabric.Rect({
-        originX: 'center',
-        originY: 'center',
-        width:600,
+        // originX: 'center',
+        // originY: 'center',
+        left: 100,
+        top: 100,
+        width: 600,
         // rx: 100,
         // ry: 100,
-        fill:"rgba(255,255,255,0)",
+        fill: "rgba(255,255,255,0)",
         //strokeDashArray: [5, 5],
-        stroke: 10, 
-        strokeWidth: 1, 
+        stroke: 10,
+        strokeWidth: 1,
     });
-        
+    clipCanvas.add(clipingRect);
+    line.clipTo = function (ctx) {
+        clipCanvas.render(ctx);
+    };
+
+    // Add the line to the main canvas
+    canvas.add(line);
+
     var mainIMG = new fabric.Image.fromURL('../../COMM/IMG/WORD/1_1/WORD_1_1_1.PNG', function (objects, options) {
         let objW = objects.width + 36;
         let objH = objects.height + 36;
@@ -232,7 +316,7 @@
         // left: center.left,
         // top: center.top,
     });
-    
+
         
     // undo = function undo() {
     //     if (mods+1 < state.length) {
@@ -262,31 +346,6 @@
        
 
 
-  //  function text(){
-  //       var textbox = new fabric.Path('path', {
-  //           // left: objleft,
-  //           // top: objtop,
-  //           fill: 'black',
-  //           underline:false,
-  //           linethrough: false,
-  //           editable: false,
-  //           originX: 'center',
-  //           originY: 'center',
-  //           globalCompositeOperation: 'source-atop'
-  //       });
-  //       canvas.add(textbox).centerObject(textbox).setActiveObject(textbox);
-  //       // updateModifications(true);    
-  //   }
-  //   text();
-
-   function drawPath(){
-        var textbox = new fabric.Canvas('drawing', {
-          isDrawingMode: true
-        });
-        canvas.add(textbox).centerObject(textbox).setActiveObject(textbox);
-        // updateModifications(true);    
-    }
-    drawPath();    
  
     fabric.Object.prototype.transparentCorners = false;
     fabric.Object.prototype.cornerColor = '#A0CEFF';
