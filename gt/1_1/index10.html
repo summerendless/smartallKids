@@ -32,6 +32,7 @@
 
 <body>
     <div id="wrap" class="">
+        <!-- <div class="sectionIntro"><img src="../../COMM/IMG/INTRO.PNG" /></div> -->
         <header>
             <div class="indicate">
                 <ul class="paging">
@@ -102,7 +103,7 @@
                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
                             <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>   
+                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div> <!-- 로컬 스토리지에서 로드 할 색칠 된 이미지 -->
                         </div>
                         <div class="stick-panel">
                             <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
@@ -110,7 +111,7 @@
                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
                             <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>   
+                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div> <!-- 로컬 스토리지에서 로드 할 색칠 된 이미지 -->
                         </div>
                         <div class="stick-panel">
                             <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
@@ -118,7 +119,7 @@
                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
                             <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>   
+                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div> <!-- 로컬 스토리지에서 로드 할 색칠 된 이미지 -->
                         </div>
                         <div class="stick-panel">
                             <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
@@ -126,7 +127,7 @@
                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
                             <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>   
+                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div> <!-- 로컬 스토리지에서 로드 할 색칠 된 이미지 -->
                         </div>
                     </div>
                     <button class="done-btn">
@@ -138,108 +139,21 @@
             </div>
 
             <div class="inner inner2">
-              <section class="section section1">
-                  <div class="pageContents">
-                      <div class="item-img"><img src="../../COMM/IMG/WORD/1_1/ITEM_1_1.png"/></div>
-                      <div id="canvasContainer">                           
-                        <canvas id="canvas" class="canvas" width="auto" height="226" style="border: none;"></canvas>
-                        <!-- <canvas id="originalCanvas" width="400" height="400"></canvas>
-                        <canvas id="finalCanvas" width="400" height="400"></canvas> -->
-                          <!-- <canvas id="canvas1" class="canvas canvas1" width="auto" height="226" style="border: none;"></canvas>
-                          <canvas id="canvas2" class="canvas canvas2" width="auto" height="226" style="border: none;"></canvas> -->
-                      </div>
-                  </div>
-                  <div class="controls">
-                      <!--색상 버튼-->
-                      <div class="color-palette">
-                          <input id="color" type="color" class="dp_n"/>
-                          <div class="controls__colors color-items" id="jsColors">
-                              <div class="controls__color color-option color-red" ><img src="../../COMM/IMG/CRAYON_BV.PNG" data-color="#ff0000" alt="랜덤" /></div>
-                              <div class="controls__color color-option color-red" ><img src="../../COMM/IMG/CRAYON_RD.PNG" data-color="#ff0000" alt="빨강" /></div>
-                              <div class="controls__color color-option color-orange" ><img src="../../COMM/IMG/CRAYON_OR.png" data-color="#ff8c00" alt="주황" /></div>
-                              <div class="controls__color color-option color-yellow" ><img src="../../COMM/IMG/CRAYON_YL.png" data-color="#ffff00" alt="노랑" /></div>
-                              <div class="controls__color color-option color-green" ><img src="../../COMM/IMG/CRAYON_GN.png" data-color="#008000" alt="초록" /></div>
-                              <div class="controls__color color-option color-blue" ><img src="../../COMM/IMG/CRAYON_BL.PNG" data-color="#0000ff" alt="파랑" /></div>
-                              <div class="controls__color color-option color-purple" ><img src="../../COMM/IMG/CRAYON_PR.png" data-color="#800080" alt="보라" /></div>
-                          </div>
-
-                          <!-- 뒤로 돌리기 버튼 -->
-                          <div id="undo" class="bin-btn"></div>
-                      </div>
-                  </div>
-                  <button class="next-btn"><img src="../../../COMM/IMG/BTN_NEXT_UN.PNG" alt=""></button>
-              </section>
-              <!-- //section1 -->
-              
-              <section class="section section2">
-                  <div class="pageContents">
-                      <div class="stick-panel">
-                          <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1.png"/></div>
-                          <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_2.png"/></div>
-                          <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_3.png"/></div>
-                          <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_4.png"/></div>
-                          <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                          <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>   
-                      </div>
-                      <div class="answer-list">
-                          <div class="answer-item" data-answer=00><img src="../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.PNG" alt="" /></div>
-                          <div class="answer-item" data-answer=01><img src="../../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.PNG" alt="" /></div>
-                          <div class="answer-item" data-answer=02><img src="../../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.PNG" alt="" /></div>
-                          <div class="answer-item" data-answer=03><img src="../../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.PNG" alt="" /></div>
-                      </div>
-                  </div> 
-              </section>
-              <!-- //section2 -->
-
-              <section class="section section3">
-                  <div class="pageContents">
-                      <div class="stick-panel">
-                          <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
-                          <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
-                          <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
-                          <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
-                          <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                          <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>   
-                      </div>
-                      <div class="stick-panel">
-                          <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
-                          <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
-                          <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
-                          <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
-                          <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                          <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>   
-                      </div>
-                      <div class="stick-panel">
-                          <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
-                          <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
-                          <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
-                          <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
-                          <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                          <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>   
-                      </div>
-                      <div class="stick-panel">
-                          <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
-                          <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
-                          <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
-                          <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
-                          <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                          <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>   
-                      </div>
-                  </div>
-                  <button class="done-btn">
-                       <!--  active  --> 
-                      <img src="../../../COMM/IMG/BTN_DONE.PNG" alt=""> 
-                  </button>
-              </section>
-              <!-- //section3 -->
-          </div>
+              <!-- 반복 - 코끼리 -->
+            </div>
+            <div class="inner inner3">
+              <!-- 반복 - 기린 -->
+            </div>
+            <div class="inner inner4">
+              <!-- 반복 - 원숭이 -->
+            </div>
         </div>
     </div>
     <!-- wrap -->
 
 <SCRIPT SRC="../../../COMM/JS/JQUERY-3.5.1.MIN.JS"></SCRIPT>
-<!-- <SCRIPT SRC="../../../COMM/JS/JQUERY_UI.MIN.JS"></SCRIPT> -->
-<!-- <SCRIPT SRC="../../../COMM/JS/COMMON.JS"></SCRIPT> -->
+<SCRIPT SRC="../../../COMM/JS/JQUERY-UI.MIN.JS"></SCRIPT>
+<SCRIPT SRC="../../../COMM/JS/COMMON.JS"></SCRIPT>
 <!-- <SCRIPT SRC="../../../COMM/JS/TOUCH.JS"></SCRIPT> -->
 <SCRIPT SRC="../../../COMM/JS/FABRIC_S.JS"></SCRIPT>
 <SCRIPT SRC="../../../COMM/JS/DATA.JSON"></SCRIPT>
@@ -287,95 +201,63 @@
     
     // let canvas = this.__canvas = new fabric.Canvas('canvas',_fabricConfig);  
 </script>
-<!-- <script>
-    const canvas = new fabric.Canvas('canvas');
-    // const canvas2 = new fabric.Canvas('canvas2');
-
-    // canvas.selection = false;
-
-    const image = new fabric.Image();
-
-    image.setSrc('../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG', () => {
-      canvas.setDimensions({
-        width: image.width,
-        height: image.height,
-        selectable: false,
-      });
-
-      canvas.add(image);
-      canvas.isDrawingMode = true;
-      canvas.freeDrawingBrush.color = 'black';
-      canvas.freeDrawingBrush.width = 10;
-      canvas.clipPath = new fabric.Rect({
-          left: 0,
-          top: 0,
-          width: image.width,
-          height: image.height,
-          absolutePositioned: true,
-        });
-    });
-
-    canvas.on('path:created', function (options) {
-      const path = options.path;
-      if (!canvas.clipPath.containsPoint(path.getPointByOrigin('center', 'center'))) {
-        canvas.remove(path);
-      }
-    });
-    
-</script> -->
 <script>
-  const canvas = document.getElementById("canvas");
-  const context = canvas.getContext("2d");
+  const canvas = new fabric.Canvas('canvas');
+  // const canvas2 = new fabric.Canvas('canvas2');
+  //  context = canvas.getContext("2d");
 
-    var image = new Image();
-   image.onload = function() {
-      // 이미지 로드가 완료된 후에 그리기 작업을 수행합니다.
-      context.save();
+  // canvas.selection = false;
 
-      // 이미지 영역의 경계를 설정합니다.
-      var imageX = 50;
-      var imageY = 0;
-      var imageWidth = 200;
-      var imageHeight = 200;
+  const image = new fabric.Image();
 
-      // 이미지 영역 외부에 그리기 작업을 적용하지 않도록 클리핑 영역을 설정합니다.
-      context.beginPath();
-      context.rect(imageX, imageY, imageWidth, imageHeight);
-      context.clip();
+  image.setSrc('../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG', () => {
+    canvas.setDimensions({
+      width: image.width,
+      height: image.height,
+      selectable: false,
+    });
 
-      // 이미지를 그립니다.
-      context.drawImage(image, imageX, imageY, imageWidth, imageHeight);
+    canvas.add(image);
+    canvas.isDrawingMode = true;
+    canvas.freeDrawingBrush.color = 'black';
+    canvas.freeDrawingBrush.width = 10;
+    canvas.clipPath = new fabric.Rect({
+      left: 0,
+      top: 0,
+      width: image.width,
+      height: image.height,
+      absolutePositioned: true,
+    });
+  });
 
-      // 그리기 작업을 수행합니다. 이 영역 내에서만 작업이 적용됩니다.
-      context.strokeStyle = 'transparent';
-      context.lineWidth = 5;
-      context.strokeRect(imageX, imageY, imageWidth, imageHeight);
+  // 캔버스 크기를 이미지와 동일하게 설정
+  // canvas.width = image.width;
+  // canvas.height = image.height;
 
-      // 그리기 작업이 완료되면 클리핑 영역을 해제합니다.
-      context.restore();
-    };
+  // console.log(canvas.width + ',' + image.width)
 
-    // 이미지 경로를 설정합니다.
-    image.src = '../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG';
+  // canvas.on('path:created', function (options) {
+  //   const path = options.path;
+  //   if (!canvas.clipPath.containsPoint(path.getPointByOrigin('center', 'center'))) {
+  //     canvas.remove(path);
+  //   }
+  // });
+
 </script>
 <script>
   // 색상 선택 시작
   const colorOption = Array.from(document.getElementsByClassName("color-option"));
   const color = document.querySelector("#color");
 
-  function oncolorChange(event){
+  function oncolorChange(event) {
     $(this).addClass('active');
     $(this).siblings().removeClass('active');
     const colorValue = event.target.dataset.color;
     console.log(event.target)
-    context.strokeStyle = colorValue; /** 선 색상변경 */
-    // context.fillStyle = colorValue;
+    canvas.strokeStyle = colorValue; /** 선 색상변경 */
+    canvas.fillStyle = colorValue;
     color.value = colorValue; /** 변경된 색상 표시 */
-    // context.freeDrawingBrush.color = color.value;
-    canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
-    canvas.freeDrawingBrush.color = colorValue;
-    canvas.freeDrawingBrush.width = 20; // 브러쉬 너비 설정
-
+    canvas.freeDrawingBrush.color = color.value;
   }
   // color.addEventListener("change", oncolorChange); /** 색상변경 함수명 */
   colorOption.forEach((color) => color.addEventListener("click", oncolorChange));
@@ -392,8 +274,8 @@
 
   // var canvas = new fabric.Canvas("canvas");
 
-  context.isDrawingMode = true;
-  // canvas.freeDrawingBrush.width = 20;
+  canvas.isDrawingMode = true;
+  canvas.freeDrawingBrush.width = 20;
 
   undo_history.push(JSON.stringify(canvas));
 
@@ -402,7 +284,7 @@
     console.log("object:added");
     binBtn.classList.add('active');
     nextBtn.classList.add('active');
-    undo_history.push(JSON.stringify(context));
+    undo_history.push(JSON.stringify(canvas));
     redo_history.length = 0;
     console.log(undo_history.length);
   });
@@ -415,33 +297,10 @@
   //   console.log(undo_history.length);
   // });
 
-  // function undo() {
-  //   if (undo_history.length > 0) {
-  //     lockHistory = true;
-  //     if (undo_history.length > 1) redo_history.push(undo_history.pop()); 
-  //     const content = undo_history[undo_history.length - 1];
-  //     context.clearRect(0, 0, canvas.width, canvas.height);
-  //     const img = new Image();
-  //     img.onload = function() {
-  //       context.drawImage(img, 0, 0);
-  //       lockHistory = false;
-  //       console.log(undo_history.length);
-  //     };
-  //     context.loadFromJSON(content, function () {
-  //       context.renderAll();
-  //       lockHistory = false;
-  //       console.log(undo_history.length)
-  //     });
-  //     img.src = content;
-  //     if (undo_history.length == 1) {
-  //       binBtn.classList.remove("active");
-  //     }    
-  //   }
-  // }
   function undo() {
     if (undo_history.length > 0) {
       lockHistory = true;
-      if (undo_history.length > 1) redo_history.push(undo_history.pop()); 
+      if (undo_history.length > 1) redo_history.push(undo_history.pop());
       const content = undo_history[undo_history.length - 1];
       canvas.loadFromJSON(content, function () {
         canvas.renderAll();
@@ -450,7 +309,7 @@
       });
       if (undo_history.length == 1) {
         binBtn.classList.remove("active");
-      }    
+      }
     }
   }
 

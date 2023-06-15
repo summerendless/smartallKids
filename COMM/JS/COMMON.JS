@@ -1,241 +1,417 @@
-// 
-const section1 = $('.section1');
-const section2 = $('.section2');
-const section3 = $('.section3');
-const section3_1 = $('.section3-1');
-const section4 = $('.section4');
+//  변수 정리
 
-const bgm = "#bgm";
+// 페이지 필요 정보
+var page = 0; // 첫 페이지 
+var complatePage = 0; //완료페이지
+var correctWords = 0;
+// var pageLength = words.length;
+var scaleFactor = 1;
+// 페이지 Layout
+
+var $prevBtn = $('.prev-btn');
+var $nextvBtn = $('.next-btn');
+var $doneBtn = $('.done-btn');
+
+var activeClass = 'active';
+var $paging = $('.paging');
+var $backBtn = $('.btn-back');
+var $answerBtn = $('.answerbtn');
+var $guide = $('#guide');
+
+var $wordWrap;
+var $wordWrap2;
+
+// if(type==undefined || type == null){
+//     var type = "society"    
+// }
+// try {
+//     navType;
+// } catch(e) {
+//    navType = 'old' ;
+// }
+// 초기 빌드
+function init() {
+     
+    var active = "1";
+    reset()
+    // words.sort(function () { return Math.random() - .5 });
+
+    // header pageing nav 
+
+    // 2023-01-13 디자인 수정
+    // 사회만 적용
+
+    console.log(navType)
+    if(  navType == 'newNav' ){
+       pageNav(page+1)
+    // 기존 과학 버전 그대로
+    }else{
+        for (var i = 0; i < pageLength; i++) {
+            if ( i == page ){
+                active = activeClass ;
+            }else{
+                active = "";
+            }
+            $('<div class="page-btn '+ active +'">' + (i+1) + '</div>').data('page-num', i).appendTo('.paging');
+        }
+    }
+
+    // 하단 단어 
+    var click = {
+            x: 0,
+            y: 0
+        };
+    
+    if( type==='science' ){
+        word(words2,2);
+    }
+    
+    word(words,1)
+    guide()
+}
+
+//bgm재생
+$('.btn-back , .next-btn , .prev-btn').addClass('button-bgm');
+$(document).on('click', '.button-bgm', btnBgm);
+
+var touchBgm = new Audio('../../../COMM/MP3/CHARACTER.MP3'); // 나가기, 페이지 이동 버튼  
+var touchBgm2 = new Audio('../../../COMM/MP3/OBGM.MP3'); // 정답 버튼, 정답시
+var touchBgm3 = new Audio('../../../COMM/MP3/XBGM.MP3'); // 오답시
+
+function btnBgm() {
+
+    if ($(this).hasClass('btn-back')) {
+        touchBgm.pause();
+        touchBgm.currentTime = 0;
+        touchBgm.play();
+    } else {
+        if ($(this).hasClass('active') && $(this).hasClass('next-btn') || $(this).hasClass('prev-btn')){
+            playVid(touchBgm);
+        }
+    }
+}
+
+// 드래그 앤 드롭, 핀치줌 가이드
+function guide() {
+    let guideHtml;
+    guideHtml  = `
+        <div class="drag">
+            <div>
+                <div class="guide_answer answer answer-w"></div>
+                <p class="desc">
+                    <span class="nbsp"></span>에 들어갈 알맞은 말을<br/>
+                    끌어 넣으세요.
+                </p>
+            </div>
+        </div>
+        <i class="hand_icon">
+            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
+        </i>
+    `;
+    $('<div id="guide" onclick="guideClose($(this))">'+guideHtml+'</div>').appendTo('#wrap').html(guideHtml);
+}
+
+function wordWrap($wordWrap, $wordWrap2) {
+    $wordWrap.addClass('dimmed');
+    $wordWrap2.addClass('dimmed');
+}
+// 가이드 닫기
+function guideClose($this) {
+    $this.addClass('close');
+    $wordWrap.removeClass('dimmed');
+    $wordWrap2.removeClass('dimmed');
+}
+
+function word(words, side){//
+    let sidetype = (side == 1) ? "" : "2";
+    const $answer = $('.answer' + sidetype);
+
+    if( side == 2){
+        $('#wordWrap').addClass('science-wordWrap science-wordWrap1')
+        $('<div id="wordWrap2" class="science-wordWrap science-wordWrap2"/>').appendTo('#wrap');
+        
+    }
+    // 가이드화면용 wordWrap
+    $wordWrap = $('#wordWrap');
+    $wordWrap2 = $('#wordWrap2');
+    wordWrap($wordWrap, $wordWrap2);
+
+    for (var i = 0; i < words.length; i++) {
+        $('<div class="words-section words-section'+ sidetype +i+'"/>').appendTo('#wordWrap' + sidetype);
+        let containment = (type != 'science') ? 'document': (side == 1) ? '.section'+(i+1)+' .science-left' : '.section'+(i+1)+' .science-right' ;
+        // console.log(containment)
+        // console.log(side);
+        let containmentArea = $(containment);
+        
+        for (var j = 0; j < words[i].length; j++) {
+            $('<div class="word'+sidetype+'">' + words[i][j] + '</div>').data('word', sidetype + String(i) + j).attr('id', 'word'+sidetype + String(i) + j).appendTo('.words-section'+sidetype+i).draggable({
+                    containment: containment,
+                    stack: '#wordWrap'+sidetype+' div',
+                    cursor: 'move',
+                    revert: true,
+                    // helper: "clone",
+                  //  drag: dragFix(event, aa=containmentArea),
+                });
+            
+        }
+        var len = $('.words-section'+sidetype + i).children('.word'+sidetype).length;
+        
+        $('.words-section'+sidetype+ i).each(function () {
+            var listWrap = $(this);
+            var liArr = listWrap.children('.word'+sidetype);
+            liArr.sort(function () {
+                var temp = parseInt(Math.random() * len);
+                var temp1 = parseInt(Math.random() * len); return temp1 - temp;
+            }).appendTo(listWrap);
+        });
+    }
+
+
+    
+        function dragFix(event, ui, aa) {
+            console.log(event , ui , aa)
+            if(type == 'science'){
+                var contWidth = containmentArea.width(), contHeight = containmentArea.height();
+                ui.position.left = Math.max(0, Math.min(ui.position.left / scaleFactor , contWidth - ui.helper.width()));
+                ui.position.top = Math.max(0, Math.min(ui.position.top  / scaleFactor,  contHeight- ui.helper.height()));
+            }
+            
+        }
+
+
+    $answer.each(function(){
+        // console.log(sidetype + '@@@@@@@@@@@@@@')
+        $(this).droppable({
+            accept: '#wordWrap'+sidetype+' div',
+            tolerance: 'touch',  
+            hoverClass: 'hover',
+            drop: handleCardDrop,
+        });
+    })
+
+
+}
+
+
+// 초기화 함수
+function reset(){
+    $('#wordWrap').html('');
+    $paging.html('');
+    $('.section').css('display','none');
+    $('.section' + (page+1) ).css('display', 'block');
+}
+
+// 페이지 변경 함수
+function pageMove (pageNum){
+    // console.log(pageNum)
+    page = pageNum;
+    
+    correctWords = 0;
+
+    if (page == 0) {
+        $prevBtn.css('display', "none");
+    } else {
+        $prevBtn.show();
+    }
+
+    if ((page + 1) >= pageLength) {
+        $nextvBtn.removeClass(activeClass);
+        $nextvBtn.css('display', "none");
+        if ((page + 1) != complatePage) {
+            $answerBtn.removeClass(activeClass);
+        }
+    } else if (page < complatePage) {
+        $nextvBtn.show();
+        $nextvBtn.addClass(activeClass);
+        $answerBtn.addClass(activeClass);
+    } else {
+        $nextvBtn.removeClass(activeClass);
+        $answerBtn.removeClass(activeClass);
+
+    }
+
+
+    // $('.paging div').eq(complatePage - 1).addClass('complate');
+    $('.paging div').eq(page).addClass(activeClass).siblings().removeClass(activeClass);
+    $('.section'+(page+1)).css('display', 'block').siblings().css('display', 'none');
+    $('.words-section'+page).css('display', 'flex').siblings().css('display', 'none');
+    if(type =='science'){
+        $('.words-section2'+page).css('display', 'flex').siblings().css('display', 'none');
+    }
+}
+
+// 드롭 이벤트
+function handleCardDrop(event, ui) {
+    var slotNumber = $(this).attr('data-answer');
+    var cardNumber = ui.draggable.data('word');
+    // console.log(ui.draggable, slotNumber, cardNumber)
+    if (slotNumber == cardNumber) {
+        deleteImage( ui.draggable , $(this));
+        playVid(touchBgm2);
+    } else {
+        playVid(touchBgm3);
+    }
+
+    
+}
+
+// 삭제
+function deleteImage($item, $drop) {
+    var allchk = 0;
+    if(type == 'science'){
+        allchk =  words2[page].length
+    }
+    $item.addClass('correct');
+    $item.draggable('disable');
+    $drop.droppable('disable');
+    setTimeout(function(){ $drop.addClass('answer-complate'); },100)
+    
+    $item.position({ of: $(this), my: 'center center', at: 'center center' });
+    $item.draggable('option', 'revert', false);
+    correctWords++;
+    
+    $drop.append($item);
+
+    if (correctWords == words[page].length + allchk) {
+
+        complatePage++;
+        // console.log( complatePage, page, pageLength)
+        $answerBtn.addClass(activeClass);
+        if (complatePage == pageLength) {
+            complate();
+        } else {
+            $nextvBtn.addClass(activeClass);    
+        }
+       
+    }
+}
+    
+// 이전버튼
+// $(document).on('click', '.prev-btn', prev); 
+$(document).on('click', '.next-btn', next);
+// function prev(e) {
+//     var $this = $(this);
+//     if(page == 0){return}
+//     page = page - 1;
+//     pageMove(page);
+//     if ( navType == "newNav")pageNav(page+1)
+
+// }
+// 다음버튼
+function next(e) {
+    var $this = $(this);
+    if ($this.hasClass(activeClass)) {
+        if ((page + 1) >= pageLength) { return }
+        page = page + 1;
+        pageMove(page);
+        if ( navType == "newNav")pageNav(page+1)
+    }
+}
+function pageNav (pageNum){
+    $('.paging').html(`
+        <div class='new-page'>
+            <span>${pageNum}</span> / ${pageLength}
+        </div>
+
+    `)
+}
+// 완료 함수
+function complate(){
+    //종료함수 작성
+    callFinish();
+}
+
+//종료 함수
+function callFinish(){
+    window.javascript_object.callFinish();
+}
+
+// 나가기 함수
+// function closeWindow() {
+//     var html, text;
+//     text = (complatePage == pageLength) ? "종료할까요?" : "아직 확인하지 않은 정답이 있습니다.<br> 종료할까요?";
+//     html = `
+//         <h1 class="pop-tit">알림</h1>
+//         <div class="pop-inner">
+//             <p>`+ text + `<p>
+
+//             <div class="btn-wrap">
+//                 <button class="btn btn1" onclick="remove();">아니오</button>
+//                 <button class="btn btn2" onclick="window.javascript_object.closeWindow();">네</button>
+//             </div>
+//         </div>
+//     `;
+//     $('<div class="pop-wrapBg"/>').appendTo('#wrap');
+//     $('<div class="pop-wrap"/>').appendTo('#wrap').html(html);
+// }
+// $backBtn.click(function() {
+//     closeWindow();
+// })
+
+function remove() {
+    $('.pop-wrap').remove();
+    $('.pop-wrapBg').remove();
+}
+
+function result(e) {
+    if ( $answerBtn.hasClass(activeClass)){
+        return;
+    }
+    playVid(touchBgm2);
+    $answerBtn.addClass(activeClass);
+    
+    if(type == 'science'){
+        resultEvent(2)
+    }
+    
+    resultEvent("")
+}
+function resultEvent(sideType){
+    $('.words-section'+sideType + page + ' .word'+sideType).each(function (index) {
+        var data = $(this).data('word')
+        // console.log(data)
+        deleteImage($(this), $('.answer'+sideType+'[data-answer="'+data+'"]') )
+    })
+}
 function playVid(el) { 
-    el = $(el)[0];
+    el.pause(); 
+    el.currentTime = 0;
     el.play(); 
 } 
-
-// $(document).ready(function() {
-//     $(bgm)[0].volume = 0.3;
-// });
-
-function contractBridge(){
-    window.javascript_object.getContractNum();
-}
-function customerBridge(){
-    window.javascript_object.getCustomerNum();
-}
-function popKorDictDetail(dictSeq , searchWord ) {
-	var korDictUrl = "https://wjdict.wjthinkbig.com/wjdict/searchMain";
-	var popUrl = korDictUrl + "?" + "DICT_SEQ=" + dictSeq ;
-	popUrl += "&VIEW_DICT_NM=kor" ;
-	popUrl += "&SEARCH_WORD=" + searchWord ;
-	popUrl += "&EXHIBITION_TP=CHNSTUDY";
-	window.open(popUrl) ; // 팝업 설정은 여기서 변경
+function pauseAll() {
+    $('audio.audio').each(function(i){
+        i = i+1;
+        $('#cardAudio' + i)[0].pause();
+        $('#cardAudio' + i)[0].currentTime = 0;
+    })
 }
 
-const fill = document.querySelector(".fill");
-const empties = document.querySelectorAll(".empty");
-
-function dragOver(e){
-    e.preventDefault(); // 드랍을 허용하도록 preventDefault() 호출
-}
-function dragDrop(){
-    this.append(fill);
-}
-
-empties.forEach((empty)=>{
-    empty.addEventListener('dragover', dragOver); 
-    empty.addEventListener('drop', dragDrop);   
-    
-})
-
-
-
+// 시작
 $(function(){
-    const dd = $("#draggable").data("target");
-    const $target = $('.droppable[data-accept="' + dd + '"]');
+    init();
+    // var element = document.querySelector('.zoomInner')
 
-    // $(window).on('load', function(){
-    //     setTimeout(function(){
-    //         section1.fadeOut('slow');
-    //         section2.fadeIn('slow', function(){
-    //             firstDisplay();
-    //         });
-    //     },2000);
-
-    // })
-
-    // if(section2.show()){
-    //     function firstDisplay() {
-    //         $('.circle'+page+' .left_map_center').stop().fadeIn(function(){
-    //             $('.circle'+page).find('.left_map_out').fadeIn(function(){
-    //                 if( !$('.circle'+page).hasClass('noAction')){
-    //                     $('.circle'+page).find('.left_map_out').addClass('guide');
-    //                 }
-                    
-    //                 // $('.circle'+page).find('.center_word_wrap').stop().fadeIn(100,function(){
-    //                 $('.circle'+page).find('.center_word_wrap').animate({ 'opacity' : 1}, function(){
-    //                     displayStepWords();
-    //                     setTimeout(function(){
-    //                         $('.circle'+page).find('.left_map_out').removeClass('guide');
-    //                         setTimeout(function(){
-    //                         //    displayStepWords();
-    //                            $('.circle' + page).addClass('noAction');
-    //                         }, 200)
-    //                     }, 1000)
-                        
-    //                 });
-    //             });
-    //         });
-    //     }
-
-    //     function drop_on (){
-    //         $('.drop_place').addClass('drop_on').delay(1000).queue(function(next ){
-    //             $(this).removeClass('drop_on');
-    //             next();
-    //         })
-    //     }
-
-    //     btnSketchWrap.find("li").hide();
-
-    //     function fadeInF (e, index){
-    //         $('.circle'+page+' .left_map .left_map_out img.out'+(index+1)).fadeIn(function(){
-    //             $(e).fadeIn("slow", function(){
-    //                 if(index == 2 && page == 1){
-    //                     if(startMotion) exampleMotion();
-    //                 }
-    //                 if(page != 1){
-    //                     $( ".drag" ).draggable({ disabled: false });
-    //                 }
-    //             });
-    //         })
-    //     }
-
-    //     function displayStepWords() {
-            
-    //         $('.circle'+page).find('.left_map_out').fadeIn(function(){
-    //             $('.circle'+page).find("ul.btn_sketch li").each(function(i) {
-    //                 let showup = $(this);
-    //                 setTimeout( function(){fadeInF(showup, i);}, 600 * i );
-    //             })
-    //         })
-    //     }
-
-    //     function exampleMotion(){
-    //         startMotion = false;
-    //         hand.show().addClass('active');
-    //         exWord.show().addClass('active');
-
-    //         setTimeout(function(){
-    //             hand.fadeOut(200,function(){
-    //                 $( ".drag" ).draggable({ disabled: false });
-    //                 setTimeout(function(){
-    //                     exWord.hide();
-    //                     exampleA.addClass('on').find('.drop_wrap').hide();
-
-    //                 },100)
-    //                 setTimeout(function(){
-    //                     exWord.hide();
-    //                     $('.right_sketch').fadeIn('slow', function(){  });
-    //                 },400)
-    //             });
-    //             setTimeout(function(){
-    //                 drop_on();
-    //             },1300);
-    //         },1200);
-    //     }
-    // }
-
-    $(".drag").draggable({
-        revert: true , 
-        disabled: true,
-        containment : "dnd_target_wrap",
-        helper:function(e){
-            return $("<img src='IMG/logo_icon2.PNG' style='width:57.6px'/>"); 
-        } ,
-        revertDuration: 0,
-        start: function(event, ui){
-            $(this).draggable('instance').offset.click = {
-                left: Math.floor(ui.helper.width() / 2),
-                top: Math.floor(ui.helper.height() / 2)
-            }; 
-        },
-        stop: function(){ }
-    });        
-});
-
-////////////////////////////////////////////////////////////////////////////////////////
-
-window.onload = function() {
-    // find the element that you want to drag.
-    var box = document.getElementById('box');
-    
-    /* listen to the touchMove event,
-    every time it fires, grab the location
-    of touch and assign it to box */
-    
-    box.addEventListener('touchmove', function(e) {
-      // grab the location of touch
-      var touchLocation = e.targetTouches[0];
+    // // And pass it to panzoom
+    // var zoom = Panzoom(element, {
+    //     contain: 'outside',
+    //     minScale: 1,
+    //     maxScale: 2,
+    //     disablePan: false,
+    //     disableZoom: false,
+    //     zoom: true,
       
-      // assign box new coordinates based on the touch.
-      box.style.left = touchLocation.pageX + 'px';
-      box.style.top = touchLocation.pageY + 'px';
+    // })
+    //  scaleFactor = zoom.getScale();
+    
+
+    const parent = element.parentElement
+    parent.addEventListener('wheel', function(event) {
+        zoom.zoomWithWheel(event);
+        scaleFactor = zoom.getScale();
+        // $(".title").text(scaleFactor)
+        // console.log(scaleFactor)
     })
-    
-    /* record the position of the touch
-    when released using touchend event.
-    This will be the drop position. */
-    
-    box.addEventListener('touchend', function(e) {
-      // current box position.
-      var x = parseInt(box.style.left);
-      var y = parseInt(box.style.top);
+    element.addEventListener('panzoomend', function(event) {
+        scaleFactor = zoom.getScale();
     })
-    
-  }
-
-
-  ////////////////////////////////////////////////////////////////////////////////
-
-const wrapper = document.querySelector('.wrapper');
-const empty = Array.from(document.querySelectorAll('.empty'));
-const drag = document.querySelector('.drag');
-
-drag.addEventListener('touchmove', touchMove);
-drag.addEventListener('touchend', touchEnd);
-
-let itemAppend;
-// ------------------------ touchMove
-function touchMove(event) {
-    event.preventDefault();
-
-    let touch = event.targetTouches[0];
-    drag.style.top = `${touch.pageY - (wrapper.offsetTop) - (drag.offsetWidth / 2)}px`;
-    drag.style.left = `${touch.pageX - (wrapper.offsetLeft) - (drag.offsetHeight / 2)}px`;
-
-    empty.map(item => {
-        if (
-            drag.getBoundingClientRect().top + drag.offsetWidth / 2 < item.getBoundingClientRect().bottom &&
-            drag.getBoundingClientRect().right - drag.offsetWidth / 2 > item.getBoundingClientRect().left &&
-            drag.getBoundingClientRect().bottom - drag.offsetWidth / 2 > item.getBoundingClientRect().top &&
-            drag.getBoundingClientRect().left + drag.offsetWidth / 2 < item.getBoundingClientRect().right
-        ) {
-            // item.classList.add('active');
-            itemAppend = item;
-        }
-        else {
-            // item.classList.remove('active');
-        }
-    });
-}
-
-
-function touchEnd(element) {
-    if (itemAppend.classList.contains('active')) {
-        itemAppend.append(this);
-        this.style.top = `${itemAppend.offsetTop}px`;
-        this.style.left = `${itemAppend.offsetLeft}px`;
-    }
-    else {
-        this.style.top = `${itemAppend.offsetTop}px`;
-        this.style.left = `${itemAppend.offsetLeft}px`;
-    }
-}
+})

@@ -417,3 +417,39 @@
 </body>
 
 </html>
+
+<script>
+  const canvas = document.getElementById("canvas");
+  const context = canvas.getContext("2d");
+
+  var image = new Image();
+  image.onload = function () {
+    // 이미지 로드가 완료된 후에 그리기 작업을 수행합니다.
+    context.save();
+
+    // 이미지 영역의 경계를 설정합니다.
+    var imageX = 50;
+    var imageY = 0;
+    var imageWidth = 200;
+    var imageHeight = 200;
+
+    // 이미지 영역 외부에 그리기 작업을 적용하지 않도록 클리핑 영역을 설정합니다.
+    context.beginPath();
+    context.rect(imageX, imageY, imageWidth, imageHeight);
+    context.clip();
+
+    // 이미지를 그립니다.
+    context.drawImage(image, imageX, imageY, imageWidth, imageHeight);
+
+    // 그리기 작업을 수행합니다. 이 영역 내에서만 작업이 적용됩니다.
+    context.strokeStyle = 'transparent';
+    context.lineWidth = 5;
+    context.strokeRect(imageX, imageY, imageWidth, imageHeight);
+
+    // 그리기 작업이 완료되면 클리핑 영역을 해제합니다.
+    context.restore();
+  };
+
+  // 이미지 경로를 설정합니다.
+  image.src = '../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG';
+</script>

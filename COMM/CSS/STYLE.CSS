@@ -903,14 +903,13 @@ header {
 .paging li:last-child {padding-right: 0;}
 .paging img {width: 34px;}
 
-.pageContents img.item-img{
+/* .pageContents img.item-img{
     width: 250px;
     position: absolute;
     top: 12%;
     left: 50%;
     transform: translateX(-50%);
-    /* align-self: start; */
-}
+} */
 
 canvas {
     /* position: absolute;
@@ -980,11 +979,20 @@ canvas {
 .color-option img {width: 100%;}
 
 /* 2023-06-15 */
-.item-img {
+.section1 .item-img {
     width: 330px;
     height: 280px;
     position: absolute;
     top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section2 .item-img{
+    width: 310px;
+    height: 260px;
+    position: absolute;
+    top: 8%;
     left: 50%;
     transform: translateX(-50%);
 }

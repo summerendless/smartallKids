@@ -68,6 +68,7 @@
     // 색칠 함수
         function colorizeCanvas(e) {
             var canvas = document.getElementById("canvas");
+            canvas.freeDrawingBrush.width = 10;
             var context = canvas.getContext("2d");
             var colorPicker = document.getElementById("colorPicker");
 
@@ -98,13 +99,13 @@
 
             // 현재 픽셀에 색상 적용
             context.fillStyle = color;
-            context.fillRect(x, y, 1, 1);
+            context.fillRect(x, y, 0.1, 0.1);
 
             // 상하좌우 픽셀에 대해 재귀적으로 색상 적용
-            floodFill(context, x + 1, y, color);
-            floodFill(context, x - 1, y, color);
-            floodFill(context, x, y + 1, color);
-            floodFill(context, x, y - 1, color);
+            floodFill(context, x + 0.1, y, color);
+            floodFill(context, x - 0.1, y, color);
+            floodFill(context, x, y + 0.1, color);
+            floodFill(context, x, y - 0.1, color);
         }
 
         // RGB 값을 16진수 색상 코드로 변환
