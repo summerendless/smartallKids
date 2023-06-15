@@ -10,6 +10,8 @@ var scaleFactor = 1;
 
 var $prevBtn = $('.prev-btn');
 var $nextvBtn = $('.next-btn');
+var $doneBtn = $('.done-btn');
+
 var activeClass = 'active';
 var $paging = $('.paging');
 var $backBtn = $('.btn-back');

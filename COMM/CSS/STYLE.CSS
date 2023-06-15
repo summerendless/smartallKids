@@ -447,27 +447,26 @@ header > div.right .paging > div.active:before{
     width: 100%;
     height: 100%;
 }
-.section .pageContents > div{
-    /* width: 48%; */
-    /* margin: 1%; */
-    /* background: #fff;
-    border-radius: 10px; */
-    /* box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.1); */
+.section #canvasContainer{
+    position: fixed;
+    bottom: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 553px;
+    height: 226px;
+}
+.section #canvasContainer canvas,
+.canvas-container {
+    width: 100% !important; 
+    height: 100% !important;
 }
 .answer2,
 .answer{
     position: absolute;
-    /* height: 34px; */
-    
-    /* height:5.556%; */
     height: 5.15%;
-    border:2px solid #31A7FB;
-    border-radius: 6px;
-    background-color: #E6E7E8;
     display: inline-block;
     vertical-align: top;
     /* min-width:100px; */
-    color:#ddd;
     text-align: center;
     transition: background 1s;
 }
@@ -515,11 +514,26 @@ header > div.right .paging > div.active:before{
     font-weight: 800;
     color: #080684;
 }
-
+.next-btn {
+    background: url("../../../COMM/IMG/BTN_NEXT_UN.PNG") no-repeat;
+    background-size: 100% 100%;
+    opacity: 1;
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    right: 34px;
+    bottom: 14px;
+    border: none;
+}
+.next-btn.active {
+    background: url("../../../COMM/IMG/BTN_NEXT_EN.PNG") no-repeat;
+    background-size: 100% 100%;
+}
 .prev-btn,
-.next-btn{
+.done-btn{
     /* display: none; */
     position: absolute;
+    width: 110px;
     right: 34px;
     bottom: 14px;
     background: none;
@@ -532,14 +546,17 @@ header > div.right .paging > div.active:before{
     opacity: 1;
 }
 .prev-btn.active,
-.next-btn.active{
+.next-btn.active,
+.done-btn.active{
     opacity: 1;
 }
 /* 버튼 클릭시 파란 박스 안보이게 */
 .prev-btn:focus,
 .next-btn:focus,
+.done-btn:focus,
 .prev-btn:active,
-.next-btn:active{
+.next-btn:active,
+.done-btn:active{
     -webkit-tap-highlight-color: transparent;
 }
 .prev-btn{
@@ -547,10 +564,24 @@ header > div.right .paging > div.active:before{
     left:0px
 }
 .prev-btn img,
-.next-btn img{width: 122px; left: 0;}
-.zoomInner{
-    position: relative;
+.next-btn img,
+.done-btn img{width: 100%; left: 0;}
+
+.done-btn.active::after {
+    content: "";
+    position: absolute;
+    left: -14px;
+    top: -13px;
+    width: 10vw;
+    height: 10.1vw;
+    background: url(../../COMM/IMG/BTN_DECO_RD.PNG) no-repeat;
+    background-size: 100% 100%;
 }
+.inner{
+    position: relative;
+    display: none;
+}
+.inner1 {display: block;}
 
 
 /* .section:not(.section1) .pageContents > div.answer{
@@ -840,6 +871,7 @@ header > div.left .title > div.new-title{
 .section2 {
     background: url(../IMG/BG_2.PNG) no-repeat;
     background-size: 100% 100%;
+    position: relative;
 }
 .section3 {
     background: url(../IMG/BG_3.PNG) no-repeat;
@@ -871,8 +903,8 @@ header {
 .paging li:last-child {padding-right: 0;}
 .paging img {width: 34px;}
 
-.pageContents img{
-    width: 232px;
+.pageContents img.item-img{
+    width: 250px;
     position: absolute;
     top: 12%;
     left: 50%;
@@ -933,12 +965,96 @@ canvas {
     }
 }
 
-.icon-bin { 
-    width: 80px;
-    height: 90px;
-    position: relative;
+.bin-btn {
+    width: 84px;
+    height: 100px;
     bottom: 50px;
+    position: relative;
+    background: url('../../COMM/IMG/ICON_BIN_UN.png') no-repeat;
+    background-size: cover;
+}
+.bin-btn.active {
+    background: url('../../COMM/IMG/ICON_BIN_EN.png') no-repeat;
+    background-size: cover;
+}
+.color-option img {width: 100%;}
+
+/* 2023-06-15 */
+.item-img {
+    width: 330px;
+    height: 280px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.item-word {
+    height: 186px;
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.color-option img,
-.icon-bin img  {width: 100%;}
+.item-img img, .item-word img {
+    width: 100%;
+    height: 100%;
+}
+
+.answer-list {
+    background: url(../IMG/BG_BAR.PNG) no-repeat;
+    background-size: 100% 100%;
+    position: fixed;
+    width: 60.5%;
+    height: 17.2%;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    display: flex;
+    padding: 20px 90px;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.answer-list .answer-item {
+    width: 20%;
+}
+.answer-list .answer-item img {
+    height: 80%;
+}
+
+.stick-panel {
+    background: url(../IMG/BG_PANNEL.PNG) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    width: 81.5%;
+    height: 71.87%;
+    left: 50%;
+    top: 45px;
+    transform: translateX(-50%);
+}
+
+.answer img {
+    width: 100%;
+    height: 100%;
+}
+
+.section3 .pageContents {
+    flex-wrap: wrap;
+    padding: 5.7% 9.3% 11%;
+    justify-content: space-between;
+}
+.section3 .pageContents > div.stick-panel {
+    width: 49%;
+    height: 50%;
+    margin: 0 10px 10px 0;
+    left: auto;
+    top: auto;
+    transform: inherit;
+}
+
+.section3 .pageContents > div.stick-panel:nth-child(2n) {
+    margin: 0 0 10px 0;
+
+}
