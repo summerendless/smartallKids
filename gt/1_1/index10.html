@@ -65,7 +65,7 @@
                                 <div class="controls__color color-option color-green" ><img src="../../COMM/IMG/CRAYON_GN.png" data-color="#008000" alt="초록" /></div>
                                 <div class="controls__color color-option color-blue" ><img src="../../COMM/IMG/CRAYON_BL.PNG" data-color="#0000ff" alt="파랑" /></div>
                                 <div class="controls__color color-option color-purple" ><img src="../../COMM/IMG/CRAYON_PR.png" data-color="#800080" alt="보라" /></div>
-                            </div>
+                            </div> 
 
                             <!-- 뒤로 돌리기 버튼 -->
                             <div id="undo" class="bin-btn"></div>
@@ -77,25 +77,20 @@
                 
                 <section class="section section2">
                     <div class="pageContents">
-                        <div class="stick-panel">
-                            <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1.png"/></div>
-                            <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_2.png"/></div>
-                            <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_3.png"/></div>
-                            <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_4.png"/></div>
+                        <div class="stick-panel on">
+                            <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1.png" class="droppableImg"/></div>
+                            <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_2.png" class="droppableImg"/></div>
+                            <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_3.png" class="droppableImg"/></div>
+                            <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_4.png" class="droppableImg"/></div>
                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
                             <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>   
                         </div>
-                        <div class="answer-list">
-                            <div class="answer-item" data-answer=00><img src="../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.PNG" alt="" /></div>
-                            <div class="answer-item" data-answer=01><img src="../../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.PNG" alt="" /></div>
-                            <div class="answer-item" data-answer=02><img src="../../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.PNG" alt="" /></div>
-                            <div class="answer-item" data-answer=03><img src="../../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.PNG" alt="" /></div>
-                        </div>
+                        <div id="wordWrap" class="answer-list"></div>
                     </div> 
                 </section>
                 <!-- //section2 -->
 
-                <section class="section section3">
+                <!-- <section class="section section3">
                     <div class="pageContents">
                         <div class="stick-panel">
                             <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
@@ -103,7 +98,7 @@
                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
                             <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div> <!-- 로컬 스토리지에서 로드 할 색칠 된 이미지 -->
+                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>
                         </div>
                         <div class="stick-panel">
                             <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
@@ -111,7 +106,7 @@
                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
                             <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div> <!-- 로컬 스토리지에서 로드 할 색칠 된 이미지 -->
+                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>
                         </div>
                         <div class="stick-panel">
                             <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
@@ -119,7 +114,7 @@
                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
                             <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div> <!-- 로컬 스토리지에서 로드 할 색칠 된 이미지 -->
+                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>
                         </div>
                         <div class="stick-panel">
                             <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
@@ -127,19 +122,60 @@
                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
                             <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div> <!-- 로컬 스토리지에서 로드 할 색칠 된 이미지 -->
+                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>
                         </div>
                     </div>
                     <button class="done-btn">
-                         <!--  active  --> 
                         <img src="../../../COMM/IMG/BTN_DONE.PNG" alt=""> 
                     </button>
-                </section>
+                </section> -->
                 <!-- //section3 -->
             </div>
 
             <div class="inner inner2">
-              <!-- 반복 - 코끼리 -->
+              <section class="section section1">
+                <div class="pageContents">
+                    <div class="item-img"><img src="../../COMM/IMG/WORD/1_1/ITEM_1_1.png"/></div>
+                    <div id="canvasContainer">                           
+                      <canvas id="canvas" class="canvas" width="auto" height="226" style="border: none;"></canvas>
+                    </div>
+                </div>
+                <div class="controls">
+                    <!--색상 버튼-->
+                    <div class="color-palette">
+                        <input id="color" type="color" class="dp_n"/>
+                        <div class="controls__colors color-items" id="jsColors">
+                            <div class="controls__color color-option color-red" ><img src="../../COMM/IMG/CRAYON_BV.PNG" data-color="#ff0000" alt="랜덤" /></div>
+                            <div class="controls__color color-option color-red" ><img src="../../COMM/IMG/CRAYON_RD.PNG" data-color="#ff0000" alt="빨강" /></div>
+                            <div class="controls__color color-option color-orange" ><img src="../../COMM/IMG/CRAYON_OR.png" data-color="#ff8c00" alt="주황" /></div>
+                            <div class="controls__color color-option color-yellow" ><img src="../../COMM/IMG/CRAYON_YL.png" data-color="#ffff00" alt="노랑" /></div>
+                            <div class="controls__color color-option color-green" ><img src="../../COMM/IMG/CRAYON_GN.png" data-color="#008000" alt="초록" /></div>
+                            <div class="controls__color color-option color-blue" ><img src="../../COMM/IMG/CRAYON_BL.PNG" data-color="#0000ff" alt="파랑" /></div>
+                            <div class="controls__color color-option color-purple" ><img src="../../COMM/IMG/CRAYON_PR.png" data-color="#800080" alt="보라" /></div>
+                        </div> 
+
+                        <!-- 뒤로 돌리기 버튼 -->
+                        <div id="undo" class="bin-btn"></div>
+                    </div>
+                </div>
+                <button class="next-btn"></button>
+              </section>
+              <!-- //section1 -->
+              
+              <section class="section section2">
+                  <div class="pageContents">
+                      <div class="stick-panel on">
+                          <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1.png" class="droppableImg"/></div>
+                          <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_2.png" class="droppableImg"/></div>
+                          <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_3.png" class="droppableImg"/></div>
+                          <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_OFF_1_4.png" class="droppableImg"/></div>
+                          <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
+                          <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>   
+                      </div>
+                      <div id="wordWrap" class="answer-list"></div>
+                  </div> 
+              </section>
+              <!-- //section2 -->
             </div>
             <div class="inner inner3">
               <!-- 반복 - 기린 -->
@@ -148,17 +184,34 @@
               <!-- 반복 - 원숭이 -->
             </div>
         </div>
+
+      <div class="confetti-wrap">
+          <img src="../../COMM/IMG/BG_CONFETTI.PNG" class="deco-img" alt="데코 이미지">
+      </div>
     </div>
     <!-- wrap -->
 
 <SCRIPT SRC="../../../COMM/JS/JQUERY-3.5.1.MIN.JS"></SCRIPT>
 <SCRIPT SRC="../../../COMM/JS/JQUERY-UI.MIN.JS"></SCRIPT>
 <SCRIPT SRC="../../../COMM/JS/COMMON.JS"></SCRIPT>
-<!-- <SCRIPT SRC="../../../COMM/JS/TOUCH.JS"></SCRIPT> -->
+<SCRIPT SRC="../../../COMM/JS/TOUCH.JS"></SCRIPT>
 <SCRIPT SRC="../../../COMM/JS/FABRIC_S.JS"></SCRIPT>
 <SCRIPT SRC="../../../COMM/JS/DATA.JSON"></SCRIPT>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+<script>
+  const words = [
+      [ '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.PNG', 
+        '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.PNG', 
+        '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.PNG',
+        '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.PNG',
+      ],
+      // ['영향', '먹고 먹히는', '먹이 사슬'],
+      // ['생태계 평형', '깨어지기', '회복'],
+      // ['적응', '겨울잠', '환경'],
+  ]; //단어들 정답 순서대로 작성
 
+  
+</script>
 <style>
 .answer11 {
   width: 10.4%;
@@ -166,24 +219,25 @@
   left: 12%;
   top: 15%;
 }
+
 .answer12 {
+  width: 12.6%;
+  height: 17%;
+  right: 12%;
+  top: 18%;
+}
+.answer13 {
   width: 16%;
   height: 21%;
   left: 8%;
   bottom: 23%;
 }
 
-.answer13 {
-  width: 12.6%;
-  height: 17%;
-  right: 11%;
-  top: 14%;
-}
 .answer14 {
-  right: 13%;
-  bottom: 20%;
   width: 9.4%;
-  height: 17%;
+  height: 20%;
+  right: 12%;
+  bottom: 23%;
 }
 </style>
 <script>

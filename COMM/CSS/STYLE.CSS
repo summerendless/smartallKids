@@ -284,16 +284,7 @@ header > div.right .paging > div.active:before{
 #wordWrap{
     position: relative;
     position: fixed;
-    left:50%;
-    bottom:0;
-    transform: translateX(-50%);
-    margin:0 auto;
-    width: calc(100% - 70px);
-    height: 66.6px;
-    border-radius: 21px 21px 0 0 ;
-    border: 2px solid #101086;
-    background:#0C55A9;
-    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.42);
+
 }
 .visangkim #wordWrap{
     background-color: #2B5F2B;
@@ -337,7 +328,7 @@ header > div.right .paging > div.active:before{
 #wordWrap .words-section,
 #wordWrap2 .words-section {
     display: none;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100%;
@@ -345,7 +336,7 @@ header > div.right .paging > div.active:before{
 #wordWrap .words-section0,#wordWrap2 .words-section20{display: flex;}
 #wordWrap .words-section > div,
 #wordWrap2 .words-section > div{
-    margin: 0 2.3%;
+    /* margin: 0 2.3%;
     height: 41px;
     line-height: 41px;
     padding:0px 20px;
@@ -356,7 +347,7 @@ header > div.right .paging > div.active:before{
     border: 1px solid #101086;
     border-radius: 9px;
     box-shadow: 3px 5px#101086;
-    background-color: #fff;
+    background-color: #fff; */
 }
 .science #wordWrap .words-section > div,
 .science #wordWrap2 .words-section > div{
@@ -418,8 +409,8 @@ header > div.right .paging > div.active:before{
 }
 #wordWrap div.ui-draggable-dragging,
 #wordWrap div.correct {}
-.section{display: none;}
-.section1{display: block;}
+.section, .inner{display: none;}
+.section1 , .inner1{display: block;}
 
 #successMessage{display: none;}
 
@@ -463,12 +454,14 @@ header > div.right .paging > div.active:before{
 .answer2,
 .answer{
     position: absolute;
+    width: auto;
     height: 5.15%;
     display: inline-block;
     vertical-align: top;
     /* min-width:100px; */
     text-align: center;
     transition: background 1s;
+    position: fixed;
 }
 .answer.answer-w,
 .answer2.answer-w{
@@ -494,6 +487,8 @@ header > div.right .paging > div.active:before{
     font-weight: 800;
     color: transparent;
     z-index: 17;
+    width: auto;
+    height: 100%;
 }
 .answer.hover{
     /* border:1px solid red; */
@@ -504,8 +499,8 @@ header > div.right .paging > div.active:before{
     font-size: 0;
     /* height: 36px !important; */
     line-height: 1;
-    border: 2px solid #151B8A !important;
-    background-color: #fdf8de !important;
+    /* border: 2px solid #151B8A !important;
+    background-color: #fdf8de !important; */
 }
 .answer.answer-complate  div.word,
 .answer2.answer-complate div.word2{
@@ -800,59 +795,6 @@ header > div.right .paging > div.active:before{
     z-index: 1;
 }
 
-
-header > div.right .paging > div.new-page{
-    width: 117px;
-    height: 47px;
-    line-height: 41px;
-    font-size: 26px;
-    font-weight: 900;
-    background: #fff;
-    border-radius: 47px;
-    text-align: center;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
-}
-
-
-.inthefuture header > div.right .paging > div.new-page, 
-.geniussin header > div.right .paging > div.new-page{
-    border:3px solid #412759;
-}
-.inthefuture header > div.right .paging > div.new-page span, 
-.geniussin header > div.right .paging > div.new-page span{
-    color: #412759;
-}
-.visangkim header > div.right .paging > div.new-page{
-    border:3px solid #2B5F2B;
-}
-.visangkim header > div.right .paging > div.new-page span{
-    color: #2B5F2B;
-}
-.visangseol header > div.right .paging > div.new-page{
-    border:3px solid #296B6B;
-}
-.visangseol header > div.right .paging > div.new-page span{
-    color: #296B6B;
-}
-.icecream header > div.right .paging > div.new-page{
-    border:3px solid #0D55A9;
-}
-.icecream header > div.right .paging > div.new-page span{
-    color: #0D55A9;
-}
-.geniuskim header > div.right .paging > div.new-page{
-    border:3px solid #7B5218;
-}
-.geniuskim header > div.right .paging > div.new-page span{
-    color: #7B5218;
-}
-.geniuspark header > div.right .paging > div.new-page{
-    border:3px solid #784553;
-}
-.geniuspark header > div.right .paging > div.new-page span{
-    color: #784553;
-}
-
 header > div.left .title > div.new-title{
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 29px;
@@ -894,14 +836,14 @@ header {
     right: 160px;
     top: 0;
 }
-.paging {
+.indicate .paging {
     padding: 14px 40px 0;
     display: flex;
     justify-content: center;
 }
-.paging li {padding-right: 16px;}
-.paging li:last-child {padding-right: 0;}
-.paging img {width: 34px;}
+.indicate .paging li {padding-right: 16px;}
+.indicate .paging li:last-child {padding-right: 0;}
+.indicate .paging img {width: 34px;}
 
 /* .pageContents img.item-img{
     width: 250px;
@@ -1044,8 +986,12 @@ canvas {
 }
 
 .answer img {
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
+    position: absolute;
+    width: auto;
+    top: 0;
+    left: 0;
 }
 
 .section3 .pageContents {
@@ -1066,3 +1012,68 @@ canvas {
     margin: 0 0 10px 0;
 
 }
+
+.confetti-wrap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.deco-img{
+    width: 100%;
+    /* width: 417px; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    opacity: 0;
+}
+
+.confetti-wrap.animation {
+    display: block;
+}
+
+.confetti-wrap.animation .deco-img {
+    opacity: 1;
+    /* animation: 0.4s 1s forwards; */
+}
+
+@keyframes fadeIn4 {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes up {
+	0% {
+		opacity: 0;
+		transform: translateY(-1280px);        
+	}
+	10%, 90% {
+		opacity: 1;
+	}	
+	100% {
+		opacity: 1;
+	}
+}  
+ 
+
+.animation { 
+    animation-name: up;
+    animation-duration: 1.5s;
+    /* animation-iteration-count: infinite; */
+    animation-timing-function: ease-in-out;
+}
+ 

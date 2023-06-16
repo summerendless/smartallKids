@@ -21,6 +21,8 @@ var $guide = $('#guide');
 var $wordWrap;
 var $wordWrap2;
 
+var $confetti = $('.confetti-wrap');
+
 // if(type==undefined || type == null){
 //     var type = "society"    
 // }
@@ -41,33 +43,37 @@ function init() {
     // 2023-01-13 디자인 수정
     // 사회만 적용
 
-    console.log(navType)
-    if(  navType == 'newNav' ){
-       pageNav(page+1)
-    // 기존 과학 버전 그대로
-    }else{
-        for (var i = 0; i < pageLength; i++) {
-            if ( i == page ){
-                active = activeClass ;
-            }else{
-                active = "";
-            }
-            $('<div class="page-btn '+ active +'">' + (i+1) + '</div>').data('page-num', i).appendTo('.paging');
-        }
-    }
+    // if(  navType == 'newNav' ){
+    //    pageNav(page+1)
+    // // 기존 과학 버전 그대로
+    // }else{
+    //     for (var i = 0; i < pageLength; i++) {
+    //         if ( i == page ){
+    //             active = activeClass ;
+    //         }else{
+    //             active = "";
+    //         }
+    //         $('<div class="page-btn '+ active +'">' + (i+1) + '</div>').data('page-num', i).appendTo('.paging');
+    //     }
+    // }
+
+    // for (var i = 0; i < pageLength; i++) {
+    //     if ( i == page ){
+    //         active = activeClass ;
+    //     }else{
+    //         active = "";
+    //     }
+    //     $('<div class="page-btn '+ active +'">' + (i+1) + '</div>').data('page-num', i).appendTo('.paging');
+    // }
 
     // 하단 단어 
     var click = {
             x: 0,
             y: 0
         };
-    
-    if( type==='science' ){
-        word(words2,2);
-    }
-    
+       
     word(words,1)
-    guide()
+    // guide()
 }
 
 //bgm재생
@@ -123,30 +129,32 @@ function guideClose($this) {
 }
 
 function word(words, side){//
-    let sidetype = (side == 1) ? "" : "2";
-    const $answer = $('.answer' + sidetype);
-
-    if( side == 2){
-        $('#wordWrap').addClass('science-wordWrap science-wordWrap1')
-        $('<div id="wordWrap2" class="science-wordWrap science-wordWrap2"/>').appendTo('#wrap');
-        
-    }
+    const $answer = $('.answer');
     // 가이드화면용 wordWrap
-    $wordWrap = $('#wordWrap');
-    $wordWrap2 = $('#wordWrap2');
-    wordWrap($wordWrap, $wordWrap2);
+    // $wordWrap = $('#wordWrap');
+    // $wordWrap2 = $('#wordWrap2');
+    // wordWrap($wordWrap, $wordWrap2);
 
     for (var i = 0; i < words.length; i++) {
-        $('<div class="words-section words-section'+ sidetype +i+'"/>').appendTo('#wordWrap' + sidetype);
-        let containment = (type != 'science') ? 'document': (side == 1) ? '.section'+(i+1)+' .science-left' : '.section'+(i+1)+' .science-right' ;
+        $('<div class="words-section words-section'+ i +'"/>').appendTo('#wordWrap');
+        // let containment = (type != 'science') ? 'document': (side == 1) ? '.section'+(i+1)+' .science-left' : '.section'+(i+1)+' .science-right' ;
         // console.log(containment)
         // console.log(side);
-        let containmentArea = $(containment);
-        
+        // let containmentArea = $(containment);
+        const container = document.getElementById('wordWrap');
+        // for (let i = 0; i < words.length; i++) {
+        //     const img = document.createElement('img');
+        //     img.src = words[i];
+        //     container.appendChild(img);
+        // }
         for (var j = 0; j < words[i].length; j++) {
-            $('<div class="word'+sidetype+'">' + words[i][j] + '</div>').data('word', sidetype + String(i) + j).attr('id', 'word'+sidetype + String(i) + j).appendTo('.words-section'+sidetype+i).draggable({
-                    containment: containment,
-                    stack: '#wordWrap'+sidetype+' div',
+            const img = document.createElement('img');
+            // img.src = words[i];
+            // container.appendChild(img);
+
+            $('<div class="word answer-item'+'">' + '<img src="'+ words[i][j] + '">' + '</div>').data('word', i + j).attr('id', 'word'+ i + j).appendTo('.words-section'+i).draggable({
+                    // containment: containment,
+                    stack: '#wordWrap'+' div',
                     cursor: 'move',
                     revert: true,
                     // helper: "clone",
@@ -154,27 +162,28 @@ function word(words, side){//
                 });
             
         }
-        var len = $('.words-section'+sidetype + i).children('.word'+sidetype).length;
+
+        var len = $('.words-section'+ i).children('.word').length;
         
-        $('.words-section'+sidetype+ i).each(function () {
-            var listWrap = $(this);
-            var liArr = listWrap.children('.word'+sidetype);
-            liArr.sort(function () {
-                var temp = parseInt(Math.random() * len);
-                var temp1 = parseInt(Math.random() * len); return temp1 - temp;
-            }).appendTo(listWrap);
-        });
+        // $('.words-section'+ i).each(function () {
+        //     var listWrap = $(this);
+        //     var liArr = listWrap.children('.word');
+        //     liArr.sort(function () {
+        //         var temp = parseInt(Math.random() * len);
+        //         var temp1 = parseInt(Math.random() * len); return temp1 - temp;
+        //     }).appendTo(listWrap);
+        // });
     }
 
 
     
         function dragFix(event, ui, aa) {
             console.log(event , ui , aa)
-            if(type == 'science'){
-                var contWidth = containmentArea.width(), contHeight = containmentArea.height();
-                ui.position.left = Math.max(0, Math.min(ui.position.left / scaleFactor , contWidth - ui.helper.width()));
-                ui.position.top = Math.max(0, Math.min(ui.position.top  / scaleFactor,  contHeight- ui.helper.height()));
-            }
+            // if(type == 'science'){
+            //     var contWidth = containmentArea.width(), contHeight = containmentArea.height();
+            //     ui.position.left = Math.max(0, Math.min(ui.position.left / scaleFactor , contWidth - ui.helper.width()));
+            //     ui.position.top = Math.max(0, Math.min(ui.position.top  / scaleFactor,  contHeight- ui.helper.height()));
+            // }
             
         }
 
@@ -182,7 +191,7 @@ function word(words, side){//
     $answer.each(function(){
         // console.log(sidetype + '@@@@@@@@@@@@@@')
         $(this).droppable({
-            accept: '#wordWrap'+sidetype+' div',
+            accept: '#wordWrap'+' div',
             tolerance: 'touch',  
             hoverClass: 'hover',
             drop: handleCardDrop,
@@ -196,9 +205,11 @@ function word(words, side){//
 // 초기화 함수
 function reset(){
     $('#wordWrap').html('');
-    $paging.html('');
+    // $paging.html('');
     $('.section').css('display','none');
     $('.section' + (page+1) ).css('display', 'block');
+    $('.inner').css('display','none');
+    $('.inner' + (page+1) ).css('display', 'block');
 }
 
 // 페이지 변경 함수
@@ -206,50 +217,52 @@ function pageMove (pageNum){
     // console.log(pageNum)
     page = pageNum;
     
-    correctWords = 0;
+    // correctWords = 0;
 
-    if (page == 0) {
-        $prevBtn.css('display', "none");
-    } else {
-        $prevBtn.show();
-    }
+    // if (page == 0) {
+    //     $prevBtn.css('display', "none");
+    // } else {
+    //     $prevBtn.show();
+    // }
 
-    if ((page + 1) >= pageLength) {
-        $nextvBtn.removeClass(activeClass);
-        $nextvBtn.css('display', "none");
-        if ((page + 1) != complatePage) {
-            $answerBtn.removeClass(activeClass);
-        }
-    } else if (page < complatePage) {
-        $nextvBtn.show();
-        $nextvBtn.addClass(activeClass);
-        $answerBtn.addClass(activeClass);
-    } else {
-        $nextvBtn.removeClass(activeClass);
-        $answerBtn.removeClass(activeClass);
+    // if ((page + 1) >= pageLength) {
+    //     $nextvBtn.removeClass(activeClass);
+    //     $nextvBtn.css('display', "none");
+    //     if ((page + 1) != complatePage) {
+    //         $answerBtn.removeClass(activeClass);
+    //     }
+    // } else if (page < complatePage) {
+    //     $nextvBtn.show();
+    //     $nextvBtn.addClass(activeClass);
+    //     $answerBtn.addClass(activeClass);
+    // } else {
+    //     $nextvBtn.removeClass(activeClass);
+    //     $answerBtn.removeClass(activeClass);
 
-    }
+    // }
 
-
+    console.log(page)
     // $('.paging div').eq(complatePage - 1).addClass('complate');
-    $('.paging div').eq(page).addClass(activeClass).siblings().removeClass(activeClass);
+    // $('.paging div').eq(page).addClass(activeClass).siblings().removeClass(activeClass);
     $('.section'+(page+1)).css('display', 'block').siblings().css('display', 'none');
-    $('.words-section'+page).css('display', 'flex').siblings().css('display', 'none');
-    if(type =='science'){
-        $('.words-section2'+page).css('display', 'flex').siblings().css('display', 'none');
-    }
+    // $('.words-section'+page).css('display', 'flex').siblings().css('display', 'none');
+    // if(type =='science'){
+    //     $('.words-section2'+page).css('display', 'flex').siblings().css('display', 'none');
+    // }
 }
 
 // 드롭 이벤트
 function handleCardDrop(event, ui) {
     var slotNumber = $(this).attr('data-answer');
     var cardNumber = ui.draggable.data('word');
+    var offImg = slotNumber.firstChild;
     // console.log(ui.draggable, slotNumber, cardNumber)
     if (slotNumber == cardNumber) {
         deleteImage( ui.draggable , $(this));
-        playVid(touchBgm2);
+        cardNumber.find('.droppableImg').fadeOut('slow');
+        // playVid(touchBgm2);
     } else {
-        playVid(touchBgm3);
+        // playVid(touchBgm3);
     }
 
     
@@ -258,12 +271,13 @@ function handleCardDrop(event, ui) {
 // 삭제
 function deleteImage($item, $drop) {
     var allchk = 0;
-    if(type == 'science'){
-        allchk =  words2[page].length
-    }
+    // if(type == 'science'){
+    //     allchk =  words2[page].length
+    // }
     $item.addClass('correct');
     $item.draggable('disable');
     $drop.droppable('disable');
+    $drop.find('.droppableImg').fadeOut('slow');
     setTimeout(function(){ $drop.addClass('answer-complate'); },100)
     
     $item.position({ of: $(this), my: 'center center', at: 'center center' });
@@ -271,17 +285,18 @@ function deleteImage($item, $drop) {
     correctWords++;
     
     $drop.append($item);
-
-    if (correctWords == words[page].length + allchk) {
-
+    // console.log(words[page])
+    if (correctWords == 4 + allchk) {
         complatePage++;
         // console.log( complatePage, page, pageLength)
         $answerBtn.addClass(activeClass);
-        if (complatePage == pageLength) {
-            complate();
-        } else {
-            $nextvBtn.addClass(activeClass);    
-        }
+        $confetti.addClass('animation');
+
+        // if (complatePage == pageLength) {
+        //     complate();
+        // } else {
+        //     $nextvBtn.addClass(activeClass);    
+        // }
        
     }
 }
@@ -301,10 +316,10 @@ $(document).on('click', '.next-btn', next);
 function next(e) {
     var $this = $(this);
     if ($this.hasClass(activeClass)) {
-        if ((page + 1) >= pageLength) { return }
+        // if ((page + 1) >= pageLength) { return }
         page = page + 1;
         pageMove(page);
-        if ( navType == "newNav")pageNav(page+1)
+        // if ( navType == "newNav")pageNav(page+1)
     }
 }
 function pageNav (pageNum){
@@ -360,17 +375,17 @@ function result(e) {
     playVid(touchBgm2);
     $answerBtn.addClass(activeClass);
     
-    if(type == 'science'){
-        resultEvent(2)
-    }
+    // if(type == 'science'){
+    //     resultEvent(2)
+    // }
     
     resultEvent("")
 }
-function resultEvent(sideType){
-    $('.words-section'+sideType + page + ' .word'+sideType).each(function (index) {
+function resultEvent(){
+    $('.words-section'+ page + ' .word').each(function (index) {
         var data = $(this).data('word')
         // console.log(data)
-        deleteImage($(this), $('.answer'+sideType+'[data-answer="'+data+'"]') )
+        deleteImage($(this), $('.answer'+'[data-answer="'+data+'"]') )
     })
 }
 function playVid(el) { 
@@ -404,14 +419,14 @@ $(function(){
     //  scaleFactor = zoom.getScale();
     
 
-    const parent = element.parentElement
-    parent.addEventListener('wheel', function(event) {
-        zoom.zoomWithWheel(event);
-        scaleFactor = zoom.getScale();
-        // $(".title").text(scaleFactor)
-        // console.log(scaleFactor)
-    })
-    element.addEventListener('panzoomend', function(event) {
-        scaleFactor = zoom.getScale();
-    })
+    // const parent = element.parentElement
+    // parent.addEventListener('wheel', function(event) {
+    //     zoom.zoomWithWheel(event);
+    //     scaleFactor = zoom.getScale();
+    //     // $(".title").text(scaleFactor)
+    //     // console.log(scaleFactor)
+    // })
+    // element.addEventListener('panzoomend', function(event) {
+    //     scaleFactor = zoom.getScale();
+    // })
 })
