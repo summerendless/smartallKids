@@ -884,9 +884,10 @@ canvas {
 .item-word {
     height: 186px;
     position: absolute;
-    bottom: 90px;
+    bottom: 33%;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 9;
 }
 
 .item-img img, .item-word img {

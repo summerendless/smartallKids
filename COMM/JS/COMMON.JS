@@ -186,7 +186,10 @@ function wordInit(){//
     let wordsOff = wordData[mainPageNum].itemUrls[pageWrapNum].itemOff;
     let wordsOn = wordData[mainPageNum].itemUrls[pageWrapNum].itemOn;
 
+// <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1.PNG" alt=""></div>
+
     $('<div class="stick-panel"/>').appendTo('#answerWrap');
+    
     for (var j = 0; j < wordsOff.length; j++) {
         $('<div class="answer answer'+j+'">' + '<img src="'+ wordsOff[j].url + '">' + '</div>').attr('data-answer', + pageWrapNum + j).appendTo('.stick-panel').droppable({
             accept: '#wordWrap'+' div',
@@ -283,6 +286,37 @@ function itemImageLoad() {
 
     //$('<div id="itemImg' + '">' + '<img src="' + wordData[mainPageNum].itemUrls[pageWrapNum].mainItem + '">' + '</div>').appendTo('.item-img');
 }
+
+var savekey = "ctxtImage",
+    color = "rgb(255,0,0)",
+    width = 500,
+    height = 400,
+    paint = false,
+    points = [],
+    myCanvas = document.getElementById('canvas'),
+    ctx = myCanvas.getContext("2d");
+// 캔버스 이미지 화 함수
+function saveImageToLocal() {
+    // var dataURL = localStorage.getItem(canvas);
+    // ctx = canvas.getContext("2d");
+    // var img = new Image;
+    // img.src = dataURL;
+    // img.onload = function () {
+    //     ctx.drawImage(img, 0, 0);
+    // };
+     var idt = ctx.getImageData(0, 0, width, height);
+    localStorage.setItem(savekey, JSON.stringify(idt));
+}
+
+// 캔버스 이미지화 한 것 가져오는 함수
+function getImageFromLocal() {
+     var idt = localStorage.getItem(savekey) || null;
+    if (idt !== null) {
+        var data = JSON.parse(idt);
+        ctx.putImageData(idt, 0, 0);
+    }
+}
+
 
 // 캔버스 이미지 로드 함수
 function wordImageLoad() {
@@ -420,11 +454,16 @@ function pageMove (){
     //     $answerBtn.removeClass(activeClass);
     sectionCounter = sectionCounter + 1;
     console.log("sectionCounter", sectionCounter);
+    localStorage.setItem(canvas, canvas.toDataURL());
     itemImageLoad();
+    saveImageToLocal();
+    // localStorage.setItem(canvas, canvas.toDataURL());
+
     // }
     // $('.paging div').eq(complatePage - 1).addClass('complate');
     // $('.paging div').eq(page).addClass(activeClass).siblings().removeClass(activeClass);
     $('.section2').css('display', 'block').siblings().css('display', 'none');
+    getImagefromLocal();
     // $('.words-section'+page).css('display', 'flex').siblings().css('display', 'none');
     // if(type =='science'){
     //     $('.words-section2'+page).css('display', 'flex').siblings().css('display', 'none');
@@ -494,6 +533,7 @@ function deleteImage($item, $drop) {
             reset();
             // wordInit();
             wordReplace();
+
             $item.draggable( 'enable' );
             $drop.droppable('enable');
             $item.removeClass('correct');
