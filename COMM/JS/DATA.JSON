@@ -1,215 +1,129 @@
 
-data = { //ai 한자 어휘
-        // "bgm" : "../../../COMM/MP3/WORDBOX_BGM.WAV",
-        // "title" : "../../../COMM/IMG/TITLE_AI.PNG",
-        // "title_kr" : "ai 한자 어휘",
-        "1_1":{
-            "id": "1", 
-            "url": "../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG",
-            // "phoneColor":[
-            //     {"key":"1", "color": "black", "colorUrl":"../images/diy/iPhone11-over.png", "colorUrl2":"../images/diy/iPhone11.png"},
-            //     {"key":"2", "color": "blue", "colorUrl":"../images/diy/iphone11-color-blue.png" , "colorUrl2":"../images/diy/iPhone12-mini.png"},
-            //     {"key":"3", "color": "violet", "colorUrl":"../images/diy/iphone11-color-red.png"} ,
-            //     {"key":"4", "color": "red" , "colorUrl":"../images/diy/iphone11-color-white.png"}
-            // ]
+data = { //낱말 데이터
+    // "bgm" : "../../../COMM/MP3/WORDBOX_BGM.WAV",
+    "word_data": [
+        {
+            // "page_id": "1_1", 
+            "wordUrl":[
+                {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_1.PNG",},
+                {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_2.PNG",},
+                {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_3.PNG",},
+                {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_4.PNG",}
+            ],
+            "itemUrls"   : [
+                { 
+                    "word"      : "0",
+                    "mainItem"  : "../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG",
+                    "itemOn"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_4.PNG",},
+                    ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_4.PNG",},
+                    ],
+                },
+                { 
+                    "word"      : "1",
+                    "mainItem"  : "../../../COMM/IMG/WORD/1_1/ITEM_1_2.PNG",
+                    "itemOn"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_4.PNG",},
+                    ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_4.PNG",},
+                    ],
+                },
+                { 
+                    "word"      : "2",
+                    "mainItem"  : "../../../COMM/IMG/WORD/1_1/ITEM_1_3.PNG",
+                    "itemOn"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_4.PNG",},
+                    ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_3_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_3_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_3_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_3_4.PNG",},
+                    ],
+                },
+                { 
+                    "word"      : "3",
+                    "mainItem"  : "../../../COMM/IMG/WORD/1_1/ITEM_1_4.PNG",
+                    "itemOn"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_4.PNG",},
+                    ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_4_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_4_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_4_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_4_4.PNG",},
+                    ],
+                },
+            ],
         },
-        // "word_data": [
-        //     // 1단계 시작
-        //     {
-        //         "page_id": "1_1",
-        //         "num_intro_imgs": 2,
-        //         "intro_img_path": "../../../COMM/AI/AI2/IMG/CLASS_2_IMG/",
-        //         "contents" : [
-        //             { 
-        //                 "id"             : "1",             // key
-        //                 "prevId"         : "",              //뒤로 갈 수 없는 단어 
-        //                 "title"          : "배울",            //뜻
-        //                 "title2"         : "학" ,           // 음
-        //                 "title3"            : "" ,           // 음
-        //                 "needs_new_title"   : 0, //
-        //                 "needs_colors"   : 1, // ai 추천한자 노출 여부
-        //                 "circle_words"   : [
-        //                     {
-        //                         "main_word"        : "학생",
-        //                         "part_word"        : "생",
-        //                         "box_side"         : "left",
-        //                         "imgText"          : "학교에서 공부하고 <p>배우는(學)</p> 사람.",
-        //                     },
-        //                     {
-        //                         "main_word"        : "입학",
-        //                         "part_word"        : "입",
-        //                         "box_side"         : "right",
-        //                         "imgText"          : "학생이 되어 <p>공부하기(學)</p> 위해 <br> 학교에 들어감.",
-        //                     },
-        //                     {
-        //                         "main_word"        : "학용품",
-        //                         "part_word"        : "용품",
-        //                         "box_side"         : "left",
-        //                         "imgText"          : "공책·연필·자·지우개처럼 <br> 학생이 <p>공부할(學)</p> 때에 쓰는 물건.",
-        //                     },
-        //                 ],
-        //                 "depth1_words"   : [
-        //                     { 
-        //                         "word"          : "학생",
-        //                         "innerWords"    : [ "선생" ],
-        //                         "innerColors"   : [ "red" ]
-        //                     },
-        //                     {
-        //                         "word"          : "학용품",
-        //                         "innerWords"    : [],
-        //                         "innerColors"   : []
-        //                     },
-        //                     {
-        //                         "word"          : "입학",
-        //                         "innerWords"    : [ "졸업", "퇴학" ],
-        //                         "innerColors"   : [ "red", "red" ]
-        //                     }
-        //                 ],
-
-        //                 "depth2_words"    : [
-        //                     {
-        //                         "word": "학습",
-        //                         "innerWords": ["공부"],
-        //                         "innerColors"   : [ "green"]
-        //                     },
-        //                     {
-        //                         "word": "학비",
-        //                         "innerWords"    : ["학자금"],
-        //                         "innerColors"   : [ "green"]
-        //                     },
-        //                     {
-        //                         "word": "방학",
-        //                         "innerWords"    : ["개학"],
-        //                         "innerColors"   : [ "red"]
-        //                     },
-        //                 ],
-        //                 "ai_words"   : [ // ai 추천단어
-        //                     { 
-        //                         "title"          : "익힐",            
-        //                         "title2"         : "습" ,  
-        //                         "wordType"       : "비슷한 뜻",
-        //                         "wordColors"     : "GREEN",
-        //                         "position"       : "left_top"
-        //                     },
-        //                     { 
-        //                         "title"          : "물을",            
-        //                         "title2"         : "문" ,  
-        //                         "wordType"       : "반대 뜻",
-        //                         "wordColors"     : "RED"      ,
-        //                         "position"       : "right_top"                           
-        //                     },
-        //                     { 
-        //                         "title"          : "가르칠",            
-        //                         "title2"         : "훈" ,  
-        //                         "wordType"       : "반대 뜻",
-        //                         "wordColors"     : "RED",
-        //                         "position"       : "left_bottom"
-        //                     },
-        //                     { 
-        //                         "title"          : "효도",            
-        //                         "title2"         : "효" ,  
-        //                         "wordType"       : "같은 부수",
-        //                         "wordColors"     : "YL",
-        //                         "position"       : "right_bottom"
-        //                     },
-        //                 ],
-        //             },
-        //             { 
-        //                 "id"             : "2",             // key
-        //                 "prevId"         : "1",             //뒤로 갈 수 있는 단어 
-        //                 "title"          : "먼저",            //뜻
-        //                 "title2"         : "선" ,           // 음
-        //                 "title3"            : "" ,           // 음
-        //                 "needs_new_title"   : 0, //
-        //                 "needs_colors"   : 0,
-        //                 "circle_words"   : [
-        //                     {
-        //                         "main_word"        : "선생",
-        //                         "part_word"        : "생",
-        //                         "box_side"         : "left",
-        //                         "imgText"          : "학생을 <p>가르치는(先)</p> 사람을 <br> 두루 이르는 말.",
-        //                     },
-        //                     {
-        //                         "main_word"        : "선두",
-        //                         "part_word"        : "두",
-        //                         "box_side"         : "left",
-        //                         "imgText"          : "여럿이 나아가거나 무슨 일을 꾀할 때 <br> <p>맨 앞(先)</p>에 서는 사람, 또는 그 위치.",
-        //                     },
-        //                     {
-        //                         "main_word"        : "선배",
-        //                         "part_word"        : "배",
-        //                         "box_side"         : "left",
-        //                         "imgText"          : "한 분야에 속한 사람들 중에서 <br> 자기보다 <p>먼저(先)</p> 일을 시작한 사람.",
-        //                     },
-        //                 ],
-        //                 "depth1_words"   : [
-        //                     { 
-        //                         "word" : "선생",
-        //                         "innerWords": [ "제자" ],
-        //                         "innerColors"   : [ "red" ]
-        //                     },
-        //                     {
-        //                         "word": "선두",
-        //                         "innerWords": [ "후미" ],
-        //                         "innerColors"   : [ "red"]
-        //                     },
-        //                     {
-        //                         "word": "선배",
-        //                         "innerWords": [ "후배" ],
-        //                         "innerColors"   : [ "red" ]
-        //                     },
-                            
-        //                 ],
-        //                 "depth2_words"    : [
-        //                     {
-        //                         "word": "선불",
-        //                         "innerWords": [ "후불", "선금" ],
-        //                         "innerColors"   : [ "red", "green" ]
-        //                     },
-        //                     {
-        //                         "word": "선조",
-        //                         "innerWords"    : ["후손"],
-        //                         "innerColors"   : ["red"]
-        //                     },
-                            
-        //                     {
-        //                         "word": "선약",
-        //                         "innerWords"    : [],
-        //                         "innerColors"   : []
-        //                     },
-                            
-        //                 ],
-        //                 "ai_words"   : [
-        //                     { 
-        //                         "title"          : "",            
-        //                         "title2"         : "" ,  
-        //                         "wordType"       : "",
-        //                         "wordColor"      : ""
-        //                     },
-        //                     { 
-        //                         "title"          : "",            
-        //                         "title2"         : "" ,  
-        //                         "wordType"       : "",
-        //                         "wordColor"     : ""                                 
-        //                     },
-        //                     { 
-        //                         "title"          : "",            
-        //                         "title2"         : "" ,  
-        //                         "wordType"       : "",
-        //                         "wordColor"     : ""
-        //                     },
-        //                     { 
-        //                         "title"          : "",            
-        //                         "title2"         : "" ,  
-        //                         "wordType"       : "",
-        //                         "wordColor"     : ""
-        //                     },
-        //                 ],
-
-        //             },
-        //         ], //contents 
-        //     },
-        //     // 1단계 끝
-        // ]
+        {
+            // "page_id": "1_1", 
+            "wordUrl":[
+                {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_1.PNG",},
+                {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_2.PNG",},
+                {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_3.PNG",},
+                {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_4.PNG",}
+            ],
+            "itemUrls"   : [
+                { 
+                    "word"      : "0",
+                    "itemOn"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_1_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_1_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_1_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_1_4.PNG",},
+                    ],
+                },
+                { 
+                    "word"      : "1",
+                    "itemOn"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_2_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_2_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_2_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_2_4.PNG",},
+                    ],
+                },
+                { 
+                    "word"      : "2",
+                    "itemOn"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_3_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_3_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_3_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_3_4.PNG",},
+                    ],
+                },
+                { 
+                    "word"      : "3",
+                    "itemOn"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_4_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_4_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_4_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_4_4.PNG",},
+                    ],
+                },
+            ],
+        }
         
+    ]
 }

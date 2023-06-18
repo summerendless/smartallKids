@@ -333,7 +333,7 @@ header > div.right .paging > div.active:before{
     width: 100%;
     height: 100%;
 }
-#wordWrap .words-section0,#wordWrap2 .words-section20{display: flex;}
+#wordWrap .words-section{display: flex;}
 #wordWrap .words-section > div,
 #wordWrap2 .words-section > div{
     /* margin: 0 2.3%;
@@ -354,63 +354,8 @@ header > div.right .paging > div.active:before{
     margin: 0 2.3%;
     padding:0px 20px;
 }
-.visangkim #wordWrap .words-section > div{
-    color:#0E3C0E;
-    border: 1px solid #0E3C0E;
-    box-shadow: 3px 5px#0E3C0E;
-    font-size: 22px; /*5페이지 글씨 잘리는현상 수정*/
-}
-.visangseol #wordWrap .words-section > div{
-    color:#112E2E;
-    border: 1px solid #112E2E;
-    box-shadow: 3px 5px#112E2E;
-}
-.geniuskim #wordWrap .words-section > div,
-.jihaksa #wordWrap .words-section > div,
-.jihaksa #wordWrap2 .words-section > div{
-    color:#3E290B;
-    border: 1px solid #3E290B;
-    box-shadow: 3px 5px#3E290B;
-}
-.geniuspark #wordWrap .words-section > div{
-    color:#430B1C;
-    border: 1px solid #430B1C;
-    box-shadow: 3px 5px#430B1C;
-}
-.inthefuture #wordWrap .words-section > div{
-    color:#2B193B;
-    border: 1px solid #2B193B;
-    box-shadow: 3px 5px#2B193B;
-}
-.geniussin #wordWrap .words-section > div,
-.geniussin #wordWrap2 .words-section > div{
-    color:#2B193B;
-    border: 1px solid #2B193B;
-    box-shadow: 3px 5px#2B193B;
-}
-/* science */
-.icecream.science #wordWrap .words-section > div,
-.icecream.science #wordWrap2 .words-section > div{
-    color:#361317;
-    border: 1px solid #361317;
-    box-shadow: 3px 5px#361317;
-}
-.visang #wordWrap .words-section > div,
-.visang #wordWrap2 .words-section > div{
-    color:#0A1E31;
-    border: 1px solid #0A1E31;
-    box-shadow: 3px 5px#0A1E31;
-}
-.genius #wordWrap .words-section > div,
-.genius #wordWrap2 .words-section > div{
-    color:#103929;
-    border: 1px solid #103929;
-    box-shadow: 3px 5px#103929;
-}
-#wordWrap div.ui-draggable-dragging,
-#wordWrap div.correct {}
-.section, .inner{display: none;}
-.section1 , .inner1{display: block;}
+.section {display: none;position: relative;}
+.section1 {display: block;}
 
 #successMessage{display: none;}
 
@@ -430,9 +375,8 @@ header > div.right .paging > div.active:before{
     /* height: calc(100vh - 150px); */
     background: transparent;
 }
-.science .section{
-    
-}
+/* .pageWrap {display: none;} */
+.pageWrap.on{display: block;}
 .section .pageContents{
     display: flex;
     width: 100%;
@@ -490,17 +434,13 @@ header > div.right .paging > div.active:before{
     width: auto;
     height: 100%;
 }
-.answer.hover{
-    /* border:1px solid red; */
+/* .answer.hover{
 }
 .answer.answer-complate,
 .answer2.answer-complate{
     transition: border 0.7s;
     font-size: 0;
-    /* height: 36px !important; */
     line-height: 1;
-    /* border: 2px solid #151B8A !important;
-    background-color: #fdf8de !important; */
 }
 .answer.answer-complate  div.word,
 .answer2.answer-complate div.word2{
@@ -508,7 +448,7 @@ header > div.right .paging > div.active:before{
     font-size: 21px;
     font-weight: 800;
     color: #080684;
-}
+} */
 .next-btn {
     background: url("../../../COMM/IMG/BTN_NEXT_UN.PNG") no-repeat;
     background-size: 100% 100%;
@@ -572,12 +512,6 @@ header > div.right .paging > div.active:before{
     background: url(../../COMM/IMG/BTN_DECO_RD.PNG) no-repeat;
     background-size: 100% 100%;
 }
-.inner{
-    position: relative;
-    display: none;
-}
-.inner1 {display: block;}
-
 
 /* .section:not(.section1) .pageContents > div.answer{
     position: static;
@@ -836,15 +770,23 @@ header {
     right: 160px;
     top: 0;
 }
-.indicate .paging {
+.indicate .pagingItemWrap {
     padding: 14px 40px 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
-.indicate .paging li {padding-right: 16px;}
-.indicate .paging li:last-child {padding-right: 0;}
-.indicate .paging img {width: 34px;}
-
+.indicate .pagingItemWrap li {
+    background: url(../IMG/ICON_CANDY_OFF.png) no-repeat;
+    background-size: cover;
+    width: 34px;
+    height: 40px;
+}
+.indicate .pagingItemWrap li.on {
+    background: url(../IMG/ICON_CANDY_ON.png) no-repeat;
+    background-size: cover;
+    width: 34px;
+    height: 40px;
+}
 /* .pageContents img.item-img{
     width: 250px;
     position: absolute;
@@ -937,6 +879,7 @@ canvas {
     top: 8%;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1;
 }
 .item-word {
     height: 186px;
@@ -1061,11 +1004,15 @@ canvas {
 		opacity: 0;
 		transform: translateY(-1280px);        
 	}
-	10%, 90% {
+	10% {
 		opacity: 1;
 	}	
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 	100% {
-		opacity: 1;
+		opacity: 0;
 	}
 }  
  
