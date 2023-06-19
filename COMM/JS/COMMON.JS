@@ -54,94 +54,17 @@ function init() {
     itemImageLoad();
     itemImageLoad2();
     wordImageLoad();
-    // if(  navType == 'newNav' ){
-    //    pageNav(page+1)
-    // // 기존 과학 버전 그대로
-    // }else{
-    //     for (var i = 0; i < pageLength; i++) {
-    //         if ( i == page ){
-    //             active = activeClass ;
-    //         }else{
-    //             active = "";
-    //         }
-    //         $('<div class="page-btn '+ active +'">' + (i+1) + '</div>').data('page-num', i).appendTo('.paging');
-    //     }
-    // }
-
-    // for (var i = 0; i < pageLength; i++) {
-    //     if ( i == page ){
-    //         active = activeClass ;
-    //     }else{
-    //         active = "";
-    //     }
-    //     $('<div class="page-btn '+ active +'">' + (i+1) + '</div>').data('page-num', i).appendTo('.paging');
-    // }
-
-    // 하단 단어
-    var click = {
-        x: 0,
-        y: 0,
-    };
 
     wordInit();
-
+        playVid(introBgm);
     setTimeout(function () {
-        playVid(infoColorBgm);
-        colorGuide();
+        colorGuide(
+            playVid(infoColorBgm)
+        );
     }, 3200);
 }
 
-//bgm재생
-// $('.btn-back , .next-btn , .prev-btn').addClass('button-bgm');
-// $(document).on('click', '.button-bgm', btnBgm);
-
-// function btnBgm() {
-
-//     if ($(this).hasClass('btn-back')) {
-//         touchBgm.pause();
-//         touchBgm.currentTime = 0;
-//         touchBgm.play();
-//     } else {
-//         if ($(this).hasClass('active') && $(this).hasClass('next-btn') || $(this).hasClass('prev-btn')){
-//             playVid(touchBgm);
-//         }
-//     }
-// }
-
-// 드래그 앤 드롭, 핀치줌 가이드
-// function guide() {
-//     let guideHtml;
-//     guideHtml = `
-//         <div class="drag">
-//             <i class="hand_icon">
-//                 <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
-//             </i>
-//         </div>
-
-//     `;
-//     $('<div id="guide">' + guideHtml + '</div>')
-//         .appendTo('#wrap')
-//         .html(guideHtml);
-// }
-
-// function wordWrap($wordWrap, $wordWrap2) {
-//     $wordWrap.addClass('dimmed');
-//     $wordWrap2.addClass('dimmed');
-// }
-// // 가이드 닫기
-// function guideClose($this) {
-//     $this.addClass('close');
-//     $wordWrap.removeClass('dimmed');
-//     $wordWrap2.removeClass('dimmed');
-// }
-
 function wordInit() {
-    //
-    // const $answer = $('.answer');
-    // 가이드화면용 wordWrap
-    // $wordWrap = $('#wordWrap');
-    // $wordWrap2 = $('#wordWrap2');
-    // wordWrap($wordWrap, $wordWrap2);
     let wordsOff = wordData[mainPageNum].itemUrls[pageWrapNum].itemOff;
     let wordsOn = wordData[mainPageNum].itemUrls[pageWrapNum].itemOn;
     // let section2ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
@@ -162,7 +85,6 @@ function wordInit() {
             });
     }
     // $('<div class="item-word"/>' + '<img src="'+section2ImgUrl+'">').appendTo('#answerWrap');
-
     $('<div class="words-section words-section' + pageWrapNum + '"/>').appendTo('#wordWrap');
     // const container = document.getElementById('wordWrap');
     for (var j = 0; j < wordsOn.length; j++) {
@@ -203,16 +125,6 @@ function wordInit() {
         //     }).appendTo(listWrap);
         // });
     }*/
-
-    // $answer.each(function(){
-    //     // console.log(sidetype + '@@@@@@@@@@@@@@')
-    //     $(this).droppable({
-    //         accept: '#wordWrap'+' div',
-    //         tolerance: 'touch',
-    //         hoverClass: 'hover',
-    //         drop: handleCardDrop,
-    //     });
-    // })
 }
 
 // 초기화 함수
@@ -245,7 +157,6 @@ function itemImageLoad() {
             event.returnValue = false;
         }
     }
-
     //$('<div id="itemImg' + '">' + '<img src="' + wordData[mainPageNum].itemUrls[pageWrapNum].mainItem + '">' + '</div>').appendTo('.item-img');
 }
 
@@ -259,6 +170,7 @@ function itemImageLoad2() {
 function wordImageLoad() {
     let canvas = new fabric.Canvas('canvas');
     let image = new fabric.Image();
+    context = canvas.getContext('2d');
     //console.log(pageWrapNum, wordData[pageWrapNum]);
     image.setSrc(wordData[mainPageNum].wordUrl[pageWrapNum].url, () => {
         canvas.setDimensions({
@@ -268,7 +180,7 @@ function wordImageLoad() {
             preserveObjectStacking: true,
             globalCompositeOperation: 'source-atop',
         });
-
+        
         canvas.add(image);
         canvas.isDrawingMode = true;
         canvas.freeDrawingBrush.color = 'black';
@@ -281,8 +193,11 @@ function wordImageLoad() {
             absolutePositioned: true,
         });
     });
-    let ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
-    $(image).attr('src', ImgUrl[pageWrapNum]);
+    image.onload = function(){
+        context.drawImage(image, 0, 0);
+    }
+    // let ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
+    // $(image).attr('src', ImgUrl[pageWrapNum]);
 
     function colorOption() {
         // 색상 선택 시작
@@ -529,8 +444,10 @@ function callFinish() {
 //     })
 // }
 function playVid(el) {
+    el.muted = true;
     el.pause();
     el.currentTime = 0;
+    el.muted = false;
     el.play();
 }
 function pauseAll() {
@@ -575,7 +492,6 @@ function guideClose($this) {
 $(function () {
     init();
     $intro.show();
-    playVid(introBgm);
     setTimeout(function () {
         $intro.fadeOut('slow');
     }, 3000);
