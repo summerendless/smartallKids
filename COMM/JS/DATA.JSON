@@ -5,10 +5,26 @@ data = { //낱말 데이터
         {
             // "page_id": "1_1", 
             "wordUrl":[
-                {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_1.PNG",},
-                {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_2.PNG",},
-                {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_3.PNG",},
-                {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_4.PNG",}
+                {   
+                    "key"        :"0", 
+                    "url"        : "../../../COMM/IMG/WORD/1_1/WORD_1_1.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_1/ITEM_1_1.MP3",
+                },
+                {
+                    "key"        :"1", 
+                    "url"        : "../../../COMM/IMG/WORD/1_1/WORD_1_2.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_1/ITEM_1_2.MP3",
+                },
+                {
+                    "key"        :"2", 
+                    "url"        : "../../../COMM/IMG/WORD/1_1/WORD_1_3.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_1/ITEM_1_3.MP3",
+                },
+                {
+                    "key"        :"3", 
+                    "url"        : "../../../COMM/IMG/WORD/1_1/WORD_1_4.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_1/ITEM_1_4.MP3",
+                },
             ],
             "itemUrls"   : [
                 { 
@@ -80,10 +96,26 @@ data = { //낱말 데이터
         {
             // "page_id": "1_1", 
             "wordUrl":[
-                {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_1.PNG",},
-                {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_2.PNG",},
-                {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_3.PNG",},
-                {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_4.PNG",}
+                {   
+                    "key"        :"0", 
+                    "url"        : "../../../COMM/IMG/WORD/1_2/WORD_1_1.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_2/ITEM_1_1.MP3",
+                },
+                {
+                    "key"        :"1", 
+                    "url"        : "../../../COMM/IMG/WORD/1_2/WORD_1_2.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_2/ITEM_1_2.MP3",
+                },
+                {
+                    "key"        :"2", 
+                    "url"        : "../../../COMM/IMG/WORD/1_2/WORD_1_3.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_2/ITEM_1_3.MP3",
+                },
+                {
+                    "key"        :"3", 
+                    "url"        : "../../../COMM/IMG/WORD/1_2/WORD_1_4.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_2/ITEM_1_4.MP3",
+                },
             ],
             "itemUrls"   : [
                 { 
