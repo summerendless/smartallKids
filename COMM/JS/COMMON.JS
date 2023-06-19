@@ -2,21 +2,22 @@
 
 // 페이지 필요 정보
 var mainPageNum = 0;
-var sectionCounter = 1; 
-var pageWrapNum = 0; // section의 첫 페이지 
+var sectionCounter = 1;
+var pageWrapNum = 0; // section의 첫 페이지
 var complatePage = 0; //완료페이지
 var correctWords = 0;
 // var pageLength = words.length;
 // 페이지 Layout
 
-var $prevBtn = $('.prev-btn');
 var $nextvBtn = $('.next-btn');
 var $doneBtn = $('.done-btn');
 
 var activeClass = 'active';
 var $paging = $('.paging');
 // var $answerBtn = $('.answerbtn');
-var $guide = $('#guide');
+var $colorGuide = $('#colorGuide'); // 색칠하기 가이드
+var $dropGuide = $('#dropGuide'); // 드래그 가이드
+var $intro = $('#introBg');
 
 var $wordWrap;
 var $wordWrap2;
@@ -29,16 +30,30 @@ let pageWrapArr = $pageWrap.get(pageWrapNum);
 
 let wordData = undefined;
 
+let lockHistory = false; //Undo 히스토리
+const undo_history = [];
+const redo_history = [];
+
+var introBgm = new Audio('../../../COMM/MP3/INTRO.MP3'); // 인트로
+var likeBgm = new Audio('../../../COMM/MP3/LIKEIT.MP3'); // 좋아요
+var goodjob2Bgm = new Audio('../../../COMM/MP3/LASTGOODJOB.MP3'); // 마지막 잘했어요
+var infoDropBgm = new Audio('../../../COMM/MP3/INFO_DROP.MP3'); // 드래그앤드랍 인포
+var infoColorBgm = new Audio('../../../COMM/MP3/INFO_COLOR.MP3'); // 색칠 인포
+var goodjobBgm = new Audio('../../../COMM/MP3/GOODJOB.MP3'); // 잘했어요
+var fanfareBgm = new Audio('../../../COMM/MP3/FANFARE.MP3'); // 빵빠레
+var dropBgm3 = new Audio('../../../COMM/MP3/DROPING.MP3'); // 드래그앤드랍 시
+var doneBgm3 = new Audio('../../../COMM/MP3/DONE.MP3'); // 완료
+var coloringBgm = new Audio('../../../COMM/MP3/COLORING.MP3'); // 색칠 시
+
 // 초기 빌드
 function init() {
-     
-    var active = "1";
-    reset()
+    var active = '1';
+    reset();
     $(pageWrapArr).addClass('on');
     wordData = data.word_data; ///Load Dataset from JSON file
-    console.log(wordData)
-    itemImageLoad()
-    wordImageLoad()
+    itemImageLoad();
+    itemImageLoad2();
+    wordImageLoad();
     // if(  navType == 'newNav' ){
     //    pageNav(page+1)
     // // 기존 과학 버전 그대로
@@ -62,30 +77,23 @@ function init() {
     //     $('<div class="page-btn '+ active +'">' + (i+1) + '</div>').data('page-num', i).appendTo('.paging');
     // }
 
-    // 하단 단어 
+    // 하단 단어
     var click = {
-            x: 0,
-            y: 0
-        };
-       
+        x: 0,
+        y: 0,
+    };
+
     wordInit();
-    // guide()
+
+    setTimeout(function () {
+        playVid(infoColorBgm);
+        colorGuide();
+    }, 3200);
 }
 
 //bgm재생
 // $('.btn-back , .next-btn , .prev-btn').addClass('button-bgm');
 // $(document).on('click', '.button-bgm', btnBgm);
-
-var likeBgm = new Audio('../../../COMM/MP3/LIKEIT.MP3'); // 좋아요
-var goodjob2Bgm = new Audio('../../../COMM/MP3/LASTGOODJOB.MP3'); // 마지막 잘했어요
-var introBgm = new Audio('../../../COMM/MP3/INTRO.MP3'); // 인트로
-var infoDropBgm = new Audio('../../../COMM/MP3/INFO_DROP.MP3'); // 드래그앤드랍 인포
-var infoCOlorBgm = new Audio('../../../COMM/MP3/INFO_COLOR.MP3'); // 색칠 인포
-var goodjobBgm = new Audio('../../../COMM/MP3/GOODJOB.MP3'); // 잘했어요
-var fanfareBgm = new Audio('../../../COMM/MP3/FANFARE.MP3'); // 빵빠레
-var dropBgm3 = new Audio('../../../COMM/MP3/DROPING.MP3'); // 드래그앤드랍 시
-var doneBgm3 = new Audio('../../../COMM/MP3/DONE.MP3'); // 완료
-var coloringBgm = new Audio('../../../COMM/MP3/COLORING.MP3'); // 색칠 시
 
 // function btnBgm() {
 
@@ -103,21 +111,17 @@ var coloringBgm = new Audio('../../../COMM/MP3/COLORING.MP3'); // 색칠 시
 // 드래그 앤 드롭, 핀치줌 가이드
 // function guide() {
 //     let guideHtml;
-//     guideHtml  = `
+//     guideHtml = `
 //         <div class="drag">
-//             <div>
-//                 <div class="guide_answer answer answer-w"></div>
-//                 <p class="desc">
-//                     <span class="nbsp"></span>에 들어갈 알맞은 말을<br/>
-//                     끌어 넣으세요.
-//                 </p>
-//             </div>
+//             <i class="hand_icon">
+//                 <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
+//             </i>
 //         </div>
-//         <i class="hand_icon">
-//             <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
-//         </i>
+
 //     `;
-//     $('<div id="guide" onclick="guideClose($(this))">'+guideHtml+'</div>').appendTo('#wrap').html(guideHtml);
+//     $('<div id="guide">' + guideHtml + '</div>')
+//         .appendTo('#wrap')
+//         .html(guideHtml);
 // }
 
 // function wordWrap($wordWrap, $wordWrap2) {
@@ -131,53 +135,8 @@ var coloringBgm = new Audio('../../../COMM/MP3/COLORING.MP3'); // 색칠 시
 //     $wordWrap2.removeClass('dimmed');
 // }
 
-function wordReplace() {
-    let wordsOff = wordData[mainPageNum].itemUrls[pageWrapNum].itemOff;
-    let wordsOn = wordData[mainPageNum].itemUrls[pageWrapNum].itemOn;
-
-
-    for (var j = 0; j < wordsOn.length; j++){
-        let answerItem = $('.answer-item')[j];
-        let wordSection = $('.answer-item img')[j];
-        $(wordSection).attr('src', wordsOn[j].url);
-
-        $(answerItem).css('left', '');
-        $(answerItem).css('top', '');
-        //$(answerItem).appendTo('#wordWrap');
-    }
-
-    $('.answer-item').appendTo('#wordWrap');
-    // $('.answer-item').draggable({ disabled: true });   
-    // $(this).css({'position':'relative','top':'','left':''});
-    // $("span.spread").dblclick(function () {
-    //         $(this).toggleClass("draggable");
-    //         if($(this).hasClass('draggable')){
-    //             $("span.spread").draggable({disabled:false});
-    //             }else{
-    //             $("span.spread").draggable({disabled:true});
-    //             $(this).css({'position':'relative','top':'','left':''});
-    //         };
-    //     }); 
-    // })
-    
-    for (var j = 0; j < wordsOff.length; j++) {
-        let stickPannel = $('.stick-panel');
-        let answerID = '.answer' + j + ' img';
-        let ReplacewordsOff = $(stickPannel).find(answerID)[0];
-        console.log("replaceOff", ReplacewordsOff);
-        $(ReplacewordsOff).attr('src', wordsOff[j].url);
-        // $('<div class="answer answer'+j+'">' + '<img src="'+ wordsOff[j].url + '">' + '</div>').attr('data-answer', + pageWrapNum + j).appendTo('.stick-panel')
-    
-    }
-
-    // $(ReplacewordsOff).attr('src', wordsOff);
-
-    // let ReplacewordsOn = $('.word answer-item img').attr('id', 'word'+ pageWrapNum + j);
-    // $(ReplacewordsOn).attr('src', wordsOn);
-
-}
-
-function wordInit(){//
+function wordInit() {
+    //
     // const $answer = $('.answer');
     // 가이드화면용 wordWrap
     // $wordWrap = $('#wordWrap');
@@ -185,19 +144,24 @@ function wordInit(){//
     // wordWrap($wordWrap, $wordWrap2);
     let wordsOff = wordData[mainPageNum].itemUrls[pageWrapNum].itemOff;
     let wordsOn = wordData[mainPageNum].itemUrls[pageWrapNum].itemOn;
+    // let section2ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
 
-// <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1.PNG" alt=""></div>
-
-    $('<div class="stick-panel"/>').appendTo('#answerWrap');
-    
-    for (var j = 0; j < wordsOff.length; j++) {
-        $('<div class="answer answer'+j+'">' + '<img src="'+ wordsOff[j].url + '">' + '</div>').attr('data-answer', + pageWrapNum + j).appendTo('.stick-panel').droppable({
-            accept: '#wordWrap'+' div',
-            tolerance: 'touch',  
-            hoverClass: 'hover',
-            drop: handleCardDrop,
-        });
+    //.stick-panel 내 전페이지 데이터 삭제
+    if ($('.stick-panel div').length !== 0) {
+        $('.stick-panel').html('');
     }
+    for (var j = 0; j < wordsOff.length; j++) {
+        $('<div class="answer answer' + j + '">' + '<img src="' + wordsOff[j].url + '">' + '</div>')
+            .attr('data-answer', +pageWrapNum + j)
+            .appendTo('.stick-panel')
+            .droppable({
+                accept: '#wordWrap' + ' div',
+                tolerance: 'touch',
+                hoverClass: 'hover',
+                drop: handleCardDrop,
+            });
+    }
+    // $('<div class="item-word"/>' + '<img src="'+section2ImgUrl+'">').appendTo('#answerWrap');
 
     $('<div class="words-section words-section' + pageWrapNum + '"/>').appendTo('#wordWrap');
     // const container = document.getElementById('wordWrap');
@@ -205,21 +169,21 @@ function wordInit(){//
         // img.src = words[i];
         // container.appendChild(img);
 
-        $('<div class="word answer-item'+'">' + '<img src="'+ wordsOn[j].url + '">' + '</div>').data('word', pageWrapNum + j).attr('id', 'word'+ pageWrapNum + j).appendTo('.words-section'+pageWrapNum).draggable({
-            // containment: containment,
-            stack: '#wordWrap'+' div',
-            cursor: 'move',
-            revert: true,
-            // helper: "clone",
-            //  drag: dragFix(event, aa=containmentArea),
-        });
+        $('<div class="word answer-item' + '">' + '<img src="' + wordsOn[j].url + '">' + '</div>')
+            .data('word', pageWrapNum + j)
+            .attr('id', 'word' + pageWrapNum + j)
+            .appendTo('.words-section' + pageWrapNum)
+            .draggable({
+                // containment: containment,
+                stack: '#wordWrap' + ' div',
+                cursor: 'move',
+                revert: true,
+                // helper: "clone",
+                //  drag: dragFix(event, aa=containmentArea),
+            });
     }
     /*
     for (var i = 0; i < wordsOn.length; i++) {
-        
-        // let containment = (type != 'science') ? 'document': (side == 1) ? '.section'+(i+1)+' .science-left' : '.section'+(i+1)+' .science-right' ;
-        // console.log(containment)
-        // console.log(side);
         // let containmentArea = $(containment);
         // for (let i = 0; i < words.length; i++) {
         //     const img = document.createElement('img');
@@ -240,94 +204,69 @@ function wordInit(){//
         // });
     }*/
 
-
-    
-    function dragFix(event, ui, aa) {
-        // if(type == 'science'){
-        //     var contWidth = containmentArea.width(), contHeight = containmentArea.height();
-        //     ui.position.left = Math.max(0, Math.min(ui.position.left / scaleFactor , contWidth - ui.helper.width()));
-        //     ui.position.top = Math.max(0, Math.min(ui.position.top  / scaleFactor,  contHeight- ui.helper.height()));
-        // }
-        
-    }
-
-
     // $answer.each(function(){
     //     // console.log(sidetype + '@@@@@@@@@@@@@@')
     //     $(this).droppable({
     //         accept: '#wordWrap'+' div',
-    //         tolerance: 'touch',  
+    //         tolerance: 'touch',
     //         hoverClass: 'hover',
     //         drop: handleCardDrop,
     //     });
     // })
-
-
 }
-
 
 // 초기화 함수
-function reset(){
+function reset() {
     $('#wordWrap').html('');
-    $('.section').css('display','none');
-    $('.section' + (1)).css('display', 'block');
+    $('.section').css('display', 'none');
+    $('.section' + 1).css('display', 'block');
     $(pageWrapArr).removeClass('on');
-    // $(pageWrapArr+1).addClass('on');
+    $('undo_history').length = 0;
+
+    //.stick-panel 있는지 확인 후 없으면 추가 (초기만 추가하면 됨)
+    if ($('.stick-panel').length === 0) {
+        $('<div class="stick-panel"/>').appendTo('#answerWrap');
+    }
+    correctWords = 0;
 }
 
-// 캔버스 위 이미지 로드 함수 
+// 캔버스 위 그림 이미지 로드 함수
 function itemImageLoad() {
-    let itemImageHtml = $('.section' + sectionCounter+' #itemImg');
+    let itemImageHtml = $('.section' + sectionCounter + ' #itemImg');
     console.log(itemImageHtml);
-    console.log("mainPageNum", mainPageNum)
-    console.log("pageWrapNum", pageWrapNum)
-    console.log(wordData[mainPageNum].itemUrls[pageWrapNum].mainItem)
+    console.log('mainPageNum', mainPageNum);
+    console.log('pageWrapNum', pageWrapNum);
+    console.log(wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
     $(itemImageHtml).attr('src', wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
+    function cancelEvent(event) {
+        if (event.preventDefault) {
+            event.preventDefault();
+        } else {
+            event.returnValue = false;
+        }
+    }
 
     //$('<div id="itemImg' + '">' + '<img src="' + wordData[mainPageNum].itemUrls[pageWrapNum].mainItem + '">' + '</div>').appendTo('.item-img');
 }
 
-var savekey = "ctxtImage",
-    color = "rgb(255,0,0)",
-    width = 500,
-    height = 400,
-    paint = false,
-    points = [],
-    myCanvas = document.getElementById('canvas'),
-    ctx = myCanvas.getContext("2d");
-// 캔버스 이미지 화 함수
-function saveImageToLocal() {
-    // var dataURL = localStorage.getItem(canvas);
-    // ctx = canvas.getContext("2d");
-    // var img = new Image;
-    // img.src = dataURL;
-    // img.onload = function () {
-    //     ctx.drawImage(img, 0, 0);
-    // };
-     var idt = ctx.getImageData(0, 0, width, height);
-    localStorage.setItem(savekey, JSON.stringify(idt));
+//section2 캔버스 글자 이미지 로드 함수
+function itemImageLoad2() {
+    let itemImageHtml2 = $('.section' + sectionCounter + ' #itemWord');
+    $(itemImageHtml2).attr('src', wordData[mainPageNum].wordUrl[pageWrapNum].url);
 }
 
-// 캔버스 이미지화 한 것 가져오는 함수
-function getImageFromLocal() {
-     var idt = localStorage.getItem(savekey) || null;
-    if (idt !== null) {
-        var data = JSON.parse(idt);
-        ctx.putImageData(idt, 0, 0);
-    }
-}
-
-
-// 캔버스 이미지 로드 함수
+// 캔버스 글자 이미지 로드 함수
 function wordImageLoad() {
-    const canvas = new fabric.Canvas('canvas');
-    const image = new fabric.Image();
+    let canvas = new fabric.Canvas('canvas');
+    let image = new fabric.Image();
     //console.log(pageWrapNum, wordData[pageWrapNum]);
     image.setSrc(wordData[mainPageNum].wordUrl[pageWrapNum].url, () => {
         canvas.setDimensions({
-        width: image.width,
-        height: image.height,
-        selectable: false,
+            width: image.width,
+            height: image.height,
+            selectable: false,
+            preserveObjectStacking: true,
+            globalCompositeOperation: 'source-atop',
         });
 
         canvas.add(image);
@@ -335,50 +274,54 @@ function wordImageLoad() {
         canvas.freeDrawingBrush.color = 'black';
         canvas.freeDrawingBrush.width = 10;
         canvas.clipPath = new fabric.Rect({
-        left: 0,
-        top: 0,
-        width: image.width,
-        height: image.height,
-        absolutePositioned: true,
+            left: 0,
+            top: 0,
+            width: image.width,
+            height: image.height,
+            absolutePositioned: true,
         });
     });
-    
+    let ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
+    $(image).attr('src', ImgUrl[pageWrapNum]);
+
     function colorOption() {
-    // 색상 선택 시작
-    const colorOption = Array.from(document.getElementsByClassName("color-option"));
-    const color = document.querySelector("#color");
+        // 색상 선택 시작
+        const colorOption = Array.from(document.getElementsByClassName('color-option'));
+        const color = document.querySelector('#color');
 
-    function oncolorChange(event) {
-        $(this).addClass('active');
-        $(this).siblings().removeClass('active');
-        const colorValue = event.target.dataset.color;
-        console.log(event.target)
-        canvas.strokeStyle = colorValue; /** 선 색상변경 */
-        canvas.fillStyle = colorValue;
-        color.value = colorValue; /** 변경된 색상 표시 */
-        canvas.freeDrawingBrush.color = color.value;
+        function oncolorChange(event) {
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+            const colorValue = event.target.dataset.color;
+            console.log(event.target);
+            canvas.strokeStyle = colorValue; /** 선 색상변경 */
+            canvas.fillStyle = colorValue;
+            color.value = colorValue; /** 변경된 색상 표시 */
+            canvas.freeDrawingBrush.color = color.value;
+        }
+        // color.addEventListener("change", oncolorChange); /** 색상변경 함수명 */
+        colorOption.forEach((color) => color.addEventListener('click', oncolorChange));
     }
-    // color.addEventListener("change", oncolorChange); /** 색상변경 함수명 */
-    colorOption.forEach((color) => color.addEventListener("click", oncolorChange));
-    }
+    colorOption();
 
-    let lockHistory = false; //Undo/Redo
-    const undo_history = [];
-    const redo_history = [];
+    // let lockHistory = false; //Undo/Redo
+    // const undo_history = [];
+    // const redo_history = [];
 
-    const binBtn = document.querySelector(".bin-btn"); // 휴지통 아이콘
-    const nextBtn = document.querySelector(".next-btn"); // 다음으로 가기 버튼
+    const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
+    const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
 
     // var canvas = new fabric.Canvas("canvas");
 
-    canvas.isDrawingMode = true;
-    canvas.freeDrawingBrush.width = 20;
+    // canvas.isDrawingMode = true;
+    // canvas.freeDrawingBrush.width = 20;
 
     undo_history.push(JSON.stringify(canvas));
 
-    canvas.on("object:added", function () {
+    canvas.on('object:added', function () {
         if (lockHistory) return;
-        console.log("object:added");
+        console.log('object:added');
+        playVid(coloringBgm);
         binBtn.classList.add('active');
         nextBtn.classList.add('active');
         undo_history.push(JSON.stringify(canvas));
@@ -392,17 +335,17 @@ function wordImageLoad() {
             if (undo_history.length > 1) redo_history.push(undo_history.pop());
             const content = undo_history[undo_history.length - 1];
             canvas.loadFromJSON(content, function () {
-            canvas.renderAll();
-            lockHistory = false;
-            console.log(undo_history.length)
+                canvas.renderAll();
+                lockHistory = false;
+                console.log(undo_history.length);
             });
             if (undo_history.length == 1) {
-            binBtn.classList.remove("active");
+                binBtn.classList.remove('active');
             }
         }
     }
 
-    document.getElementById("undo").addEventListener("click", undo);
+    document.getElementById('undo').addEventListener('click', undo);
 
     function deleteSelectedObjects() {
         lockHistory = true;
@@ -414,31 +357,19 @@ function wordImageLoad() {
         undo_history.push(JSON.stringify(canvas)); //UNDO
         lockHistory = false;
     }
-
 }
 
-
-  //Detele
-  document.addEventListener("keyup", function (e) {
+//Detele
+document.addEventListener('keyup', function (e) {
     console.log(e.keyCode);
     if ((e.keyCode == 8) | (e.keyCode == 46)) {
-      deleteSelectedObjects();
+        deleteSelectedObjects();
     }
-  });
-  // //뒤로 돌리기 기능 끝
+});
+// //뒤로 돌리기 기능 끝
 
-// 페이지 변경 함수
-function pageMove (){
-    // console.log(pageNum)
-    //wordImageLoad()
-    // correctWords = 0;
-
-    // if (page == 0) {
-    //     $prevBtn.css('display', "none");
-    // } else {
-    //     $prevBtn.show();
-    // }
-
+// 섹션 페이지 변경 함수
+function pageMove() {
     // if ((page + 1) >= pageLength) {
     //     $nextvBtn.removeClass(activeClass);
     //     $nextvBtn.css('display', "none");
@@ -453,32 +384,27 @@ function pageMove (){
     //     $nextvBtn.removeClass(activeClass);
     //     $answerBtn.removeClass(activeClass);
     sectionCounter = sectionCounter + 1;
-    console.log("sectionCounter", sectionCounter);
-    localStorage.setItem(canvas, canvas.toDataURL());
+    console.log('sectionCounter', sectionCounter);
     itemImageLoad();
-    saveImageToLocal();
-    // localStorage.setItem(canvas, canvas.toDataURL());
-
+    itemImageLoad2();
     // }
-    // $('.paging div').eq(complatePage - 1).addClass('complate');
-    // $('.paging div').eq(page).addClass(activeClass).siblings().removeClass(activeClass);
     $('.section2').css('display', 'block').siblings().css('display', 'none');
-    getImagefromLocal();
-    // $('.words-section'+page).css('display', 'flex').siblings().css('display', 'none');
-    // if(type =='science'){
-    //     $('.words-section2'+page).css('display', 'flex').siblings().css('display', 'none');
-    // }
+    setTimeout(function () {
+        playVid(infoDropBgm);
+        dropGuide();
+    }, 500);
 }
 
 // 드롭 이벤트
 function handleCardDrop(event, ui) {
     var slotNumber = $(this).attr('data-answer');
     var cardNumber = ui.draggable.data('word');
-    var offImg = slotNumber.firstChild;
+    // var offImg = slotNumber.firstChild;
     // console.log(ui.draggable, slotNumber, cardNumber)
     if (slotNumber == cardNumber) {
-        deleteImage( ui.draggable , $(this));
-        cardNumber.find('.droppableImg').fadeOut('slow');
+        playVid(dropBgm3);
+        deleteImage(ui.draggable, $(this));
+        // cardNumber.find('.droppableImg').fadeOut('slow');
         // playVid(touchBgm2);
     } else {
         // playVid(touchBgm3);
@@ -488,167 +414,169 @@ function handleCardDrop(event, ui) {
 // 삭제
 function deleteImage($item, $drop) {
     var allchk = 0;
-    // if(type == 'science'){
-    //     allchk =  words2[page].length
-    // }
+    let wordVocie = wordData[mainPageNum].wordUrl[pageWrapNum].answerVoice;
+    var wordAnswerBgm = new Audio(wordVocie); // 정답 단어
     // $item.addClass('correct');
     // $item.draggable('disable');
     // $drop.droppable('disable');
     $drop.find('.droppableImg').fadeOut('slow');
-    // setTimeout(function(){ $drop.addClass('answer-complate'); },100)
-    
     // $item.position({ of: $(this), my: 'center center', at: 'center center' });
     //$item.draggable('option', 'revert', false);
     correctWords++;
-    
+
     $drop.append($item);
-    // console.log(words[page])
     if (correctWords == 4 + allchk) {
         complatePage++;
         pageWrapNum++;
-        console.log(pageWrapNum)
-        // console.log( complatePage, page, pageLength)
-        // $answerBtn.addClass(activeClass);
+        console.log(pageWrapNum);
+        playVid(wordAnswerBgm); // 정답 단어
         $confetti.addClass('animation');
-        setTimeout(function(){ $confetti.removeClass('animation'); },1500)
-
-        console.log('다음으로')
+        playVid(fanfareBgm); // 빵빠레
+        setTimeout(function () {
+            playVid(goodjobBgm);
+        }, 1000);
+        setTimeout(function () {
+            $confetti.removeClass('animation');
+        }, 1500);
         setTimeout(function () {
             sectionCounter = 1;
-            let vars = $pagingItem.get(pageWrapNum-1);
+            let vars = $pagingItem.get(pageWrapNum - 1);
             $(vars).addClass('on');
             let pageWrapArr = $pageWrap.get(pageWrapNum);
             $(pageWrapArr).addClass('on');
-            itemImageLoad();
-            wordImageLoad();
-            // $item.draggable( "instance" );
+            if (complatePage < 4) {
+                itemImageLoad();
+                itemImageLoad2();
+                wordImageLoad();
+                reset();
+                wordInit();
+            } else {
+                $('.section3').css('display', 'block').siblings().css('display', 'none');
+                $('header').css('display', 'none');
+            }
+            // $('.answer-item').draggable();
+            // $item.draggable();
             // $drop.droppable('enable');
             // $item.removeClass('correct');
-
-
-            // let pageWrap = $pageWrap.get(pageWrapNum);
-            // $(pageWrap).addClass('on');
-            // //vars.classList.add('on');
-            // console.log(page, pageWrapNum)
-            reset();
-            // wordInit();
-            wordReplace();
-
-            $item.draggable( 'enable' );
-            $drop.droppable('enable');
-            $item.removeClass('correct');
-            // $('.pageWrap'+(pageWrapNum+1)).css('display', 'block').siblings().css('display', 'none');
-        }, 1700)
+        }, 1700);
 
         // if (complatePage == pageLength) {
         //     complate();
         // } else {
-        //     $nextvBtn.addClass(activeClass);    
+        //     $nextvBtn.addClass(activeClass);
         // }
-       
     }
 }
-    
-// 이전버튼
-// $(document).on('click', '.prev-btn', prev); 
-$(document).on('click', '.next-btn', next);
-// function prev(e) {
-//     var $this = $(this);
-//     if(page == 0){return}
-//     page = page - 1;
-//     pageMove(page);
-//     if ( navType == "newNav")pageNav(page+1)
 
-// }
 // 다음버튼
+$(document).on('click', '.next-btn', next);
 function next(e) {
     var $this = $(this);
     if ($this.hasClass(activeClass)) {
-        // if ((page + 1) >= pageLength) { return }
         pageMove();
-        // if ( navType == "newNav")pageNav(page+1)
     }
 }
-// function pageNav (pageNum){
-//     $('.pagingInner').html(`
-//         <div class='new-page'>
-//             <span>${pageNum}</span> / ${pageLength}
-//         </div>
 
-//     `)
-// }
 // 완료 함수
-function complate(){
+$(document).on('click', '.done-btn', complate);
+function complate() {
+    console.log('학습 완료');
+
+    //낱말카드 저장 팝업 함수
+    complatePop();
     //종료함수 작성
     callFinish();
 }
 
+//낱말카드 저장 함수
+function complatePop() {
+    var html, img;
+    img = '../../../COMM/IMG/CARD_SAVE.PNG';
+    html =
+        `
+        <div class="pop-inner">
+            <img src=` +
+        img +
+        ` alt="낱말 카드 저장 팝업"/>
+        </div>
+    `;
+    $('<div class="pop-wrap"/>').appendTo('#wrap').html(html);
+}
+
 //종료 함수
-function callFinish(){
+function callFinish() {
     window.javascript_object.callFinish();
 }
 
-function remove() {
-    $('.pop-wrap').remove();
-    $('.pop-wrapBg').remove();
-}
+// function remove() {
+//     $('.pop-wrap').remove();
+//     $('.pop-wrapBg').remove();
+// }
 
-function result(e) {
-    // if ( $answerBtn.hasClass(activeClass)){
-    //     return;
-    // }
-    // playVid(touchBgm2);
-    // $answerBtn.addClass(activeClass);
+// function result(e) {
+//     if ( $answerBtn.hasClass(activeClass)){
+//         return;
+//     }
+//     playVid(touchBgm2);
+//     $answerBtn.addClass(activeClass);
+//     resultEvent("")
+// }
 
-    resultEvent("")
-}
-
-function resultEvent(){
-    $('.words-section'+ sectionNum + ' .word').each(function (index) {
-        var data = $(this).data('word')
-        // console.log(data)
-        deleteImage($(this), $('.answer'+'[data-answer="'+data+'"]') )
-    })
-}
-function playVid(el) { 
-    el.pause(); 
+// function resultEvent(){
+//     $('.words-section'+ sectionNum + ' .word').each(function (index) {
+//         var data = $(this).data('word')
+//         deleteImage($(this), $('.answer'+'[data-answer="'+data+'"]') )
+//     })
+// }
+function playVid(el) {
+    el.pause();
     el.currentTime = 0;
-    el.play(); 
-} 
+    el.play();
+}
 function pauseAll() {
-    $('audio.audio').each(function(i){
-        i = i+1;
+    $('audio.audio').each(function (i) {
+        i = i + 1;
         $('#cardAudio' + i)[0].pause();
         $('#cardAudio' + i)[0].currentTime = 0;
-    })
+    });
+}
+
+function colorGuide() {
+    let colorGuide;
+    colorGuide = `
+        <div class="colorGuide">
+            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
+        </div>`;
+    $('<div id="colorGuide" onclick="guideClose($(this))">' + colorGuide + '</div>')
+        .appendTo('#wrap')
+        .html(colorGuide);
+}
+
+function guideClose($this) {
+    $this.addClass('close');
+}
+
+function dropGuide() {
+    let dropGuide;
+    dropGuide = `
+        <div class="dropGuide">
+            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
+        </div>`;
+    $('<div id="dropGuide" onclick="guideClose($(this))">' + dropGuide + '</div>')
+        .appendTo('#wrap')
+        .html(dropGuide);
+}
+
+function guideClose($this) {
+    $this.addClass('close');
 }
 
 // 시작
-$(function(){
+$(function () {
     init();
-    // var element = document.querySelector('.zoomInner')
-
-    // // And pass it to panzoom
-    // var zoom = Panzoom(element, {
-    //     contain: 'outside',
-    //     minScale: 1,
-    //     maxScale: 2,
-    //     disablePan: false,
-    //     disableZoom: false,
-    //     zoom: true,
-      
-    // })
-    //  scaleFactor = zoom.getScale();
-    
-
-    // const parent = element.parentElement
-    // parent.addEventListener('wheel', function(event) {
-    //     zoom.zoomWithWheel(event);
-    //     scaleFactor = zoom.getScale();
-    //     // $(".title").text(scaleFactor)
-    //     // console.log(scaleFactor)
-    // })
-    // element.addEventListener('panzoomend', function(event) {
-    //     scaleFactor = zoom.getScale();
-    // })
-})
+    $intro.show();
+    playVid(introBgm);
+    setTimeout(function () {
+        $intro.fadeOut('slow');
+    }, 3000);
+});

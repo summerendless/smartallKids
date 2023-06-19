@@ -5,10 +5,26 @@ data = { //낱말 데이터
         {
             // "page_id": "1_1", 
             "wordUrl":[
-                {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_1.PNG",},
-                {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_2.PNG",},
-                {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_3.PNG",},
-                {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/WORD_1_4.PNG",}
+                {   
+                    "key"        :"0", 
+                    "url"        : "../../../COMM/IMG/WORD/1_1/WORD_1_1.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_1/ITEM_1_1.MP3",
+                },
+                {
+                    "key"        :"1", 
+                    "url"        : "../../../COMM/IMG/WORD/1_1/WORD_1_2.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_1/ITEM_1_2.MP3",
+                },
+                {
+                    "key"        :"2", 
+                    "url"        : "../../../COMM/IMG/WORD/1_1/WORD_1_3.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_1/ITEM_1_3.MP3",
+                },
+                {
+                    "key"        :"3", 
+                    "url"        : "../../../COMM/IMG/WORD/1_1/WORD_1_4.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_1/ITEM_1_4.MP3",
+                },
             ],
             "itemUrls"   : [
                 { 
@@ -31,16 +47,16 @@ data = { //낱말 데이터
                     "word"      : "1",
                     "mainItem"  : "../../../COMM/IMG/WORD/1_1/ITEM_1_2.PNG",
                     "itemOn"    : [ 
-                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_1.PNG",},
-                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_2.PNG",},
-                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_3.PNG",},
-                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_4.PNG",},
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_4.PNG",},
                     ],
                     "itemOff"    : [ 
-                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_1.PNG",},
-                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_2.PNG",},
-                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_3.PNG",},
-                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_4.PNG",},
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_2_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_2_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_2_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_2_4.PNG",},
                     ],
                 },
                 { 
@@ -80,10 +96,26 @@ data = { //낱말 데이터
         {
             // "page_id": "1_1", 
             "wordUrl":[
-                {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_1.PNG",},
-                {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_2.PNG",},
-                {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_3.PNG",},
-                {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/WORD_1_4.PNG",}
+                {   
+                    "key"        :"0", 
+                    "url"        : "../../../COMM/IMG/WORD/1_2/WORD_1_1.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_2/ITEM_1_1.MP3",
+                },
+                {
+                    "key"        :"1", 
+                    "url"        : "../../../COMM/IMG/WORD/1_2/WORD_1_2.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_2/ITEM_1_2.MP3",
+                },
+                {
+                    "key"        :"2", 
+                    "url"        : "../../../COMM/IMG/WORD/1_2/WORD_1_3.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_2/ITEM_1_3.MP3",
+                },
+                {
+                    "key"        :"3", 
+                    "url"        : "../../../COMM/IMG/WORD/1_2/WORD_1_4.PNG",
+                    "answerVoice": "../../../COMM/MP3/WORD/1_2/ITEM_1_4.MP3",
+                },
             ],
             "itemUrls"   : [
                 { 
@@ -94,6 +126,12 @@ data = { //낱말 데이터
                         {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_1_3.PNG",},
                         {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_1_4.PNG",},
                     ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_1_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_1_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_1_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_1_4.PNG",},
+                    ],
                 },
                 { 
                     "word"      : "1",
@@ -102,6 +140,12 @@ data = { //낱말 데이터
                         {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_2_2.PNG",},
                         {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_2_3.PNG",},
                         {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_2_4.PNG",},
+                    ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_2_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_2_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_2_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_2_4.PNG",},
                     ],
                 },
                 { 
@@ -112,6 +156,12 @@ data = { //낱말 데이터
                         {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_3_3.PNG",},
                         {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_3_4.PNG",},
                     ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_3_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_3_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_3_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_3_4.PNG",},
+                    ],
                 },
                 { 
                     "word"      : "3",
@@ -120,6 +170,12 @@ data = { //낱말 데이터
                         {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_4_2.PNG",},
                         {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_4_3.PNG",},
                         {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_4_4.PNG",},
+                    ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_4_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_4_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_4_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_4_4.PNG",},
                     ],
                 },
             ],

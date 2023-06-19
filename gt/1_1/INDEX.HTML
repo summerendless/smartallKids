@@ -1,107 +1,186 @@
 <html>
+    <head>
+        <title>스마트올 키즈</title>
 
-<head>
-    <title>스마트올 키즈</title>
+        <meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- 검색 엔진에 의해 검색되는 단어를 지정합니다. -->
+        <meta name="KeyWORDs" content="" />
+        <!-- 검색 결과에 표시되는 문자를 지정합니다. -->
+        <meta name="Description" content="" />
+        <!-- 검색 로봇 제어 -->
+        <meta name="Robots" content="all" />
+        <!-- 홈페이지 주제를 지정 -->
+        <meta http-equiv="Subject" content="" />
+        <!-- 제목을 지정 -->
+        <meta http-equiv="Title" content="" />
+        <!-- 페이지를 작성한 제작자명을 지정 -->
+        <meta http-equiv="Author" content="onflou " />
+        <!-- 제작사를 지정 -->
+        <meta http-equiv="Publisher" content="" />
 
-    <!-- 검색 엔진에 의해 검색되는 단어를 지정합니다. -->
-    <meta name="KeyWORDs" content="" />
-    <!-- 검색 결과에 표시되는 문자를 지정합니다. -->
-    <meta name="Description" content="" />
-    <!-- 검색 로봇 제어 -->
-    <meta name="Robots" content="all" />
-    <!-- 홈페이지 주제를 지정 -->
-    <meta http-equiv="Subject" content="" />
-    <!-- 제목을 지정 -->
-    <meta http-equiv="Title" content="" />
-    <!-- 페이지를 작성한 제작자명을 지정 -->
-    <meta http-equiv="Author" content="onflou " />
-    <!-- 제작사를 지정 -->
-    <meta http-equiv="Publisher" content="" />
+        <!-- 브라우저 호환성을 지정 -->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge,chorme=1" />
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1" />
 
-    <!-- 브라우저 호환성을 지정 -->
-    <meta http-equiv="X-UA-Compatible" content="ie=edge,chorme=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="../../../COMM/CSS/COMMON.CSS" />
+        <link rel="stylesheet" href="../../../COMM/CSS/JQUERY_UI.CSS" />
+        <link rel="stylesheet" href="../../../COMM/CSS/STYLE.CSS" />
+    </head>
 
-    <link rel="stylesheet" href="../../../COMM/CSS/COMMON.CSS" />
-    <link rel="stylesheet" href="../../../COMM/CSS/JQUERY_UI.CSS" />
-    <link rel="stylesheet" href="../../../COMM/CSS/STYLE.CSS" />
-</head>
+    <body>
+        <div id="wrap" class="">
+            <!-- <div class="sectionIntro"><img src="../../COMM/IMG/INTRO.PNG" /></div> -->
+            <header>
+                <div class="indicate">
+                    <ul class="pagingItemWrap">
+                        <li class="pagingItem"></li>
+                        <li class="pagingItem"></li>
+                        <li class="pagingItem"></li>
+                        <li class="pagingItem"></li>
+                    </ul>
+                </div>
+            </header>
 
-<body>
-    <div id="wrap" class="">
-        <!-- <div class="sectionIntro"><img src="../../COMM/IMG/INTRO.PNG" /></div> -->
-        <header>
-            <div class="indicate">
-                <ul class="pagingItemWrap">
-                    <li class="pagingItem"></li>
-                    <li class="pagingItem"></li>
-                    <li class="pagingItem"></li>
-                    <li class="pagingItem"></li>
-                </ul>
-            </div>
-        </header>
-
-        <div class="wrapper ">
-            <div class="pageWrap">
-                <section class="section section1">
-                    <div class="pageContents">
-                        <div class="item-img"><img id="itemImg" /></div>
-                        <div id="canvasContainer">                           
-                          <canvas id="canvas" class="canvas" width="auto" height="226" style="border: none;"></canvas>
+            <div class="wrapper">
+                <div class="pageWrap">
+                    <section class="section section1">
+                        <div class="pageContents">
+                            <div class="item-img"><img id="itemImg" /></div>
+                            <div id="canvasContainer">
+                                <canvas id="canvas" class="canvas" width="auto" height="226" style="border: none"></canvas>
+                            </div>
                         </div>
-                    </div>
-                    <div class="controls">
-                        <!--색상 버튼-->
-                        <div class="color-palette">
-                            <input id="color" type="color" class="dp_n"/>
-                            <div class="controls__colors color-items" id="jsColors">
-                                <div class="controls__color color-option color-red" ><img src="../../COMM/IMG/CRAYON_BV.PNG" data-color="#ff0000" alt="랜덤" /></div>
-                                <div class="controls__color color-option color-red" ><img src="../../COMM/IMG/CRAYON_RD.PNG" data-color="#ff0000" alt="빨강" /></div>
-                                <div class="controls__color color-option color-orange" ><img src="../../COMM/IMG/CRAYON_OR.png" data-color="#ff8c00" alt="주황" /></div>
-                                <div class="controls__color color-option color-yellow" ><img src="../../COMM/IMG/CRAYON_YL.png" data-color="#ffff00" alt="노랑" /></div>
-                                <div class="controls__color color-option color-green" ><img src="../../COMM/IMG/CRAYON_GN.png" data-color="#008000" alt="초록" /></div>
-                                <div class="controls__color color-option color-blue" ><img src="../../COMM/IMG/CRAYON_BL.PNG" data-color="#0000ff" alt="파랑" /></div>
-                                <div class="controls__color color-option color-purple" ><img src="../../COMM/IMG/CRAYON_PR.png" data-color="#800080" alt="보라" /></div>
-                            </div> 
+                        <div class="controls">
+                            <!--색상 버튼-->
+                            <div class="color-palette">
+                                <input id="color" type="color" class="dp_n" />
+                                <div class="controls__colors color-items" id="jsColors">
+                                    <div class="controls__color color-option color-red">
+                                        <img src="../../COMM/IMG/CRAYON_BV.PNG" data-color="#ff0000" alt="랜덤" />
+                                    </div>
+                                    <div class="controls__color color-option color-red">
+                                        <img src="../../COMM/IMG/CRAYON_RD.PNG" data-color="#ff0000" alt="빨강" />
+                                    </div>
+                                    <div class="controls__color color-option color-orange">
+                                        <img src="../../COMM/IMG/CRAYON_OR.png" data-color="#ff8c00" alt="주황" />
+                                    </div>
+                                    <div class="controls__color color-option color-yellow">
+                                        <img src="../../COMM/IMG/CRAYON_YL.png" data-color="#ffff00" alt="노랑" />
+                                    </div>
+                                    <div class="controls__color color-option color-green">
+                                        <img src="../../COMM/IMG/CRAYON_GN.png" data-color="#008000" alt="초록" />
+                                    </div>
+                                    <div class="controls__color color-option color-blue">
+                                        <img src="../../COMM/IMG/CRAYON_BL.PNG" data-color="#0000ff" alt="파랑" />
+                                    </div>
+                                    <div class="controls__color color-option color-purple">
+                                        <img src="../../COMM/IMG/CRAYON_PR.png" data-color="#800080" alt="보라" />
+                                    </div>
+                                </div>
 
-                            <!-- 뒤로 돌리기 버튼 -->
-                            <div id="undo" class="bin-btn"></div>
+                                <!-- 뒤로 돌리기 버튼 -->
+                                <div id="undo" class="bin-btn"></div>
+                            </div>
                         </div>
-                    </div>
-                    <button class="next-btn"></button>
-                </section>
-                <!-- //section1 -->
-                
-                <section class="section section2">
-                    <div class="pageContents">
-                        <div class="item-img">
-                            <img id="itemImg" />
-                        </div>
-                        <div class="imageFromLocal" style="
-                            position: fixed;
-                            bottom: 30%;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            width: 40%;
-                            height: 28%;"   
-                        ></div>
-                        <div id="answerWrap" class="w100p">
-                            
-                        </div>
-                        <div id="wordWrap" class="answer-list"></div>
-                    </div> 
-                </section>
-                <!-- //section2 -->
-            </div>
+                        <button class="next-btn"></button>
+                    </section>
+                    <!-- //section1 -->
 
-            <!-- <div class="pageWrap">
+                    <section class="section section2">
+                        <div class="pageContents">
+                            <div class="item-img"><img id="itemImg" /></div>
+                            <div id="answerWrap" class="w100p">
+                                <div class="item-word"><img id="itemWord" /></div>
+                                <!-- <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
+                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1.PNG" alt=""></div>    -->
+
+                                <!-- <div class="item-img"><img id="" /></div> -->
+                            </div>
+                            <div id="wordWrap" class="answer-list"></div>
+                        </div>
+                    </section>
+                    <!-- //section2 -->
+
+                    <section class="section section3">
+                        <div class="pageContents">
+                            <div class="stick-panel-2">
+                                <div class="answer answer0" data-answer="00">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_1.png" />
+                                </div>
+                                <div class="answer answer1" data-answer="01">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_2.png" />
+                                </div>
+                                <div class="answer answer2" data-answer="02">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_3.png" />
+                                </div>
+                                <div class="answer answer3" data-answer="03">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_4.png" />
+                                </div>
+                                <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt="" /></div>
+                                <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1.PNG" alt="" /></div>
+                            </div>
+                            <div class="stick-panel-2">
+                                <div class="answer answer0" data-answer="00">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_1.png" />
+                                </div>
+                                <div class="answer answer1" data-answer="01">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_2.png" />
+                                </div>
+                                <div class="answer answer2" data-answer="02">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_3.png" />
+                                </div>
+                                <div class="answer answer3" data-answer="03">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_4.png" />
+                                </div>
+                                <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_2.PNG" alt="" /></div>
+                                <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_2.PNG" alt="" /></div>
+                            </div>
+                            <div class="stick-panel-2">
+                                <div class="answer answer0" data-answer="00">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_1.png" />
+                                </div>
+                                <div class="answer answer1" data-answer="01">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_2.png" />
+                                </div>
+                                <div class="answer answer2" data-answer="02">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_3.png" />
+                                </div>
+                                <div class="answer answer3" data-answer="03">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_4.png" />
+                                </div>
+                                <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_3.PNG" alt="" /></div>
+                                <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_3.PNG" alt="" /></div>
+                            </div>
+                            <div class="stick-panel-2">
+                                <div class="answer answer0" data-answer="00">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_1.png" />
+                                </div>
+                                <div class="answer answer1" data-answer="01">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_2.png" />
+                                </div>
+                                <div class="answer answer2" data-answer="02">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_3.png" />
+                                </div>
+                                <div class="answer answer3" data-answer="03">
+                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_4.png" />
+                                </div>
+                                <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_4.PNG" alt="" /></div>
+                                <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_4.PNG" alt="" /></div>
+                            </div>
+                        </div>
+                        <button class="done-btn">
+                            <img src="../../../COMM/IMG/BTN_DONE.PNG" alt="" />
+                        </button>
+                    </section>
+                </div>
+
+                <!-- <div class="pageWrap">
 
                 <section class="section section3">
                                     <div class="pageContents">
-                                        <div class="stick-panel">
+                                        <div class="stick-panel-2">
                                             <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
                                             <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
                                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
@@ -109,7 +188,7 @@
                                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
                                             <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>
                                         </div>
-                                        <div class="stick-panel">
+                                        <div class="stick-panel-2">
                                             <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
                                             <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
                                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
@@ -117,7 +196,7 @@
                                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
                                             <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>
                                         </div>
-                                        <div class="stick-panel">
+                                        <div class="stick-panel-2">
                                             <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
                                             <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
                                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
@@ -125,7 +204,7 @@
                                             <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
                                             <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>
                                         </div>
-                                        <div class="stick-panel">
+                                        <div class="stick-panel-2">
                                             <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
                                             <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
                                             <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
@@ -139,59 +218,87 @@
                                     </button>
                                 </section>
             </div> -->
+            </div>
+
+            <div class="confetti-wrap">
+                <img src="../../COMM/IMG/BG_CONFETTI.PNG" class="deco-img" alt="데코 이미지" />
+            </div>
+
+            <div id="introBg">
+                <img src="../../../COMM/IMG/INTRO.PNG" alt="" />
+            </div>
         </div>
+        <!-- wrap -->
 
-      <div class="confetti-wrap">
-          <img src="../../COMM/IMG/BG_CONFETTI.PNG" class="deco-img" alt="데코 이미지">
-      </div>
-    </div>
-    <!-- wrap -->
+        <script src="../../../COMM/JS/JQUERY-3.5.1.MIN.JS"></script>
+        <script src="../../../COMM/JS/JQUERY-UI.MIN.JS"></script>
+        <script src="../../../COMM/JS/DATA.JSON"></script>
+        <script src="../../../COMM/JS/COMMON.JS"></script>
+        <script src="../../../COMM/JS/TOUCH.JS"></script>
+        <script src="../../../COMM/JS/FABRIC_S.JS"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+        <script>
+            // const words = [
+            //     [
+            //       '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_1.PNG',
+            //       '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_2.PNG',
+            //       '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_3.PNG',
+            //       '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_4.PNG',
+            //     ],
+            //     [
+            //       '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_1.PNG',
+            //       '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_2.PNG',
+            //       '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_3.PNG',
+            //       '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_4.PNG',
+            //     ],
+            //     // [
+            //     //   '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_1.PNG',
+            //     //   '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_2.PNG',
+            //     //   '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_3.PNG',
+            //     //   '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_4.PNG',
+            //     // ],
+            //     // [
+            //     //   '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_1.PNG',
+            //     //   '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_2.PNG',
+            //     //   '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_3.PNG',
+            //     //   '../../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_4.PNG',
+            //     // ],
+            // ]; //단어들 정답 순서대로 작성
+        </script>
+        <script>
+            // console.log(testData);
+        </script>
+        <style>
+            .answer0 {
+                width: 10.4%;
+                height: 24.5%;
+                left: 12%;
+                top: 15%;
+            }
 
-<SCRIPT SRC="../../../COMM/JS/JQUERY-3.5.1.MIN.JS"></SCRIPT>
-<SCRIPT SRC="../../../COMM/JS/JQUERY-UI.MIN.JS"></SCRIPT>
-<SCRIPT SRC="../../../COMM/JS/DATA.JSON"></SCRIPT>
-<SCRIPT SRC="../../../COMM/JS/COMMON.JS"></SCRIPT>
-<SCRIPT SRC="../../../COMM/JS/TOUCH.JS"></SCRIPT>
-<SCRIPT SRC="../../../COMM/JS/FABRIC_S.JS"></SCRIPT>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+            .answer1 {
+                width: 12.6%;
+                height: 17%;
+                right: 12%;
+                top: 18%;
+            }
+            .answer2 {
+                width: 16%;
+                height: 21%;
+                left: 8%;
+                bottom: 23%;
+            }
 
-<script>
-  // console.log(testData);
-</script>
-<style>
-.answer0 {
-  width: 10.4%;
-  height: 24.5%;
-  left: 12%;
-  top: 15%;
-}
-
-.answer1 {
-  width: 12.6%;
-  height: 17%;
-  right: 12%;
-  top: 18%;
-}
-.answer2 {
-  width: 16%;
-  height: 21%;
-  left: 8%;
-  bottom: 23%;
-}
-
-.answer3 {
-  width: 9.4%;
-  height: 20%;
-  right: 12%;
-  bottom: 23%;
-}
-</style>
-<script>
-    // var pageID = 1;
-    var mydata = JSON.parse(JSON.stringify(data));
-
-</script>
-
-</body>
-
+            .answer3 {
+                width: 9.4%;
+                height: 20%;
+                right: 12%;
+                bottom: 23%;
+            }
+        </style>
+        <script>
+            // var pageID = 1;
+            var mydata = JSON.parse(JSON.stringify(data));
+        </script>
+    </body>
 </html>
