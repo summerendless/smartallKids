@@ -94,6 +94,12 @@ data = { //낱말 데이터
                         {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_1_3.PNG",},
                         {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_1_4.PNG",},
                     ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_1_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_1_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_1_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_1_4.PNG",},
+                    ],
                 },
                 { 
                     "word"      : "1",
@@ -102,6 +108,12 @@ data = { //낱말 데이터
                         {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_2_2.PNG",},
                         {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_2_3.PNG",},
                         {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_2_4.PNG",},
+                    ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_2_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_2_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_2_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_2_4.PNG",},
                     ],
                 },
                 { 
@@ -112,6 +124,12 @@ data = { //낱말 데이터
                         {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_3_3.PNG",},
                         {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_3_4.PNG",},
                     ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_3_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_3_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_3_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_3_4.PNG",},
+                    ],
                 },
                 { 
                     "word"      : "3",
@@ -120,6 +138,12 @@ data = { //낱말 데이터
                         {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_4_2.PNG",},
                         {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_4_3.PNG",},
                         {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_ON_1_4_4.PNG",},
+                    ],
+                    "itemOff"    : [ 
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_4_1.PNG",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_4_2.PNG",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_4_3.PNG",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_2/STICKER_OFF_1_4_4.PNG",},
                     ],
                 },
             ],
