@@ -84,12 +84,11 @@ function init() {
     };
 
     wordInit();
-   
+
     setTimeout(function () {
         playVid(infoColorBgm);
         colorGuide();
     }, 3200);
-
 }
 
 //bgm재생
@@ -118,7 +117,7 @@ function init() {
 //                 <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
 //             </i>
 //         </div>
-       
+
 //     `;
 //     $('<div id="guide">' + guideHtml + '</div>')
 //         .appendTo('#wrap')
@@ -239,14 +238,14 @@ function itemImageLoad() {
     console.log('pageWrapNum', pageWrapNum);
     console.log(wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
     $(itemImageHtml).attr('src', wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
-    function cancelEvent(event){
-        if(event.preventDefault){
+    function cancelEvent(event) {
+        if (event.preventDefault) {
             event.preventDefault();
-        }else{
+        } else {
             event.returnValue = false;
         }
-    }  
-    
+    }
+
     //$('<div id="itemImg' + '">' + '<img src="' + wordData[mainPageNum].itemUrls[pageWrapNum].mainItem + '">' + '</div>').appendTo('.item-img');
 }
 
@@ -268,9 +267,8 @@ function wordImageLoad() {
             width: image.width,
             height: image.height,
             selectable: false,
-            preserveObjectStacking:true,
-            globalCompositeOperation: 'source-atop'
-   
+            preserveObjectStacking: true,
+            globalCompositeOperation: 'source-atop',
         });
 
         canvas.add(image);
@@ -393,7 +391,7 @@ function pageMove() {
     itemImageLoad2();
     // }
     $('.section2').css('display', 'block').siblings().css('display', 'none');
-     setTimeout(function () {
+    setTimeout(function () {
         playVid(infoDropBgm);
         dropGuide();
     }, 500);
@@ -433,10 +431,12 @@ function deleteImage($item, $drop) {
         complatePage++;
         pageWrapNum++;
         console.log(pageWrapNum);
-        playVid(wordAnswerBgm);// 정답 단어
+        playVid(wordAnswerBgm); // 정답 단어
         $confetti.addClass('animation');
-        playVid(fanfareBgm);// 빵빠레
-        setTimeout(function(){ playVid(goodjobBgm); },1000);
+        playVid(fanfareBgm); // 빵빠레
+        setTimeout(function () {
+            playVid(goodjobBgm);
+        }, 1000);
         setTimeout(function () {
             $confetti.removeClass('animation');
         }, 1500);
@@ -446,12 +446,16 @@ function deleteImage($item, $drop) {
             $(vars).addClass('on');
             let pageWrapArr = $pageWrap.get(pageWrapNum);
             $(pageWrapArr).addClass('on');
-            itemImageLoad();
-            itemImageLoad2();
-            wordImageLoad();
-            reset();
-            wordInit();
-
+            if (complatePage < 4) {
+                itemImageLoad();
+                itemImageLoad2();
+                wordImageLoad();
+                reset();
+                wordInit();
+            } else {
+                $('.section3').css('display', 'block').siblings().css('display', 'none');
+                $('header').css('display', 'none');
+            }
             // $('.answer-item').draggable();
             // $item.draggable();
             // $drop.droppable('enable');
@@ -476,9 +480,29 @@ function next(e) {
 }
 
 // 완료 함수
+$(document).on('click', '.done-btn', complate);
 function complate() {
+    console.log('학습 완료');
+
+    //낱말카드 저장 팝업 함수
+    complatePop();
     //종료함수 작성
     callFinish();
+}
+
+//낱말카드 저장 함수
+function complatePop() {
+    var html, img;
+    img = '../../../COMM/IMG/CARD_SAVE.PNG';
+    html =
+        `
+        <div class="pop-inner">
+            <img src=` +
+        img +
+        ` alt="낱말 카드 저장 팝업"/>
+        </div>
+    `;
+    $('<div class="pop-wrap"/>').appendTo('#wrap').html(html);
 }
 
 //종료 함수
@@ -519,28 +543,30 @@ function pauseAll() {
     });
 }
 
-function colorGuide(){
+function colorGuide() {
     let colorGuide;
     colorGuide = `
         <div class="colorGuide">
             <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
-        </div>`
-    ;
-    $('<div id="colorGuide" onclick="guideClose($(this))">'+colorGuide+'</div>').appendTo('#wrap').html(colorGuide);
+        </div>`;
+    $('<div id="colorGuide" onclick="guideClose($(this))">' + colorGuide + '</div>')
+        .appendTo('#wrap')
+        .html(colorGuide);
 }
 
 function guideClose($this) {
     $this.addClass('close');
 }
 
-function dropGuide(){
+function dropGuide() {
     let dropGuide;
     dropGuide = `
         <div class="dropGuide">
             <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
-        </div>`
-    ;
-    $('<div id="dropGuide" onclick="guideClose($(this))">'+dropGuide+'</div>').appendTo('#wrap').html(dropGuide);
+        </div>`;
+    $('<div id="dropGuide" onclick="guideClose($(this))">' + dropGuide + '</div>')
+        .appendTo('#wrap')
+        .html(dropGuide);
 }
 
 function guideClose($this) {
