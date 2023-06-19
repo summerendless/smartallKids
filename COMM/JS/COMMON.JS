@@ -33,6 +33,17 @@ let lockHistory = false; //Undo 히스토리
 const undo_history = [];
 const redo_history = [];
 
+var introBgm = new Audio('../../../COMM/MP3/INTRO.MP3'); // 인트로
+var likeBgm = new Audio('../../../COMM/MP3/LIKEIT.MP3'); // 좋아요
+var goodjob2Bgm = new Audio('../../../COMM/MP3/LASTGOODJOB.MP3'); // 마지막 잘했어요
+var infoDropBgm = new Audio('../../../COMM/MP3/INFO_DROP.MP3'); // 드래그앤드랍 인포
+var infoCOlorBgm = new Audio('../../../COMM/MP3/INFO_COLOR.MP3'); // 색칠 인포
+var goodjobBgm = new Audio('../../../COMM/MP3/GOODJOB.MP3'); // 잘했어요
+var fanfareBgm = new Audio('../../../COMM/MP3/FANFARE.MP3'); // 빵빠레
+var dropBgm3 = new Audio('../../../COMM/MP3/DROPING.MP3'); // 드래그앤드랍 시
+var doneBgm3 = new Audio('../../../COMM/MP3/DONE.MP3'); // 완료
+var coloringBgm = new Audio('../../../COMM/MP3/COLORING.MP3'); // 색칠 시
+
 // 초기 빌드
 function init() {
     var active = '1';
@@ -254,6 +265,9 @@ function wordImageLoad() {
             width: image.width,
             height: image.height,
             selectable: false,
+            preserveObjectStacking:true,
+            globalCompositeOperation: 'source-atop'
+   
         });
 
         canvas.add(image);
@@ -395,6 +409,8 @@ function handleCardDrop(event, ui) {
 // 삭제
 function deleteImage($item, $drop) {
     var allchk = 0;
+    let wordVocie = wordData[mainPageNum].wordUrl[pageWrapNum].answerVoice;
+    var wordAnswerBgm = new Audio(wordVocie); // 정답 단어
     // $item.addClass('correct');
     // $item.draggable('disable');
     // $drop.droppable('disable');
@@ -408,7 +424,9 @@ function deleteImage($item, $drop) {
         complatePage++;
         pageWrapNum++;
         console.log(pageWrapNum);
+        playVid(wordAnswerBgm);// 정답 단어
         $confetti.addClass('animation');
+        playVid(fanfareBgm);// 빵빠레
         setTimeout(function () {
             $confetti.removeClass('animation');
         }, 1500);
@@ -489,6 +507,17 @@ function pauseAll() {
         $('#cardAudio' + i)[0].pause();
         $('#cardAudio' + i)[0].currentTime = 0;
     });
+}
+
+function colorGuide () {
+    let colorGuide;
+
+    colorGuide = `
+        <div class="colorGuide">
+            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
+        </div>`
+    ;
+    $('<div id="colorGuide">'+colorGuide+'</div>').appendTo('#wrap').html(colorGuide);
 }
 
 // 시작
