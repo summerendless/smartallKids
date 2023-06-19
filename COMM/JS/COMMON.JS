@@ -529,6 +529,6 @@ $(function(){
     init();    
     // guide();
     $intro.show();
-    setTimeout(function(){ $intro.fadeOut('slow'); },800);
+    setTimeout(function(){ $intro.fadeOut('slow'); },1000);
     
 })
