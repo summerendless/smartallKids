@@ -2,8 +2,8 @@
 
 // 페이지 필요 정보
 var mainPageNum = 0;
-var sectionCounter = 1; 
-var pageWrapNum = 0; // section의 첫 페이지 
+var sectionCounter = 1;
+var pageWrapNum = 0; // section의 첫 페이지
 var complatePage = 0; //완료페이지
 var correctWords = 0;
 // var pageLength = words.length;
@@ -35,9 +35,8 @@ const redo_history = [];
 
 // 초기 빌드
 function init() {
-     
-    var active = "1";
-    reset()
+    var active = '1';
+    reset();
     $(pageWrapArr).addClass('on');
     wordData = data.word_data; ///Load Dataset from JSON file
     itemImageLoad();
@@ -66,12 +65,12 @@ function init() {
     //     $('<div class="page-btn '+ active +'">' + (i+1) + '</div>').data('page-num', i).appendTo('.paging');
     // }
 
-    // 하단 단어 
+    // 하단 단어
     var click = {
-            x: 0,
-            y: 0
-        };
-       
+        x: 0,
+        y: 0,
+    };
+
     wordInit();
     // guide()
 }
@@ -107,7 +106,7 @@ var coloringBgm = new Audio('../../../COMM/MP3/COLORING.MP3'); // 색칠 시
 // 드래그 앤 드롭, 핀치줌 가이드
 function guide() {
     let guideHtml;
-    guideHtml  = `
+    guideHtml = `
         <div class="drag">
             <i class="hand_icon">
                 <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
@@ -115,7 +114,9 @@ function guide() {
         </div>
        
     `;
-    $('<div id="guide">'+guideHtml+'</div>').appendTo('#wrap').html(guideHtml);
+    $('<div id="guide">' + guideHtml + '</div>')
+        .appendTo('#wrap')
+        .html(guideHtml);
 }
 
 // function wordWrap($wordWrap, $wordWrap2) {
@@ -129,52 +130,8 @@ function guide() {
 //     $wordWrap2.removeClass('dimmed');
 // }
 
-function wordReplace() {
-    let wordsOff = wordData[mainPageNum].itemUrls[pageWrapNum].itemOff;
-    let wordsOn = wordData[mainPageNum].itemUrls[pageWrapNum].itemOn;
-
-
-    for (var j = 0; j < wordsOn.length; j++){
-        // let answerItem = $('.answer-item')[j];
-
-        let answerItem = $('.answer-item')[j];
-        // let wordID = '.answer-item' + " " +  'img';
-
-        // let wordSection = $('.words-section')[pageWrapNum];
-        // // $(wordSection).attr('src', wordsOn[j].url);
-        let ReplacewordsOn = $(answerItem).find('img').attr('src', wordsOn[j].url)
-      
-        // $('.answer-item').html('');
-        console.log("replaceOn", ReplacewordsOn);
-
-        // $(answerItem).css('top', '');
-        // $(answerItem).css('left', '');
-
-        // $(answerItem).appendTo('#wordWrap');
-        // $(ReplacewordsOn).appendTo('#wordWrap');
-        $(ReplacewordsOn).attr('src', wordsOn[j].url);
-    }
-    // $('.answer-item').html('');
-
-    
-    for (var j = 0; j < wordsOff.length; j++) {
-        let stickPannel = $('.stick-panel');
-        let answerID = '.answer' + j + ' img';
-        let ReplacewordsOff = $(stickPannel).find(answerID)[0];
-        console.log("replaceOff", ReplacewordsOff);
-
-        $(ReplacewordsOff).attr('src', wordsOff[j].url);
-        // $('<div class="answer answer'+j+'">' + '<img src="'+ wordsOff[j].url + '">' + '</div>').attr('data-answer', + pageWrapNum + j).appendTo('.stick-panel')
-    
-    }
-
-    // $(ReplacewordsOff).attr('src', wordsOff);
-
-    // let ReplacewordsOn = $('.word answer-item img').attr('id', 'word'+ pageWrapNum + j);
-    // $(ReplacewordsOn).attr('src', wordsOn);
-
-}
-function wordInit(){//
+function wordInit() {
+    //
     // const $answer = $('.answer');
     // 가이드화면용 wordWrap
     // $wordWrap = $('#wordWrap');
@@ -184,14 +141,20 @@ function wordInit(){//
     let wordsOn = wordData[mainPageNum].itemUrls[pageWrapNum].itemOn;
     // let section2ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
 
-    $('<div class="stick-panel"/>').appendTo('#answerWrap');
+    //.stick-panel 내 전페이지 데이터 삭제
+    if ($('.stick-panel div').length !== 0) {
+        $('.stick-panel').html('');
+    }
     for (var j = 0; j < wordsOff.length; j++) {
-        $('<div class="answer answer'+j+'">' + '<img src="'+ wordsOff[j].url + '">' + '</div>').attr('data-answer', + pageWrapNum + j).appendTo('.stick-panel').droppable({
-            accept: '#wordWrap'+' div',
-            tolerance: 'touch',  
-            hoverClass: 'hover',
-            drop: handleCardDrop,
-        });
+        $('<div class="answer answer' + j + '">' + '<img src="' + wordsOff[j].url + '">' + '</div>')
+            .attr('data-answer', +pageWrapNum + j)
+            .appendTo('.stick-panel')
+            .droppable({
+                accept: '#wordWrap' + ' div',
+                tolerance: 'touch',
+                hoverClass: 'hover',
+                drop: handleCardDrop,
+            });
     }
     // $('<div class="item-word"/>' + '<img src="'+section2ImgUrl+'">').appendTo('#answerWrap');
 
@@ -201,14 +164,18 @@ function wordInit(){//
         // img.src = words[i];
         // container.appendChild(img);
 
-        $('<div class="word answer-item'+'">' + '<img src="'+ wordsOn[j].url + '">' + '</div>').data('word', pageWrapNum + j).attr('id', 'word'+ pageWrapNum + j).appendTo('.words-section'+pageWrapNum).draggable({
-            // containment: containment,
-            stack: '#wordWrap'+' div',
-            cursor: 'move',
-            revert: true,
-            // helper: "clone",
-            //  drag: dragFix(event, aa=containmentArea),
-        });
+        $('<div class="word answer-item' + '">' + '<img src="' + wordsOn[j].url + '">' + '</div>')
+            .data('word', pageWrapNum + j)
+            .attr('id', 'word' + pageWrapNum + j)
+            .appendTo('.words-section' + pageWrapNum)
+            .draggable({
+                // containment: containment,
+                stack: '#wordWrap' + ' div',
+                cursor: 'move',
+                revert: true,
+                // helper: "clone",
+                //  drag: dragFix(event, aa=containmentArea),
+            });
     }
     /*
     for (var i = 0; i < wordsOn.length; i++) {
@@ -236,39 +203,42 @@ function wordInit(){//
     //     // console.log(sidetype + '@@@@@@@@@@@@@@')
     //     $(this).droppable({
     //         accept: '#wordWrap'+' div',
-    //         tolerance: 'touch',  
+    //         tolerance: 'touch',
     //         hoverClass: 'hover',
     //         drop: handleCardDrop,
     //     });
     // })
-
-
 }
-
 
 // 초기화 함수
-function reset(){
+function reset() {
     $('#wordWrap').html('');
-    $('.section').css('display','none');
-    $('.section' + (1)).css('display', 'block');
+    $('.section').css('display', 'none');
+    $('.section' + 1).css('display', 'block');
     $(pageWrapArr).removeClass('on');
     $('undo_history').length = 0;
+
+    //.stick-panel 있는지 확인 후 없으면 추가 (초기만 추가하면 됨)
+    if ($('.stick-panel').length === 0) {
+        $('<div class="stick-panel"/>').appendTo('#answerWrap');
+    }
+    correctWords = 0;
 }
 
-// 캔버스 위 그림 이미지 로드 함수 
+// 캔버스 위 그림 이미지 로드 함수
 function itemImageLoad() {
-    let itemImageHtml = $('.section' + sectionCounter+' #itemImg');
+    let itemImageHtml = $('.section' + sectionCounter + ' #itemImg');
     console.log(itemImageHtml);
-    console.log("mainPageNum", mainPageNum)
-    console.log("pageWrapNum", pageWrapNum)
-    console.log(wordData[mainPageNum].itemUrls[pageWrapNum].mainItem)
+    console.log('mainPageNum', mainPageNum);
+    console.log('pageWrapNum', pageWrapNum);
+    console.log(wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
     $(itemImageHtml).attr('src', wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
     //$('<div id="itemImg' + '">' + '<img src="' + wordData[mainPageNum].itemUrls[pageWrapNum].mainItem + '">' + '</div>').appendTo('.item-img');
 }
 
 //section2 캔버스 글자 이미지 로드 함수
 function itemImageLoad2() {
-    let itemImageHtml2 = $('.section' + sectionCounter+' #itemWord');
+    let itemImageHtml2 = $('.section' + sectionCounter + ' #itemWord');
     $(itemImageHtml2).attr('src', wordData[mainPageNum].wordUrl[pageWrapNum].url);
 }
 
@@ -281,9 +251,9 @@ function wordImageLoad() {
     //console.log(pageWrapNum, wordData[pageWrapNum]);
     image.setSrc(wordData[mainPageNum].wordUrl[pageWrapNum].url, () => {
         canvas.setDimensions({
-        width: image.width,
-        height: image.height,
-        selectable: false,
+            width: image.width,
+            height: image.height,
+            selectable: false,
         });
 
         canvas.add(image);
@@ -291,42 +261,42 @@ function wordImageLoad() {
         canvas.freeDrawingBrush.color = 'black';
         canvas.freeDrawingBrush.width = 10;
         canvas.clipPath = new fabric.Rect({
-        left: 0,
-        top: 0,
-        width: image.width,
-        height: image.height,
-        absolutePositioned: true,
+            left: 0,
+            top: 0,
+            width: image.width,
+            height: image.height,
+            absolutePositioned: true,
         });
     });
 
     $(image).attr('src', ImgUrl[pageWrapNum]);
-    
-    function colorOption() {
-    // 색상 선택 시작
-    const colorOption = Array.from(document.getElementsByClassName("color-option"));
-    const color = document.querySelector("#color");
 
-    function oncolorChange(event) {
-        $(this).addClass('active');
-        $(this).siblings().removeClass('active');
-        const colorValue = event.target.dataset.color;
-        console.log(event.target)
-        canvas.strokeStyle = colorValue; /** 선 색상변경 */
-        canvas.fillStyle = colorValue;
-        color.value = colorValue; /** 변경된 색상 표시 */
-        canvas.freeDrawingBrush.color = color.value;
-    }
-    // color.addEventListener("change", oncolorChange); /** 색상변경 함수명 */
-    colorOption.forEach((color) => color.addEventListener("click", oncolorChange));
+    function colorOption() {
+        // 색상 선택 시작
+        const colorOption = Array.from(document.getElementsByClassName('color-option'));
+        const color = document.querySelector('#color');
+
+        function oncolorChange(event) {
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+            const colorValue = event.target.dataset.color;
+            console.log(event.target);
+            canvas.strokeStyle = colorValue; /** 선 색상변경 */
+            canvas.fillStyle = colorValue;
+            color.value = colorValue; /** 변경된 색상 표시 */
+            canvas.freeDrawingBrush.color = color.value;
+        }
+        // color.addEventListener("change", oncolorChange); /** 색상변경 함수명 */
+        colorOption.forEach((color) => color.addEventListener('click', oncolorChange));
     }
     colorOption();
-    
+
     // let lockHistory = false; //Undo/Redo
     // const undo_history = [];
     // const redo_history = [];
 
-    const binBtn = document.querySelector(".bin-btn"); // 휴지통 아이콘
-    const nextBtn = document.querySelector(".next-btn"); // 다음으로 가기 버튼
+    const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
+    const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
 
     // var canvas = new fabric.Canvas("canvas");
 
@@ -335,9 +305,9 @@ function wordImageLoad() {
 
     undo_history.push(JSON.stringify(canvas));
 
-    canvas.on("object:added", function () {
+    canvas.on('object:added', function () {
         if (lockHistory) return;
-        console.log("object:added");
+        console.log('object:added');
         binBtn.classList.add('active');
         nextBtn.classList.add('active');
         undo_history.push(JSON.stringify(canvas));
@@ -351,18 +321,18 @@ function wordImageLoad() {
             if (undo_history.length > 1) redo_history.push(undo_history.pop());
             const content = undo_history[undo_history.length - 1];
             canvas.loadFromJSON(content, function () {
-            canvas.renderAll();
-            lockHistory = false;
-            console.log(undo_history.length)
+                canvas.renderAll();
+                lockHistory = false;
+                console.log(undo_history.length);
             });
             if (undo_history.length == 1) {
-            binBtn.classList.remove("active");
+                binBtn.classList.remove('active');
             }
         }
     }
 
-    document.getElementById("undo").addEventListener("click", undo);
-    
+    document.getElementById('undo').addEventListener('click', undo);
+
     function deleteSelectedObjects() {
         lockHistory = true;
         canvas.getActiveObjects().forEach((element) => {
@@ -373,21 +343,19 @@ function wordImageLoad() {
         undo_history.push(JSON.stringify(canvas)); //UNDO
         lockHistory = false;
     }
-
 }
 
-
-  //Detele
-  document.addEventListener("keyup", function (e) {
+//Detele
+document.addEventListener('keyup', function (e) {
     console.log(e.keyCode);
     if ((e.keyCode == 8) | (e.keyCode == 46)) {
-      deleteSelectedObjects();
+        deleteSelectedObjects();
     }
-  });
-  // //뒤로 돌리기 기능 끝
+});
+// //뒤로 돌리기 기능 끝
 
 // 섹션 페이지 변경 함수
-function pageMove (){
+function pageMove() {
     // if ((page + 1) >= pageLength) {
     //     $nextvBtn.removeClass(activeClass);
     //     $nextvBtn.css('display', "none");
@@ -402,7 +370,7 @@ function pageMove (){
     //     $nextvBtn.removeClass(activeClass);
     //     $answerBtn.removeClass(activeClass);
     sectionCounter = sectionCounter + 1;
-    console.log("sectionCounter", sectionCounter);
+    console.log('sectionCounter', sectionCounter);
     itemImageLoad();
     itemImageLoad2();
     // }
@@ -416,7 +384,7 @@ function handleCardDrop(event, ui) {
     // var offImg = slotNumber.firstChild;
     // console.log(ui.draggable, slotNumber, cardNumber)
     if (slotNumber == cardNumber) {
-        deleteImage( ui.draggable , $(this));        
+        deleteImage(ui.draggable, $(this));
         // cardNumber.find('.droppableImg').fadeOut('slow');
         // playVid(touchBgm2);
     } else {
@@ -426,7 +394,7 @@ function handleCardDrop(event, ui) {
 
 // 삭제
 function deleteImage($item, $drop) {
-    var allchk = 0;   
+    var allchk = 0;
     // $item.addClass('correct');
     // $item.draggable('disable');
     // $drop.droppable('disable');
@@ -434,17 +402,19 @@ function deleteImage($item, $drop) {
     // $item.position({ of: $(this), my: 'center center', at: 'center center' });
     //$item.draggable('option', 'revert', false);
     correctWords++;
-    
+
     $drop.append($item);
     if (correctWords == 4 + allchk) {
         complatePage++;
         pageWrapNum++;
         console.log(pageWrapNum);
         $confetti.addClass('animation');
-        setTimeout(function(){ $confetti.removeClass('animation'); },1500)
+        setTimeout(function () {
+            $confetti.removeClass('animation');
+        }, 1500);
         setTimeout(function () {
             sectionCounter = 1;
-            let vars = $pagingItem.get(pageWrapNum-1);
+            let vars = $pagingItem.get(pageWrapNum - 1);
             $(vars).addClass('on');
             let pageWrapArr = $pageWrap.get(pageWrapNum);
             $(pageWrapArr).addClass('on');
@@ -452,24 +422,21 @@ function deleteImage($item, $drop) {
             itemImageLoad2();
             wordImageLoad();
             reset();
-            // wordInit();
-            wordReplace();
-           
+            wordInit();
+
             // $('.answer-item').draggable();
             // $item.draggable();
             // $drop.droppable('enable');
             // $item.removeClass('correct');
-        }, 1700)
+        }, 1700);
 
         // if (complatePage == pageLength) {
         //     complate();
         // } else {
-        //     $nextvBtn.addClass(activeClass);    
+        //     $nextvBtn.addClass(activeClass);
         // }
-       
     }
 }
-    
 
 // 다음버튼
 $(document).on('click', '.next-btn', next);
@@ -481,13 +448,13 @@ function next(e) {
 }
 
 // 완료 함수
-function complate(){
+function complate() {
     //종료함수 작성
     callFinish();
 }
 
 //종료 함수
-function callFinish(){
+function callFinish() {
     window.javascript_object.callFinish();
 }
 
@@ -511,24 +478,25 @@ function callFinish(){
 //         deleteImage($(this), $('.answer'+'[data-answer="'+data+'"]') )
 //     })
 // }
-function playVid(el) { 
-    el.pause(); 
+function playVid(el) {
+    el.pause();
     el.currentTime = 0;
-    el.play(); 
-} 
+    el.play();
+}
 function pauseAll() {
-    $('audio.audio').each(function(i){
-        i = i+1;
+    $('audio.audio').each(function (i) {
+        i = i + 1;
         $('#cardAudio' + i)[0].pause();
         $('#cardAudio' + i)[0].currentTime = 0;
-    })
+    });
 }
 
 // 시작
-$(function(){
-    init();    
+$(function () {
+    init();
     // guide();
     $intro.show();
-    setTimeout(function(){ $intro.fadeOut('slow'); },1000);
-    
-})
+    setTimeout(function () {
+        $intro.fadeOut('slow');
+    }, 1000);
+});
