@@ -230,7 +230,7 @@ function reset() {
     $('undo_history').length = 0;
 
     //.stick-panel 있는지 확인 후 없으면 추가 (초기만 추가하면 됨)
-    if ($('.stick-panel').length === 0) {
+    if ($('.section2 .stick-panel').length === 0) {
         $('<div class="stick-panel"/>').appendTo('#answerWrap');
     }
     correctWords = 0;
@@ -265,9 +265,8 @@ function wordImageLoad() {
             width: image.width,
             height: image.height,
             selectable: false,
-            preserveObjectStacking:true,
-            globalCompositeOperation: 'source-atop'
-   
+            preserveObjectStacking: true,
+            globalCompositeOperation: 'source-atop',
         });
 
         canvas.add(image);
@@ -424,9 +423,9 @@ function deleteImage($item, $drop) {
         complatePage++;
         pageWrapNum++;
         console.log(pageWrapNum);
-        playVid(wordAnswerBgm);// 정답 단어
+        playVid(wordAnswerBgm); // 정답 단어
         $confetti.addClass('animation');
-        playVid(fanfareBgm);// 빵빠레
+        playVid(fanfareBgm); // 빵빠레
         setTimeout(function () {
             $confetti.removeClass('animation');
         }, 1500);
@@ -436,11 +435,15 @@ function deleteImage($item, $drop) {
             $(vars).addClass('on');
             let pageWrapArr = $pageWrap.get(pageWrapNum);
             $(pageWrapArr).addClass('on');
-            itemImageLoad();
-            itemImageLoad2();
-            wordImageLoad();
-            reset();
-            wordInit();
+            if (complatePage < 4) {
+                itemImageLoad();
+                itemImageLoad2();
+                wordImageLoad();
+                reset();
+                wordInit();
+            } else {
+                $('.section3').css('display', 'block').siblings().css('display', 'none');
+            }
 
             // $('.answer-item').draggable();
             // $item.draggable();
@@ -509,15 +512,16 @@ function pauseAll() {
     });
 }
 
-function colorGuide () {
+function colorGuide() {
     let colorGuide;
 
     colorGuide = `
         <div class="colorGuide">
             <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
-        </div>`
-    ;
-    $('<div id="colorGuide">'+colorGuide+'</div>').appendTo('#wrap').html(colorGuide);
+        </div>`;
+    $('<div id="colorGuide">' + colorGuide + '</div>')
+        .appendTo('#wrap')
+        .html(colorGuide);
 }
 
 // 시작
