@@ -257,10 +257,8 @@ function itemImageLoad2() {
 
 // 캔버스 글자 이미지 로드 함수
 function wordImageLoad() {
-    let ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
-
-    const canvas = new fabric.Canvas('canvas');
-    const image = new fabric.Image();
+    let canvas = new fabric.Canvas('canvas');
+    let image = new fabric.Image();
     //console.log(pageWrapNum, wordData[pageWrapNum]);
     image.setSrc(wordData[mainPageNum].wordUrl[pageWrapNum].url, () => {
         canvas.setDimensions({
@@ -283,7 +281,7 @@ function wordImageLoad() {
             absolutePositioned: true,
         });
     });
-
+    let ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
     $(image).attr('src', ImgUrl[pageWrapNum]);
 
     function colorOption() {
