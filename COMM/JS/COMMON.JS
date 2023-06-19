@@ -9,7 +9,6 @@ var correctWords = 0;
 // var pageLength = words.length;
 // 페이지 Layout
 
-var $prevBtn = $('.prev-btn');
 var $nextvBtn = $('.next-btn');
 var $doneBtn = $('.done-btn');
 
@@ -17,6 +16,7 @@ var activeClass = 'active';
 var $paging = $('.paging');
 // var $answerBtn = $('.answerbtn');
 var $guide = $('#guide');
+var $intro = $('#introBg');
 
 var $wordWrap;
 var $wordWrap2;
@@ -37,8 +37,8 @@ function init() {
     $(pageWrapArr).addClass('on');
     wordData = data.word_data; ///Load Dataset from JSON file
     console.log(wordData)
-    itemImageLoad()
-    wordImageLoad()
+    itemImageLoad();
+    wordImageLoad();
     // if(  navType == 'newNav' ){
     //    pageNav(page+1)
     // // 기존 과학 버전 그대로
@@ -101,24 +101,18 @@ var coloringBgm = new Audio('../../../COMM/MP3/COLORING.MP3'); // 색칠 시
 // }
 
 // 드래그 앤 드롭, 핀치줌 가이드
-// function guide() {
-//     let guideHtml;
-//     guideHtml  = `
-//         <div class="drag">
-//             <div>
-//                 <div class="guide_answer answer answer-w"></div>
-//                 <p class="desc">
-//                     <span class="nbsp"></span>에 들어갈 알맞은 말을<br/>
-//                     끌어 넣으세요.
-//                 </p>
-//             </div>
-//         </div>
-//         <i class="hand_icon">
-//             <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
-//         </i>
-//     `;
-//     $('<div id="guide" onclick="guideClose($(this))">'+guideHtml+'</div>').appendTo('#wrap').html(guideHtml);
-// }
+function guide() {
+    let guideHtml;
+    guideHtml  = `
+        <div class="drag">
+            <i class="hand_icon">
+                <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
+            </i>
+        </div>
+       
+    `;
+    $('<div id="guide">'+guideHtml+'</div>').appendTo('#wrap').html(guideHtml);
+}
 
 // function wordWrap($wordWrap, $wordWrap2) {
 //     $wordWrap.addClass('dimmed');
@@ -147,6 +141,8 @@ function wordReplace() {
     }
 
     $('.answer-item').appendTo('#wordWrap');
+    // $('.answer-item').html('');
+    
     // $('.answer-item').draggable({ disabled: true });   
     // $(this).css({'position':'relative','top':'','left':''});
     // $("span.spread").dblclick(function () {
@@ -213,10 +209,6 @@ function wordInit(){//
     }
     /*
     for (var i = 0; i < wordsOn.length; i++) {
-        
-        // let containment = (type != 'science') ? 'document': (side == 1) ? '.section'+(i+1)+' .science-left' : '.section'+(i+1)+' .science-right' ;
-        // console.log(containment)
-        // console.log(side);
         // let containmentArea = $(containment);
         // for (let i = 0; i < words.length; i++) {
         //     const img = document.createElement('img');
@@ -236,18 +228,6 @@ function wordInit(){//
         //     }).appendTo(listWrap);
         // });
     }*/
-
-
-    
-    function dragFix(event, ui, aa) {
-        // if(type == 'science'){
-        //     var contWidth = containmentArea.width(), contHeight = containmentArea.height();
-        //     ui.position.left = Math.max(0, Math.min(ui.position.left / scaleFactor , contWidth - ui.helper.width()));
-        //     ui.position.top = Math.max(0, Math.min(ui.position.top  / scaleFactor,  contHeight- ui.helper.height()));
-        // }
-        
-    }
-
 
     // $answer.each(function(){
     //     // console.log(sidetype + '@@@@@@@@@@@@@@')
@@ -269,7 +249,6 @@ function reset(){
     $('.section').css('display','none');
     $('.section' + (1)).css('display', 'block');
     $(pageWrapArr).removeClass('on');
-    // $(pageWrapArr+1).addClass('on');
 }
 
 // 캔버스 위 이미지 로드 함수 
@@ -327,7 +306,8 @@ function wordImageLoad() {
     // color.addEventListener("change", oncolorChange); /** 색상변경 함수명 */
     colorOption.forEach((color) => color.addEventListener("click", oncolorChange));
     }
-
+    colorOption();
+    
     let lockHistory = false; //Undo/Redo
     const undo_history = [];
     const redo_history = [];
@@ -369,7 +349,7 @@ function wordImageLoad() {
     }
 
     document.getElementById("undo").addEventListener("click", undo);
-
+    
     function deleteSelectedObjects() {
         lockHistory = true;
         canvas.getActiveObjects().forEach((element) => {
@@ -393,18 +373,8 @@ function wordImageLoad() {
   });
   // //뒤로 돌리기 기능 끝
 
-// 페이지 변경 함수
+// 섹션 페이지 변경 함수
 function pageMove (){
-    // console.log(pageNum)
-    //wordImageLoad()
-    // correctWords = 0;
-
-    // if (page == 0) {
-    //     $prevBtn.css('display', "none");
-    // } else {
-    //     $prevBtn.show();
-    // }
-
     // if ((page + 1) >= pageLength) {
     //     $nextvBtn.removeClass(activeClass);
     //     $nextvBtn.css('display', "none");
@@ -422,13 +392,7 @@ function pageMove (){
     console.log("sectionCounter", sectionCounter);
     itemImageLoad();
     // }
-    // $('.paging div').eq(complatePage - 1).addClass('complate');
-    // $('.paging div').eq(page).addClass(activeClass).siblings().removeClass(activeClass);
     $('.section2').css('display', 'block').siblings().css('display', 'none');
-    // $('.words-section'+page).css('display', 'flex').siblings().css('display', 'none');
-    // if(type =='science'){
-    //     $('.words-section2'+page).css('display', 'flex').siblings().css('display', 'none');
-    // }
 }
 
 // 드롭 이벤트
@@ -448,32 +412,22 @@ function handleCardDrop(event, ui) {
 
 // 삭제
 function deleteImage($item, $drop) {
-    var allchk = 0;
-    // if(type == 'science'){
-    //     allchk =  words2[page].length
-    // }
+    var allchk = 0;   
     // $item.addClass('correct');
     // $item.draggable('disable');
     // $drop.droppable('disable');
     $drop.find('.droppableImg').fadeOut('slow');
-    // setTimeout(function(){ $drop.addClass('answer-complate'); },100)
-    
     // $item.position({ of: $(this), my: 'center center', at: 'center center' });
     //$item.draggable('option', 'revert', false);
     correctWords++;
     
     $drop.append($item);
-    // console.log(words[page])
     if (correctWords == 4 + allchk) {
         complatePage++;
         pageWrapNum++;
-        console.log(pageWrapNum)
-        // console.log( complatePage, page, pageLength)
-        // $answerBtn.addClass(activeClass);
+        console.log(pageWrapNum);
         $confetti.addClass('animation');
         setTimeout(function(){ $confetti.removeClass('animation'); },1500)
-
-        console.log('다음으로')
         setTimeout(function () {
             sectionCounter = 1;
             let vars = $pagingItem.get(pageWrapNum-1);
@@ -482,22 +436,14 @@ function deleteImage($item, $drop) {
             $(pageWrapArr).addClass('on');
             itemImageLoad();
             wordImageLoad();
-            // $item.draggable( "instance" );
-            // $drop.droppable('enable');
-            // $item.removeClass('correct');
-
-
-            // let pageWrap = $pageWrap.get(pageWrapNum);
-            // $(pageWrap).addClass('on');
-            // //vars.classList.add('on');
-            // console.log(page, pageWrapNum)
             reset();
             // wordInit();
             wordReplace();
-            $item.draggable( 'enable' );
-            $drop.droppable('enable');
-            $item.removeClass('correct');
-            // $('.pageWrap'+(pageWrapNum+1)).css('display', 'block').siblings().css('display', 'none');
+            // $item.draggable( 'enable' );
+            // $('.answer-item').draggable();
+            // $item.draggable();
+            // $drop.droppable('enable');
+            // $item.removeClass('correct');
         }, 1700)
 
         // if (complatePage == pageLength) {
@@ -509,34 +455,16 @@ function deleteImage($item, $drop) {
     }
 }
     
-// 이전버튼
-// $(document).on('click', '.prev-btn', prev); 
-$(document).on('click', '.next-btn', next);
-// function prev(e) {
-//     var $this = $(this);
-//     if(page == 0){return}
-//     page = page - 1;
-//     pageMove(page);
-//     if ( navType == "newNav")pageNav(page+1)
 
-// }
 // 다음버튼
+$(document).on('click', '.next-btn', next);
 function next(e) {
     var $this = $(this);
     if ($this.hasClass(activeClass)) {
-        // if ((page + 1) >= pageLength) { return }
         pageMove();
-        // if ( navType == "newNav")pageNav(page+1)
     }
 }
-// function pageNav (pageNum){
-//     $('.pagingInner').html(`
-//         <div class='new-page'>
-//             <span>${pageNum}</span> / ${pageLength}
-//         </div>
 
-//     `)
-// }
 // 완료 함수
 function complate(){
     //종료함수 작성
@@ -548,28 +476,26 @@ function callFinish(){
     window.javascript_object.callFinish();
 }
 
-function remove() {
-    $('.pop-wrap').remove();
-    $('.pop-wrapBg').remove();
-}
+// function remove() {
+//     $('.pop-wrap').remove();
+//     $('.pop-wrapBg').remove();
+// }
 
-function result(e) {
-    // if ( $answerBtn.hasClass(activeClass)){
-    //     return;
-    // }
-    // playVid(touchBgm2);
-    // $answerBtn.addClass(activeClass);
+// function result(e) {
+//     if ( $answerBtn.hasClass(activeClass)){
+//         return;
+//     }
+//     playVid(touchBgm2);
+//     $answerBtn.addClass(activeClass);
+//     resultEvent("")
+// }
 
-    resultEvent("")
-}
-
-function resultEvent(){
-    $('.words-section'+ sectionNum + ' .word').each(function (index) {
-        var data = $(this).data('word')
-        // console.log(data)
-        deleteImage($(this), $('.answer'+'[data-answer="'+data+'"]') )
-    })
-}
+// function resultEvent(){
+//     $('.words-section'+ sectionNum + ' .word').each(function (index) {
+//         var data = $(this).data('word')
+//         deleteImage($(this), $('.answer'+'[data-answer="'+data+'"]') )
+//     })
+// }
 function playVid(el) { 
     el.pause(); 
     el.currentTime = 0;
@@ -585,30 +511,9 @@ function pauseAll() {
 
 // 시작
 $(function(){
-    init();
-    // var element = document.querySelector('.zoomInner')
-
-    // // And pass it to panzoom
-    // var zoom = Panzoom(element, {
-    //     contain: 'outside',
-    //     minScale: 1,
-    //     maxScale: 2,
-    //     disablePan: false,
-    //     disableZoom: false,
-    //     zoom: true,
-      
-    // })
-    //  scaleFactor = zoom.getScale();
+    init();    
+    // guide();
+    $intro.show();
+    setTimeout(function(){ $intro.fadeOut('slow'); },800);
     
-
-    // const parent = element.parentElement
-    // parent.addEventListener('wheel', function(event) {
-    //     zoom.zoomWithWheel(event);
-    //     scaleFactor = zoom.getScale();
-    //     // $(".title").text(scaleFactor)
-    //     // console.log(scaleFactor)
-    // })
-    // element.addEventListener('panzoomend', function(event) {
-    //     scaleFactor = zoom.getScale();
-    // })
 })

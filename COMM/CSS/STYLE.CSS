@@ -5,326 +5,13 @@
     width: 100%;
     height: 100%;
 }
-/* society */
-#wrap.icecream{
-    background-image: url(../IMG/BG_ICECREAM.PNG);
-}
-#wrap.visangkim{
-    background-image: url(../IMG/BG_VISANGKIM.PNG);
-}
-#wrap.visangseol{
-    background-image: url(../IMG/BG_VISANGSEOL.PNG);
-}
-#wrap.geniuskim{
-    background: url(../IMG/BG_GENIUSKIM.PNG);
-}
-#wrap.geniuspark{
-    background: url(../IMG/BG_GENIUSPARK.PNG);
-}
-#wrap.inthefuture,
-#wrap.geniussin{
-    background: url(../IMG/BG_INTHEFUTURE.PNG);
-}
-/* science */
-#wrap.icecream.science{
-    background: url(../IMG/BG_SCIENCE_ICE.PNG);
-}
-#wrap.visang{
-    background: url(../IMG/BG_VISANG.PNG);
-}
-#wrap.genius{
-    background: url(../IMG/BG_GENIUS.PNG);
-}
-#wrap.jihaksa{
-    background: url(../IMG/BG_GENIUSKIM.PNG);
-}
 
-/* header{
-    display: flex;
-    height: 78px;
-    width: calc(100% - 70px);
-    margin: 0 auto;
-}
-
-header > div{
-    width: 50%;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    height: 100%;
-}
-
-header > div.left{
-    text-align: left;
-}
-header > div.left button.btn-back{
-    width: 75px;
-    height: 75px;
-    border-radius: 100%;
-    border: none;
-    background: none;    
-} */
-
-/* 버튼 클릭시 파란 박스 안보이게 */
-/* header > div button:focus,
-header > div button:active{
-    -webkit-tap-highlight-color: transparent;
-}
-header > div.left button.btn-back img{
-    width: 100%;
-    left: -8px;
-    top: 0px;
-}
-
-
-header > div.right{
-    margin:0 0 0 0;
-    display: flex;
-    justify-content: flex-end;;
-    align-items: center;
-    flex-wrap: wrap;
-}
-header > div.right .paging{
-    display: flex;
-    justify-content: flex-end;;
-    align-items: center;
-    flex-wrap: nowrap;
-    height: 100%;
-    margin-left: 20px;
-    position: relative;
-    z-index: 0;
-}
-header > div.right .paging > div{
-    position: relative;
-    margin-right:14px;
-    width: 21px;
-    height: 21px;
-    font-family: 'Nanum Gothic', sans-serif;
-    font-size: 0;
-    border:none;
-    border-radius: 100%;
-    background: #fff;
-    z-index: 1;
-}
-header > div.right .paging > div:last-child{margin-right: 0;}
-header > div.right .paging:before{
-    content: "";
-    display: inline-block;
-    position: absolute;
-    top:50%;
-    transform: translateY(-50%);
-    width: 100%;
-    height:4px;
-    background: #fff;
-}
-header > div.right .paging > div:first-child:before{display: none;}
-header > div.right .paging > div.complate,
-header > div.right .paging > div.active{
-        line-height: 36px;
-    width: 42px;
-    height: 42px;
-    font-family: 'Nanum Gothic', sans-serif;
-    font-size: 25.5px;
-    font-weight: 800;
-    text-align: center;
-    color: #fff;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    background-color: #0C55A9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    z-index: 2;
-}
-.visangkim header > div.right .paging > div.complate,
-.visangkim header > div.right .paging > div.active{
-    background-color: #295A29;
-}
-.visangseol header > div.right .paging > div.complate,
-.visangseol header > div.right .paging > div.active{
-    background-color: #296B6B;
-}
-.geniuskim header > div.right .paging > div.complate,
-.geniuskim header > div.right .paging > div.active,
-
-.jihaksa header > div.right .paging > div.complate,
-.jihaksa header > div.right .paging > div.active{
-    background-color: #7B5218;
-}
-.geniuspark header > div.right .paging > div.complate,
-.geniuspark header > div.right .paging > div.active{
-    background-color: #784553;
-} 
-.inthefuture header > div.right .paging > div.complate,
-.inthefuture header > div.right .paging > div.active{
-    background-color: #412759;
-} 
-.geniussin header > div.right .paging > div.complate,
-.geniussin header > div.right .paging > div.active{
-    background-color: #412759;
-} 
-
-.icecream.science header > div.right .paging > div.complate,
-.icecream.science header > div.right .paging > div.active{
-    background-color: #7C2330;
-}
-.visang header > div.right .paging > div.complate,
-.visang header > div.right .paging > div.active{
-    background-color: #2A4259;
-} 
-.genius header > div.right .paging > div.complate,
-.genius header > div.right .paging > div.active{
-    background-color: #1E674B;
-} */
-
-/* header > div.right .paging > div.complate:before,
-header > div.right .paging > div.active:before{
-    z-index: 1;
-    margin: 0 0 0 -30px;
-    width: 19.5px;
-} */
-.title{
-    font-family: 'Nanum Gothic', sans-serif;
-    font-size: 29px;
-    font-weight: 800;
-    color: #fff;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-.answerbtn{
-    padding:0px 12.5px;
-    height: 47.5px;
-    font-family: 'Nanum Gothic', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: #fff;
-    border: 2px solid #fff;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    background-color: #0C55A9;
-    outline: none;
-}
-.visangkim .answerbtn{
-    background-color: #295A29;
-}
-.visangseol .answerbtn{
-    background-color: #296B6B;
-}
-.geniuskim .answerbtn,
-.jihaksa .answerbtn{
-    background-color: #7B5218;
-}
-.geniuspark .answerbtn{
-    background-color: #784553;
-}
-.inthefuture .answerbtn{
-    background-color: #412759;
-}
-.geniussin .answerbtn{
-    background-color: #412759;
-}
-/* science */
-.icecream.science .answerbtn{
-    background-color: #7C2330;
-}
-.visang .answerbtn{
-    background-color: #2A4259;
-}
-.genius .answerbtn{
-    background-color: #1E674B;
-}
-
-
-/* .answerbtn:hover, */
-.answerbtn:not(.active):active{
-    color: #0C55A9;
-    background-color: #FDBC1A;
-}
-.visangkim .answerbtn:not(.active):active{
-    color: #295A29;
-    background-color: #FDBC1A;
-}
-.visangseol .answerbtn:not(.active):active{
-    color: #296B6B;
-    background-color: #FDBC1A;
-}
-.geniuskim .answerbtn:not(.active):active,
-.jihaksa .answerbtn:not(.active):active{
-    color: #7B5218;
-    background-color: #FDBC1A;
-}
-.geniuspark .answerbtn:not(.active):active{
-    color: #784553;
-    background-color: #FDBC1A;
-}
-.inthefuture .answerbtn:not(.active):active{
-    color: #412759;
-    background-color: #FDBC1A;
-}
-.geniussin .answerbtn:not(.active):active{
-    color: #412759;
-    background-color: #FDBC1A;
-}
-/* science */
-.icecream.science .answerbtn:not(.active):active{
-    color: #7C2330;
-    background-color: #FDBC1A;
-}
-.visang .answerbtn:not(.active):active{
-    color: #2A4259;
-    background-color: #FDBC1A;
-}
-.genius .answerbtn:not(.active):active{
-    color: #1E674B;
-    background-color: #FDBC1A;
-}
-.answerbtn.active,
-.science .answerbtn.active{
-    color: #696666;
-    background: #BFBFBF;
-}
 #wordWrap2,
 #wordWrap{
     position: relative;
     position: fixed;
+}
 
-}
-.visangkim #wordWrap{
-    background-color: #2B5F2B;
-    border: 2px solid #0E3C0E;
-}
-.visangseol #wordWrap{
-    background-color: #296B6B;
-    border: 2px solid #112E2E ;
-}
-.geniuskim #wordWrap,
-.jihaksa #wordWrap,
-.jihaksa #wordWrap2{
-    background-color: #7B5218;
-    border: 2px solid #3E290B ;
-}
-.geniuspark #wordWrap{
-    background-color: #784553;
-    border: 2px solid #430B1C ;
-}
-.inthefuture #wordWrap,#wordWrap2, 
-.geniussin #wordWrap,#wordWrap2{
-    background-color: #412759;
-    border: 2px solid #2B193B ;
-}
-/* science */
-.icecream.science #wordWrap,
-.icecream.science #wordWrap2{
-    background-color: #712A32;
-    border: 2px solid #361317 ;
-}
-.visang #wordWrap,
-.visang #wordWrap2{
-    background-color: #2A4259;
-    border: 2px solid #0A1E31 ;
-}
-.genius #wordWrap,
-.genius #wordWrap2{
-    background-color: #1E674B;
-    border: 2px solid #103929 ;
-}
 #wordWrap .words-section,
 #wordWrap2 .words-section {
     display: none;
@@ -333,46 +20,14 @@ header > div.right .paging > div.active:before{
     width: 100%;
     height: 100%;
 }
+
 #wordWrap .words-section{display: flex;}
-#wordWrap .words-section > div,
-#wordWrap2 .words-section > div{
-    /* margin: 0 2.3%;
-    height: 41px;
-    line-height: 41px;
-    padding:0px 20px;
-    font-family: 'Nanum Gothic', sans-serif;
-    font-size: 23px;
-    font-weight: 800;
-    color:#101086;
-    border: 1px solid #101086;
-    border-radius: 9px;
-    box-shadow: 3px 5px#101086;
-    background-color: #fff; */
-}
-.science #wordWrap .words-section > div,
-.science #wordWrap2 .words-section > div{
-    margin: 0 2.3%;
-    padding:0px 20px;
-}
+
 .section {display: none;position: relative;}
 .section1 {display: block;}
 
-#successMessage{display: none;}
 
-.zoomBox{
-    /* height: 100%; */
-    width: calc(100% - 70px);
-    margin: 0 auto;
-    overflow: hidden;
-    /* height: calc(100vh - 150px); */
-    height: calc(100vh - 78px);/* 12-23수정 */
-}
 .section{
-    /* margin: 0 auto;
-    width: 90%; */
-    /* padding:0 53px; */
-    
-    /* height: calc(100vh - 150px); */
     background: transparent;
 }
 /* .pageWrap {display: none;} */
@@ -407,10 +62,7 @@ header > div.right .paging > div.active:before{
     transition: background 1s;
     position: fixed;
 }
-.answer.answer-w,
-.answer2.answer-w{
-    background: #fff;
-}
+
 .section .pageContents > div.answer:hover,
 .section .pageContents > div.answer.hover,
 .section .pageContents .science-wrap > div.answer:hover,
@@ -434,21 +86,8 @@ header > div.right .paging > div.active:before{
     width: auto;
     height: 100%;
 }
-/* .answer.hover{
-}
-.answer.answer-complate,
-.answer2.answer-complate{
-    transition: border 0.7s;
-    font-size: 0;
-    line-height: 1;
-}
-.answer.answer-complate  div.word,
-.answer2.answer-complate div.word2{
-    transition: color 0.7s;
-    font-size: 21px;
-    font-weight: 800;
-    color: #080684;
-} */
+
+
 .next-btn {
     background: url("../../../COMM/IMG/BTN_NEXT_UN.PNG") no-repeat;
     background-size: 100% 100%;
@@ -464,7 +103,7 @@ header > div.right .paging > div.active:before{
     background: url("../../../COMM/IMG/BTN_NEXT_EN.PNG") no-repeat;
     background-size: 100% 100%;
 }
-.prev-btn,
+
 .done-btn{
     /* display: none; */
     position: absolute;
@@ -480,25 +119,19 @@ header > div.right .paging > div.active:before{
     text-align: center;
     opacity: 1;
 }
-.prev-btn.active,
 .next-btn.active,
 .done-btn.active{
     opacity: 1;
 }
+
 /* 버튼 클릭시 파란 박스 안보이게 */
-.prev-btn:focus,
 .next-btn:focus,
 .done-btn:focus,
-.prev-btn:active,
 .next-btn:active,
 .done-btn:active{
     -webkit-tap-highlight-color: transparent;
 }
-.prev-btn{
-    right:auto;
-    left:0px
-}
-.prev-btn img,
+
 .next-btn img,
 .done-btn img{width: 100%; left: 0;}
 
@@ -511,25 +144,6 @@ header > div.right .paging > div.active:before{
     height: 10.1vw;
     background: url(../../COMM/IMG/BTN_DECO_RD.PNG) no-repeat;
     background-size: 100% 100%;
-}
-
-/* .section:not(.section1) .pageContents > div.answer{
-    position: static;
-} */
-
-.science-wrap{
-    width: 50%;
-}
-#wordWrap.science-wordWrap,
-#wordWrap2.science-wordWrap2{
-    width: calc( 50% - 35px);
-    transform: translateX(0);
-}
-#wordWrap.science-wordWrap1{
-    left: 35px;
-}
-#wordWrap2.science-wordWrap2{
-    left: 50%;
 }
 
 /* 나가기 팝업 */
@@ -612,7 +226,7 @@ header > div.right .paging > div.active:before{
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(36,36,36,0.79);
+    background: rgba(36,36,36,0.5);
 }
 #guide > div{
     position: fixed;
@@ -717,9 +331,9 @@ header > div.right .paging > div.active:before{
 }
 .hand_icon{
     position: absolute;
-    width: 67%;
-    left: 91%;
-    top: 80%;
+    width: 9%;
+    left: 50%;
+    top: 9%;
 }
 .hand_icon img{
     width: 100%;
@@ -739,7 +353,7 @@ header > div.left .title > div.new-title{
 }
 
 
-/* ////////////////////////////////////////////////////////20230608 */
+/* 낱말꾸미기 추가 css */
 .section1 {
     background: url(../IMG/BG_1.PNG) no-repeat;
     background-size: 100% 100%;
@@ -759,7 +373,7 @@ header {
     top: 0;
     right: 0;
     width: 100%;
-    z-index: 1;
+    /* z-index: 1; */
 }
 .indicate {
     background: url(../IMG/BG_INDICATOR.PNG) no-repeat;
@@ -787,13 +401,6 @@ header {
     width: 34px;
     height: 40px;
 }
-/* .pageContents img.item-img{
-    width: 250px;
-    position: absolute;
-    top: 12%;
-    left: 50%;
-    transform: translateX(-50%);
-} */
 
 canvas {
     /* position: absolute;
@@ -862,7 +469,6 @@ canvas {
 }
 .color-option img {width: 100%;}
 
-/* 2023-06-15 */
 .section1 .item-img {
     width: 330px;
     height: 280px;
@@ -1023,4 +629,23 @@ canvas {
     /* animation-iteration-count: infinite; */
     animation-timing-function: ease-in-out;
 }
- 
+
+#introBg{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* animation: fadeout 1s;
+    animation-fill-mode: forwards; */
+}
+#introBg img {width: 100%;}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
