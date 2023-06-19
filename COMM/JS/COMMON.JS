@@ -135,36 +135,34 @@ function wordReplace() {
 
 
     for (var j = 0; j < wordsOn.length; j++){
+        // let answerItem = $('.answer-item')[j];
+
         let answerItem = $('.answer-item')[j];
-        let wordSection = $('.answer-item img')[j];
-        $(wordSection).attr('src', wordsOn[j].url);
+        // let wordID = '.answer-item' + " " +  'img';
 
-        $(answerItem).css('left', '');
-        $(answerItem).css('top', '');
-        //$(answerItem).appendTo('#wordWrap');
+        // let wordSection = $('.words-section')[pageWrapNum];
+        // // $(wordSection).attr('src', wordsOn[j].url);
+        let ReplacewordsOn = $(answerItem).find('img').attr('src', wordsOn[j].url)
+      
+        // $('.answer-item').html('');
+        console.log("replaceOn", ReplacewordsOn);
+
+        // $(answerItem).css('top', '');
+        // $(answerItem).css('left', '');
+
+        // $(answerItem).appendTo('#wordWrap');
+        // $(ReplacewordsOn).appendTo('#wordWrap');
+        $(ReplacewordsOn).attr('src', wordsOn[j].url);
     }
-
-    $('.answer-item').appendTo('#wordWrap');
     // $('.answer-item').html('');
-    
-    // $('.answer-item').draggable({ disabled: true });   
-    // $(this).css({'position':'relative','top':'','left':''});
-    // $("span.spread").dblclick(function () {
-    //         $(this).toggleClass("draggable");
-    //         if($(this).hasClass('draggable')){
-    //             $("span.spread").draggable({disabled:false});
-    //             }else{
-    //             $("span.spread").draggable({disabled:true});
-    //             $(this).css({'position':'relative','top':'','left':''});
-    //         };
-    //     }); 
-    // })
+
     
     for (var j = 0; j < wordsOff.length; j++) {
         let stickPannel = $('.stick-panel');
         let answerID = '.answer' + j + ' img';
         let ReplacewordsOff = $(stickPannel).find(answerID)[0];
         console.log("replaceOff", ReplacewordsOff);
+
         $(ReplacewordsOff).attr('src', wordsOff[j].url);
         // $('<div class="answer answer'+j+'">' + '<img src="'+ wordsOff[j].url + '">' + '</div>').attr('data-answer', + pageWrapNum + j).appendTo('.stick-panel')
     
@@ -415,11 +413,11 @@ function pageMove (){
 function handleCardDrop(event, ui) {
     var slotNumber = $(this).attr('data-answer');
     var cardNumber = ui.draggable.data('word');
-    var offImg = slotNumber.firstChild;
+    // var offImg = slotNumber.firstChild;
     // console.log(ui.draggable, slotNumber, cardNumber)
     if (slotNumber == cardNumber) {
-        deleteImage( ui.draggable , $(this));
-        cardNumber.find('.droppableImg').fadeOut('slow');
+        deleteImage( ui.draggable , $(this));        
+        // cardNumber.find('.droppableImg').fadeOut('slow');
         // playVid(touchBgm2);
     } else {
         // playVid(touchBgm3);
@@ -456,7 +454,7 @@ function deleteImage($item, $drop) {
             reset();
             // wordInit();
             wordReplace();
-            // $item.draggable( 'enable' );
+           
             // $('.answer-item').draggable();
             // $item.draggable();
             // $drop.droppable('enable');
