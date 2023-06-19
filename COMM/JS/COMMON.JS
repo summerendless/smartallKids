@@ -29,6 +29,10 @@ let pageWrapArr = $pageWrap.get(pageWrapNum);
 
 let wordData = undefined;
 
+let lockHistory = false; //Undo 히스토리
+const undo_history = [];
+const redo_history = [];
+
 // 초기 빌드
 function init() {
      
@@ -36,8 +40,8 @@ function init() {
     reset()
     $(pageWrapArr).addClass('on');
     wordData = data.word_data; ///Load Dataset from JSON file
-    console.log(wordData)
     itemImageLoad();
+    itemImageLoad2();
     wordImageLoad();
     // if(  navType == 'newNav' ){
     //    pageNav(page+1)
@@ -172,7 +176,6 @@ function wordReplace() {
     // $(ReplacewordsOn).attr('src', wordsOn);
 
 }
-
 function wordInit(){//
     // const $answer = $('.answer');
     // 가이드화면용 wordWrap
@@ -181,6 +184,7 @@ function wordInit(){//
     // wordWrap($wordWrap, $wordWrap2);
     let wordsOff = wordData[mainPageNum].itemUrls[pageWrapNum].itemOff;
     let wordsOn = wordData[mainPageNum].itemUrls[pageWrapNum].itemOn;
+    // let section2ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
 
     $('<div class="stick-panel"/>').appendTo('#answerWrap');
     for (var j = 0; j < wordsOff.length; j++) {
@@ -191,6 +195,7 @@ function wordInit(){//
             drop: handleCardDrop,
         });
     }
+    // $('<div class="item-word"/>' + '<img src="'+section2ImgUrl+'">').appendTo('#answerWrap');
 
     $('<div class="words-section words-section' + pageWrapNum + '"/>').appendTo('#wordWrap');
     // const container = document.getElementById('wordWrap');
@@ -249,9 +254,10 @@ function reset(){
     $('.section').css('display','none');
     $('.section' + (1)).css('display', 'block');
     $(pageWrapArr).removeClass('on');
+    $('undo_history').length = 0;
 }
 
-// 캔버스 위 이미지 로드 함수 
+// 캔버스 위 그림 이미지 로드 함수 
 function itemImageLoad() {
     let itemImageHtml = $('.section' + sectionCounter+' #itemImg');
     console.log(itemImageHtml);
@@ -259,12 +265,19 @@ function itemImageLoad() {
     console.log("pageWrapNum", pageWrapNum)
     console.log(wordData[mainPageNum].itemUrls[pageWrapNum].mainItem)
     $(itemImageHtml).attr('src', wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
-
     //$('<div id="itemImg' + '">' + '<img src="' + wordData[mainPageNum].itemUrls[pageWrapNum].mainItem + '">' + '</div>').appendTo('.item-img');
 }
 
-// 캔버스 이미지 로드 함수
+//section2 캔버스 글자 이미지 로드 함수
+function itemImageLoad2() {
+    let itemImageHtml2 = $('.section' + sectionCounter+' #itemWord');
+    $(itemImageHtml2).attr('src', wordData[mainPageNum].wordUrl[pageWrapNum].url);
+}
+
+// 캔버스 글자 이미지 로드 함수
 function wordImageLoad() {
+    let ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
+
     const canvas = new fabric.Canvas('canvas');
     const image = new fabric.Image();
     //console.log(pageWrapNum, wordData[pageWrapNum]);
@@ -287,6 +300,8 @@ function wordImageLoad() {
         absolutePositioned: true,
         });
     });
+
+    $(image).attr('src', ImgUrl[pageWrapNum]);
     
     function colorOption() {
     // 색상 선택 시작
@@ -308,17 +323,17 @@ function wordImageLoad() {
     }
     colorOption();
     
-    let lockHistory = false; //Undo/Redo
-    const undo_history = [];
-    const redo_history = [];
+    // let lockHistory = false; //Undo/Redo
+    // const undo_history = [];
+    // const redo_history = [];
 
     const binBtn = document.querySelector(".bin-btn"); // 휴지통 아이콘
     const nextBtn = document.querySelector(".next-btn"); // 다음으로 가기 버튼
 
     // var canvas = new fabric.Canvas("canvas");
 
-    canvas.isDrawingMode = true;
-    canvas.freeDrawingBrush.width = 20;
+    // canvas.isDrawingMode = true;
+    // canvas.freeDrawingBrush.width = 20;
 
     undo_history.push(JSON.stringify(canvas));
 
@@ -391,6 +406,7 @@ function pageMove (){
     sectionCounter = sectionCounter + 1;
     console.log("sectionCounter", sectionCounter);
     itemImageLoad();
+    itemImageLoad2();
     // }
     $('.section2').css('display', 'block').siblings().css('display', 'none');
 }
@@ -435,6 +451,7 @@ function deleteImage($item, $drop) {
             let pageWrapArr = $pageWrap.get(pageWrapNum);
             $(pageWrapArr).addClass('on');
             itemImageLoad();
+            itemImageLoad2();
             wordImageLoad();
             reset();
             // wordInit();
