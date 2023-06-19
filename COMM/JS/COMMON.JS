@@ -224,7 +224,7 @@ function reset() {
     $('undo_history').length = 0;
 
     //.stick-panel 있는지 확인 후 없으면 추가 (초기만 추가하면 됨)
-    if ($('.section2 .stick-panel').length === 0) {
+    if ($('.stick-panel').length === 0) {
         $('<div class="stick-panel"/>').appendTo('#answerWrap');
     }
     correctWords = 0;
@@ -454,8 +454,8 @@ function deleteImage($item, $drop) {
                 wordInit();
             } else {
                 $('.section3').css('display', 'block').siblings().css('display', 'none');
+                $('header').css('display', 'none');
             }
-
             // $('.answer-item').draggable();
             // $item.draggable();
             // $drop.droppable('enable');
@@ -480,9 +480,29 @@ function next(e) {
 }
 
 // 완료 함수
+$(document).on('click', '.done-btn', complate);
 function complate() {
+    console.log('학습 완료');
+
+    //낱말카드 저장 팝업 함수
+    complatePop();
     //종료함수 작성
     callFinish();
+}
+
+//낱말카드 저장 함수
+function complatePop() {
+    var html, img;
+    img = '../../../COMM/IMG/CARD_SAVE.PNG';
+    html =
+        `
+        <div class="pop-inner">
+            <img src=` +
+        img +
+        ` alt="낱말 카드 저장 팝업"/>
+        </div>
+    `;
+    $('<div class="pop-wrap"/>').appendTo('#wrap').html(html);
 }
 
 //종료 함수
