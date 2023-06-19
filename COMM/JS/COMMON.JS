@@ -15,7 +15,8 @@ var $doneBtn = $('.done-btn');
 var activeClass = 'active';
 var $paging = $('.paging');
 // var $answerBtn = $('.answerbtn');
-var $guide = $('#guide');
+var $colorGuide = $('#colorGuide'); // 색칠하기 가이드
+var $dropGuide = $('#dropGuide'); // 드래그 가이드
 var $intro = $('#introBg');
 
 var $wordWrap;
@@ -37,7 +38,7 @@ var introBgm = new Audio('../../../COMM/MP3/INTRO.MP3'); // 인트로
 var likeBgm = new Audio('../../../COMM/MP3/LIKEIT.MP3'); // 좋아요
 var goodjob2Bgm = new Audio('../../../COMM/MP3/LASTGOODJOB.MP3'); // 마지막 잘했어요
 var infoDropBgm = new Audio('../../../COMM/MP3/INFO_DROP.MP3'); // 드래그앤드랍 인포
-var infoCOlorBgm = new Audio('../../../COMM/MP3/INFO_COLOR.MP3'); // 색칠 인포
+var infoColorBgm = new Audio('../../../COMM/MP3/INFO_COLOR.MP3'); // 색칠 인포
 var goodjobBgm = new Audio('../../../COMM/MP3/GOODJOB.MP3'); // 잘했어요
 var fanfareBgm = new Audio('../../../COMM/MP3/FANFARE.MP3'); // 빵빠레
 var dropBgm3 = new Audio('../../../COMM/MP3/DROPING.MP3'); // 드래그앤드랍 시
@@ -83,23 +84,17 @@ function init() {
     };
 
     wordInit();
-    // guide()
+   
+    setTimeout(function () {
+        playVid(infoColorBgm);
+        colorGuide();
+    }, 3200);
+
 }
 
 //bgm재생
 // $('.btn-back , .next-btn , .prev-btn').addClass('button-bgm');
 // $(document).on('click', '.button-bgm', btnBgm);
-
-var likeBgm = new Audio('../../../COMM/MP3/LIKEIT.MP3'); // 좋아요
-var goodjob2Bgm = new Audio('../../../COMM/MP3/LASTGOODJOB.MP3'); // 마지막 잘했어요
-var introBgm = new Audio('../../../COMM/MP3/INTRO.MP3'); // 인트로
-var infoDropBgm = new Audio('../../../COMM/MP3/INFO_DROP.MP3'); // 드래그앤드랍 인포
-var infoCOlorBgm = new Audio('../../../COMM/MP3/INFO_COLOR.MP3'); // 색칠 인포
-var goodjobBgm = new Audio('../../../COMM/MP3/GOODJOB.MP3'); // 잘했어요
-var fanfareBgm = new Audio('../../../COMM/MP3/FANFARE.MP3'); // 빵빠레
-var dropBgm3 = new Audio('../../../COMM/MP3/DROPING.MP3'); // 드래그앤드랍 시
-var doneBgm3 = new Audio('../../../COMM/MP3/DONE.MP3'); // 완료
-var coloringBgm = new Audio('../../../COMM/MP3/COLORING.MP3'); // 색칠 시
 
 // function btnBgm() {
 
@@ -115,20 +110,20 @@ var coloringBgm = new Audio('../../../COMM/MP3/COLORING.MP3'); // 색칠 시
 // }
 
 // 드래그 앤 드롭, 핀치줌 가이드
-function guide() {
-    let guideHtml;
-    guideHtml = `
-        <div class="drag">
-            <i class="hand_icon">
-                <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
-            </i>
-        </div>
+// function guide() {
+//     let guideHtml;
+//     guideHtml = `
+//         <div class="drag">
+//             <i class="hand_icon">
+//                 <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
+//             </i>
+//         </div>
        
-    `;
-    $('<div id="guide">' + guideHtml + '</div>')
-        .appendTo('#wrap')
-        .html(guideHtml);
-}
+//     `;
+//     $('<div id="guide">' + guideHtml + '</div>')
+//         .appendTo('#wrap')
+//         .html(guideHtml);
+// }
 
 // function wordWrap($wordWrap, $wordWrap2) {
 //     $wordWrap.addClass('dimmed');
@@ -244,6 +239,14 @@ function itemImageLoad() {
     console.log('pageWrapNum', pageWrapNum);
     console.log(wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
     $(itemImageHtml).attr('src', wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
+    function cancelEvent(event){
+        if(event.preventDefault){
+            event.preventDefault();
+        }else{
+            event.returnValue = false;
+        }
+    }  
+    
     //$('<div id="itemImg' + '">' + '<img src="' + wordData[mainPageNum].itemUrls[pageWrapNum].mainItem + '">' + '</div>').appendTo('.item-img');
 }
 
@@ -322,6 +325,7 @@ function wordImageLoad() {
     canvas.on('object:added', function () {
         if (lockHistory) return;
         console.log('object:added');
+        playVid(coloringBgm);
         binBtn.classList.add('active');
         nextBtn.classList.add('active');
         undo_history.push(JSON.stringify(canvas));
@@ -389,6 +393,10 @@ function pageMove() {
     itemImageLoad2();
     // }
     $('.section2').css('display', 'block').siblings().css('display', 'none');
+     setTimeout(function () {
+        playVid(infoDropBgm);
+        dropGuide();
+    }, 500);
 }
 
 // 드롭 이벤트
@@ -398,6 +406,7 @@ function handleCardDrop(event, ui) {
     // var offImg = slotNumber.firstChild;
     // console.log(ui.draggable, slotNumber, cardNumber)
     if (slotNumber == cardNumber) {
+        playVid(dropBgm3);
         deleteImage(ui.draggable, $(this));
         // cardNumber.find('.droppableImg').fadeOut('slow');
         // playVid(touchBgm2);
@@ -427,6 +436,7 @@ function deleteImage($item, $drop) {
         playVid(wordAnswerBgm);// 정답 단어
         $confetti.addClass('animation');
         playVid(fanfareBgm);// 빵빠레
+        setTimeout(function(){ playVid(goodjobBgm); },1000);
         setTimeout(function () {
             $confetti.removeClass('animation');
         }, 1500);
@@ -509,23 +519,40 @@ function pauseAll() {
     });
 }
 
-function colorGuide () {
+function colorGuide(){
     let colorGuide;
-
     colorGuide = `
         <div class="colorGuide">
             <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
         </div>`
     ;
-    $('<div id="colorGuide">'+colorGuide+'</div>').appendTo('#wrap').html(colorGuide);
+    $('<div id="colorGuide" onclick="guideClose($(this))">'+colorGuide+'</div>').appendTo('#wrap').html(colorGuide);
+}
+
+function guideClose($this) {
+    $this.addClass('close');
+}
+
+function dropGuide(){
+    let dropGuide;
+    dropGuide = `
+        <div class="dropGuide">
+            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
+        </div>`
+    ;
+    $('<div id="dropGuide" onclick="guideClose($(this))">'+dropGuide+'</div>').appendTo('#wrap').html(dropGuide);
+}
+
+function guideClose($this) {
+    $this.addClass('close');
 }
 
 // 시작
 $(function () {
     init();
-    // guide();
     $intro.show();
+    playVid(introBgm);
     setTimeout(function () {
         $intro.fadeOut('slow');
-    }, 1000);
+    }, 3000);
 });

@@ -654,7 +654,7 @@ canvas {
     }
 }
 
-#colorGuide {
+#colorGuide, #dropGuide {
     width: 100%;
     height: 100vh;
     position: fixed;
@@ -662,6 +662,9 @@ canvas {
     left: 0;
     z-index: 2;
 }
+
+#colorGuide.close,
+#dropGuide.close {display: none;}
 
 .colorGuide {
     width: 12%;
@@ -675,6 +678,16 @@ canvas {
     /* animation-iteration-count: infinite; */
 }
 
+.dropGuide {
+    width: 12%;
+    height: 20%;
+    display: inline-block;
+    position: absolute;
+    bottom: -25px;
+    left: 20%;
+    animation: loopHorizon s infinite;
+}
+
 @keyframes loop{
     0%{
     	bottom:-25px;
@@ -682,7 +695,7 @@ canvas {
     }
     50%{
     	bottom:-25px;
-    	left:50%;
+    	left:55%;
     }
     100%{
         bottom:-25px;
@@ -690,7 +703,22 @@ canvas {
     }
 }
 
-.colorGuide img {
+@keyframes loopHorizon {
+    0%{
+    	bottom:0%;
+    	left:50%;
+    }
+    50%{
+    	bottom:0%;
+    	left:28%;
+    }
+    100%{
+        bottom:60%;
+        left:25%;    
+    }
+}
+
+.colorGuide img, .dropGuide img {
     width: 100%;
     height: 100%;
 }
