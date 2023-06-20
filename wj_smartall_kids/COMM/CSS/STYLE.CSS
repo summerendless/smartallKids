@@ -1,7 +1,7 @@
 #wrap {
     /* background-repeat: no-repeat;
     background-position: center bottom;
-    background-image: url(../IMG/BG.PNG); */
+    background-image: url(../IMG/BG.png); */
     width: 100%;
     height: 100%;
 }
@@ -97,7 +97,7 @@
 }
 
 .next-btn {
-    background: url('../../../COMM/IMG/BTN_NEXT_UN.PNG') no-repeat;
+    background: url('../IMG/BTN_NEXT_UN.png') no-repeat;
     background-size: 100% 100%;
     opacity: 1;
     position: absolute;
@@ -108,7 +108,7 @@
     border: none;
 }
 .next-btn.active {
-    background: url('../../../COMM/IMG/BTN_NEXT_EN.PNG') no-repeat;
+    background: url('../IMG/BTN_NEXT_EN.png') no-repeat;
     background-size: 100% 100%;
 }
 
@@ -153,7 +153,7 @@
     top: -13px;
     width: 10vw;
     height: 10.1vw;
-    background: url(../../COMM/IMG/BTN_DECO_RD.PNG) no-repeat;
+    background: url(../../COMM/IMG/BTN_DECO_RD.png) no-repeat;
     background-size: 100% 100%;
 }
 
@@ -350,16 +350,16 @@ header > div.left .title > div.new-title {
 
 /* 낱말꾸미기 추가 css */
 .section1 {
-    background: url(../IMG/BG_1.PNG) no-repeat;
+    background: url(../IMG/BG_1.png) no-repeat;
     background-size: 100% 100%;
 }
 .section2 {
-    background: url(../IMG/BG_2.PNG) no-repeat;
+    background: url(../IMG/BG_2.png) no-repeat;
     background-size: 100% 100%;
     position: relative;
 }
 .section3 {
-    background: url(../IMG/BG_3.PNG) no-repeat;
+    background: url(../IMG/BG_3.png) no-repeat;
     background-size: 100% 100%;
 }
 header {
@@ -371,7 +371,7 @@ header {
     z-index: 1;
 }
 .indicate {
-    background: url(../IMG/BG_INDICATOR.PNG) no-repeat;
+    background: url(../IMG/BG_INDICATOR.png) no-repeat;
     background-size: contain;
     width: 276px;
     height: 80px;
@@ -407,7 +407,7 @@ canvas {
     border: 1px solid #000;
 }
 .color-palette {
-    background: url(../IMG/BG_PALETTE.PNG) no-repeat;
+    background: url(../IMG/BG_PALETTE.png) no-repeat;
     background-size: cover;
     height: 55px;
     width: calc(100% - 380px);
@@ -520,7 +520,7 @@ canvas {
 }
 
 .answer-list {
-    background: url(../IMG/BG_BAR.PNG) no-repeat;
+    background: url(../IMG/BG_BAR.png) no-repeat;
     background-size: 100% 100%;
     position: fixed;
     width: 60.5%;
@@ -544,7 +544,7 @@ canvas {
 
 .stick-panel,
 .stick-panel-2 {
-    background: url(../IMG/BG_PANNEL.PNG) no-repeat;
+    background: url(../IMG/BG_PANNEL.png) no-repeat;
     background-size: 100% 100%;
     position: relative;
     width: 81.5%;

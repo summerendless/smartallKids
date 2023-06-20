@@ -34,16 +34,16 @@ let lockHistory = false; //Undo 히스토리
 const undo_history = [];
 const redo_history = [];
 
-var introBgm = new Audio('../../../COMM/MP3/INTRO.MP3'); // 인트로
-var likeBgm = new Audio('../../../COMM/MP3/LIKEIT.MP3'); // 좋아요
-var goodjob2Bgm = new Audio('../../../COMM/MP3/LASTGOODJOB.MP3'); // 마지막 잘했어요
-var infoDropBgm = new Audio('../../../COMM/MP3/INFO_DROP.MP3'); // 드래그앤드랍 인포
-var infoColorBgm = new Audio('../../../COMM/MP3/INFO_COLOR.MP3'); // 색칠 인포
-var goodjobBgm = new Audio('../../../COMM/MP3/GOODJOB.MP3'); // 잘했어요
-var fanfareBgm = new Audio('../../../COMM/MP3/FANFARE.MP3'); // 빵빠레
-var dropBgm3 = new Audio('../../../COMM/MP3/DROPING.MP3'); // 드래그앤드랍 시
-var doneBgm3 = new Audio('../../../COMM/MP3/DONE.MP3'); // 완료
-var coloringBgm = new Audio('../../../COMM/MP3/COLORING.MP3'); // 색칠 시
+var introBgm = new Audio('../../COMM/MP3/INTRO.mp3'); // 인트로
+var likeBgm = new Audio('../../COMM/MP3/LIKEIT.mp3'); // 좋아요
+var goodjob2Bgm = new Audio('../../COMM/MP3/LASTGOODJOB.mp3'); // 마지막 잘했어요
+var infoDropBgm = new Audio('../../COMM/MP3/INFO_DROP.mp3'); // 드래그앤드랍 인포
+var infoColorBgm = new Audio('../../COMM/MP3/INFO_COLOR.mp3'); // 색칠 인포
+var goodjobBgm = new Audio('../../COMM/MP3/GOODJOB.mp3'); // 잘했어요
+var fanfareBgm = new Audio('../../COMM/MP3/FANFARE.mp3'); // 빵빠레
+var dropBgm3 = new Audio('../../COMM/MP3/DROPING.mp3'); // 드래그앤드랍 시
+var doneBgm3 = new Audio('../../COMM/MP3/DONE.mp3'); // 완료
+var coloringBgm = new Audio('../../COMM/MP3/COLORING.mp3'); // 색칠 시
 
 // 초기 빌드
 function init() {
@@ -491,7 +491,7 @@ function complate() {
 //낱말카드 저장 함수
 function complatePop() {
     var html, img;
-    img = '../../../COMM/IMG/CARD_SAVE.PNG';
+    img = '../../COMM/IMG/CARD_SAVE.png';
     html =
         `
         <div class="pop-inner">
@@ -545,7 +545,7 @@ function colorGuide() {
     let colorGuide;
     colorGuide = `
         <div class="colorGuide">
-            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
+            <img src="../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
         </div>`;
     $('<div id="colorGuide" onclick="guideClose($(this))">' + colorGuide + '</div>')
         .appendTo('#wrap')
@@ -560,7 +560,7 @@ function dropGuide() {
     let dropGuide;
     dropGuide = `
         <div class="dropGuide">
-            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
+            <img src="../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
         </div>`;
     $('<div id="dropGuide" onclick="guideClose($(this))">' + dropGuide + '</div>')
         .appendTo('#wrap')
