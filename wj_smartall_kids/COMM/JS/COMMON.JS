@@ -54,40 +54,13 @@ function init() {
     itemImageLoad();
     itemImageLoad2();
     wordImageLoad();
-    // if(  navType == 'newNav' ){
-    //    pageNav(page+1)
-    // // 기존 과학 버전 그대로
-    // }else{
-    //     for (var i = 0; i < pageLength; i++) {
-    //         if ( i == page ){
-    //             active = activeClass ;
-    //         }else{
-    //             active = "";
-    //         }
-    //         $('<div class="page-btn '+ active +'">' + (i+1) + '</div>').data('page-num', i).appendTo('.paging');
-    //     }
-    // }
-
-    // for (var i = 0; i < pageLength; i++) {
-    //     if ( i == page ){
-    //         active = activeClass ;
-    //     }else{
-    //         active = "";
-    //     }
-    //     $('<div class="page-btn '+ active +'">' + (i+1) + '</div>').data('page-num', i).appendTo('.paging');
-    // }
-
-    // 하단 단어
-    var click = {
-        x: 0,
-        y: 0,
-    };
 
     wordInit();
-
+    playVid(introBgm);
     setTimeout(function () {
-        playVid(infoColorBgm);
-        colorGuide();
+        colorGuide(
+            playVid(infoColorBgm)
+        );
     }, 3200);
 }
 
@@ -136,12 +109,6 @@ function init() {
 // }
 
 function wordInit() {
-    //
-    // const $answer = $('.answer');
-    // 가이드화면용 wordWrap
-    // $wordWrap = $('#wordWrap');
-    // $wordWrap2 = $('#wordWrap2');
-    // wordWrap($wordWrap, $wordWrap2);
     let wordsOff = wordData[mainPageNum].itemUrls[pageWrapNum].itemOff;
     let wordsOn = wordData[mainPageNum].itemUrls[pageWrapNum].itemOn;
     // let section2ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
@@ -529,8 +496,10 @@ function callFinish() {
 //     })
 // }
 function playVid(el) {
+    el.muted = true;
     el.pause();
     el.currentTime = 0;
+    el.muted = false;
     el.play();
 }
 function pauseAll() {
@@ -575,7 +544,6 @@ function guideClose($this) {
 $(function () {
     init();
     $intro.show();
-    playVid(introBgm);
     setTimeout(function () {
         $intro.fadeOut('slow');
     }, 3000);
