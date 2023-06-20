@@ -58,9 +58,7 @@ function init() {
     wordInit();
     playVid(introBgm);
     setTimeout(function () {
-        colorGuide(
-            playVid(infoColorBgm)
-        );
+        colorGuide(playVid(infoColorBgm));
     }, 3200);
 }
 
@@ -135,11 +133,12 @@ function wordInit() {
     for (var j = 0; j < wordsOn.length; j++) {
         // img.src = words[i];
         // container.appendChild(img);
+        $('<div class="wordsBox wordsBox' + pageWrapNum + j + '"/>').appendTo('.words-section' + pageWrapNum);
 
         $('<div class="word answer-item' + '">' + '<img src="' + wordsOn[j].url + '">' + '</div>')
             .data('word', pageWrapNum + j)
             .attr('id', 'word' + pageWrapNum + j)
-            .appendTo('.words-section' + pageWrapNum)
+            .appendTo('.wordsBox' + pageWrapNum + j)
             .draggable({
                 // containment: containment,
                 stack: '#wordWrap' + ' div',
@@ -411,16 +410,20 @@ function deleteImage($item, $drop) {
             $(vars).addClass('on');
             let pageWrapArr = $pageWrap.get(pageWrapNum);
             $(pageWrapArr).addClass('on');
-            if (complatePage < 4) {
-                itemImageLoad();
-                itemImageLoad2();
-                wordImageLoad();
-                reset();
-                wordInit();
-            } else {
-                $('.section3').css('display', 'block').siblings().css('display', 'none');
-                $('header').css('display', 'none');
-            }
+
+            //임시 :::: 1번만하고 최종 카드 보이기
+            // if (complatePage < 4) {
+            //     itemImageLoad();
+            //     itemImageLoad2();
+            //     wordImageLoad();
+            //     reset();
+            //     wordInit();
+            // } else {
+            //     $('.section3').css('display', 'block').siblings().css('display', 'none');
+            //     $('header').css('display', 'none');
+            // }
+            $('.section3').css('display', 'block').siblings().css('display', 'none');
+            $('header').css('display', 'none');
             // $('.answer-item').draggable();
             // $item.draggable();
             // $drop.droppable('enable');
@@ -457,17 +460,30 @@ function complate() {
 
 //낱말카드 저장 함수
 function complatePop() {
-    var html, img;
-    img = '../../COMM/IMG/CARD_SAVE.png';
+    var html, html2, saveImg, endImg;
+    saveImg = '../../COMM/IMG/CARD_SAVE.png';
+    endImg = '../../COMM/IMG/END.png';
     html =
         `
         <div class="pop-inner">
             <img src=` +
-        img +
+        saveImg +
         ` alt="낱말 카드 저장 팝업"/>
         </div>
     `;
+    html2 =
+        `
+        <div class="pop-inner">
+            <img src=` +
+        endImg +
+        ` alt="참잘했어요 팝업"/>
+        </div>
+    `;
     $('<div class="pop-wrap"/>').appendTo('#wrap').html(html);
+
+    setTimeout(function () {
+        $('.pop-wrap').addClass('end-pop').html(html2);
+    }, 2000);
 }
 
 //종료 함수
