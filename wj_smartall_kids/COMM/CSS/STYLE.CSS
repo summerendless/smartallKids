@@ -127,6 +127,7 @@
     box-shadow: none;
     text-align: center;
     opacity: 1;
+    z-index: 1;
 }
 .next-btn.active,
 .done-btn.active {
@@ -563,6 +564,10 @@ canvas {
     left: 50%;
     top: 45px;
     transform: translateX(-50%);
+}
+
+.stick-panel-2 .answer{
+    animation: introAni1 1s infinite;
 }
 
 .answer img {
