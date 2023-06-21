@@ -94,7 +94,7 @@
     height: 100%;
 }
 
-.next-btn.active {
+.next-btn {
     background: url('../IMG/BTN_NEXT_EN.png') no-repeat;
     background-size: 100% 100%;
     position: fixed;
