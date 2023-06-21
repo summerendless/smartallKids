@@ -51,12 +51,14 @@
     bottom: 130px;
     left: 50%;
     transform: translateX(-50%);
+    min-height: 30%;
+
 }
-/* .section #canvasContainer canvas,
+.section #canvasContainer canvas,
 .canvas-container {
     width: 100% !important;
     height: 100% !important;
-} */
+}
 
 .answer2,
 .answer {
