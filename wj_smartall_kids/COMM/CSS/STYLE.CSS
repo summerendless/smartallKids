@@ -95,6 +95,18 @@
 }
 
 .next-btn {
+    background: url('../IMG/BTN_NEXT_UN.png') no-repeat;
+    background-size: 100% 100%;
+    opacity: 1;
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    right: 34px;
+    bottom: 14px;
+    border: none;
+}
+
+.next-btn.active {
     background: url('../IMG/BTN_NEXT_EN.png') no-repeat;
     background-size: 100% 100%;
     position: fixed;
