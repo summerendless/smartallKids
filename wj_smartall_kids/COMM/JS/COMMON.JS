@@ -639,6 +639,7 @@ function deleteImage($item, $drop) {
             } else {
                 $('.section3').css('display', 'block').siblings().css('display', 'none');
                 $('header').css('display', 'none');
+                sec3Init()
                 playAllCard();
             }
             // $('.section3').css('display', 'block').siblings().css('display', 'none');
@@ -649,7 +650,7 @@ function deleteImage($item, $drop) {
             // $item.draggable();
             // $drop.droppable('enable');
             // $item.removeClass('correct');
-        }, 100);
+        }, 8000);
 
         // if (complatePage == pageLength) {
         //     complate();
