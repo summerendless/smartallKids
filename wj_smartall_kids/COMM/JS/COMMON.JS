@@ -45,6 +45,9 @@ var dropBgm3 = new Audio('../../COMM/MP3/DROPING.mp3'); // 드래그앤드랍 �
 var doneBgm3 = new Audio('../../COMM/MP3/DONE.mp3'); // 완료
 var coloringBgm = new Audio('../../COMM/MP3/COLORING.mp3'); // 색칠 시
 
+const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
+const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
+
 // 초기 빌드
 function init() {
     var active = '1';
@@ -53,7 +56,8 @@ function init() {
     wordData = data.word_data; ///Load Dataset from JSON file
     itemImageLoad();
     itemImageLoad2();
-    wordImageLoad();
+    // wordImageLoad();
+    wordTest();
 
     wordInit();
     playVid(introBgm);
@@ -223,85 +227,118 @@ function itemImageLoad2() {
     $(itemImageHtml2).attr('src', wordData[mainPageNum].wordUrl[pageWrapNum].url);
 }
 
-// 캔버스 글자 이미지 로드 함수
-function wordImageLoad() {
-    let canvas = new fabric.Canvas('canvas');
-    let image = new fabric.Image();
-    //console.log(pageWrapNum, wordData[pageWrapNum]);
-    image.setSrc(wordData[mainPageNum].wordUrl[pageWrapNum].url, () => {
-        canvas.setDimensions({
-            width: image.width,
-            height: image.height,
-            selectable: false,
-            preserveObjectStacking: true,
-            globalCompositeOperation: 'source-atop',
-        });
+//캔버스 이미지 테스트
+function wordTest(){
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext('2d');
+    let img = new Image();
+    
+    var cPushArray = new Array();
+    var cStep = -1;
 
-        canvas.add(image);
-        canvas.isDrawingMode = true;
-        canvas.freeDrawingBrush.color = 'black';
-        canvas.freeDrawingBrush.width = 10;
-        canvas.clipPath = new fabric.Rect({
-            left: 0,
-            top: 0,
-            width: image.width,
-            height: image.height,
-            absolutePositioned: true,
-        });
-    });
-    let ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
-    $(image).attr('src', ImgUrl[pageWrapNum]);
+    let brushColor = '';
+    let brushSize = 30;
+    let brushlineCap = 'round';
 
-    function colorOption() {
-        // 색상 선택 시작
-        const colorOption = Array.from(document.getElementsByClassName('color-option'));
-        const color = document.querySelector('#color');
+    let drawing  = false;
+    let pattern;
 
-        function oncolorChange(event) {
-            $(this).addClass('active');
-            $(this).siblings().removeClass('active');
-            const colorValue = event.target.dataset.color;
-            console.log(event.target);
-            canvas.strokeStyle = colorValue; /** 선 색상변경 */
-            canvas.fillStyle = colorValue;
-            color.value = colorValue; /** 변경된 색상 표시 */
-            canvas.freeDrawingBrush.color = color.value;
-        }
-        // color.addEventListener("change", oncolorChange); /** 색상변경 함수명 */
-        colorOption.forEach((color) => color.addEventListener('click', oncolorChange));
+    let pathsry = [];
+
+    let imgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
+
+    img.src = imgUrl;
+    img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+
+      ctx.globalCompositeOperation = "source-atop";
+      pattern = ctx.createPattern(img, "no-repeat");
     }
-    colorOption();
+    
+    var getPosition = function(e) {
+        var x, y;
+        if(e.type.indexOf("mouse") > -1) {
+            x = e.offsetX;
+            y = e.offsetY;
+        } else { 
+            var rect = e.target.getBoundingClientRect();
+            x = e.changedTouches[0].clientX - rect.x;
+            y = e.changedTouches[0].clientY - rect.y;
+        }
+        return {x:x, y:y};
+    };
 
-    // let lockHistory = false; //Undo/Redo
-    // const undo_history = [];
-    // const redo_history = [];
+    var toggleDrawing = function(e) {
+        this.drawing = e.type === "mousedown" || e.type === "touchstart";
+        if(this.drawing) {
+            var pos = getPosition(e);
+            var ctx = this.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y);
 
-    const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
-    const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
-
-    // var canvas = new fabric.Canvas("canvas");
-
-    // canvas.isDrawingMode = true;
-    // canvas.freeDrawingBrush.width = 20;
+            cStep++;
+            if (cStep < cPushArray.length) { cPushArray.length = cStep; }
+            cPushArray.push(document.getElementById('myCanvas').toDataURL());
+            // const iimgaw = this.drawing.toDataURL();
+            // console.log(iimgaw)
+            coloringBgm.play();
+        }       
+        coloringBgm.pause();
+    }
 
     undo_history.push(JSON.stringify(canvas));
 
-    canvas.on('object:added', function () {
-        if (lockHistory) return;
-        console.log('object:added');
-        playVid(coloringBgm);
-        binBtn.classList.add('active');
-        nextBtn.classList.add('active');
-        undo_history.push(JSON.stringify(canvas));
-        redo_history.length = 0;
-        console.log(undo_history.length);
-    });
+    var draw = function(e) {
+
+        if(this.drawing) {
+            e.preventDefault();
+            colorRandomOption();
+            colorOption();
+            var pos = getPosition(e);
+            var ctx = this.getContext("2d");
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            ctx.lineCap = brushlineCap;
+            ctx.lineWidth = brushSize; 
+            ctx.strokeStyle = brushColor; 
+
+            if (lockHistory) return;
+            console.log('object:added');
+            // playVid(coloringBgm);
+            binBtn.classList.add('active');
+            nextBtn.classList.add('active');
+            console.log(undo_history.length);
+            // undo_history.push(JSON.stringify(canvas));
+            // redo_history.length = 0;
+
+        }
+    };
+
+
+    function newUndo() {
+
+        if (cStep > 0) {
+            cStep--;
+            var canvasPic = new Image();
+            canvasPic.src = cPushArray[cStep];
+            canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
+        }
+        if(cStep = 1) {
+            binBtn.classList.remove('active');
+        }
+
+    }
 
     function undo() {
+
         if (undo_history.length > 0) {
             lockHistory = true;
             if (undo_history.length > 1) redo_history.push(undo_history.pop());
             const content = undo_history[undo_history.length - 1];
+            console.log(content)
+
             canvas.loadFromJSON(content, function () {
                 canvas.renderAll();
                 lockHistory = false;
@@ -313,7 +350,91 @@ function wordImageLoad() {
         }
     }
 
-    document.getElementById('undo').addEventListener('click', undo);
+    document.getElementById('undo').addEventListener('click', newUndo);
+    
+    canvas.addEventListener("mousemove", draw);
+    canvas.addEventListener("mousedown", toggleDrawing);
+    canvas.addEventListener("mouseup", toggleDrawing);
+
+    canvas.addEventListener("touchmove", draw); 
+    canvas.addEventListener("touchstart", toggleDrawing);
+    canvas.addEventListener("touchend", toggleDrawing);
+
+    /*
+        // function handleStart(evt) {
+        //     console.log(evt);
+        //     evt.preventDefault();
+        //     if(drawing === true){
+        //         draw();
+        //     }
+        //   }
+        // }
+
+        // function handleStart(evt) {
+        //     console.log(evt);
+        //     evt.preventDefault();
+        //     if(drawMode === 'fill'){
+        //         ctx.fillRect(0,0,500,500);
+        //     }else {
+        //         ctx.beginPath();
+        //         paintingTrue();
+        //   }
+        // }
+        // function handleMove(evt) {
+        //     evt.preventDefault();
+        //     var touches = evt.changedTouches;
+        //         ctx.lineTo(touches[0].screenX, touches[0].screenY);
+        //         ctx.stroke();
+        // }
+
+        // canvas.addEventListener('touchstart mousedown', (ev) => {         
+        //     e.preventDefault();
+        //     console.log(11111)
+        //     drawing  = true;
+        //     // lastX = ev.pageX;
+        //     // lastY = ev.pageY;
+        //     lastX = ev.offsetX;
+        //     lastY = ev.offsetY;
+        // })
+        
+        // canvas.addEventListener('mouseup', (ev) => {
+        //     drawing = false;
+        // })
+        
+        // canvas.addEventListener('mousemove', (ev) => {
+        // //   if (moving) {
+        // //     console.log(lastX, currentX)
+        // //     ctx.beginPath();
+        // //     ctx.lineJoin = "round";
+        // //     ctx.moveTo(lastX, lastY);
+        // //     ctx.lineTo(currentX, currentY);
+        // //     ctx.closePath();
+        // //     //ctx.strokeStyle = brushColor; // can be set during color selecting (if mode=draw)
+        // //     ctx.lineWidth = brushSize;
+        // //     ctx.stroke();
+        // //   }
+
+        // if(!drawing) return;
+        //     let curX = ev.offsetX;
+        //     let curY = ev.offsetY;
+        //     ctx.lineWidth = brushSize;
+        //     draw(curX, curY);        
+        //     lastX = curX;
+        //     lastY = curY;
+        //     mods ++;
+        // })
+    */  
+    
+    // canvas.on('object:added', function () {
+    //     if (lockHistory) return;
+    //     console.log('object:added');
+    //     playVid(coloringBgm);
+    //     binBtn.classList.add('active');
+    //     nextBtn.classList.add('active');
+    //     undo_history.push(JSON.stringify(canvas));
+    //     redo_history.length = 0;
+    //     console.log(undo_history.length);
+    // });
 
     function deleteSelectedObjects() {
         lockHistory = true;
@@ -325,6 +446,50 @@ function wordImageLoad() {
         undo_history.push(JSON.stringify(canvas)); //UNDO
         lockHistory = false;
     }
+ 
+    function colorOption() {
+        // 색상 선택 시작
+        
+        const colorOption = Array.from(document.getElementsByClassName('color-option'));
+        const color = document.querySelector('#color');
+
+        ctx.strokeStyle = color.value; 
+        function oncolorChange(event) {
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+            const colorValue = event.target.dataset.color;
+            canvas.strokeStyle = colorValue; /** 선 색상변경 */
+            canvas.fillStyle = colorValue;
+            color.value = colorValue; /** 변경된 색상 표시 */
+            ctx.strokeStyle = color.value;
+            console.log(color.value)
+        }
+        // color.addEventListener("change", oncolorChange); /** 색상변경 함수명 */
+        colorOption.forEach((color) => color.addEventListener('click', oncolorChange));
+    }
+
+    function colorRandomOption() {
+        // 랜덤색상 선택 시작
+        
+        const colorRandom = document.querySelector('.color-option-random');
+        const color = document.querySelector('#color');
+
+        $(document).on('click', '.color-option-random', oncolorRandom);
+        function oncolorRandom(e) {
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+
+            const colorValue = e.target.dataset.color;
+            canvas.strokeStyle = colorValue; /** 선 색상변경 */
+            canvas.fillStyle = colorValue;
+            color.value = colorValue; /** 변경된 색상 표시 */
+            ctx.strokeStyle = color.value;
+            let randomColor = ['#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
+            let num = Math.floor(Math.random() * 6);
+            ctx.strokeStyle = randomColor[num];
+        }
+    }    
+
 }
 
 //Detele
@@ -356,6 +521,7 @@ function pageMove() {
     itemImageLoad();
     itemImageLoad2();
     // }
+    nextBtn.classList.remove('active');
     $('.section2').css('display', 'block').siblings().css('display', 'none');
     setTimeout(function () {
         playVid(infoDropBgm);
@@ -419,7 +585,8 @@ function deleteImage($item, $drop) {
             if (complatePage < 4) {
                 itemImageLoad();
                 itemImageLoad2();
-                wordImageLoad();
+                // wordImageLoad();
+                wordTest();
                 reset();
                 wordInit();
             } else {
@@ -478,6 +645,36 @@ function next(e) {
     var $this = $(this);
     if ($this.hasClass(activeClass)) {
         pageMove();
+
+        // 캔버스에 그린 그림 변수에 담기
+        toDataURL();
+        pageWrapNum
+        var colored_image_src = "html_images/base_profile";
+        document.getElementById("colorImg").src = colored_image_src;
+
+        function toDataURL(){
+            let canvas = document.getElementById("myCanvas");
+            // const image = ctx.toDataURL();
+            var myImage = document.getElementById('colorImg');
+            myImage.src = canvas.toDataURL();
+            
+        }
+        function fromDataURL(){
+            // var copyCanvas = document.getElementById('copyCanvas');    
+            // var copyContext = copyCanvas.getContext('2d'); 
+           
+            // var image = new Image();
+            // image.src = canvas.toDataURL(); 
+           
+            // image.onload = function(){
+            //   copyContext.drawImage(image,0,0);
+            // } 
+    
+            var copyCanvas = document.getElementById('copyCanvas');    
+            var copyContext = copyCanvas.getContext('2d'); 
+            copyContext.drawImage(copyCanvas,0,0);  
+        }
+        fromDataURL()
     }
 }
 
