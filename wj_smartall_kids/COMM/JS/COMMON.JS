@@ -49,12 +49,9 @@ var coloringBgm = new Audio('../../COMM/MP3/COLORING.mp3'); // 색칠 시
 
 const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
 const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
-<<<<<<< HEAD
 const endBtn = document.querySelector('.done-btn'); // 완료 버튼
 
-=======
 const randomColor = ['random','#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
->>>>>>> 63470fc4171434c1a4e6762ab1f9b6f258af2325
 // 초기 빌드
 function init() {
     var active = '1';
