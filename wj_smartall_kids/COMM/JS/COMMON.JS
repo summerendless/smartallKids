@@ -47,6 +47,7 @@ var coloringBgm = new Audio('../../COMM/MP3/COLORING.mp3'); // 색칠 시
 
 const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
 const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
+const endBtn = document.querySelector('.done-btn'); // 완료 버튼
 
 // 초기 빌드
 function init() {
@@ -582,27 +583,27 @@ function deleteImage($item, $drop) {
             $(pageWrapArr).addClass('on');
 
             //임시 :::: 1번만하고 최종 카드 보이기
-            if (complatePage < 4) {
-                itemImageLoad();
-                itemImageLoad2();
-                // wordImageLoad();
-                wordTest();
-                reset();
-                wordInit();
-            } else {
-                $('.section3').css('display', 'block').siblings().css('display', 'none');
-                $('header').css('display', 'none');
-                playAllCard();
-            }
-            // $('.section3').css('display', 'block').siblings().css('display', 'none');
-            // $('header').css('display', 'none');
-            // playAllCard();
+            // if (complatePage < 4) {
+            //     itemImageLoad();
+            //     itemImageLoad2();
+            //     // wordImageLoad();
+            //     wordTest();
+            //     reset();
+            //     wordInit();
+            // } else {
+            //     $('.section3').css('display', 'block').siblings().css('display', 'none');
+            //     $('header').css('display', 'none');
+            //     playAllCard();
+            // }
+            $('.section3').css('display', 'block').siblings().css('display', 'none');
+            $('header').css('display', 'none');
+            playAllCard();
 
             // $('.answer-item').draggable();
             // $item.draggable();
             // $drop.droppable('enable');
             // $item.removeClass('correct');
-        }, 8000);
+        }, 100);
 
         // if (complatePage == pageLength) {
         //     complate();
@@ -680,29 +681,37 @@ function next(e) {
 
 //마지막카드 오디오 재생 함수
 function playAllCard() {
-    let allData = wordData[0].wordUrl; // [0] => 차시를 넣어야함 ! 
-    let audioArray =[];
-    var currentAudioIndex = 0;
-    var audioElement = new Audio();
+    var allData = wordData[0].wordUrl; // [0] => 차시를 넣어야함 ! 
+    var audioArray =[];
+    
     allData.map((item)=>{
-       return audioArray.push(item.answerVoice)
+        return audioArray.push(item.answerVoice)
     });
+    
     console.log(audioArray)
 
-      function playNextAudio() {
-        if (currentAudioIndex < audioArray.length) {
-          var nextAudioUrl = audioArray[currentAudioIndex].url;
-          audioElement.src = nextAudioUrl;
+    function playNextAudio(idx) {
+        var audioElement = new Audio();
+
+        if (idx < audioArray.length) {
+          console.log("audio 재생중");
+          var nowAudio = audioArray[idx];
+          audioElement.src = nowAudio;
           audioElement.play();
-          currentAudioIndex++;
-        } else {
-            
+          $(audioElement).on('ended', function() {
+            playNextAudio(idx+1);
+
+            if(idx === audioArray.length - 1 ){
+                endBtn.classList.add('active');
+            }
+          });
+    
         }
       }
 
-      playNextAudio(); 
+     
+      playNextAudio(0); 
 
-      $(audioElement).on('ended', playNextAudio);
 }
 
 

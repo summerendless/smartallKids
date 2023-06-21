@@ -8,22 +8,22 @@ data = { //낱말 데이터
                 {   
                     "key"        :"0", 
                     "url"        : "../../COMM/IMG/WORD/1_1/WORD_1_1.png",
-                    "answerVoice": "../../COMM/MP3/WORD/1_1/ITEM_1_1.MP3",
+                    "answerVoice": "../../COMM/MP3/WORD/1_1/ITEM_1_1.mp3",
                 },
                 {
                     "key"        :"1", 
                     "url"        : "../../COMM/IMG/WORD/1_1/WORD_1_2.png",
-                    "answerVoice": "../../COMM/MP3/WORD/1_1/ITEM_1_2.MP3",
+                    "answerVoice": "../../COMM/MP3/WORD/1_1/ITEM_1_2.mp3",
                 },
                 {
                     "key"        :"2", 
                     "url"        : "../../COMM/IMG/WORD/1_1/WORD_1_3.png",
-                    "answerVoice": "../../COMM/MP3/WORD/1_1/ITEM_1_3.MP3",
+                    "answerVoice": "../../COMM/MP3/WORD/1_1/ITEM_1_3.mp3",
                 },
                 {
                     "key"        :"3", 
                     "url"        : "../../COMM/IMG/WORD/1_1/WORD_1_4.png",
-                    "answerVoice": "../../COMM/MP3/WORD/1_1/ITEM_1_4.MP3",
+                    "answerVoice": "../../COMM/MP3/WORD/1_1/ITEM_1_4.mp3",
                 },
             ],
             "itemUrls"   : [
