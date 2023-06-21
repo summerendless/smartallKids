@@ -674,8 +674,68 @@ canvas {
     /* animation: fadeout 1s;
     animation-fill-mode: forwards; */
 }
-#introBg img {
+#introBg .bg {
     width: 100%;
+}
+#introBg .introIcon {
+    position: absolute;
+    transform: rotate(0deg)
+}
+
+#introBg .introAni1{
+    animation: introAni1 1s infinite;
+}
+#introBg .introAni2{
+    animation: introAni2 1s infinite;
+}
+
+#introBg .introIcon1{
+    width: 85px;
+    top: 11%;
+    left: 57%;
+}
+#introBg .introIcon2{
+    width: 113px;
+    top: 29%;
+    left: 22%;
+}
+#introBg .introIcon3{
+    width: 100px;
+    top: 33%;
+    left: 70%;
+}
+#introBg .introIcon4{
+    width: 150px;
+    top: 57%;
+    left: 12%;
+}
+#introBg .introIcon5{
+    width: 134px;
+    top: 60%;
+    left: 78%;
+}
+
+@keyframes introAni1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes introAni2 {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 @keyframes fadeout {
@@ -742,15 +802,12 @@ canvas {
 @keyframes loopHorizon {
     0% {
         bottom: 0%;
-        left: 50%;
+        left: 25%;
     }
-    50% {
-        bottom: 0%;
-        left: 28%;
-    }
+
     100% {
         bottom: 60%;
-        left: 25%;
+        left: 23%;
     }
 }
 

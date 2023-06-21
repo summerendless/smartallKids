@@ -367,11 +367,14 @@ function handleCardDrop(event, ui) {
     var cardNumber = ui.draggable.data('word');
     // var offImg = slotNumber.firstChild;
     // console.log(ui.draggable, slotNumber, cardNumber)
+    console.log("slotNumber")
+    console.log(slotNumber)
     if (slotNumber == cardNumber) {
         playVid(dropBgm3);
         deleteImage(ui.draggable, $(this));
         // cardNumber.find('.droppableImg').fadeOut('slow');
         // playVid(touchBgm2);
+   
     } else {
         // playVid(touchBgm3);
     }
@@ -396,14 +399,15 @@ function deleteImage($item, $drop) {
         pageWrapNum++;
         console.log(pageWrapNum);
         playVid(wordAnswerBgm); // 정답 단어
-        $confetti.addClass('animation');
+        // $confetti.addClass('animation');
+        reAction(); 
         playVid(fanfareBgm); // 빵빠레
         setTimeout(function () {
             playVid(goodjobBgm);
         }, 1000);
-        setTimeout(function () {
-            $confetti.removeClass('animation');
-        }, 1500);
+        // setTimeout(function () {
+        //     $confetti.removeClass('animation');
+        // }, 1500);
         setTimeout(function () {
             sectionCounter = 1;
             let vars = $pagingItem.get(pageWrapNum - 1);
@@ -428,7 +432,7 @@ function deleteImage($item, $drop) {
             // $item.draggable();
             // $drop.droppable('enable');
             // $item.removeClass('correct');
-        }, 1700);
+        }, 8000);
 
         // if (complatePage == pageLength) {
         //     complate();
@@ -437,6 +441,13 @@ function deleteImage($item, $drop) {
         // }
     }
 }
+
+function reAction(){
+    $("#startButton").trigger("click");
+    setTimeout(function(){
+        $("#stopButton").trigger("click");
+    }, 3000);
+}  
 
 // 다음버튼
 $(document).on('click', '.next-btn', next);

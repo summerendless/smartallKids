@@ -30,6 +30,18 @@
     </head>
 
     <body>
+        <!-- confetti -->
+        <style>
+            .buttonContainer{display: none;}
+            #canvas2{z-index:1001;pointer-events: none;position: fixed;top: 0;transform: scale(1.1);border: none;}
+        </style>
+        <div class="buttonContainer">
+            <button class="canvasBtn" id="stopButton">Stop Confetti</button>
+            <button class="canvasBtn" id="startButton">Drop Confetti</button>	
+        </div>
+        <canvas id="canvas2"></canvas>
+        <!-- //confetti -->
+
         <div id="wrap" class="">
             <!-- <div class="sectionIntro"><img src="../../COMM/IMG/INTRO.PNG" /></div> -->
             <header>
@@ -225,7 +237,12 @@
             </div>
 
             <div id="introBg">
-                <img src="../../COMM/IMG/INTRO.png" alt="" />
+                <img class="bg" src="../../COMM/IMG/INTRO.png" alt="" />
+                <img class="introAni1 introIcon introIcon1" src="../../COMM/IMG/INTRO_ICON1.png" alt="인트로 아이콘1"/>
+                <img class="introAni1 introIcon introIcon2" src="../../COMM/IMG/INTRO_ICON2.png" alt="인트로 아이콘2"/>
+                <img class="introAni1 introIcon introIcon3" src="../../COMM/IMG/INTRO_ICON3.png" alt="인트로 아이콘3"/>
+                <img class="introAni1 introIcon introIcon4" src="../../COMM/IMG/INTRO_ICON4.png" alt="인트로 아이콘4"/>
+                <img class="introAni2 introIcon introIcon5" src="../../COMM/IMG/INTRO_ICON5.png" alt="인트로 아이콘5"/>
             </div>
         </div>
         <!-- wrap -->
@@ -233,6 +250,7 @@
         <script src="../../COMM/JS/JQUERY-3.5.1.MIN.JS"></script>
         <script src="../../COMM/JS/JQUERY-UI.MIN.JS"></script>
         <script src="../../COMM/JS/DATA.JSON"></script>
+        <script src="../../COMM/JS/CONFETTI_V2.js"></script>
         <script src="../../COMM/JS/COMMON.JS"></script>
         <script src="../../COMM/JS/TOUCH.JS"></script>
         <script src="../../COMM/JS/FABRIC_S.js"></script>
