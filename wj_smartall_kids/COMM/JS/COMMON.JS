@@ -33,6 +33,8 @@ let wordData = undefined;
 let lockHistory = false; //Undo 히스토리
 const undo_history = [];
 const redo_history = [];
+const ImgArr = []
+
 
 var introBgm = new Audio('../../COMM/MP3/INTRO.mp3'); // 인트로
 var likeBgm = new Audio('../../COMM/MP3/LIKEIT.mp3'); // 좋아요
@@ -47,7 +49,7 @@ var coloringBgm = new Audio('../../COMM/MP3/COLORING.mp3'); // 색칠 시
 
 const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
 const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
-
+const randomColor = ['random','#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
 // 초기 빌드
 function init() {
     var active = '1';
@@ -55,7 +57,7 @@ function init() {
     $(pageWrapArr).addClass('on');
     wordData = data.word_data; ///Load Dataset from JSON file
     itemImageLoad();
-    itemImageLoad2();
+    itemImageLoad2(wordData[mainPageNum].wordUrl[pageWrapNum].url);
     // wordImageLoad();
     wordTest();
 
@@ -65,7 +67,8 @@ function init() {
         colorGuide(playVid(infoColorBgm));
     }, 3200);
 
-    sec3Init();
+   
+   
 }
 
 //bgm재생
@@ -154,6 +157,37 @@ function wordInit() {
                 //  drag: dragFix(event, aa=containmentArea),
             });
     }
+    
+
+
+    let aa = randomColor.map((color , idx) => {
+        let colorImg='';
+        let html ="";
+
+        if(idx == 0){
+            colorImg = 'BV'
+        }else if(idx == 1){
+            colorImg = 'RD'
+        }else if(idx == 2){
+                        colorImg = 'OR'
+        }else if(idx == 3){
+                        colorImg = 'YL'
+        }else if(idx == 4){
+                        colorImg = 'GN'
+        }else if(idx == 5){
+                        colorImg = 'BL'
+        }else if(idx == 6){
+                        colorImg = 'PR'
+        }
+        
+        html += `<div class="controls__color color-option color-red">
+                        <img src="../../COMM/IMG/CRAYON_${colorImg}.png" data-color="${color}" alt="랜덤" />
+                    </div>`;
+        return html;
+    })
+    $('#jsColors').html(aa);
+
+
     /*
     for (var i = 0; i < wordsOn.length; i++) {
         // let containmentArea = $(containment);
@@ -185,6 +219,8 @@ function wordInit() {
     //         drop: handleCardDrop,
     //     });
     // })
+
+   
 }
 
 // 초기화 함수
@@ -222,9 +258,10 @@ function itemImageLoad() {
 }
 
 //section2 캔버스 글자 이미지 로드 함수
-function itemImageLoad2() {
+function itemImageLoad2(src) {
+    console.log(src)
     let itemImageHtml2 = $('.section' + sectionCounter + ' #itemWord');
-    $(itemImageHtml2).attr('src', wordData[mainPageNum].wordUrl[pageWrapNum].url);
+    $(itemImageHtml2).attr('src', src);
 }
 
 //캔버스 이미지 테스트
@@ -294,8 +331,8 @@ function wordTest(){
 
         if(this.drawing) {
             e.preventDefault();
-            colorRandomOption();
-            colorOption();
+            // colorRandomOption();
+            
             var pos = getPosition(e);
             var ctx = this.getContext("2d");
             ctx.lineTo(pos.x, pos.y);
@@ -449,15 +486,19 @@ function wordTest(){
  
     function colorOption() {
         // 색상 선택 시작
-        
-        const colorOption = Array.from(document.getElementsByClassName('color-option'));
+        console.log(';aaa')
+        // const colorOption = Array.from(document.getElementsByClassName('color-option'));
         const color = document.querySelector('#color');
 
         ctx.strokeStyle = color.value; 
         function oncolorChange(event) {
-            $(this).addClass('active');
-            $(this).siblings().removeClass('active');
-            const colorValue = event.target.dataset.color;
+
+            event.stopPropagation();
+            console.log($(event.target))
+            $(event.target).parent().addClass('active');
+            $(event.target).parent().siblings().removeClass('active');
+            let num = Math.floor(Math.random() * randomColor.length);
+            const colorValue = event.target.dataset.color == 'random' ? randomColor[num] :event.target.dataset.color;
             canvas.strokeStyle = colorValue; /** 선 색상변경 */
             canvas.fillStyle = colorValue;
             color.value = colorValue; /** 변경된 색상 표시 */
@@ -465,30 +506,33 @@ function wordTest(){
             console.log(color.value)
         }
         // color.addEventListener("change", oncolorChange); /** 색상변경 함수명 */
-        colorOption.forEach((color) => color.addEventListener('click', oncolorChange));
+        // colorOption.forEach((color) => color.addEventListener('click', oncolorChange));
+        $(document).on('click', '.color-option', (e)=>{
+            oncolorChange(e)  
+        })
     }
-
-    function colorRandomOption() {
-        // 랜덤색상 선택 시작
+    colorOption();
+//     function colorRandomOption() {
+//         // 랜덤색상 선택 시작
         
-        const colorRandom = document.querySelector('.color-option-random');
-        const color = document.querySelector('#color');
+//         const colorRandom = document.querySelector('.color-option-random');
+//         const color = document.querySelector('#color');
 
-        $(document).on('click', '.color-option-random', oncolorRandom);
-        function oncolorRandom(e) {
-            $(this).addClass('active');
-            $(this).siblings().removeClass('active');
+//         $(document).on('click', '.color-option-random', oncolorRandom);
+//         function oncolorRandom(e) {
+//             $(this).addClass('active');
+//             $(this).siblings().removeClass('active');
 
-            const colorValue = e.target.dataset.color;
-            canvas.strokeStyle = colorValue; /** 선 색상변경 */
-            canvas.fillStyle = colorValue;
-            color.value = colorValue; /** 변경된 색상 표시 */
-            ctx.strokeStyle = color.value;
-            let randomColor = ['#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
-            let num = Math.floor(Math.random() * 6);
-            ctx.strokeStyle = randomColor[num];
-        }
-    }    
+//             const colorValue = e.target.dataset.color;
+//             canvas.strokeStyle = colorValue; /** 선 색상변경 */
+//             canvas.fillStyle = colorValue;
+//             color.value = colorValue; /** 변경된 색상 표시 */
+//             ctx.strokeStyle = color.value;
+//             // let randomColor = ['#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
+//             let num = Math.floor(Math.random() * randomColor.length);
+//             ctx.strokeStyle = randomColor[num];
+//         }
+//     }    
 
 }
 
@@ -519,7 +563,8 @@ function pageMove() {
     sectionCounter = sectionCounter + 1;
     console.log('sectionCounter', sectionCounter);
     itemImageLoad();
-    itemImageLoad2();
+    console.log(ImgArr)
+    itemImageLoad2(ImgArr[pageWrapNum]);
     // }
     nextBtn.classList.remove('active');
     $('.section2').css('display', 'block').siblings().css('display', 'none');
@@ -590,6 +635,7 @@ function deleteImage($item, $drop) {
                 reset();
                 wordInit();
             } else {
+                sec3Init();
                 $('.section3').css('display', 'block').siblings().css('display', 'none');
                 $('header').css('display', 'none');
                 playAllCard();
@@ -622,7 +668,7 @@ function reAction(){
 function sec3Init() {
     var html ; 
     var dataList = wordData[mainPageNum]
-    html = dataList.itemUrls.map((item)=>`
+    html = dataList.itemUrls.map((item, idx)=>`
         <div class="stick-panel-2" key=${item.word}>
             `+
                 item.itemOn.map((item2)=>`
@@ -632,7 +678,7 @@ function sec3Init() {
                 `).join('') 
             +`
             <div class="item-img"><img src="${item.mainItem}" alt="" /></div>
-            <div class="item-word"><img src="${item.wordItem}" alt="" /></div>
+            <div class="item-word"><img src="${ImgArr[idx]}" alt="" /></div>
         </div>
     `).join('') 
 
@@ -644,20 +690,21 @@ $(document).on('click', '.next-btn', next);
 function next(e) {
     var $this = $(this);
     if ($this.hasClass(activeClass)) {
+        toDataURL();
         pageMove();
 
         // 캔버스에 그린 그림 변수에 담기
-        toDataURL();
-        pageWrapNum
-        var colored_image_src = "html_images/base_profile";
-        document.getElementById("colorImg").src = colored_image_src;
+        // pageWrapNum
+        // var colored_image_src = "html_images/base_profile";
+        // document.getElementById("colorImg").src = colored_image_src;
 
         function toDataURL(){
             let canvas = document.getElementById("myCanvas");
             // const image = ctx.toDataURL();
-            var myImage = document.getElementById('colorImg');
-            myImage.src = canvas.toDataURL();
-            
+            // var myImage = document.getElementById('colorImg');
+            // console.log(canvas.toDataURL())
+            // myImage.src = canvas.toDataURL();
+            ImgArr.push(canvas.toDataURL())
         }
         function fromDataURL(){
             // var copyCanvas = document.getElementById('copyCanvas');    
@@ -674,8 +721,9 @@ function next(e) {
             var copyContext = copyCanvas.getContext('2d'); 
             copyContext.drawImage(copyCanvas,0,0);  
         }
-        fromDataURL()
+        // fromDataURL()
     }
+    console.log(ImgArr)
 }
 
 //마지막카드 오디오 재생 함수
