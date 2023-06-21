@@ -629,21 +629,21 @@ function deleteImage($item, $drop) {
             $(pageWrapArr).addClass('on');
 
             //임시 :::: 1번만하고 최종 카드 보이기
-            // if (complatePage < 4) {
-            //     itemImageLoad();
-            //     itemImageLoad2();
-            //     // wordImageLoad();
-            //     wordTest();
-            //     reset();
-            //     wordInit();
-            // } else {
-            //     $('.section3').css('display', 'block').siblings().css('display', 'none');
-            //     $('header').css('display', 'none');
-            //     playAllCard();
-            // }
-            $('.section3').css('display', 'block').siblings().css('display', 'none');
-            $('header').css('display', 'none');
-            playAllCard();
+            if (complatePage < 4) {
+                itemImageLoad();
+                itemImageLoad2();
+                // wordImageLoad();
+                wordTest();
+                reset();
+                wordInit();
+            } else {
+                $('.section3').css('display', 'block').siblings().css('display', 'none');
+                $('header').css('display', 'none');
+                playAllCard();
+            }
+            // $('.section3').css('display', 'block').siblings().css('display', 'none');
+            // $('header').css('display', 'none');
+            // playAllCard();
 
             // $('.answer-item').draggable();
             // $item.draggable();
