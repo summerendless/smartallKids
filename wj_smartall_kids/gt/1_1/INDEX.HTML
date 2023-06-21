@@ -30,6 +30,18 @@
     </head>
 
     <body>
+        <!-- confetti -->
+        <style>
+            .buttonContainer{display: none;}
+            #canvas2{z-index:1001;pointer-events: none;position: fixed;top: 0;transform: scale(1.1);border: none;}
+        </style>
+        <div class="buttonContainer">
+            <button class="canvasBtn" id="stopButton">Stop Confetti</button>
+            <button class="canvasBtn" id="startButton">Drop Confetti</button>	
+        </div>
+        <canvas id="canvas2"></canvas>
+        <!-- //confetti -->
+
         <div id="wrap" class="">
             <!-- <div class="sectionIntro"><img src="../../COMM/IMG/INTRO.PNG" /></div> -->
             <header>
@@ -104,120 +116,12 @@
                     <!-- //section2 -->
 
                     <section class="section section3">
-                        <div class="pageContents">
-                            <div class="stick-panel-2">
-                                <div class="answer answer0" data-answer="00">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_1.png" />
-                                </div>
-                                <div class="answer answer1" data-answer="01">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_2.png" />
-                                </div>
-                                <div class="answer answer2" data-answer="02">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_3.png" />
-                                </div>
-                                <div class="answer answer3" data-answer="03">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_4.png" />
-                                </div>
-                                <div class="item-img"><img src="../../COMM/IMG/WORD/1_1/ITEM_1_1.png" alt="" /></div>
-                                <div class="item-word"><img src="../../COMM/IMG/WORD/1_1/WORD_1_1.png" alt="" /></div>
-                            </div>
-                            <div class="stick-panel-2">
-                                <div class="answer answer0" data-answer="00">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_1.png" />
-                                </div>
-                                <div class="answer answer1" data-answer="01">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_2.png" />
-                                </div>
-                                <div class="answer answer2" data-answer="02">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_3.png" />
-                                </div>
-                                <div class="answer answer3" data-answer="03">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2_4.png" />
-                                </div>
-                                <div class="item-img"><img src="../../COMM/IMG/WORD/1_1/ITEM_1_2.png" alt="" /></div>
-                                <div class="item-word"><img src="../../COMM/IMG/WORD/1_1/WORD_1_2.png" alt="" /></div>
-                            </div>
-                            <div class="stick-panel-2">
-                                <div class="answer answer0" data-answer="00">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_1.png" />
-                                </div>
-                                <div class="answer answer1" data-answer="01">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_2.png" />
-                                </div>
-                                <div class="answer answer2" data-answer="02">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_3.png" />
-                                </div>
-                                <div class="answer answer3" data-answer="03">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_4.png" />
-                                </div>
-                                <div class="item-img"><img src="../../COMM/IMG/WORD/1_1/ITEM_1_3.png" alt="" /></div>
-                                <div class="item-word"><img src="../../COMM/IMG/WORD/1_1/WORD_1_3.png" alt="" /></div>
-                            </div>
-                            <div class="stick-panel-2">
-                                <div class="answer answer0" data-answer="00">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_1.png" />
-                                </div>
-                                <div class="answer answer1" data-answer="01">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_2.png" />
-                                </div>
-                                <div class="answer answer2" data-answer="02">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_3.png" />
-                                </div>
-                                <div class="answer answer3" data-answer="03">
-                                    <img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_4.png" />
-                                </div>
-                                <div class="item-img"><img src="../../COMM/IMG/WORD/1_1/ITEM_1_4.png" alt="" /></div>
-                                <div class="item-word"><img src="../../COMM/IMG/WORD/1_1/WORD_1_4.png" alt="" /></div>
-                            </div>
-                        </div>
                         <button class="done-btn">
                             <img src="../../COMM/IMG/BTN_DONE.png" alt="" />
                         </button>
                     </section>
                 </div>
-
-                <!-- <div class="pageWrap">
-
-                <section class="section section3">
-                                    <div class="pageContents">
-                                        <div class="stick-panel-2">
-                                            <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
-                                            <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
-                                            <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
-                                            <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
-                                            <div class="item-img"><img src="../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                                            <div class="item-word"><img src="../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>
-                                        </div>
-                                        <div class="stick-panel-2">
-                                            <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
-                                            <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
-                                            <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
-                                            <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
-                                            <div class="item-img"><img src="../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                                            <div class="item-word"><img src="../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>
-                                        </div>
-                                        <div class="stick-panel-2">
-                                            <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
-                                            <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
-                                            <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
-                                            <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
-                                            <div class="item-img"><img src="../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                                            <div class="item-word"><img src="../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>
-                                        </div>
-                                        <div class="stick-panel-2">
-                                            <div class="answer answer11" data-answer=00><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_1.png"/></div>
-                                            <div class="answer answer12" data-answer=01><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_2.png"/></div>
-                                            <div class="answer answer13" data-answer=02><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_3.png"/></div>
-                                            <div class="answer answer14" data-answer=03><img src="../../COMM/IMG/WORD/1_1/STICKER_ON_1_4.png"/></div>
-                                            <div class="item-img"><img src="../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                                            <div class="item-word"><img src="../../COMM/IMG/WORD/1_1/WORD_1_1_3.PNG" alt=""></div>
-                                        </div>
-                                    </div>
-                                    <button class="done-btn">
-                                        <img src="../../COMM/IMG/BTN_DONE.PNG" alt=""> 
-                                    </button>
-                                </section>
-            </div> -->
+  
             </div>
 
             <div class="confetti-wrap">
@@ -225,7 +129,12 @@
             </div>
 
             <div id="introBg">
-                <img src="../../COMM/IMG/INTRO.png" alt="" />
+                <img class="bg" src="../../COMM/IMG/INTRO.png" alt="" />
+                <img class="introAni1 introIcon introIcon1" src="../../COMM/IMG/INTRO_ICON1.png" alt="인트로 아이콘1"/>
+                <img class="introAni1 introIcon introIcon2" src="../../COMM/IMG/INTRO_ICON2.png" alt="인트로 아이콘2"/>
+                <img class="introAni1 introIcon introIcon3" src="../../COMM/IMG/INTRO_ICON3.png" alt="인트로 아이콘3"/>
+                <img class="introAni1 introIcon introIcon4" src="../../COMM/IMG/INTRO_ICON4.png" alt="인트로 아이콘4"/>
+                <img class="introAni2 introIcon introIcon5" src="../../COMM/IMG/INTRO_ICON5.png" alt="인트로 아이콘5"/>
             </div>
         </div>
         <!-- wrap -->
@@ -233,6 +142,7 @@
         <script src="../../COMM/JS/JQUERY-3.5.1.MIN.JS"></script>
         <script src="../../COMM/JS/JQUERY-UI.MIN.JS"></script>
         <script src="../../COMM/JS/DATA.JSON"></script>
+        <script src="../../COMM/JS/CONFETTI_V2.js"></script>
         <script src="../../COMM/JS/COMMON.JS"></script>
         <script src="../../COMM/JS/TOUCH.JS"></script>
         <script src="../../COMM/JS/FABRIC_S.js"></script>

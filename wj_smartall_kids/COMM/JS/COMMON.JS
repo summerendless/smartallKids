@@ -60,6 +60,8 @@ function init() {
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
     }, 3200);
+
+    sec3Init();
 }
 
 //bgm재생
@@ -372,6 +374,7 @@ function handleCardDrop(event, ui) {
         deleteImage(ui.draggable, $(this));
         // cardNumber.find('.droppableImg').fadeOut('slow');
         // playVid(touchBgm2);
+   
     } else {
         // playVid(touchBgm3);
     }
@@ -396,39 +399,43 @@ function deleteImage($item, $drop) {
         pageWrapNum++;
         console.log(pageWrapNum);
         playVid(wordAnswerBgm); // 정답 단어
-        $confetti.addClass('animation');
+        // $confetti.addClass('animation');
+        reAction(); 
         playVid(fanfareBgm); // 빵빠레
         setTimeout(function () {
             playVid(goodjobBgm);
         }, 1000);
+        // setTimeout(function () {
+        //     $confetti.removeClass('animation');
+        // }, 1500);
         setTimeout(function () {
-            $confetti.removeClass('animation');
-        }, 1500);
-        setTimeout(function () {
-            sectionCounter = 1;
+            sectionCounter = 1; 
             let vars = $pagingItem.get(pageWrapNum - 1);
             $(vars).addClass('on');
             let pageWrapArr = $pageWrap.get(pageWrapNum);
             $(pageWrapArr).addClass('on');
 
             //임시 :::: 1번만하고 최종 카드 보이기
-            // if (complatePage < 4) {
-            //     itemImageLoad();
-            //     itemImageLoad2();
-            //     wordImageLoad();
-            //     reset();
-            //     wordInit();
-            // } else {
-            //     $('.section3').css('display', 'block').siblings().css('display', 'none');
-            //     $('header').css('display', 'none');
-            // }
-            $('.section3').css('display', 'block').siblings().css('display', 'none');
-            $('header').css('display', 'none');
+            if (complatePage < 4) {
+                itemImageLoad();
+                itemImageLoad2();
+                wordImageLoad();
+                reset();
+                wordInit();
+            } else {
+                $('.section3').css('display', 'block').siblings().css('display', 'none');
+                $('header').css('display', 'none');
+                playAllCard();
+            }
+            // $('.section3').css('display', 'block').siblings().css('display', 'none');
+            // $('header').css('display', 'none');
+            // playAllCard();
+
             // $('.answer-item').draggable();
             // $item.draggable();
             // $drop.droppable('enable');
             // $item.removeClass('correct');
-        }, 1700);
+        }, 8000);
 
         // if (complatePage == pageLength) {
         //     complate();
@@ -436,6 +443,33 @@ function deleteImage($item, $drop) {
         //     $nextvBtn.addClass(activeClass);
         // }
     }
+}
+
+function reAction(){
+    $("#startButton").trigger("click");
+    setTimeout(function(){
+        $("#stopButton").trigger("click");
+    }, 3000);
+}  
+
+function sec3Init() {
+    var html ; 
+    var dataList = wordData[mainPageNum]
+    html = dataList.itemUrls.map((item)=>`
+        <div class="stick-panel-2" key=${item.word}>
+            `+
+                item.itemOn.map((item2)=>`
+                    <div class="answer answer${item2.key}" data-answer="0${item2.key}">
+                        <img src="${item2.url}"/>
+                    </div>
+                `).join('') 
+            +`
+            <div class="item-img"><img src="${item.mainItem}" alt="" /></div>
+            <div class="item-word"><img src="${item.wordItem}" alt="" /></div>
+        </div>
+    `).join('') 
+
+    $('<div class="pageContents"/>').appendTo('.section3').html(html);
 }
 
 // 다음버튼
@@ -446,6 +480,34 @@ function next(e) {
         pageMove();
     }
 }
+
+//마지막카드 오디오 재생 함수
+function playAllCard() {
+    let allData = wordData[0].wordUrl; // [0] => 차시를 넣어야함 ! 
+    let audioArray =[];
+    var currentAudioIndex = 0;
+    var audioElement = new Audio();
+    allData.map((item)=>{
+       return audioArray.push(item.answerVoice)
+    });
+    console.log(audioArray)
+
+      function playNextAudio() {
+        if (currentAudioIndex < audioArray.length) {
+          var nextAudioUrl = audioArray[currentAudioIndex].url;
+          audioElement.src = nextAudioUrl;
+          audioElement.play();
+          currentAudioIndex++;
+        } else {
+            
+        }
+      }
+
+      playNextAudio(); 
+
+      $(audioElement).on('ended', playNextAudio);
+}
+
 
 // 완료 함수
 $(document).on('click', '.done-btn', complate);
