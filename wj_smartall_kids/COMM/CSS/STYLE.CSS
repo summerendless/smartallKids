@@ -176,6 +176,7 @@
     height: 10.1vw;
     background: url(../../COMM/IMG/BTN_DECO_RD.png) no-repeat;
     background-size: 100% 100%;
+    animation: blink 0.7s ease-in-out infinite alternate;
 }
 
 /* 나가기 팝업 */
@@ -509,6 +510,7 @@ canvas {
 
 .section2 .item-img {
     width: 30%;
+    height: 40%;
     /* width: 310px;
     height: 260px; */
     position: absolute;
@@ -529,6 +531,8 @@ canvas {
 
 .item-word {
     /* height: 186px; */
+    min-width: 30%;
+    max-width: 45%;
     height: 20%;
     position: absolute;
     bottom: 30%;

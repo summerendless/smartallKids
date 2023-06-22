@@ -52,6 +52,13 @@ const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버�
 const endBtn = document.querySelector('.done-btn'); // 완료 버튼
 
 const randomColor = ['random','#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
+ // 잘했어요 음원 리스트
+const goodjobBgmList = [
+    '../../COMM/MP3/GOODJOB.mp3',
+    '../../COMM/MP3/BEST.mp3',
+    '../../COMM/MP3/BRAVO.mp3',
+    '../../COMM/MP3/LIKEIT.mp3',
+]
 // 초기 빌드
 function init() {
     var active = '1';
@@ -558,13 +565,13 @@ function deleteImage($item, $drop) {
     if (correctWords == 4 + allchk) {
         complatePage++;
         pageWrapNum++;
-        console.log(pageWrapNum);
+        console.log("pageWrapNum" + pageWrapNum);
         playVid(wordAnswerBgm); // 정답 단어
         // $confetti.addClass('animation');
         reAction(); 
         playVid(fanfareBgm); // 빵빠레
         setTimeout(function () {
-            playVid(goodjobBgm);
+            playVid(goodjobBgmList[pageWrapNum]);
         }, 1000);
         // setTimeout(function () {
         //     $confetti.removeClass('animation');
