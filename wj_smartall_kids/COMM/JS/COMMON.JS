@@ -52,13 +52,6 @@ const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버�
 const endBtn = document.querySelector('.done-btn'); // 완료 버튼
 
 const randomColor = ['random','#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
- // 잘했어요 음원 리스트
-const goodjobBgmList = [
-    '../../COMM/MP3/GOODJOB.mp3',
-    '../../COMM/MP3/BEST.mp3',
-    '../../COMM/MP3/BRAVO.mp3',
-    '../../COMM/MP3/LIKEIT.mp3',
-]
 // 초기 빌드
 function init() {
     var active = '1';
@@ -277,6 +270,7 @@ function itemImageLoad2(src) {
 function wordTest(){
     let canvas = document.getElementById("myCanvas");
     let ctx = canvas.getContext('2d');
+    let pDraw = $('#myCanvas').offset();
     let img = new Image();
     
     var cPushArray = new Array();
@@ -320,43 +314,44 @@ function wordTest(){
         this.drawing = e.type === "touchstart";
         if(this.drawing) {
             console.log(e.type)
-            var pos = getPosition(e);            
-            var ctx = this.getContext("2d");
+            // var pos = getPosition(e);            
+            // var ctx = this.getContext("2d");
             ctx.beginPath();
-            ctx.moveTo(pos.x, pos.y);
+            // ctx.moveTo(pos.x, pos.y);
+            coloringBgm.play();
+        }else{
             cStep++;
             if (cStep < cPushArray.length) { cPushArray.length = cStep; }
             cPushArray.push(document.getElementById('myCanvas').toDataURL());
-            // const iimgaw = this.drawing.toDataURL();
-            // console.log(iimgaw)
-            coloringBgm.play();
+            coloringBgm.pause();
         }       
-        coloringBgm.pause();
     }
 
     undo_history.push(JSON.stringify(canvas));
-
+    let currP = null;
     var draw = function(e) {
         this.drawing = e.type === "touchmove";
         if(this.drawing) {
-            console.log(e.target.nodeName)
             e.preventDefault();
             // colorRandomOption();
             console.log(e.type);
             var pos = getPosition(e);
-            var ctx = this.getContext("2d");
-            ctx.lineTo(pos.x, pos.y);
+            console.log(pos)
+            currP = { X: pos.x, Y: pos.y };
+            // var ctx = this.getContext("2d");
+            ctx.lineTo(currP.X +280, currP.Y +70);
+            ctx.moveTo(currP.X +280, currP.Y +70);
             ctx.stroke();
             ctx.lineCap = brushlineCap;
             ctx.lineWidth = brushSize; 
             ctx.strokeStyle = brushColor; 
 
             if (lockHistory) return;
-            console.log('object:added');
-            // playVid(coloringBgm);
+            // console.log('object:added');
+            // // playVid(coloringBgm);
             binBtn.classList.add('active');
             nextBtn.classList.add('active');
-            console.log(undo_history.length);
+            // console.log(undo_history.length);
             // undo_history.push(JSON.stringify(canvas));
             // redo_history.length = 0;
         }
@@ -398,9 +393,12 @@ function wordTest(){
 
     document.getElementById('undo').addEventListener('click', newUndo);
 
-    canvas.addEventListener("touchstart", toggleDrawing, false);
-    canvas.addEventListener("touchmove", draw, function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false); 
-    canvas.addEventListener("touchend", toggleDrawing, false);
+    // canvas.addEventListener("touchstart", toggleDrawing, false);
+
+    $('#myCanvas').bind('touchstart, touchend', toggleDrawing);
+    $('#myCanvas').bind('touchmove', draw);
+    // canvas.addEventListener("touchmove", draw, function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false); 
+    // canvas.addEventListener("touchend", toggleDrawing, false);
 
     /*
         // function handleStart(evt) {
@@ -560,22 +558,18 @@ function deleteImage($item, $drop) {
     // $item.position({ of: $(this), my: 'center center', at: 'center center' });
     //$item.draggable('option', 'revert', false);
     correctWords++;
-    var goodjabAudio = new Audio();
-    
+
     $drop.append($item);
     if (correctWords == 4 + allchk) {
         complatePage++;
         pageWrapNum++;
-        console.log("pageWrapNum" + pageWrapNum);
+        console.log(pageWrapNum);
         playVid(wordAnswerBgm); // 정답 단어
         // $confetti.addClass('animation');
         reAction(); 
         playVid(fanfareBgm); // 빵빠레
-        var nowAudio = goodjobBgmList[pageWrapNum];
-        goodjabAudio.src= nowAudio;
-
         setTimeout(function () {
-            playVid(goodjabAudio);
+            playVid(goodjobBgm);
         }, 1000);
         // setTimeout(function () {
         //     $confetti.removeClass('animation');
