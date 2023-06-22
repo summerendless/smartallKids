@@ -623,7 +623,7 @@ function deleteImage($item, $drop) {
         reAction(); 
         playVid(fanfareBgm); // 빵빠레
         setTimeout(function () {
-            playVid(goodjobBgm[pageWrapNum]);
+            playVid(goodjobBgmList[pageWrapNum]);
         }, 1000);
         // setTimeout(function () {
         //     $confetti.removeClass('animation');
