@@ -54,10 +54,10 @@ const endBtn = document.querySelector('.done-btn'); // 완료 버튼
 const randomColor = ['random','#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
  // 잘했어요 음원 리스트
 const goodjobBgmList = [
-    '../../../COMM/MP3/GOODJOB.mp3',
-    '../../../COMM/MP3/BEST.mp3',
-    '../../../COMM/MP3/BRAVO.mp3',
-    '../../../COMM/MP3/LIKEIT.mp3',
+    '../../COMM/MP3/GOODJOB.mp3',
+    '../../COMM/MP3/BEST.mp3',
+    '../../COMM/MP3/BRAVO.mp3',
+    '../../COMM/MP3/LIKEIT.mp3',
 ]
 // 초기 빌드
 function init() {
@@ -564,6 +564,7 @@ function deleteImage($item, $drop) {
     // $item.position({ of: $(this), my: 'center center', at: 'center center' });
     //$item.draggable('option', 'revert', false);
     correctWords++;
+    var goodjabAudio = new Audio();
 
     $drop.append($item);
     if (correctWords == 4 + allchk) {
