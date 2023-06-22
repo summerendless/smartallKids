@@ -165,9 +165,8 @@ function wordInit() {
                 // helper: "clone",
                 //  drag: dragFix(event, aa=containmentArea),
             });
-    }
-    
 
+    }
 
     let aa = randomColor.map((color , idx) => {
         let colorImg='';
