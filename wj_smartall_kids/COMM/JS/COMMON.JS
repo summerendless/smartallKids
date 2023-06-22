@@ -325,12 +325,11 @@ function wordTest(){
             ctx.beginPath();
             // ctx.moveTo(pos.x, pos.y);
             coloringBgm.play();
-        }else{
             cStep++;
             if (cStep < cPushArray.length) { cPushArray.length = cStep; }
             cPushArray.push(document.getElementById('myCanvas').toDataURL());
             coloringBgm.pause();
-        }       
+        }    
     }
 
     undo_history.push(JSON.stringify(canvas));
@@ -378,33 +377,33 @@ function wordTest(){
 
     }
 
-    function undo() {
+    // function undo() {
 
-        if (undo_history.length > 0) {
-            lockHistory = true;
-            if (undo_history.length > 1) redo_history.push(undo_history.pop());
-            const content = undo_history[undo_history.length - 1];
-            console.log(content)
+    //     if (undo_history.length > 0) {
+    //         lockHistory = true;
+    //         if (undo_history.length > 1) redo_history.push(undo_history.pop());
+    //         const content = undo_history[undo_history.length - 1];
+    //         console.log(content)
 
-            canvas.loadFromJSON(content, function () {
-                canvas.renderAll();
-                lockHistory = false;
-                console.log(undo_history.length);
-            });
-            if (undo_history.length == 1) {
-                binBtn.classList.remove('active');
-            }
-        }
-    }
+    //         canvas.loadFromJSON(content, function () {
+    //             canvas.renderAll();
+    //             lockHistory = false;
+    //             console.log(undo_history.length);
+    //         });
+    //         if (undo_history.length == 1) {
+    //             binBtn.classList.remove('active');
+    //         }
+    //     }
+    // }
 
     document.getElementById('undo').addEventListener('click', newUndo);
 
     // canvas.addEventListener("touchstart", toggleDrawing, false);
 
-    $('#myCanvas').bind('touchstart, touchend', toggleDrawing);
+    $('#myCanvas').bind('touchstart', toggleDrawing);
     $('#myCanvas').bind('touchmove', draw);
     // canvas.addEventListener("touchmove", draw, function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false); 
-    // canvas.addEventListener("touchend", toggleDrawing, false);
+    $('#myCanvas').bind('touchstart', toggleDrawing);
 
     /*
         // function handleStart(evt) {
