@@ -612,7 +612,8 @@ function deleteImage($item, $drop) {
     // $item.position({ of: $(this), my: 'center center', at: 'center center' });
     //$item.draggable('option', 'revert', false);
     correctWords++;
-
+    var goodjabAudio = new Audio();
+    
     $drop.append($item);
     if (correctWords == 4 + allchk) {
         complatePage++;
@@ -622,8 +623,11 @@ function deleteImage($item, $drop) {
         // $confetti.addClass('animation');
         reAction(); 
         playVid(fanfareBgm); // 빵빠레
+        var nowAudio = goodjobBgmList[pageWrapNum];
+        goodjabAudio.src= nowAudio;
+
         setTimeout(function () {
-            playVid(goodjobBgmList[pageWrapNum]);
+            playVid(goodjabAudio);
         }, 1000);
         // setTimeout(function () {
         //     $confetti.removeClass('animation');
