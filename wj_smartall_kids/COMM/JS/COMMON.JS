@@ -248,13 +248,13 @@ function itemImageLoad() {
     console.log('pageWrapNum', pageWrapNum);
     console.log(wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
     $(itemImageHtml).attr('src', wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
-    function cancelEvent(event) {
-        if (event.preventDefault) {
-            event.preventDefault();
-        } else {
-            event.returnValue = false;
-        }
-    }
+    // function cancelEvent(event) {
+    //     if (event.preventDefault) {
+    //         event.preventDefault();
+    //     } else {
+    //         event.returnValue = false;
+    //     }
+    // }
 
     //$('<div id="itemImg' + '">' + '<img src="' + wordData[mainPageNum].itemUrls[pageWrapNum].mainItem + '">' + '</div>').appendTo('.item-img');
 }
@@ -310,13 +310,13 @@ function wordTest(){
     };
 
     var toggleDrawing = function(e) {
-        this.drawing = e.type === "mousedown" || e.type === "touchstart";
+        this.drawing = e.type === "touchstart";
         if(this.drawing) {
-            var pos = getPosition(e);
+            console.log(e.type)
+            var pos = getPosition(e);            
             var ctx = this.getContext("2d");
             ctx.beginPath();
             ctx.moveTo(pos.x, pos.y);
-
             cStep++;
             if (cStep < cPushArray.length) { cPushArray.length = cStep; }
             cPushArray.push(document.getElementById('myCanvas').toDataURL());
@@ -330,11 +330,12 @@ function wordTest(){
     undo_history.push(JSON.stringify(canvas));
 
     var draw = function(e) {
-
+        this.drawing = e.type === "touchmove";
         if(this.drawing) {
+            console.log(e.target.nodeName)
             e.preventDefault();
             // colorRandomOption();
-            
+            console.log(e.type);
             var pos = getPosition(e);
             var ctx = this.getContext("2d");
             ctx.lineTo(pos.x, pos.y);
@@ -351,7 +352,6 @@ function wordTest(){
             console.log(undo_history.length);
             // undo_history.push(JSON.stringify(canvas));
             // redo_history.length = 0;
-
         }
     };
 
@@ -390,14 +390,10 @@ function wordTest(){
     }
 
     document.getElementById('undo').addEventListener('click', newUndo);
-    
-    canvas.addEventListener("mousemove", draw);
-    canvas.addEventListener("mousedown", toggleDrawing);
-    canvas.addEventListener("mouseup", toggleDrawing);
 
-    canvas.addEventListener("touchmove", draw); 
-    canvas.addEventListener("touchstart", toggleDrawing);
-    canvas.addEventListener("touchend", toggleDrawing);
+    canvas.addEventListener("touchstart", toggleDrawing, false);
+    canvas.addEventListener("touchmove", draw, function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false); 
+    canvas.addEventListener("touchend", toggleDrawing, false);
 
     /*
         // function handleStart(evt) {
@@ -407,61 +403,14 @@ function wordTest(){
         //         draw();
         //     }
         //   }
-        // }
+        // }       
 
-        // function handleStart(evt) {
-        //     console.log(evt);
-        //     evt.preventDefault();
-        //     if(drawMode === 'fill'){
-        //         ctx.fillRect(0,0,500,500);
-        //     }else {
-        //         ctx.beginPath();
-        //         paintingTrue();
-        //   }
-        // }
         // function handleMove(evt) {
         //     evt.preventDefault();
         //     var touches = evt.changedTouches;
         //         ctx.lineTo(touches[0].screenX, touches[0].screenY);
         //         ctx.stroke();
         // }
-
-        // canvas.addEventListener('touchstart mousedown', (ev) => {         
-        //     e.preventDefault();
-        //     console.log(11111)
-        //     drawing  = true;
-        //     // lastX = ev.pageX;
-        //     // lastY = ev.pageY;
-        //     lastX = ev.offsetX;
-        //     lastY = ev.offsetY;
-        // })
-        
-        // canvas.addEventListener('mouseup', (ev) => {
-        //     drawing = false;
-        // })
-        
-        // canvas.addEventListener('mousemove', (ev) => {
-        // //   if (moving) {
-        // //     console.log(lastX, currentX)
-        // //     ctx.beginPath();
-        // //     ctx.lineJoin = "round";
-        // //     ctx.moveTo(lastX, lastY);
-        // //     ctx.lineTo(currentX, currentY);
-        // //     ctx.closePath();
-        // //     //ctx.strokeStyle = brushColor; // can be set during color selecting (if mode=draw)
-        // //     ctx.lineWidth = brushSize;
-        // //     ctx.stroke();
-        // //   }
-
-        // if(!drawing) return;
-        //     let curX = ev.offsetX;
-        //     let curY = ev.offsetY;
-        //     ctx.lineWidth = brushSize;
-        //     draw(curX, curY);        
-        //     lastX = curX;
-        //     lastY = curY;
-        //     mods ++;
-        // })
     */  
     
     // canvas.on('object:added', function () {
@@ -488,7 +437,6 @@ function wordTest(){
  
     function colorOption() {
         // 색상 선택 시작
-        console.log(';aaa')
         // const colorOption = Array.from(document.getElementsByClassName('color-option'));
         const color = document.querySelector('#color');
 
