@@ -648,7 +648,7 @@ function deleteImage($item, $drop) {
         console.log('goodjabAudio::::', goodjabAudio);
 
         setTimeout(function () {
-            playVid(goodjobBgm);
+            playVid(goodjabAudio);
         }, 1000);
         // setTimeout(function () {
         //     $confetti.removeClass('animation');
@@ -786,7 +786,8 @@ function playAllCard() {
             console.log('audio 재생중');
             var nowAudio = audioArray[idx];
             audioElement.src = nowAudio;
-            audioElement.play();
+            playVid(audioElement);
+            console.log(audioElement);
             $(audioElement).on('ended', function () {
                 playNextAudio(idx + 1);
 
