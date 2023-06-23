@@ -34,6 +34,18 @@
         <style>
             .buttonContainer{display: none;}
             #canvas2{z-index:1001;pointer-events: none;position: fixed;top: 0;transform: scale(1.1);border: none;}
+            /* test 용 */
+            #canvasContainer{width:50% !important;}
+            #TESTCANVAS{
+
+                position:fixed;
+                right:0;
+                top:0;
+                width: 50%;
+                height: 100%;
+                border:1px solid red;
+                z-index:10;
+            }
         </style>
         <div class="buttonContainer">
             <button class="canvasBtn" id="stopButton">Stop Confetti</button>
@@ -41,6 +53,8 @@
         </div>
         <canvas id="canvas2"></canvas>
         <!-- //confetti -->
+        <canvas id="TESTCANVAS"></canvas>
+
 
         <div id="wrap" class="">
             <!-- <div class="sectionIntro"><img src="../../COMM/IMG/INTRO.PNG" /></div> -->
@@ -146,7 +160,6 @@
         <script src="../../COMM/JS/CONFETTI_V2.js"></script>
         <script src="../../COMM/JS/COMMON.JS"></script>
         <script src="../../COMM/JS/TOUCH.JS"></script>
-        <script src="../../COMM/JS/FABRIC_S.js"></script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script> -->
         <script>
             // const words = [
@@ -213,3 +226,93 @@
         </script>
     </body>
 </html>
+
+
+
+<script>
+// 테스트용
+
+
+function canvas(){
+        var drawCanvas = document.getElementById('TESTCANVAS');
+        let drawBackup = new Array();
+        
+            let ctx = drawCanvas.getContext('2d');
+            let isDraw = false;
+            let width = 10;
+            let color = "#000";
+            let pDraw = $('#TESTCANVAS').offset();
+            let currP = null;
+            
+
+            // Event (마우스)
+            $('#TESTCANVAS').bind('mousedown', function (e) {
+                if (e.button === 0) {
+                    saveCanvas();
+                    e.preventDefault();
+                    ctx.beginPath();
+                    isDraw = true;
+                    
+                }
+            });
+
+            $('#TESTCANVAS').bind('mousemove', function (e) {
+                var event = e.originalEvent;
+                e.preventDefault();
+                currP = { X: event.offsetX, Y: event.offsetY };
+                if (isDraw) draw_line(currP);
+            });
+
+            $('#TESTCANVAS').bind('mouseup', function (e) {
+                e.preventDefault();
+                isDraw = false;
+            });
+            $('#TESTCANVAS').bind('mouseleave', function (e) {
+                isDraw = false;
+            });
+            // Event (터치스크린)
+            $('#TESTCANVAS').bind('touchstart', function (e) {
+                e.preventDefault();
+                console.log('aaa')
+                ctx.beginPath();
+            });
+
+            let once = true;
+            $('#TESTCANVAS').bind('touchmove', function (e) {
+                var event = e.originalEvent;
+                e.preventDefault();
+
+                var $btnWrap = $('.canvas_wrap_inner .btn_wrap')
+                currP = { X: event.touches[0].pageX - pDraw.left, Y: event.touches[0].pageY - pDraw.top };
+                draw_line(currP);
+                if(once){
+                    once =false;
+                    $btnWrap.fadeIn(100);
+                }
+            });
+
+            $('#TESTCANVAS').bind('touchend', function (e) {
+                e.preventDefault();
+                //alert("1");
+            });
+
+
+
+            // 선 그리기
+            function draw_line(p) {
+                ctx.lineWidth = width;
+                ctx.lineCap = 'round';
+                ctx.lineTo(p.X, p.Y);
+                ctx.moveTo(p.X, p.Y);
+                ctx.strokeStyle = "color";
+                ctx.stroke();
+            }
+
+         
+    
+                
+
+        
+    }
+    canvas()
+</script>
