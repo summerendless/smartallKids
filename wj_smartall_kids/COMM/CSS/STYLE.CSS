@@ -48,17 +48,14 @@
 }
 .section #canvasContainer {
     position: fixed;
-    bottom: 130px;
-    /* left: 50%;
-    transform: translateX(-50%); */
-    left: 0;
+    bottom: 23%;
+    left: 50%;
+    transform: translateX(-50%);
     width: 640px;
     height: 240px;
 }
 .section #canvasContainer canvas,
 .canvas-container {
-    /* width: 100% !important;
-    height: 100% !important; */
     width: 640px !important;
     height: 240px !important;
 }
@@ -496,6 +493,7 @@ canvas {
     position: relative;
     background: url('../../COMM/IMG/ICON_BIN_UN.png') no-repeat;
     background-size: cover;
+    margin-left: 50px;
 }
 .bin-btn.active {
     background: url('../../COMM/IMG/ICON_BIN_EN.png') no-repeat;

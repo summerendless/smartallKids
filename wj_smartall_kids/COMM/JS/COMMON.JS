@@ -273,8 +273,8 @@ function wordTest() {
 
     var cStep = -1;
 
-    let brushColor = '#000';
-    let brushSize = 30;
+    let brushColor = '';
+    let brushSize = 20;
     let brushlineCap = 'round';
 
     let pattern;
@@ -331,6 +331,11 @@ function wordTest() {
         e.preventDefault();
         console.log('aaa');
         ctx.beginPath();
+        cStep++;
+        if (cStep < cPushArray.length) {
+            cPushArray.length = cStep;
+        }
+        cPushArray.push(document.getElementById('myCanvas').toDataURL());
     });
 
     let once = true;
@@ -349,22 +354,49 @@ function wordTest() {
 
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
-        //alert("1");
+        // cStep++;
+        // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
+        // cPushArray.push(document.getElementById('myCanvas').toDataURL());
     });
 
     // 선 그리기
     function draw_line(p) {
         ctx.lineWidth = brushSize;
-        ctx.lineCap = 'round';
+        ctx.lineCap = brushlineCap;
+        ctx.strokeStyle = brushColor;
         ctx.lineTo(p.X, p.Y);
         ctx.moveTo(p.X, p.Y);
-        ctx.strokeStyle = brushColor;
         ctx.stroke();
-        // ctx.lineCap = brushlineCap;
-        // ctx.lineWidth = brushSize;
-        // ctx.strokeStyle = brushColor;
+
+        if (lockHistory) return;
         binBtn.classList.add('active');
         nextBtn.classList.add('active');
+    }
+
+    function newUndo() {
+        if (cStep > 0) {
+            cStep--;
+            var canvasPic = new Image();
+            canvasPic.src = cPushArray[cStep];
+            canvasPic.onload = function () {
+                ctx.drawImage(canvasPic, 0, 0);
+            };
+        }
+        if ((cStep = 1)) {
+            binBtn.classList.remove('active');
+        }
+    }
+    document.getElementById('undo').addEventListener('click', newUndo);
+
+    function deleteSelectedObjects() {
+        lockHistory = true;
+        canvas.getActiveObjects().forEach((element) => {
+            canvas.remove(element);
+        });
+        canvas.discardActiveObject();
+        canvas.requestRenderAll();
+        undo_history.push(JSON.stringify(canvas)); //UNDO
+        lockHistory = false;
     }
 
     // 아래 기능은 테스트 용으로 주석처리 됨
@@ -485,17 +517,6 @@ function wordTest() {
     //     console.log(undo_history.length);
     // });
 
-    function deleteSelectedObjects() {
-        lockHistory = true;
-        canvas.getActiveObjects().forEach((element) => {
-            canvas.remove(element);
-        });
-        canvas.discardActiveObject();
-        canvas.requestRenderAll();
-        undo_history.push(JSON.stringify(canvas)); //UNDO
-        lockHistory = false;
-    }
-
     function colorOption() {
         // 색상 선택 시작
         // const colorOption = Array.from(document.getElementsByClassName('color-option'));
@@ -521,7 +542,7 @@ function wordTest() {
             oncolorChange(e);
         });
     }
-    //colorOption();
+    colorOption();
     //     function colorRandomOption() {
     //         // 랜덤색상 선택 시작
 
