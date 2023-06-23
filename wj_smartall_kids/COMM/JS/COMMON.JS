@@ -282,7 +282,6 @@ function itemImageLoad() {
 
 //section2 캔버스 글자 이미지 로드 함수
 function itemImageLoad2(src) {
-    console.log(src);
     let itemImageHtml2 = $('.section' + sectionCounter + ' #itemWord');
     $(itemImageHtml2).attr('src', src);
 }
@@ -317,18 +316,20 @@ function wordTest() {
         pattern = ctx.createPattern(drawImage, 'no-repeat');
     };
 
-    // var getPosition = function(e) {
-    //     var x, y;
-    //     if(e.type.indexOf("mouse") > -1) {
-    //         x = e.offsetX;
-    //         y = e.offsetY;
-    //     } else {
-    //         var rect = e.target.getBoundingClientRect();
-    //         x = e.changedTouches[0].clientX - rect.x;
-    //         y = e.changedTouches[0].clientY - rect.y;
-    //     }
-    //     return {x:x, y:y};
-    // };
+    if (pageWrapNum != 0) {
+        colorGuide(playVid(infoColorBgm));
+        $('.color-palette').addClass('glory');
+        infoColorBgm.addEventListener(
+            'ended',
+            function () {
+                this.currentTime = 0;
+                console.log('가이드 삭제');
+                $('#colorGuide').remove();
+                $('.color-palette').removeClass('glory');
+            },
+            false
+        );
+    }
 
     // Event (마우스)
     $('#myCanvas').bind('mousedown', function (e) {
@@ -358,7 +359,8 @@ function wordTest() {
     $('#myCanvas').bind('touchstart', function (e) {
         e.preventDefault();
         ctx.beginPath();
-        coloringBgm.play();
+        $('#colorGuide').remove();
+        pauseVid(coloringBgm);
         cStep++;
         if (cStep < cPushArray.length) {
             cPushArray.length = cStep;
@@ -369,6 +371,7 @@ function wordTest() {
     $('#myCanvas').bind('touchmove', function (e) {
         var event = e.originalEvent;
         e.preventDefault();
+        playVid(coloringBgm);
         // currP = { X: event.touches[0].pageX - pDraw.left+80, Y: event.touches[0].pageY - pDraw.top+70 };
         currP = { X: event.touches[0].pageX - 120, Y: event.touches[0].pageY - pDraw.top };
         draw_line(currP);
@@ -376,7 +379,10 @@ function wordTest() {
 
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
-        coloringBgm.pause();
+
+        $('.color-palette').removeClass('glory');
+
+        // coloringBgm.pause();
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
         // cPushArray.push(document.getElementById('myCanvas').toDataURL());
@@ -396,15 +402,17 @@ function wordTest() {
     }
 
     function newUndo() {
+        console.log(cStep);
         if (cStep > 0) {
             cStep--;
             var canvasPic = new Image();
             canvasPic.src = cPushArray[cStep];
             canvasPic.onload = function () {
                 ctx.drawImage(canvasPic, 0, 0);
+                // ctx.clearRect(0, canvas.width, canvas.height);
             };
         }
-        if ((cStep = 1)) {
+        if (cStep <= 1) {
             binBtn.classList.remove('active');
         }
     }
@@ -940,6 +948,11 @@ function playVid(el) {
     el.currentTime = 0;
     el.muted = false;
     el.play();
+}
+
+function pauseVid(el) {
+    el.pause();
+    el.currentTime = 0;
 }
 
 function pauseAll() {
