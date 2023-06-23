@@ -45,6 +45,8 @@ var fanfareBgm = new Audio('../../../COMM/MP3/FANFARE.mp3'); // 빵빠레
 var dropBgm3 = new Audio('../../../COMM/MP3/DROPING.mp3'); // 드래그앤드랍 시
 var doneBgm3 = new Audio('../../../COMM/MP3/DONE.mp3'); // 완료
 var coloringBgm = new Audio('../../../COMM/MP3/COLORING.mp3'); // 색칠 시
+var endBgm = new Audio('../../../COMM/MP3/END.mp3'); // 단어카드 완료
+var finishBgm = new Audio('../../../COMM/MP3/GOOD.mp3'); // 마지막 참 잘했어요
 
 const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
 const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
@@ -356,7 +358,7 @@ function wordTest() {
         var event = e.originalEvent;
         e.preventDefault();
         // currP = { X: event.touches[0].pageX - pDraw.left+80, Y: event.touches[0].pageY - pDraw.top+70 };
-        currP = { X: event.touches[0].pageX - 120 , Y: event.touches[0].pageY - pDraw.top };
+        currP = { X: event.touches[0].pageX - 120, Y: event.touches[0].pageY - pDraw.top };
         draw_line(currP);
     });
 
@@ -636,7 +638,7 @@ function handleCardDrop(event, ui) {
 // 삭제
 function deleteImage($item, $drop) {
     var allchk = 0;
-    let wordVocie = wordData.itemUrls[pageWrapNum].answerVoice;
+    let wordVocie = wordData.itemUrls[pageWrapNum].wordBgm;
     var wordAnswerBgm = new Audio(wordVocie); // 정답 단어
     // $item.addClass('correct');
     // $item.draggable('disable');
@@ -784,11 +786,10 @@ function next(e) {
 
 //마지막카드 오디오 재생 함수
 function playAllCard() {
-    var allData = wordData[0].itemUrls; // [0] => 차시를 넣어야함 !
     var audioArray = [];
 
-    allData.map((item) => {
-        return audioArray.push(item.answerVoice);
+    wordData.itemUrls.map((item) => {
+        return audioArray.push(item.wordBgm);
     });
 
     console.log(audioArray);
@@ -847,10 +848,18 @@ function complatePop() {
         </div>
     `;
     $('<div class="pop-wrap"/>').appendTo('#wrap').html(html);
+    playVid(endBgm);
 
-    setTimeout(function () {
+    $(endBgm).on('ended', function () {
         $('.pop-wrap').addClass('end-pop').html(html2);
-    }, 2000);
+        playVid(fanfareBgm); // 빵빠레
+        playVid(finishBgm);
+    });
+
+    // setTimeout(function () {
+    //     $('.pop-wrap').addClass('end-pop').html(html2);
+    //     playVid(finishBgm);
+    // }, 2000);
 }
 
 //종료 함수
