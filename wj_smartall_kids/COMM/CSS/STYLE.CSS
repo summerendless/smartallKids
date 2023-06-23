@@ -118,7 +118,7 @@
     position: fixed;
 }
 .next-btn.active::after {
-    content: "";
+    content: '';
     position: absolute;
     background: url('../IMG/BTN_DECO_YL.png') no-repeat;
     background-size: 100% 100%;
@@ -130,11 +130,14 @@
     -moz-animation: blink 0.5s ease-in-out infinite alternate; */
     animation: blink 0.7s ease-in-out infinite alternate;
 }
-@keyframes blink{
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-  }
-
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 .done-btn {
     /* display: none; */
@@ -455,7 +458,8 @@ canvas {
     display: flex;
     /* left: 74px; */
 }
-.color-option, .color-option-random {
+.color-option,
+.color-option-random {
     width: 65px;
     height: 50px;
     margin-right: 30px;
@@ -474,7 +478,6 @@ canvas {
     bottom: 70px;
     animation: fadeInUp 0.3s;
 }
-
 
 @keyframes fadeInUp {
     0% {
@@ -499,10 +502,10 @@ canvas {
     background: url('../../COMM/IMG/ICON_BIN_EN.png') no-repeat;
     background-size: cover;
 }
-.color-option img, .color-option-random img {
+.color-option img,
+.color-option-random img {
     width: 100%;
 }
-
 
 .section1 .item-img {
     width: 330px;
@@ -547,7 +550,7 @@ canvas {
 }
 
 .section3 .item-word {
-bottom: 20%;
+    bottom: 20%;
 }
 
 .item-img img,
@@ -596,7 +599,7 @@ bottom: 20%;
     transform: translateX(-50%);
 }
 
-.stick-panel-2 .answer{
+.stick-panel-2 .answer {
     animation: introAni1 1s infinite;
 }
 
@@ -714,37 +717,37 @@ bottom: 20%;
 }
 #introBg .introIcon {
     position: absolute;
-    transform: rotate(0deg)
+    transform: rotate(0deg);
 }
 
-#introBg .introAni1{
+#introBg .introAni1 {
     animation: introAni1 1s infinite;
 }
-#introBg .introAni2{
+#introBg .introAni2 {
     animation: introAni2 1s infinite;
 }
 
-#introBg .introIcon1{
+#introBg .introIcon1 {
     width: 85px;
     top: 11%;
     left: 57%;
 }
-#introBg .introIcon2{
+#introBg .introIcon2 {
     width: 113px;
     top: 29%;
     left: 22%;
 }
-#introBg .introIcon3{
+#introBg .introIcon3 {
     width: 100px;
     top: 33%;
     left: 70%;
 }
-#introBg .introIcon4{
+#introBg .introIcon4 {
     width: 150px;
     top: 57%;
     left: 12%;
 }
-#introBg .introIcon5{
+#introBg .introIcon5 {
     width: 134px;
     top: 60%;
     left: 78%;
@@ -848,7 +851,6 @@ bottom: 20%;
         left: 26%;
     }
 }
-
 
 .colorGuide img,
 .dropGuide img {
