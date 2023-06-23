@@ -446,7 +446,6 @@ canvas {
     bottom: 0;
     display: flex;
     justify-content: center;
-    gap: 50px;
 }
 .color-items {
     /* bottom: 0;
@@ -712,6 +711,15 @@ canvas {
 #introBg .bg {
     width: 100%;
 }
+
+#introBg .intro_tit {
+    width: 38%;
+    position: absolute;
+    top: 31%;
+    left: 51%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
 #introBg .introIcon {
     position: absolute;
     transform: rotate(0deg);
@@ -725,9 +733,9 @@ canvas {
 }
 
 #introBg .introIcon1 {
-    width: 85px;
+    width: 235px;
     top: 11%;
-    left: 57%;
+    left: 45%;
 }
 #introBg .introIcon2 {
     width: 113px;
@@ -736,18 +744,18 @@ canvas {
 }
 #introBg .introIcon3 {
     width: 100px;
-    top: 33%;
+    top: 34%;
     left: 70%;
 }
 #introBg .introIcon4 {
     width: 150px;
-    top: 57%;
+    top: 56%;
     left: 12%;
 }
 #introBg .introIcon5 {
     width: 134px;
-    top: 60%;
-    left: 78%;
+    top: 61%;
+    left: 77%;
 }
 
 @keyframes introAni1 {
