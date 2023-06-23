@@ -509,10 +509,10 @@ canvas {
     position: absolute;
     background: url('../IMG/PEN_DECO.png') no-repeat;
     background-size: 100% 100%;
-    width: 65px;
-    height: 65px;
-    top: 0;
-    left: 0;
+    width: 104px;
+    height: 106px;
+    bottom: -40px;
+    left: -20px;
     animation: blink 0.7s ease-in-out infinite alternate;
 }
 
