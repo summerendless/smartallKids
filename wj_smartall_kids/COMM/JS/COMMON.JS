@@ -343,7 +343,8 @@ function wordTest() {
     $('#myCanvas').bind('touchstart', function (e) {
         e.preventDefault();
         ctx.beginPath();
-        playVid(coloringBgm);
+        $('#colorGuide').remove();
+        pauseVid(coloringBgm);
         cStep++;
         if (cStep < cPushArray.length) {
             cPushArray.length = cStep;
@@ -354,7 +355,7 @@ function wordTest() {
     $('#myCanvas').bind('touchmove', function (e) {
         var event = e.originalEvent;
         e.preventDefault();
-       
+        playVid(coloringBgm);
         // currP = { X: event.touches[0].pageX - pDraw.left+80, Y: event.touches[0].pageY - pDraw.top+70 };
         currP = { X: event.touches[0].pageX - 120, Y: event.touches[0].pageY - pDraw.top };
         draw_line(currP);
@@ -362,7 +363,9 @@ function wordTest() {
 
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
-        pauseVid(coloringBgm);
+
+        $('.color-palette').removeClass('glory');
+
         // coloringBgm.pause();
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
@@ -916,7 +919,7 @@ function colorGuide() {
         <div class="colorGuide">
             <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
         </div>`;
-    $('<div id="colorGuide" onclick="guideClose($(this))" class="show">' + colorGuide + '</div>')
+    $('<div id="colorGuide" class="show">' + colorGuide + '</div>')
         .appendTo('#wrap')
         .html(colorGuide);
 

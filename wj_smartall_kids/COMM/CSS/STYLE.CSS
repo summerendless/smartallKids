@@ -513,6 +513,7 @@ canvas {
     height: 106px;
     bottom: -40px;
     left: -20px;
+    z-index: -1;
     animation: blink 0.7s ease-in-out infinite alternate;
 }
 
