@@ -623,7 +623,7 @@ function handleCardDrop(event, ui) {
 // 삭제
 function deleteImage($item, $drop) {
     var allchk = 0;
-    let wordVocie = wordData.itemUrls[pageWrapNum].answerVoice;
+    let wordVocie = wordData.itemUrls[pageWrapNum].wordBgm;
     var wordAnswerBgm = new Audio(wordVocie); // 정답 단어
     // $item.addClass('correct');
     // $item.draggable('disable');
@@ -771,11 +771,10 @@ function next(e) {
 
 //마지막카드 오디오 재생 함수
 function playAllCard() {
-    var allData = wordData[0].itemUrls; // [0] => 차시를 넣어야함 !
     var audioArray = [];
 
-    allData.map((item) => {
-        return audioArray.push(item.answerVoice);
+    wordData.itemUrls.map((item) => {
+        return audioArray.push(item.wordBgm);
     });
 
     console.log(audioArray);
@@ -838,6 +837,7 @@ function complatePop() {
 
     $(endBgm).on('ended', function () {
         $('.pop-wrap').addClass('end-pop').html(html2);
+        playVid(fanfareBgm); // 빵빠레
         playVid(finishBgm);
     });
 
