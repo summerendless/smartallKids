@@ -32,15 +32,25 @@
     <body>
         <!-- confetti -->
         <style>
-            .buttonContainer{display: none;}
-            #canvas2{z-index:1001;pointer-events: none;position: fixed;top: 0;transform: scale(1.1);border: none;}
-          </style>
+            .buttonContainer {
+                display: none;
+            }
+            #canvas2 {
+                z-index: 1001;
+                pointer-events: none;
+                position: fixed;
+                top: 0;
+                transform: scale(1.1);
+                border: none;
+            }
+        </style>
         <div class="buttonContainer">
             <button class="canvasBtn" id="stopButton">Stop Confetti</button>
-            <button class="canvasBtn" id="startButton">Drop Confetti</button>	
+            <button class="canvasBtn" id="startButton">Drop Confetti</button>
         </div>
         <canvas id="canvas2"></canvas>
         <!-- //confetti -->
+
         <div id="wrap" class="">
             <!-- <div class="sectionIntro"><img src="../../COMM/IMG/INTRO.PNG" /></div> -->
             <header>
@@ -71,7 +81,7 @@
                                     <!-- <div class="controls__color color-option color-red">
                                         <img src="../../COMM/IMG/CRAYON_BV.png" data-color="random" alt="랜덤" />
                                     </div> -->
-                                     <!--
+                                    <!--
                                     <div class="controls__color color-option color-red">
                                         <img src="../../COMM/IMG/CRAYON_RD.png" data-color="#ff0000" alt="빨강" />
                                     </div>
@@ -121,7 +131,6 @@
                         </button>
                     </section>
                 </div>
-  
             </div>
 
             <div class="confetti-wrap">
@@ -130,11 +139,11 @@
 
             <div id="introBg">
                 <img class="bg" src="../../COMM/IMG/INTRO.png" alt="" />
-                <img class="introAni1 introIcon introIcon1" src="../../COMM/IMG/INTRO_ICON1.png" alt="인트로 아이콘1"/>
-                <img class="introAni1 introIcon introIcon2" src="../../COMM/IMG/INTRO_ICON2.png" alt="인트로 아이콘2"/>
-                <img class="introAni1 introIcon introIcon3" src="../../COMM/IMG/INTRO_ICON3.png" alt="인트로 아이콘3"/>
-                <img class="introAni1 introIcon introIcon4" src="../../COMM/IMG/INTRO_ICON4.png" alt="인트로 아이콘4"/>
-                <img class="introAni2 introIcon introIcon5" src="../../COMM/IMG/INTRO_ICON5.png" alt="인트로 아이콘5"/>
+                <img class="introAni1 introIcon introIcon1" src="../../COMM/IMG/INTRO_ICON1.png" alt="인트로 아이콘1" />
+                <img class="introAni1 introIcon introIcon2" src="../../COMM/IMG/INTRO_ICON2.png" alt="인트로 아이콘2" />
+                <img class="introAni1 introIcon introIcon3" src="../../COMM/IMG/INTRO_ICON3.png" alt="인트로 아이콘3" />
+                <img class="introAni1 introIcon introIcon4" src="../../COMM/IMG/INTRO_ICON4.png" alt="인트로 아이콘4" />
+                <img class="introAni2 introIcon introIcon5" src="../../COMM/IMG/INTRO_ICON5.png" alt="인트로 아이콘5" />
             </div>
         </div>
         <!-- wrap -->
@@ -142,41 +151,18 @@
         <script src="../../COMM/JS/JQUERY-3.5.1.MIN.JS"></script>
         <script src="../../COMM/JS/JQUERY-UI.MIN.JS"></script>
         <script src="../../COMM/JS/DATA.JSON"></script>
+        <script>
+            // ****차시 정보 변경 필수!!****
+            //차시 정보
+            const pageID = 1;
+            var mydata = JSON.parse(JSON.stringify(data.word_data[pageID]));
+        </script>
         <script src="../../COMM/JS/CONFETTI_V2.js"></script>
         <script src="../../COMM/JS/COMMON.JS"></script>
         <script src="../../COMM/JS/TOUCH.JS"></script>
+        <script src="../../COMM/JS/FABRIC_S.js"></script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script> -->
-        <script>
-            // const words = [
-            //     [
-            //       '../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_1.PNG',
-            //       '../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_2.PNG',
-            //       '../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_3.PNG',
-            //       '../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_4.PNG',
-            //     ],
-            //     [
-            //       '../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_1.PNG',
-            //       '../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_2.PNG',
-            //       '../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_3.PNG',
-            //       '../../COMM/IMG/WORD/1_1/STICKER_ON_1_1_4.PNG',
-            //     ],
-            //     // [
-            //     //   '../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_1.PNG',
-            //     //   '../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_2.PNG',
-            //     //   '../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_3.PNG',
-            //     //   '../../COMM/IMG/WORD/1_1/STICKER_ON_1_3_4.PNG',
-            //     // ],
-            //     // [
-            //     //   '../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_1.PNG',
-            //     //   '../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_2.PNG',
-            //     //   '../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_3.PNG',
-            //     //   '../../COMM/IMG/WORD/1_1/STICKER_ON_1_4_4.PNG',
-            //     // ],
-            // ]; //단어들 정답 순서대로 작성
-        </script>
-        <script>
-            // console.log(testData);
-        </script>
+
         <style>
             .answer0 {
                 width: 10.4%;
@@ -205,99 +191,5 @@
                 bottom: 23%;
             }
         </style>
-        <script>
-            // var pageID = 1;
-            var mydata = JSON.parse(JSON.stringify(data));
-        </script>
     </body>
 </html>
-
-
-
-<script>
-// 테스트용
-
-
-function canvas(){
-        var drawCanvas = document.getElementById('TESTCANVAS');
-        let drawBackup = new Array();
-        
-            let ctx = drawCanvas.getContext('2d');
-            let isDraw = false;
-            let width = 10;
-            let color = "#000";
-            let pDraw = $('#TESTCANVAS').offset();
-            let currP = null;
-            
-
-            // Event (마우스)
-            $('#TESTCANVAS').bind('mousedown', function (e) {
-                if (e.button === 0) {
-                    saveCanvas();
-                    e.preventDefault();
-                    ctx.beginPath();
-                    isDraw = true;
-                    
-                }
-            });
-
-            $('#TESTCANVAS').bind('mousemove', function (e) {
-                var event = e.originalEvent;
-                e.preventDefault();
-                currP = { X: event.offsetX, Y: event.offsetY };
-                if (isDraw) draw_line(currP);
-            });
-
-            $('#TESTCANVAS').bind('mouseup', function (e) {
-                e.preventDefault();
-                isDraw = false;
-            });
-            $('#TESTCANVAS').bind('mouseleave', function (e) {
-                isDraw = false;
-            });
-            // Event (터치스크린)
-            $('#TESTCANVAS').bind('touchstart', function (e) {
-                e.preventDefault();
-                console.log('aaa')
-                ctx.beginPath();
-            });
-
-            let once = true;
-            $('#TESTCANVAS').bind('touchmove', function (e) {
-                var event = e.originalEvent;
-                e.preventDefault();
-
-                var $btnWrap = $('.canvas_wrap_inner .btn_wrap')
-                currP = { X: event.touches[0].pageX - pDraw.left, Y: event.touches[0].pageY - pDraw.top };
-                draw_line(currP);
-                if(once){
-                    once =false;
-                    $btnWrap.fadeIn(100);
-                }
-            });
-
-            $('#TESTCANVAS').bind('touchend', function (e) {
-                e.preventDefault();
-                //alert("1");
-            });
-
-
-
-            // 선 그리기
-            function draw_line(p) {
-                ctx.lineWidth = width;
-                ctx.lineCap = 'round';
-                ctx.lineTo(p.X, p.Y);
-                ctx.moveTo(p.X, p.Y);
-                ctx.strokeStyle = "color";
-                ctx.stroke();
-            }
-
-         
-    
-                
-
-        
-    }
-    // canvas()
-</script>
