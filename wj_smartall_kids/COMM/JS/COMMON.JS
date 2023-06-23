@@ -78,7 +78,7 @@ function init() {
         colorGuide(playVid(infoColorBgm));
         $('.color-palette').addClass('glory');
         infoColorBgm.addEventListener('ended', function() { 
-            this.currentTime = 0;
+            // this.currentTime = 0;
             console.log('가이드 삭제');
             $('#colorGuide').remove();
             $('.color-palette').removeClass('glory');
@@ -292,8 +292,7 @@ function wordTest() {
     let brushlineCap = 'round';
 
     let pattern;
-    let imgUrl = wordData.itemUrls[pageWrapNum].wordItem;
-
+    let imgUrl = wordData.itemUrls[pageWrapNum].wordItem; 
     drawImage.src = imgUrl;
     drawImage.onload = () => {
         canvas.width = drawImage.width;
@@ -344,18 +343,18 @@ function wordTest() {
         e.preventDefault();
         ctx.beginPath();
         $('#colorGuide').remove();
-        pauseVid(coloringBgm);
+        $('.color-palette').removeClass('glory');
+        console.log('실행', cStep)
         cStep++;
         if (cStep < cPushArray.length) {
             cPushArray.length = cStep;
         }
-        cPushArray.push(document.getElementById('myCanvas').toDataURL());
+        cPushArray.push(document.getElementById('myCanvas').toDataURL());        
     });
 
     $('#myCanvas').bind('touchmove', function (e) {
         var event = e.originalEvent;
         e.preventDefault();
-        playVid(coloringBgm);
         // currP = { X: event.touches[0].pageX - pDraw.left+80, Y: event.touches[0].pageY - pDraw.top+70 };
         currP = { X: event.touches[0].pageX - 120, Y: event.touches[0].pageY - pDraw.top };
         draw_line(currP);
@@ -364,12 +363,10 @@ function wordTest() {
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
 
-        $('.color-palette').removeClass('glory');
-
         // coloringBgm.pause();
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
-        // cPushArray.push(document.getElementById('myCanvas').toDataURL());
+        // cPushArray.push(document.getElementById('myCanvas').toDataURL());     
     });
 
     // 선 그리기
@@ -378,7 +375,7 @@ function wordTest() {
         ctx.lineCap = brushlineCap;
         ctx.strokeStyle = brushColor;
         ctx.lineTo(p.X, p.Y);
-        ctx.moveTo(p.X, p.Y);
+        // ctx.moveTo(p.X, p.Y);
         ctx.stroke();
         if (lockHistory) return;
         binBtn.classList.add('active');
@@ -386,7 +383,7 @@ function wordTest() {
     }
 
     function newUndo() {
-        console.log(cStep)
+        console.log('실행취소', cStep)
         if (cStep > 0) {
             cStep--;
             var canvasPic = new Image();
@@ -395,10 +392,9 @@ function wordTest() {
                 ctx.drawImage(canvasPic, 0, 0);
                 // ctx.clearRect(0, canvas.width, canvas.height);
             };
-        }
-        if (cStep <= 1) {
             binBtn.classList.remove('active');
-        }
+        } 
+        return false;
     }
     document.getElementById('undo').addEventListener('click', newUndo);
 
@@ -607,7 +603,7 @@ function pageMove() {
     sectionCounter = sectionCounter + 1;
     console.log('sectionCounter', sectionCounter);
     itemImageLoad();
-    console.log(ImgArr);
+    // console.log(ImgArr);
     itemImageLoad2(ImgArr[pageWrapNum]);
     // }
     nextBtn.classList.remove('active');
@@ -615,7 +611,7 @@ function pageMove() {
     setTimeout(function () {
         dropGuide(playVid(infoDropBgm))
         infoDropBgm.addEventListener('ended', function() { 
-            this.currentTime = 0;
+            // this.currentTime = 0;
             console.log('가이드 삭제');
             $('#dropGuide').remove();
         }, false);
@@ -684,6 +680,9 @@ function deleteImage($item, $drop) {
                 itemImageLoad();
                 itemImageLoad2();
                 // wordImageLoad();
+                // ImgArr.splice(0);
+                // ImgArr.length = 0;
+                console.log(ImgArr)
                 wordTest();
                 reset();
                 wordInit();
@@ -785,7 +784,7 @@ function next(e) {
         }
         // fromDataURL()
     }
-    console.log(ImgArr);
+    // console.log(ImgArr);
 }
 
 //마지막카드 오디오 재생 함수
@@ -894,10 +893,10 @@ function callFinish() {
 // }
 function playVid(el) {
     el.muted = true;
-    el.pause();
+    // el.pause();
     el.currentTime = 0;
-    el.muted = false;
     el.play();
+    el.muted = false;    
 }
 
 function pauseVid(el) {
