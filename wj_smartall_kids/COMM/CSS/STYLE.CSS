@@ -454,6 +454,7 @@ canvas {
     display: flex;
     /* left: 74px; */
 }
+
 .color-option,
 .color-option-random {
     width: 65px;
@@ -502,6 +503,18 @@ canvas {
 .color-option img,
 .color-option-random img {
     width: 100%;
+}
+
+.color-palette.glory .color-option::after {
+    content: '';
+    position: absolute;
+    background: url('../IMG/PEN_DECO.png') no-repeat;
+    background-size: 100% 100%;
+    width: 65px;
+    height: 65px;
+    top: 0;
+    left: 0;
+    animation: blink 0.7s ease-in-out infinite alternate;
 }
 
 .section1 .item-img {
