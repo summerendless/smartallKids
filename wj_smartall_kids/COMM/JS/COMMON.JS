@@ -338,28 +338,22 @@ function wordTest(){
     $('#myCanvas').bind('mouseleave', function (e) {
         isDraw = false;
     });
+
     // Event (터치스크린)
     $('#myCanvas').bind('touchstart', function (e) {
         e.preventDefault();
-        console.log('aaa')
         ctx.beginPath();
         cStep++;
         if (cStep < cPushArray.length) { cPushArray.length = cStep; }
         cPushArray.push(document.getElementById('myCanvas').toDataURL());
     });
 
-    let once = true;
     $('#myCanvas').bind('touchmove', function (e) {
         var event = e.originalEvent;
         e.preventDefault();
-
-        var $btnWrap = $('.canvas_wrap_inner .btn_wrap')
-        currP = { X: event.touches[0].pageX - pDraw.left, Y: event.touches[0].pageY - pDraw.top };
+        // currP = { X: event.touches[0].pageX - pDraw.left+80, Y: event.touches[0].pageY - pDraw.top+70 };
+        currP = { X: event.touches[0].pageX - 120 , Y: event.touches[0].pageY - pDraw.top };
         draw_line(currP);
-        if(once){
-            once =false;
-            $btnWrap.fadeIn(100);
-        }
     });
 
     $('#myCanvas').bind('touchend', function (e) {
@@ -378,7 +372,6 @@ function wordTest(){
         ctx.lineTo(p.X, p.Y);
         ctx.moveTo(p.X, p.Y);
         ctx.stroke();
-        
         if (lockHistory) return;
         binBtn.classList.add('active');
         nextBtn.classList.add('active');
