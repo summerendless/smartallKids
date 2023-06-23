@@ -177,7 +177,7 @@
     top: -13px;
     width: 10vw;
     height: 10.1vw;
-    background: url(../../COMM/IMG/BTN_DECO_RD.png) no-repeat;
+    background: url(../IMG/BTN_DECO_RD.png) no-repeat;
     background-size: 100% 100%;
     animation: blink 0.7s ease-in-out infinite alternate;
 }
@@ -491,12 +491,12 @@ canvas {
     height: 100px;
     bottom: 50px;
     position: relative;
-    background: url('../../COMM/IMG/ICON_BIN_UN.png') no-repeat;
+    background: url('../IMG/ICON_BIN_UN.png') no-repeat;
     background-size: cover;
     margin-left: 50px;
 }
 .bin-btn.active {
-    background: url('../../COMM/IMG/ICON_BIN_EN.png') no-repeat;
+    background: url('../IMG/ICON_BIN_EN.png') no-repeat;
     background-size: cover;
 }
 .color-option img,

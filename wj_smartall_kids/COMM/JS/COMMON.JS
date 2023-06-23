@@ -35,16 +35,16 @@ const undo_history = [];
 const redo_history = [];
 const ImgArr = [];
 
-var introBgm = new Audio('../../COMM/MP3/INTRO.mp3'); // 인트로
-var likeBgm = new Audio('../../COMM/MP3/LIKEIT.mp3'); // 좋아요
-var goodjob2Bgm = new Audio('../../COMM/MP3/LASTGOODJOB.mp3'); // 마지막 잘했어요
-var infoDropBgm = new Audio('../../COMM/MP3/INFO_DROP.mp3'); // 드래그앤드랍 인포
-var infoColorBgm = new Audio('../../COMM/MP3/INFO_COLOR.mp3'); // 색칠 인포
-var goodjobBgm = new Audio('../../COMM/MP3/GOODJOB.mp3'); // 잘했어요
-var fanfareBgm = new Audio('../../COMM/MP3/FANFARE.mp3'); // 빵빠레
-var dropBgm3 = new Audio('../../COMM/MP3/DROPING.mp3'); // 드래그앤드랍 시
-var doneBgm3 = new Audio('../../COMM/MP3/DONE.mp3'); // 완료
-var coloringBgm = new Audio('../../COMM/MP3/COLORING.mp3'); // 색칠 시
+var introBgm = new Audio('../../../COMM/MP3/INTRO.mp3'); // 인트로
+var likeBgm = new Audio('../../../COMM/MP3/LIKEIT.mp3'); // 좋아요
+var goodjob2Bgm = new Audio('../../../COMM/MP3/LASTGOODJOB.mp3'); // 마지막 잘했어요
+var infoDropBgm = new Audio('../../../COMM/MP3/INFO_DROP.mp3'); // 드래그앤드랍 인포
+var infoColorBgm = new Audio('../../../COMM/MP3/INFO_COLOR.mp3'); // 색칠 인포
+var goodjobBgm = new Audio('../../../COMM/MP3/GOODJOB.mp3'); // 잘했어요
+var fanfareBgm = new Audio('../../../COMM/MP3/FANFARE.mp3'); // 빵빠레
+var dropBgm3 = new Audio('../../../COMM/MP3/DROPING.mp3'); // 드래그앤드랍 시
+var doneBgm3 = new Audio('../../../COMM/MP3/DONE.mp3'); // 완료
+var coloringBgm = new Audio('../../../COMM/MP3/COLORING.mp3'); // 색칠 시
 
 const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
 const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
@@ -52,7 +52,12 @@ const endBtn = document.querySelector('.done-btn'); // 완료 버튼
 
 const randomColor = ['random', '#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
 // 잘했어요 음원 리스트
-const goodjobBgmList = ['../../COMM/MP3/GOODJOB.mp3', '../../COMM/MP3/BEST.mp3', '../../COMM/MP3/BRAVO.mp3', '../../COMM/MP3/LIKEIT.mp3'];
+const goodjobBgmList = [
+    '../../../COMM/MP3/GOODJOB.mp3',
+    '../../../COMM/MP3/BEST.mp3',
+    '../../../COMM/MP3/BRAVO.mp3',
+    '../../../COMM/MP3/LIKEIT.mp3',
+];
 // 초기 빌드
 function init() {
     var active = '1';
@@ -95,7 +100,7 @@ function init() {
 //     guideHtml = `
 //         <div class="drag">
 //             <i class="hand_icon">
-//                 <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
+//                 <img src="../../../../COMM/IMG/ICON_HAND.PNG" alt="">
 //             </i>
 //         </div>
 
@@ -180,7 +185,7 @@ function wordInit() {
         }
 
         html += `<div class="controls__color color-option color-red">
-                        <img src="../../COMM/IMG/CRAYON_${colorImg}.png" data-color="${color}" alt="랜덤" />
+                        <img src="../../../COMM/IMG/CRAYON_${colorImg}.png" data-color="${color}" alt="랜덤" />
                     </div>`;
         return html;
     });
@@ -815,8 +820,8 @@ function complate() {
 //낱말카드 저장 함수
 function complatePop() {
     var html, html2, saveImg, endImg;
-    saveImg = '../../COMM/IMG/CARD_SAVE.png';
-    endImg = '../../COMM/IMG/END.png';
+    saveImg = '../../../COMM/IMG/CARD_SAVE.png';
+    endImg = '../../../COMM/IMG/END.png';
     html =
         `
         <div class="pop-inner">
@@ -884,7 +889,7 @@ function colorGuide() {
     let colorGuide;
     colorGuide = `
         <div class="colorGuide">
-            <img src="../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
+            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
         </div>`;
     $('<div id="colorGuide" onclick="guideClose($(this))">' + colorGuide + '</div>')
         .appendTo('#wrap')
@@ -899,7 +904,7 @@ function dropGuide() {
     let dropGuide;
     dropGuide = `
         <div class="dropGuide">
-            <img src="../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
+            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
         </div>`;
     $('<div id="dropGuide" onclick="guideClose($(this))">' + dropGuide + '</div>')
         .appendTo('#wrap')
