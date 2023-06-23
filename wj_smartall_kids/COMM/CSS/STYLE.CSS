@@ -613,6 +613,16 @@ canvas {
     animation: introAni1 1s infinite;
 }
 
+.answerCont {
+    position: absolute;
+}
+
+.answerCont .answer {
+    position: static;
+    width: 100%;
+    height: 100%;
+}
+
 .answer img {
     /* width: 100%; */
     height: 100%;
@@ -620,6 +630,20 @@ canvas {
     width: auto;
     top: 0;
     left: 0;
+}
+.blink_img {
+    position: absolute;
+    display: none;
+}
+
+.blink_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.answerCont.active .blink_img {
+    display: block;
+    animation: blink 0.7s ease-in-out infinite alternate;
 }
 
 .section3 .pageContents {

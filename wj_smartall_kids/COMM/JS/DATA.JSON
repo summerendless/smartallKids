@@ -21,6 +21,12 @@ data = { //낱말 데이터
                         {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_3.png",},
                         {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_OFF_1_1_4.png",},
                     ],
+                    "itemBlink" : [
+                        {"key":"0", "url": "../../../COMM/IMG/WORD/1_1/STICKER_BLINK_1_1_1.png",},
+                        {"key":"1", "url": "../../../COMM/IMG/WORD/1_1/STICKER_BLINK_1_1_2.png",},
+                        {"key":"2", "url": "../../../COMM/IMG/WORD/1_1/STICKER_BLINK_1_1_3.png",},
+                        {"key":"3", "url": "../../../COMM/IMG/WORD/1_1/STICKER_BLINK_1_1_4.png",},
+                    ],
                 },
                 { 
                     "word"      : "1",

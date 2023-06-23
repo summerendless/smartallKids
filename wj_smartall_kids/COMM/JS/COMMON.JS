@@ -77,13 +77,16 @@ function init() {
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
         $('.color-palette').addClass('glory');
-        infoColorBgm.addEventListener('ended', function() { 
-            // this.currentTime = 0;
-            console.log('가이드 삭제');
-            $('#colorGuide').remove();
-            $('.color-palette').removeClass('glory');
-        }, false);
-        
+        infoColorBgm.addEventListener(
+            'ended',
+            function () {
+                this.currentTime = 0;
+                console.log('가이드 삭제');
+                $('#colorGuide').remove();
+                $('.color-palette').removeClass('glory');
+            },
+            false
+        );
     }, 3200);
 }
 
@@ -141,9 +144,13 @@ function wordInit() {
         $('.stick-panel').html('');
     }
     for (var j = 0; j < wordsOff.length; j++) {
-        $('<div class="answer answer' + j + '">' + '<img src="' + wordsOff[j].url + '">' + '</div>')
-            .attr('data-answer', +pageWrapNum + j)
+        $(`<div class="answerCont answerCont${j}">
+            <div class="answer answer${j}"><img src="${wordsOff[j].url}"> </div>
+            <div class="blink_img"><img/></div>
+        </div>`)
             .appendTo('.stick-panel')
+            .children('.answer')
+            .attr('data-answer', pageWrapNum + j)
             .droppable({
                 accept: '#wordWrap' + ' div',
                 tolerance: 'touch',
@@ -162,7 +169,10 @@ function wordInit() {
 
         $('<div class="word answer-item' + '">' + '<img src="' + wordsOn[j].url + '">' + '</div>')
             .data('word', pageWrapNum + j)
-            .attr('id', 'word' + pageWrapNum + j)
+            .attr({
+                id: 'word' + pageWrapNum + j,
+                data: pageWrapNum + j,
+            })
             .appendTo('.wordsBox' + pageWrapNum + j)
             .draggable({
                 // containment: containment,
@@ -171,6 +181,8 @@ function wordInit() {
                 revert: true,
                 // helper: "clone",
                 //  drag: dragFix(event, aa=containmentArea),
+                drag: handleCardDrag,
+                activeClass: handleHigh,
             });
     }
 
@@ -271,7 +283,7 @@ function itemImageLoad() {
 //section2 캔버스 글자 이미지 로드 함수
 function itemImageLoad2(src) {
     let itemImageHtml2 = $('.section' + sectionCounter + ' #itemWord');
-    $(itemImageHtml2).attr('src', src);   
+    $(itemImageHtml2).attr('src', src);
 }
 
 //캔버스 이미지 테스트
@@ -303,15 +315,19 @@ function wordTest() {
         pattern = ctx.createPattern(drawImage, 'no-repeat');
     };
 
-    if(pageWrapNum != 0){
+    if (pageWrapNum != 0) {
         colorGuide(playVid(infoColorBgm));
         $('.color-palette').addClass('glory');
-        infoColorBgm.addEventListener('ended', function() { 
-            this.currentTime = 0;
-            console.log('가이드 삭제');
-            $('#colorGuide').remove();
-            $('.color-palette').removeClass('glory');
-        }, false);
+        infoColorBgm.addEventListener(
+            'ended',
+            function () {
+                this.currentTime = 0;
+                console.log('가이드 삭제');
+                $('#colorGuide').remove();
+                $('.color-palette').removeClass('glory');
+            },
+            false
+        );
     }
 
     // Event (마우스)
@@ -609,25 +625,59 @@ function pageMove() {
     nextBtn.classList.remove('active');
     $('.section2').css('display', 'block').siblings().css('display', 'none');
     setTimeout(function () {
-        dropGuide(playVid(infoDropBgm))
-        infoDropBgm.addEventListener('ended', function() { 
-            // this.currentTime = 0;
-            console.log('가이드 삭제');
-            $('#dropGuide').remove();
-        }, false);
+        dropGuide(playVid(infoDropBgm));
+        infoDropBgm.addEventListener(
+            'ended',
+            function () {
+                this.currentTime = 0;
+                console.log('가이드 삭제');
+                $('#dropGuide').remove();
+            },
+            false
+        );
     }, 500);
+}
+
+//드래그 이벤트
+function handleCardDrag(event, ui) {
+    let answer = document.querySelectorAll('.answer');
+    let answerName;
+
+    answer.forEach((el) => {
+        answerName = el.getAttribute('data-answer');
+        el.parentElement.classList.remove('active');
+        if (answerName == this.getAttribute('data')) {
+            el.parentElement.classList.add('active');
+            console.log(el.parentElement.children);
+            el.parentElement.children[1].childNodes[0].setAttribute('src', wordData.itemUrls[pageWrapNum].itemBlink[answerName].url);
+        }
+    });
+}
+//수정!!!!!!!!!!!!!!!!!!!!!!!!
+function handleHigh(event, ui) {
+    var slotNumber = $(this).attr('data-answer');
+    var cardNumber = ui.draggable.data('word');
+    if (slotNumber == cardNumber) {
+        $('.ui-droppable').classList.add('ui-state-highlight');
+        // cardNumber.find('.droppableImg').fadeOut('slow');
+        // playVid(touchBgm2);
+    } else {
+        // playVid(touchBgm3);
+    }
 }
 
 // 드롭 이벤트
 function handleCardDrop(event, ui) {
     var slotNumber = $(this).attr('data-answer');
     var cardNumber = ui.draggable.data('word');
+
     // var offImg = slotNumber.firstChild;
     // console.log(ui.draggable, slotNumber, cardNumber)
     $('#dropGuide').remove();
     if (slotNumber == cardNumber) {
         playVid(dropBgm3);
         deleteImage(ui.draggable, $(this));
+        $(this).parent().removeClass('active');
         // cardNumber.find('.droppableImg').fadeOut('slow');
         // playVid(touchBgm2);
     } else {
@@ -922,8 +972,8 @@ function colorGuide() {
         .appendTo('#wrap')
         .html(colorGuide);
 
-        console.log($(this))
-        // $(this).remove();
+    console.log($(this));
+    // $(this).remove();
 }
 
 function guideClose($this) {
@@ -939,7 +989,7 @@ function dropGuide() {
     $('<div id="dropGuide">' + dropGuide + '</div>')
         .appendTo('#wrap')
         .html(dropGuide);
-        // onclick="guideClose($(this))"
+    // onclick="guideClose($(this))"
 }
 
 function guideClose($this) {
