@@ -33,40 +33,40 @@ let wordData = undefined;
 let lockHistory = false; //Undo 히스토리
 const undo_history = [];
 const redo_history = [];
-const ImgArr = []
+const ImgArr = [];
 
-
-var introBgm = new Audio('../../COMM/MP3/INTRO.mp3'); // 인트로
-var likeBgm = new Audio('../../COMM/MP3/LIKEIT.mp3'); // 좋아요
-var goodjob2Bgm = new Audio('../../COMM/MP3/LASTGOODJOB.mp3'); // 마지막 잘했어요
-var infoDropBgm = new Audio('../../COMM/MP3/INFO_DROP.mp3'); // 드래그앤드랍 인포
-var infoColorBgm = new Audio('../../COMM/MP3/INFO_COLOR.mp3'); // 색칠 인포
-var goodjobBgm = new Audio('../../COMM/MP3/GOODJOB.mp3'); // 잘했어요
-var fanfareBgm = new Audio('../../COMM/MP3/FANFARE.mp3'); // 빵빠레
-var dropBgm3 = new Audio('../../COMM/MP3/DROPING.mp3'); // 드래그앤드랍 시
-var doneBgm3 = new Audio('../../COMM/MP3/DONE.mp3'); // 완료
-var coloringBgm = new Audio('../../COMM/MP3/COLORING.mp3'); // 색칠 시
+var introBgm = new Audio('../../../COMM/MP3/INTRO.mp3'); // 인트로
+var likeBgm = new Audio('../../../COMM/MP3/LIKEIT.mp3'); // 좋아요
+var goodjob2Bgm = new Audio('../../../COMM/MP3/LASTGOODJOB.mp3'); // 마지막 잘했어요
+var infoDropBgm = new Audio('../../../COMM/MP3/INFO_DROP.mp3'); // 드래그앤드랍 인포
+var infoColorBgm = new Audio('../../../COMM/MP3/INFO_COLOR.mp3'); // 색칠 인포
+var goodjobBgm = new Audio('../../../COMM/MP3/GOODJOB.mp3'); // 잘했어요
+var fanfareBgm = new Audio('../../../COMM/MP3/FANFARE.mp3'); // 빵빠레
+var dropBgm3 = new Audio('../../../COMM/MP3/DROPING.mp3'); // 드래그앤드랍 시
+var doneBgm3 = new Audio('../../../COMM/MP3/DONE.mp3'); // 완료
+var coloringBgm = new Audio('../../../COMM/MP3/COLORING.mp3'); // 색칠 시
 
 const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
 const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
 const endBtn = document.querySelector('.done-btn'); // 완료 버튼
 
-const randomColor = ['random','#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
- // 잘했어요 음원 리스트
+const randomColor = ['random', '#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
+// 잘했어요 음원 리스트
 const goodjobBgmList = [
-    '../../COMM/MP3/GOODJOB.mp3',
-    '../../COMM/MP3/BEST.mp3',
-    '../../COMM/MP3/BRAVO.mp3',
-    '../../COMM/MP3/LIKEIT.mp3',
-]
+    '../../../COMM/MP3/GOODJOB.mp3',
+    '../../../COMM/MP3/BEST.mp3',
+    '../../../COMM/MP3/BRAVO.mp3',
+    '../../../COMM/MP3/LIKEIT.mp3',
+];
 // 초기 빌드
 function init() {
     var active = '1';
     reset();
     $(pageWrapArr).addClass('on');
-    wordData = data.word_data; ///Load Dataset from JSON file
+    // wordData = data.word_data; ///Load Dataset from JSON file
+    wordData = mydata; //각 차시별 데이터
     itemImageLoad();
-    itemImageLoad2(wordData[mainPageNum].wordUrl[pageWrapNum].url);
+    itemImageLoad2(wordData.itemUrls[pageWrapNum].wordItem);
     // wordImageLoad();
     wordTest();
 
@@ -75,9 +75,6 @@ function init() {
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
     }, 3200);
-
-   
-   
 }
 
 //bgm재생
@@ -103,7 +100,7 @@ function init() {
 //     guideHtml = `
 //         <div class="drag">
 //             <i class="hand_icon">
-//                 <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="">
+//                 <img src="../../../../COMM/IMG/ICON_HAND.PNG" alt="">
 //             </i>
 //         </div>
 
@@ -125,9 +122,9 @@ function init() {
 // }
 
 function wordInit() {
-    let wordsOff = wordData[mainPageNum].itemUrls[pageWrapNum].itemOff;
-    let wordsOn = wordData[mainPageNum].itemUrls[pageWrapNum].itemOn;
-    // let section2ImgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
+    let wordsOff = wordData.itemUrls[pageWrapNum].itemOff;
+    let wordsOn = wordData.itemUrls[pageWrapNum].itemOn;
+    // let section2ImgUrl = wordData.itemUrls[pageWrapNum].wordItem;
 
     //.stick-panel 내 전페이지 데이터 삭제
     if ($('.stick-panel div').length !== 0) {
@@ -165,36 +162,34 @@ function wordInit() {
                 // helper: "clone",
                 //  drag: dragFix(event, aa=containmentArea),
             });
-
     }
 
-    let aa = randomColor.map((color , idx) => {
-        let colorImg='';
-        let html ="";
+    let aa = randomColor.map((color, idx) => {
+        let colorImg = '';
+        let html = '';
 
-        if(idx == 0){
-            colorImg = 'BV'
-        }else if(idx == 1){
-            colorImg = 'RD'
-        }else if(idx == 2){
-                        colorImg = 'OR'
-        }else if(idx == 3){
-                        colorImg = 'YL'
-        }else if(idx == 4){
-                        colorImg = 'GN'
-        }else if(idx == 5){
-                        colorImg = 'BL'
-        }else if(idx == 6){
-                        colorImg = 'PR'
+        if (idx == 0) {
+            colorImg = 'BV';
+        } else if (idx == 1) {
+            colorImg = 'RD';
+        } else if (idx == 2) {
+            colorImg = 'OR';
+        } else if (idx == 3) {
+            colorImg = 'YL';
+        } else if (idx == 4) {
+            colorImg = 'GN';
+        } else if (idx == 5) {
+            colorImg = 'BL';
+        } else if (idx == 6) {
+            colorImg = 'PR';
         }
-        
+
         html += `<div class="controls__color color-option color-red">
-                        <img src="../../COMM/IMG/CRAYON_${colorImg}.png" data-color="${color}" alt="랜덤" />
+                        <img src="../../../COMM/IMG/CRAYON_${colorImg}.png" data-color="${color}" alt="랜덤" />
                     </div>`;
         return html;
-    })
+    });
     $('#jsColors').html(aa);
-
 
     /*
     for (var i = 0; i < wordsOn.length; i++) {
@@ -227,8 +222,6 @@ function wordInit() {
     //         drop: handleCardDrop,
     //     });
     // })
-
-   
 }
 
 // 초기화 함수
@@ -252,8 +245,8 @@ function itemImageLoad() {
     console.log(itemImageHtml);
     console.log('mainPageNum', mainPageNum);
     console.log('pageWrapNum', pageWrapNum);
-    console.log(wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
-    $(itemImageHtml).attr('src', wordData[mainPageNum].itemUrls[pageWrapNum].mainItem);
+    console.log(wordData.itemUrls[pageWrapNum].mainItem);
+    $(itemImageHtml).attr('src', wordData.itemUrls[pageWrapNum].mainItem);
     // function cancelEvent(event) {
     //     if (event.preventDefault) {
     //         event.preventDefault();
@@ -262,27 +255,27 @@ function itemImageLoad() {
     //     }
     // }
 
-    //$('<div id="itemImg' + '">' + '<img src="' + wordData[mainPageNum].itemUrls[pageWrapNum].mainItem + '">' + '</div>').appendTo('.item-img');
+    //$('<div id="itemImg' + '">' + '<img src="' + wordData.itemUrls[pageWrapNum].mainItem + '">' + '</div>').appendTo('.item-img');
 }
 
 //section2 캔버스 글자 이미지 로드 함수
 function itemImageLoad2(src) {
-    console.log(src)
+    console.log(src);
     let itemImageHtml2 = $('.section' + sectionCounter + ' #itemWord');
     $(itemImageHtml2).attr('src', src);
 }
 
 //캔버스 이미지 테스트
-function wordTest(){
-    let canvas = document.getElementById("myCanvas");
+function wordTest() {
+    let canvas = document.getElementById('myCanvas');
     let cPushArray = new Array();
 
     let ctx = canvas.getContext('2d');
-    let isDraw  = false;
+    let isDraw = false;
     let pDraw = $('#myCanvas').offset();
     let currP = null;
     let drawImage = new Image();
-    
+
     var cStep = -1;
 
     let brushColor = '';
@@ -290,7 +283,7 @@ function wordTest(){
     let brushlineCap = 'round';
 
     let pattern;
-    let imgUrl = wordData[mainPageNum].wordUrl[pageWrapNum].url;
+    let imgUrl = wordData.itemUrls[pageWrapNum].wordItem;
 
     drawImage.src = imgUrl;
     drawImage.onload = () => {
@@ -298,16 +291,16 @@ function wordTest(){
         canvas.height = drawImage.height;
         ctx.drawImage(drawImage, 0, 0);
 
-      ctx.globalCompositeOperation = "source-atop";
-      pattern = ctx.createPattern(drawImage, "no-repeat");
-    }
+        ctx.globalCompositeOperation = 'source-atop';
+        pattern = ctx.createPattern(drawImage, 'no-repeat');
+    };
 
     // var getPosition = function(e) {
     //     var x, y;
     //     if(e.type.indexOf("mouse") > -1) {
     //         x = e.offsetX;
     //         y = e.offsetY;
-    //     } else { 
+    //     } else {
     //         var rect = e.target.getBoundingClientRect();
     //         x = e.changedTouches[0].clientX - rect.x;
     //         y = e.changedTouches[0].clientY - rect.y;
@@ -320,7 +313,7 @@ function wordTest(){
         if (e.button === 0) {
             e.preventDefault();
             ctx.beginPath();
-            isDraw = true;            
+            isDraw = true;
         }
     });
 
@@ -344,7 +337,9 @@ function wordTest(){
         e.preventDefault();
         ctx.beginPath();
         cStep++;
-        if (cStep < cPushArray.length) { cPushArray.length = cStep; }
+        if (cStep < cPushArray.length) {
+            cPushArray.length = cStep;
+        }
         cPushArray.push(document.getElementById('myCanvas').toDataURL());
     });
 
@@ -363,7 +358,6 @@ function wordTest(){
         // cPushArray.push(document.getElementById('myCanvas').toDataURL());
     });
 
-
     // 선 그리기
     function draw_line(p) {
         ctx.lineWidth = brushSize;
@@ -378,14 +372,15 @@ function wordTest(){
     }
 
     function newUndo() {
-
         if (cStep > 0) {
             cStep--;
             var canvasPic = new Image();
             canvasPic.src = cPushArray[cStep];
-            canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
+            canvasPic.onload = function () {
+                ctx.drawImage(canvasPic, 0, 0);
+            };
         }
-        if(cStep = 1) {
+        if ((cStep = 1)) {
             binBtn.classList.remove('active');
         }
     }
@@ -401,16 +396,14 @@ function wordTest(){
         undo_history.push(JSON.stringify(canvas)); //UNDO
         lockHistory = false;
     }
-    
 
     // 아래 기능은 테스트 용으로 주석처리 됨
-  
 
     // var toggleDrawing = function(e) {
     //     this.drawing = e.type === "touchstart";
     //     if(this.drawing) {
     //         console.log(e.type)
-    //         // var pos = getPosition(e);            
+    //         // var pos = getPosition(e);
     //         // var ctx = this.getContext("2d");
     //         ctx.beginPath();
     //         // ctx.moveTo(pos.x, pos.y);
@@ -419,7 +412,7 @@ function wordTest(){
     //         if (cStep < cPushArray.length) { cPushArray.length = cStep; }
     //         cPushArray.push(document.getElementById('myCanvas').toDataURL());
     //         coloringBgm.pause();
-    //     }    
+    //     }
     // }
 
     // undo_history.push(JSON.stringify(canvas));
@@ -437,8 +430,8 @@ function wordTest(){
     //         ctx.moveTo(currP.X +280, currP.Y +70);
     //         ctx.stroke();
     //         ctx.lineCap = brushlineCap;
-    //         ctx.lineWidth = brushSize; 
-    //         ctx.strokeStyle = brushColor; 
+    //         ctx.lineWidth = brushSize;
+    //         ctx.strokeStyle = brushColor;
 
     //         if (lockHistory) return;
     //         // console.log('object:added');
@@ -450,7 +443,6 @@ function wordTest(){
     //         // redo_history.length = 0;
     //     }
     // };
-
 
     // function newUndo() {
 
@@ -491,7 +483,7 @@ function wordTest(){
 
     // $('#myCanvas').bind('touchstart', toggleDrawing);
     // $('#myCanvas').bind('touchmove', draw);
-    // // canvas.addEventListener("touchmove", draw, function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false); 
+    // // canvas.addEventListener("touchmove", draw, function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false);
     // $('#myCanvas').bind('touchstart', toggleDrawing);
 
     /*
@@ -510,8 +502,8 @@ function wordTest(){
         //         ctx.lineTo(touches[0].screenX, touches[0].screenY);
         //         ctx.stroke();
         // }
-    */  
-    
+    */
+
     // canvas.on('object:added', function () {
     //     if (lockHistory) return;
     //     console.log('object:added');
@@ -522,37 +514,36 @@ function wordTest(){
     //     redo_history.length = 0;
     //     console.log(undo_history.length);
     // });
-    
+
     function colorOption() {
         // 색상 선택 시작
         // const colorOption = Array.from(document.getElementsByClassName('color-option'));
         const color = document.querySelector('#color');
 
-        ctx.strokeStyle = color.value; 
+        ctx.strokeStyle = color.value;
         function oncolorChange(event) {
-
             event.stopPropagation();
-            console.log($(event.target))
+            console.log($(event.target));
             $(event.target).parent().addClass('active');
             $(event.target).parent().siblings().removeClass('active');
             let num = Math.floor(Math.random() * randomColor.length);
-            const colorValue = event.target.dataset.color == 'random' ? randomColor[num] :event.target.dataset.color;
+            const colorValue = event.target.dataset.color == 'random' ? randomColor[num] : event.target.dataset.color;
             canvas.strokeStyle = colorValue; /** 선 색상변경 */
             canvas.fillStyle = colorValue;
             color.value = colorValue; /** 변경된 색상 표시 */
             ctx.strokeStyle = color.value;
-            console.log(color.value)
+            console.log(color.value);
         }
         // color.addEventListener("change", oncolorChange); /** 색상변경 함수명 */
         // colorOption.forEach((color) => color.addEventListener('click', oncolorChange));
-        $(document).on('click', '.color-option', (e)=>{
-            oncolorChange(e)  
-        })
+        $(document).on('click', '.color-option', (e) => {
+            oncolorChange(e);
+        });
     }
     colorOption();
     //     function colorRandomOption() {
     //         // 랜덤색상 선택 시작
-            
+
     //         const colorRandom = document.querySelector('.color-option-random');
     //         const color = document.querySelector('#color');
 
@@ -570,8 +561,7 @@ function wordTest(){
     //             let num = Math.floor(Math.random() * randomColor.length);
     //             ctx.strokeStyle = randomColor[num];
     //         }
-    //     }    
-
+    //     }
 }
 
 //Detele
@@ -601,7 +591,7 @@ function pageMove() {
     sectionCounter = sectionCounter + 1;
     console.log('sectionCounter', sectionCounter);
     itemImageLoad();
-    console.log(ImgArr)
+    console.log(ImgArr);
     itemImageLoad2(ImgArr[pageWrapNum]);
     // }
     nextBtn.classList.remove('active');
@@ -623,7 +613,6 @@ function handleCardDrop(event, ui) {
         deleteImage(ui.draggable, $(this));
         // cardNumber.find('.droppableImg').fadeOut('slow');
         // playVid(touchBgm2);
-   
     } else {
         // playVid(touchBgm3);
     }
@@ -632,7 +621,7 @@ function handleCardDrop(event, ui) {
 // 삭제
 function deleteImage($item, $drop) {
     var allchk = 0;
-    let wordVocie = wordData[mainPageNum].wordUrl[pageWrapNum].answerVoice;
+    let wordVocie = wordData.itemUrls[pageWrapNum].answerVoice;
     var wordAnswerBgm = new Audio(wordVocie); // 정답 단어
     // $item.addClass('correct');
     // $item.draggable('disable');
@@ -650,11 +639,11 @@ function deleteImage($item, $drop) {
         console.log(pageWrapNum);
         playVid(wordAnswerBgm); // 정답 단어
         // $confetti.addClass('animation');
-        reAction(); 
+        reAction();
         playVid(fanfareBgm); // 빵빠레
-        var nowAudio = goodjobBgmList[pageWrapNum - 1 ];
-        goodjabAudio.src= nowAudio;
-        console.log("goodjabAudio::::" , goodjabAudio)
+        var nowAudio = goodjobBgmList[pageWrapNum - 1];
+        goodjabAudio.src = nowAudio;
+        console.log('goodjabAudio::::', goodjabAudio);
 
         setTimeout(function () {
             playVid(goodjobBgm);
@@ -663,7 +652,7 @@ function deleteImage($item, $drop) {
         //     $confetti.removeClass('animation');
         // }, 1500);
         setTimeout(function () {
-            sectionCounter = 1; 
+            sectionCounter = 1;
             let vars = $pagingItem.get(pageWrapNum - 1);
             $(vars).addClass('on');
             let pageWrapArr = $pageWrap.get(pageWrapNum);
@@ -680,7 +669,7 @@ function deleteImage($item, $drop) {
             } else {
                 $('.section3').css('display', 'block').siblings().css('display', 'none');
                 $('header').css('display', 'none');
-                sec3Init()
+                sec3Init();
                 playAllCard();
             }
             // $('.section3').css('display', 'block').siblings().css('display', 'none');
@@ -701,29 +690,38 @@ function deleteImage($item, $drop) {
     }
 }
 
-function reAction(){
-    $("#startButton").trigger("click");
-    setTimeout(function(){
-        $("#stopButton").trigger("click");
+function reAction() {
+    $('#startButton').trigger('click');
+    setTimeout(function () {
+        $('#stopButton').trigger('click');
     }, 3000);
-}  
+}
 
 function sec3Init() {
-    var html ; 
-    var dataList = wordData[mainPageNum]
-    html = dataList.itemUrls.map((item, idx)=>`
+    var html;
+    var dataList = wordData;
+    html = dataList.itemUrls
+        .map(
+            (item, idx) =>
+                `
         <div class="stick-panel-2" key=${item.word}>
-            `+
-                item.itemOn.map((item2)=>`
+            ` +
+                item.itemOn
+                    .map(
+                        (item2) => `
                     <div class="answer answer${item2.key}" data-answer="0${item2.key}">
                         <img src="${item2.url}"/>
                     </div>
-                `).join('') 
-            +`
+                `
+                    )
+                    .join('') +
+                `
             <div class="item-img"><img src="${item.mainItem}" alt="" /></div>
             <div class="item-word"><img src="${ImgArr[idx]}" alt="" /></div>
         </div>
-    `).join('') 
+    `
+        )
+        .join('');
 
     $('<div class="pageContents"/>').appendTo('.section3').html(html);
 }
@@ -741,69 +739,65 @@ function next(e) {
         // var colored_image_src = "html_images/base_profile";
         // document.getElementById("colorImg").src = colored_image_src;
 
-        function toDataURL(){
-            let canvas = document.getElementById("myCanvas");
+        function toDataURL() {
+            let canvas = document.getElementById('myCanvas');
             // const image = ctx.toDataURL();
             // var myImage = document.getElementById('colorImg');
             // console.log(canvas.toDataURL())
             // myImage.src = canvas.toDataURL();
-            ImgArr.push(canvas.toDataURL())
+            ImgArr.push(canvas.toDataURL());
         }
-        function fromDataURL(){
-            // var copyCanvas = document.getElementById('copyCanvas');    
-            // var copyContext = copyCanvas.getContext('2d'); 
-           
+        function fromDataURL() {
+            // var copyCanvas = document.getElementById('copyCanvas');
+            // var copyContext = copyCanvas.getContext('2d');
+
             // var image = new Image();
-            // image.src = canvas.toDataURL(); 
-           
+            // image.src = canvas.toDataURL();
+
             // image.onload = function(){
             //   copyContext.drawImage(image,0,0);
-            // } 
-    
-            var copyCanvas = document.getElementById('copyCanvas');    
-            var copyContext = copyCanvas.getContext('2d'); 
-            copyContext.drawImage(copyCanvas,0,0);  
+            // }
+
+            var copyCanvas = document.getElementById('copyCanvas');
+            var copyContext = copyCanvas.getContext('2d');
+            copyContext.drawImage(copyCanvas, 0, 0);
         }
         // fromDataURL()
     }
-    console.log(ImgArr)
+    console.log(ImgArr);
 }
 
 //마지막카드 오디오 재생 함수
 function playAllCard() {
-    var allData = wordData[0].wordUrl; // [0] => 차시를 넣어야함 ! 
-    var audioArray =[];
-    
-    allData.map((item)=>{
-        return audioArray.push(item.answerVoice)
+    var allData = wordData[0].itemUrls; // [0] => 차시를 넣어야함 !
+    var audioArray = [];
+
+    allData.map((item) => {
+        return audioArray.push(item.answerVoice);
     });
-    
-    console.log(audioArray)
+
+    console.log(audioArray);
 
     function playNextAudio(idx) {
         var audioElement = new Audio();
 
         if (idx < audioArray.length) {
-          console.log("audio 재생중");
-          var nowAudio = audioArray[idx];
-          audioElement.src = nowAudio;
-          audioElement.play();
-          $(audioElement).on('ended', function() {
-            playNextAudio(idx+1);
+            console.log('audio 재생중');
+            var nowAudio = audioArray[idx];
+            audioElement.src = nowAudio;
+            audioElement.play();
+            $(audioElement).on('ended', function () {
+                playNextAudio(idx + 1);
 
-            if(idx === audioArray.length - 1 ){
-                endBtn.classList.add('active');
-            }
-          });
-    
+                if (idx === audioArray.length - 1) {
+                    endBtn.classList.add('active');
+                }
+            });
         }
-      }
+    }
 
-     
-      playNextAudio(0); 
-
+    playNextAudio(0);
 }
-
 
 // 완료 함수
 $(document).on('click', '.done-btn', complate);
@@ -819,8 +813,8 @@ function complate() {
 //낱말카드 저장 함수
 function complatePop() {
     var html, html2, saveImg, endImg;
-    saveImg = '../../COMM/IMG/CARD_SAVE.png';
-    endImg = '../../COMM/IMG/END.png';
+    saveImg = '../../../COMM/IMG/CARD_SAVE.png';
+    endImg = '../../../COMM/IMG/END.png';
     html =
         `
         <div class="pop-inner">
@@ -888,7 +882,7 @@ function colorGuide() {
     let colorGuide;
     colorGuide = `
         <div class="colorGuide">
-            <img src="../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
+            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
         </div>`;
     $('<div id="colorGuide" onclick="guideClose($(this))">' + colorGuide + '</div>')
         .appendTo('#wrap')
@@ -903,7 +897,7 @@ function dropGuide() {
     let dropGuide;
     dropGuide = `
         <div class="dropGuide">
-            <img src="../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
+            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
         </div>`;
     $('<div id="dropGuide" onclick="guideClose($(this))">' + dropGuide + '</div>')
         .appendTo('#wrap')
