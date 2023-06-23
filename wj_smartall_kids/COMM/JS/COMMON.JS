@@ -318,10 +318,6 @@ function wordTest() {
     //     return {x:x, y:y};
     // };
 
-    if(!isDraw)  {
-        playVid(coloringBgm);
-    }
-
     // Event (마우스)
     $('#myCanvas').bind('mousedown', function (e) {
         if (e.button === 0) {
@@ -350,7 +346,6 @@ function wordTest() {
     $('#myCanvas').bind('touchstart', function (e) {
         e.preventDefault();
         ctx.beginPath();
-        isDraw = true;
         cStep++;
         if (cStep < cPushArray.length) {
             cPushArray.length = cStep;
@@ -361,7 +356,7 @@ function wordTest() {
     $('#myCanvas').bind('touchmove', function (e) {
         var event = e.originalEvent;
         e.preventDefault();
-        isDraw = true; 
+        playVid(coloringBgm);
         // currP = { X: event.touches[0].pageX - pDraw.left+80, Y: event.touches[0].pageY - pDraw.top+70 };
         currP = { X: event.touches[0].pageX - 120, Y: event.touches[0].pageY - pDraw.top };
         draw_line(currP);
@@ -369,7 +364,6 @@ function wordTest() {
 
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
-        isDraw = false;
         // coloringBgm.pause();
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
