@@ -51,8 +51,8 @@
     bottom: 130px;
     left: 50%;
     transform: translateX(-50%);
-    min-height: 30%;
-
+    width: 640px;
+    height: 240px;
 }
 .section #canvasContainer canvas,
 .canvas-container {
