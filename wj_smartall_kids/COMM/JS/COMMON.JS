@@ -76,6 +76,14 @@ function init() {
     playVid(introBgm);
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
+        $('.color-palette').addClass('glory');
+        infoColorBgm.addEventListener('ended', function() { 
+            this.currentTime = 0;
+            console.log('가이드 삭제');
+            $('#colorGuide').remove();
+            $('.color-palette').removeClass('glory');
+        }, false);
+        
     }, 3200);
 }
 
@@ -186,7 +194,7 @@ function wordInit() {
             colorImg = 'PR';
         }
 
-        html += `<div class="controls__color color-option color-red">
+        html += `<div class="color-option">
                         <img src="../../../COMM/IMG/CRAYON_${colorImg}.png" data-color="${color}" alt="랜덤" />
                     </div>`;
         return html;
@@ -338,6 +346,7 @@ function wordTest() {
     $('#myCanvas').bind('touchstart', function (e) {
         e.preventDefault();
         ctx.beginPath();
+        coloringBgm.play();        
         cStep++;
         if (cStep < cPushArray.length) {
             cPushArray.length = cStep;
@@ -355,6 +364,7 @@ function wordTest() {
 
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
+        coloringBgm.pause();
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
         // cPushArray.push(document.getElementById('myCanvas').toDataURL());
@@ -599,8 +609,12 @@ function pageMove() {
     nextBtn.classList.remove('active');
     $('.section2').css('display', 'block').siblings().css('display', 'none');
     setTimeout(function () {
-        playVid(infoDropBgm);
-        dropGuide();
+        dropGuide(playVid(infoDropBgm))
+        infoDropBgm.addEventListener('ended', function() { 
+            this.currentTime = 0;
+            console.log('가이드 삭제');
+            $('#dropGuide').remove();
+        }, false);
     }, 500);
 }
 
@@ -610,6 +624,7 @@ function handleCardDrop(event, ui) {
     var cardNumber = ui.draggable.data('word');
     // var offImg = slotNumber.firstChild;
     // console.log(ui.draggable, slotNumber, cardNumber)
+    $('#dropGuide').remove();
     if (slotNumber == cardNumber) {
         playVid(dropBgm3);
         deleteImage(ui.draggable, $(this));
@@ -880,6 +895,8 @@ function playVid(el) {
     el.muted = false;
     el.play();
 }
+
+
 function pauseAll() {
     $('audio.audio').each(function (i) {
         i = i + 1;
@@ -894,9 +911,12 @@ function colorGuide() {
         <div class="colorGuide">
             <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
         </div>`;
-    $('<div id="colorGuide" onclick="guideClose($(this))">' + colorGuide + '</div>')
+    $('<div id="colorGuide" class="show">' + colorGuide + '</div>')
         .appendTo('#wrap')
         .html(colorGuide);
+
+        console.log($(this))
+        // $(this).remove();
 }
 
 function guideClose($this) {
@@ -909,9 +929,10 @@ function dropGuide() {
         <div class="dropGuide">
             <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
         </div>`;
-    $('<div id="dropGuide" onclick="guideClose($(this))">' + dropGuide + '</div>')
+    $('<div id="dropGuide">' + dropGuide + '</div>')
         .appendTo('#wrap')
         .html(dropGuide);
+        // onclick="guideClose($(this))"
 }
 
 function guideClose($this) {
