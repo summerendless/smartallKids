@@ -536,11 +536,12 @@ canvas {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
+    transition: all 0.7s ease-in-out;
 }
 
 .section3 .item-img {
-    width: 30%;
-    height: 40%;
+    /* width: 30%; */
+    height: 46%;
     position: absolute;
     top: 10%;
     left: 50%;
@@ -557,10 +558,14 @@ canvas {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
+    transition: all 0.7s ease-in-out;
 }
 
 .section3 .item-word {
     bottom: 20%;
+    min-width: unset;
+    max-width: none;
+    height: 25%;
 }
 
 .item-img img,
@@ -583,6 +588,7 @@ canvas {
     text-align: center;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.7s ease-in-out;
 }
 
 .answer-list .wordsBox {
@@ -607,9 +613,36 @@ canvas {
     left: 50%;
     top: 45px;
     transform: translateX(-50%);
+    transition: all 0.7s ease-in-out;
+}
+.section2.active .stick-panel {
+    width: 90%;
+    height: 83%;
+    top: 100px;
 }
 
-.stick-panel-2 .answer {
+.section2.active .answerCont {
+    width: 230px;
+    height: 230px;
+}
+
+.section2.active .item-img {
+    width: 33%;
+    height: 43%;
+    top: 20%;
+}
+
+.section2.active .item-word {
+    height: 25%;
+    bottom: 15%;
+}
+
+.section2.active .answer-list {
+    bottom: -20%;
+}
+
+.section2.active .stick-panel .answer,
+.stick-panel-2.active .answer {
     animation: introAni1 1s infinite;
 }
 

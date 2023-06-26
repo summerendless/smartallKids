@@ -154,6 +154,7 @@ function wordInit() {
     //.stick-panel 내 전페이지 데이터 삭제
     if ($('.stick-panel div').length !== 0) {
         $('.stick-panel').html('');
+        $('.section2').removeClass('active');
     }
     for (var j = 0; j < wordsOff.length; j++) {
         $(`<div class="answerCont answerCont${j}">
@@ -387,7 +388,6 @@ function wordTest() {
         currP = { X: event.touches[0].pageX - 120, Y: event.touches[0].pageY - pDraw.top };
         console.log(color.value);
         draw_line(currP);
-
     });
 
     $('#myCanvas').bind('touchend', function (e) {
@@ -424,11 +424,10 @@ function wordTest() {
                 // ctx.clearRect(0, canvas.width, canvas.height);
             };
             binBtn.classList.add('active');
-        } 
+        }
         // else {
         //     binBtn.classList.remove('active');
         // }
-        
     }
     document.getElementById('undo').addEventListener('click', newUndo);
 
@@ -639,7 +638,7 @@ function pageMove() {
     itemImageLoad();
     // console.log(ImgArr);
     itemImageLoad2(ImgArr[pageWrapNum]);
-    
+
     // }
     nextBtn.classList.remove('active');
     $('.section2').css('display', 'block').siblings().css('display', 'none');
@@ -728,6 +727,7 @@ function deleteImage($item, $drop) {
         complatePage++;
         pageWrapNum++;
         console.log(pageWrapNum);
+        $('.section2').addClass('active');
         playVid(wordAnswerBgm); // 정답 단어
         // $confetti.addClass('animation');
         reAction();
@@ -738,7 +738,7 @@ function deleteImage($item, $drop) {
 
         setTimeout(function () {
             playVid(goodjabAudio);
-        }, 1000);
+        }, 1500);
         // setTimeout(function () {
         //     $confetti.removeClass('animation');
         // }, 1500);
@@ -798,7 +798,7 @@ function sec3Init() {
         .map(
             (item, idx) =>
                 `
-        <div class="stick-panel-2" key=${item.word}>
+        <div class="stick-panel-2" key=${item.word} data-answer="${idx}">
             ` +
                 item.itemOn
                     .map(
@@ -875,6 +875,8 @@ function playAllCard() {
 
     function playNextAudio(idx) {
         var audioElement = new Audio();
+        let sec3Panel = $('.section3 .stick-panel-2');
+        console.log(sec3Panel);
 
         if (idx < audioArray.length) {
             console.log('audio 재생중');
@@ -882,8 +884,11 @@ function playAllCard() {
             audioElement.src = nowAudio;
             playVid(audioElement);
             console.log(audioElement);
+            sec3Panel[idx].classList.add('active');
             $(audioElement).on('ended', function () {
+                sec3Panel[idx].classList.remove('active');
                 playNextAudio(idx + 1);
+                console.log(idx, ':: 끝');
 
                 if (idx === audioArray.length - 1) {
                     endBtn.classList.add('active');
@@ -897,8 +902,10 @@ function playAllCard() {
 
 // 완료 함수
 $(document).on('click', '.done-btn', complate);
-function complate() {
+function complate(event) {
     console.log('학습 완료');
+
+    $(event.target).removeClass('active').attr('disabled', true);
 
     //낱말카드 저장 팝업 함수
     complatePop();
