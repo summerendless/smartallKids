@@ -961,10 +961,11 @@ function playVid(el) {
     // // el.pause();
     // el.currentTime = 0;
     // el.play();
-    el.pause(); 
-    el.currentTime = 0;
-    el.muted = false;    
-    el.play(); 
+    if (el.muted) {
+        el.currentTime = 0;
+        el.muted = false;    
+        el.play(); 
+    }
 }
 
 // function pauseVid(el) {
@@ -986,7 +987,7 @@ function playAllBgm(){
 }
 
 function playColorBgm(){
-    coloringBgm.volume = 2;
+    coloringBgm.volume = 1;
     playVid(coloringBgm);
 }
 
