@@ -80,6 +80,14 @@ function init() {
     playVid(introBgm);
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
+       
+        infoColorBgm.addEventListener(
+            'ended',
+            function () {
+                playAllBgm();
+            },
+            false
+        );
         $('.color-palette').addClass('glory');
         infoColorBgm.addEventListener(
             'ended',
@@ -88,7 +96,6 @@ function init() {
                 console.log('가이드 삭제');
                 $('#colorGuide').remove();
                 $('.color-palette').removeClass('glory');
-                playAllBgm();
             },
             false
         );
@@ -370,6 +377,7 @@ function wordTest() {
         if (cStep < cPushArray.length) {
             cPushArray.length = cStep;
         }
+        playcolorBgm()
         cPushArray.push(document.getElementById('myCanvas').toDataURL());        
     });
 
@@ -384,7 +392,7 @@ function wordTest() {
 
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
-
+        playcolorBgm()
         // coloringBgm.pause();
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
@@ -977,8 +985,8 @@ function playAllBgm(){
     playVid(allBgm);
 }
 
-function playcolorBgm(){
-    coloringBgm.volume = 0.7;
+function playColorBgm(){
+    coloringBgm.volume = 2;
     playVid(coloringBgm);
 }
 
