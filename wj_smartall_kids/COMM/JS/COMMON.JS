@@ -385,11 +385,14 @@ function wordTest() {
         e.preventDefault();
         // currP = { X: event.touches[0].pageX - pDraw.left+80, Y: event.touches[0].pageY - pDraw.top+70 };
         currP = { X: event.touches[0].pageX - 120, Y: event.touches[0].pageY - pDraw.top };
+        console.log(color.value);
         draw_line(currP);
+
     });
 
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
+        pauseVid(coloringBgm);
         // coloringBgm.pause();
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
@@ -406,9 +409,8 @@ function wordTest() {
         // ctx.moveTo(p.X, p.Y);
         ctx.stroke();
         // if (lockHistory) return;
-        binBtn.classList.add('active');
         nextBtn.classList.add('active');
-        playColorBgm();
+        playVid(coloringBgm);
     }
 
     function newUndo() {
@@ -421,8 +423,11 @@ function wordTest() {
                 ctx.drawImage(canvasPic, 0, 0);
                 // ctx.clearRect(0, canvas.width, canvas.height);
             };
-            binBtn.classList.remove('active');
+            binBtn.classList.add('active');
         } 
+        // else {
+        //     binBtn.classList.remove('active');
+        // }
         
     }
     document.getElementById('undo').addEventListener('click', newUndo);
@@ -634,6 +639,7 @@ function pageMove() {
     itemImageLoad();
     // console.log(ImgArr);
     itemImageLoad2(ImgArr[pageWrapNum]);
+    
     // }
     nextBtn.classList.remove('active');
     $('.section2').css('display', 'block').siblings().css('display', 'none');
@@ -966,10 +972,10 @@ function playVid(el) {
     }
 }
 
-// function pauseVid(el) {
-//     el.pause();
-//     el.currentTime = 0;
-// }
+function pauseVid(el) {
+    el.pause();
+    el.currentTime = 0;
+}
 
 // function pauseAll() {
 //     $('audio.audio').each(function (i) {
@@ -982,11 +988,6 @@ function playVid(el) {
 function playAllBgm(){
     allBgm.volume = 0.4;
     playVid(allBgm);
-}
-
-function playColorBgm(){
-    coloringBgm.volume = 1;
-    playVid(coloringBgm);
 }
 
 function colorGuide() {
