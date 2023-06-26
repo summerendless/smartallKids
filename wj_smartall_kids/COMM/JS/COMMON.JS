@@ -57,6 +57,7 @@ const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버�
 const endBtn = document.querySelector('.done-btn'); // 완료 버튼
 
 const randomColor = ['random', '#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
+let selectColor = null;
 // 잘했어요 음원 리스트
 const goodjobBgmList = [
     '../../../COMM/MP3/GOODJOB.mp3',
@@ -84,7 +85,8 @@ function init() {
         infoColorBgm.addEventListener(
             'ended',
             function () {
-                playAllBgm();
+                // playVid(allBgm);
+                // allBgm.volume = 0.4;
             },
             false
         );
@@ -377,6 +379,7 @@ function wordTest() {
     $('#myCanvas').bind('touchstart', function (e) {
         pDraw = $('#myCanvas').offset();
         e.preventDefault();
+        if(selectColor == null) return
         ctx.beginPath();
         $('#colorGuide').remove();
         $('.color-palette').removeClass('glory');
@@ -389,6 +392,8 @@ function wordTest() {
     });
 
     $('#myCanvas').bind('touchmove', function (e) {
+
+        if(selectColor == null) return
         var event = e.originalEvent;
         e.preventDefault();
         // currP = { X: event.touches[0].pageX - pDraw.left+80, Y: event.touches[0].pageY - pDraw.top+70 };
@@ -463,6 +468,7 @@ function wordTest() {
             canvas.strokeStyle = colorValue; /** 선 색상변경 */
             canvas.fillStyle = colorValue;
             color.value = colorValue; /** 변경된 색상 표시 */
+            selectColor = colorValue;
             ctx.strokeStyle = color.value;
             console.log(color.value);
         }
@@ -507,6 +513,8 @@ function pageMove() {
     
     // }
     nextBtn.classList.remove('active');
+
+    selectColor = null;
     $('.section2').css('display', 'block').siblings().css('display', 'none');
     setTimeout(function () {
         dropGuide(playVid(infoDropBgm));
@@ -857,9 +865,20 @@ function pauseVid(el) {
 //     });
 // }
 
-function playAllBgm() {
-    allBgm.volume = 0.4;
-    playVid(allBgm);
+// function playAllBgm() {
+//     allBgm.volume = 0.4;
+//     playVid(allBgm);
+// }
+
+function bgmSoundStop(){
+    allBgm.pause();
+    turnOff = true;
+    soundChk(0)
+}
+function onResume(){
+    allBgm.play();
+    turnOff = false;
+    soundChk(1)
 }
 
 function colorGuide() {
