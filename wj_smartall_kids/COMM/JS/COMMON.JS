@@ -570,6 +570,7 @@ function handleCardDrop(event, ui) {
         // playVid(touchBgm2);
     } else {
         // playVid(touchBgm3);
+        playVid(touchBgm2);
     }
 }
 
@@ -874,7 +875,7 @@ function bgmSoundStop() {
     turnOff = true;
 }
 function onResume() {
-    allBgm.volume = 1;
+    allBgm.volume = 0.7;
     allBgm.play();
     turnOff = false;
 }
