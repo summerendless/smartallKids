@@ -668,8 +668,10 @@ canvas {
     margin: 0 0 10px 0;
 }
 
-.section3 .pageContents > div.stick-panel-2 .answer {
+.section3 .pageContents > div.stick-panel-2 .answerCont {
     position: absolute;
+    width: 130px;
+    height: 130px;
 }
 
 .confetti-wrap {

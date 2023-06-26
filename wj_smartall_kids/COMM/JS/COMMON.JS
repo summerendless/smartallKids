@@ -796,9 +796,11 @@ function sec3Init() {
                 item.itemOn
                     .map(
                         (item2) => `
-                    <div class="answer answer${item2.key}" data-answer="0${item2.key}">
-                        <img src="${item2.url}"/>
-                    </div>
+                        <div class="answerCont answerCont${item2.key}" key="${item2.key}">
+                            <div class="answer answer${item2.key}" data-answer="0${item2.key}">
+                                <img src="${item2.url}"/>
+                            </div>
+                        </div>
                 `
                     )
                     .join('') +
