@@ -1,219 +1,274 @@
 (function () {
-    // globals
-    var canvas;
-    var ctx;
-    var W;
-    var H;
-    var mp = 150; //max particles
-    var particles = [];
-    var angle = 0;
-    var tiltAngle = 0;
-    var confettiActive = true;
-    var animationComplete = true;
-    var deactivationTimerHandler;
-    var reactivationTimerHandler;
-    var animationHandler;
+    const TWO_PI = Math.PI * 2;
+    const HALF_PI = Math.PI * 0.5;
 
-    // objects
+    // canvas settings
+    var viewWidth = window.innerWidth,
+        viewHeight = window.innerHeight,
+        drawingCanvas = document.getElementById('canvas2'),
+        ctx,
+        timeStep = 1 / 60;
 
-    var particleColors = {
-        colorOptions: ["DodgerBlue", "OliveDrab", "Gold", "pink", "SlateBlue", "lightblue", "Violet", "PaleGreen", "SteelBlue", "SandyBrown", "Chocolate", "Crimson"],
-        colorIndex: 0,
-        colorIncrementer: 0,
-        colorThreshold: 10,
-        getColor: function () {
-            if (this.colorIncrementer >= 10) {
-                this.colorIncrementer = 0;
-                this.colorIndex++;
-                if (this.colorIndex >= this.colorOptions.length) {
-                    this.colorIndex = 0;
-                }
-            }
-            this.colorIncrementer++;
-            return this.colorOptions[this.colorIndex];
-        }
-    }
+    Point = function (x, y) {
+        this.x = x || 0;
+        this.y = y || 0;
+    };
 
-    function confettiParticle(color) {
-        this.x = Math.random() * W; // x-coordinate
-        this.y = (Math.random() * H) - H; //y-coordinate
-        this.r = RandomFromTo(10, 15); //radius;
-        this.d = (Math.random() * mp) + 10; //density;
-        this.color = color;
-        this.tilt = Math.floor(Math.random() * 10) - 10;
-        this.tiltAngleIncremental = (Math.random() * 0.07) + .05;
-        this.tiltAngle = 0;
+    Particle = function (p0, p1, p2, p3) {
+        this.p0 = p0;
+        this.p1 = p1;
+        this.p2 = p2;
+        this.p3 = p3;
 
-        this.draw = function () {
+        this.time = 0;
+        this.duration = 3 + Math.random() * 2;
+        this.color = '#' + Math.floor(Math.random() * 0xffffff).toString(16);
+
+        this.w = 15;
+        this.h = 10;
+
+        this.complete = false;
+    };
+
+    Particle.prototype = {
+        update: function () {
+            this.time = Math.min(this.duration, this.time + timeStep);
+
+            var f = Ease.outCubic(this.time, 0, 1, this.duration);
+            var p = cubeBezier(this.p0, this.p1, this.p2, this.p3, f);
+
+            var dx = p.x - this.x;
+            var dy = p.y - this.y;
+
+            this.r = Math.atan2(dy, dx) + HALF_PI;
+            this.sy = Math.sin(Math.PI * f * 10);
+            this.x = p.x;
+            this.y = p.y;
+
+            this.complete = this.time === this.duration;
+        },
+        draw: function () {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.r);
+            ctx.scale(1, this.sy);
+
+            ctx.fillStyle = this.color;
+            ctx.fillRect(-this.w * 0.5, -this.h * 0.5, this.w, this.h);
+
+            ctx.restore();
+        },
+    };
+
+    Loader = function (x, y) {
+        this.x = x;
+        this.y = y;
+
+        this.r = 24;
+        this._progress = 0;
+
+        this.complete = false;
+    };
+
+    Loader.prototype = {
+        reset: function () {
+            this._progress = 0;
+            this.complete = false;
+        },
+        set progress(p) {
+            this._progress = p < 0 ? 0 : p > 1 ? 1 : p;
+
+            this.complete = this._progress === 1;
+        },
+        get progress() {
+            return this._progress;
+        },
+        draw: function () {
+            ctx.fillStyle = '#000';
             ctx.beginPath();
-            ctx.lineWidth = this.r / 2;
-            ctx.strokeStyle = this.color;
-            ctx.moveTo(this.x + this.tilt + (this.r / 4), this.y);
-            ctx.lineTo(this.x + this.tilt, this.y + this.tilt + (this.r / 4));
-            return ctx.stroke();
+            ctx.arc(this.x, this.y, this.r, -HALF_PI, TWO_PI * this._progress - HALF_PI);
+            ctx.lineTo(this.x, this.y);
+            ctx.closePath();
+            ctx.fill();
+        },
+    };
+
+    // pun intended
+    Exploader = function (x, y) {
+        this.x = x;
+        this.y = y;
+
+        this.startRadius = 24;
+
+        this.time = 0;
+        this.duration = 0.4;
+        this.progress = 0;
+
+        this.complete = false;
+    };
+
+    Exploader.prototype = {
+        reset: function () {
+            this.time = 0;
+            this.progress = 0;
+            this.complete = false;
+        },
+        update: function () {
+            this.time = Math.min(this.duration, this.time + timeStep);
+            this.progress = Ease.inBack(this.time, 0, 1, this.duration);
+
+            this.complete = this.time === this.duration;
+        },
+        draw: function () {
+            ctx.fillStyle = '#000';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.startRadius * (1 - this.progress), 0, TWO_PI);
+            ctx.fill();
+        },
+    };
+
+    var particles = [],
+        loader,
+        exploader,
+        phase = 2;
+
+    function initDrawingCanvas() {
+        drawingCanvas.width = viewWidth;
+        drawingCanvas.height = viewHeight;
+        ctx = drawingCanvas.getContext('2d');
+
+        // createLoader();
+        // createExploader();
+        createParticles();
+    }
+
+    function createLoader() {
+        loader = new Loader(viewWidth * 0.5, viewHeight * 0.5);
+    }
+
+    function createExploader() {
+        exploader = new Exploader(viewWidth * 0.5, viewHeight * 0.5);
+    }
+
+    function createParticles() {
+        for (var i = 0; i < 128; i++) {
+            var p0 = new Point(viewWidth * 0.5, viewHeight * 0.5);
+            var p1 = new Point(Math.random() * viewWidth, Math.random() * viewHeight);
+            var p2 = new Point(Math.random() * viewWidth, Math.random() * viewHeight);
+            var p3 = new Point(Math.random() * viewWidth, viewHeight + 64);
+
+            particles.push(new Particle(p0, p1, p2, p3));
         }
     }
 
-    $(document).ready(function () {
-        SetGlobals();
-        InitializeButton();
-        //InitializeConfetti();
-
-        $(window).resize(function () {
-            W = window.innerWidth;
-            H = window.innerHeight;
-            canvas.width = W;
-            canvas.height = H;
+    function update() {
+        particles.forEach(function (p) {
+            p.update();
         });
+    }
 
-    });
+    function draw() {
+        ctx.clearRect(0, 0, viewWidth, viewHeight);
+
+        switch (phase) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                particles.forEach(function (p) {
+                    p.draw();
+                });
+                break;
+        }
+    }
+
+    window.onload = function () {
+        initDrawingCanvas();
+        InitializeButton();
+        // requestAnimationFrame(loop);
+    };
 
     function InitializeButton() {
-        $('#stopButton').click(DeactivateConfetti);
-        $('#startButton').click(RestartConfetti);
+        // $('#stopButton').click(DeactivateConfetti);
+        $('#startButton').click(loop);
     }
 
-    function SetGlobals() {
-        canvas = document.getElementById("canvas2");
-        ctx = canvas.getContext("2d");
-        W = window.innerWidth;
-        H = window.innerHeight;
-        canvas.width = W;
-        canvas.height = H;
-    }
+    function loop() {
+        update();
+        draw();
 
-    function InitializeConfetti() {
-        particles = [];
-        animationComplete = false;
-        for (var i = 0; i < mp; i++) {
-            var particleColor = particleColors.getColor();
-            particles.push(new confettiParticle(particleColor));
-        }
-        StartConfetti();
-    }
-
-    function Draw() {
-        ctx.clearRect(0, 0, W, H);
-        var results = [];
-        for (var i = 0; i < mp; i++) {
-            (function (j) {
-                results.push(particles[j].draw());
-            })(i);
-        }
-        Update();
-
-        return results;
-    }
-
-    function RandomFromTo(from, to) {
-        return Math.floor(Math.random() * (to - from + 1) + from);
-    }
-
-
-    function Update() {
-        var remainingFlakes = 0;
-        var particle;
-        angle += 0.01;
-        tiltAngle += 0.1;
-
-        for (var i = 0; i < mp; i++) {
-            particle = particles[i];
-            if (animationComplete) return;
-
-            if (!confettiActive && particle.y < -15) {
-                particle.y = H + 100;
-                continue;
-            }
-
-            stepParticle(particle, i);
-
-            if (particle.y <= H) {
-                remainingFlakes++;
-            }
-            CheckForReposition(particle, i);
+        if (phase === 2 && checkParticlesComplete()) {
+            console.log('%%%%%%%%%%%%%%%%%%%%%%%');
+            // reset
+            phase = 0;
+            // loader.reset();
+            // exploader.reset();
+            particles.length = 0;
+            createParticles();
         }
 
-        if (remainingFlakes === 0) {
-            StopConfetti();
+        // if (phase === 0 && loader.complete) {
+        //     phase = 1;
+        // } else if (phase === 1 && exploader.complete) {
+        //     phase = 2;
+        // } else if (phase === 2 && checkParticlesComplete()) {
+        //     // reset
+        //     phase = 0;
+        //     // loader.reset();
+        //     // exploader.reset();
+        //     particles.length = 0;
+        //     createParticles();
+        // }
+
+        requestAnimationFrame(loop);
+    }
+
+    function checkParticlesComplete() {
+        for (var i = 0; i < particles.length; i++) {
+            if (particles[i].complete === false) return false;
         }
+        return true;
     }
 
-    function CheckForReposition(particle, index) {
-        if ((particle.x > W + 20 || particle.x < -20 || particle.y > H) && confettiActive) {
-            if (index % 5 > 0 || index % 2 == 0) //66.67% of the flakes
-            {
-                repositionParticle(particle, Math.random() * W, -10, Math.floor(Math.random() * 10) - 20);
-            } else {
-                if (Math.sin(angle) > 0) {
-                    //Enter from the left
-                    repositionParticle(particle, -20, Math.random() * H, Math.floor(Math.random() * 10) - 20);
-                } else {
-                    //Enter from the right
-                    repositionParticle(particle, W + 20, Math.random() * H, Math.floor(Math.random() * 10) - 20);
-                }
-            }
-        }
-    }
-    function stepParticle(particle, particleIndex) {
-        particle.tiltAngle += particle.tiltAngleIncremental;
-        particle.y += (Math.cos(angle + particle.d) + 3 + particle.r / 2) / 3;
-        particle.x += Math.sin(angle);
-        particle.tilt = (Math.sin(particle.tiltAngle - (particleIndex / 3))) * 15;
-    }
+    // math and stuff
 
-    function repositionParticle(particle, xCoordinate, yCoordinate, tilt) {
-        particle.x = xCoordinate;
-        particle.y = yCoordinate;
-        particle.tilt = tilt;
+    /**
+     * easing equations from http://gizma.com/easing/
+     * t = current time
+     * b = start value
+     * c = delta value
+     * d = duration
+     */
+    var Ease = {
+        inCubic: function (t, b, c, d) {
+            t /= d;
+            return c * t * t * t + b;
+        },
+        outCubic: function (t, b, c, d) {
+            t /= d;
+            t--;
+            return c * (t * t * t + 1) + b;
+        },
+        inOutCubic: function (t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return (c / 2) * t * t * t + b;
+            t -= 2;
+            return (c / 2) * (t * t * t + 2) + b;
+        },
+        inBack: function (t, b, c, d, s) {
+            s = s || 1.70158;
+            return c * (t /= d) * t * ((s + 1) * t - s) + b;
+        },
+    };
+
+    function cubeBezier(p0, c0, c1, p1, t) {
+        var p = new Point();
+        var nt = 1 - t;
+
+        p.x = nt * nt * nt * p0.x + 3 * nt * nt * t * c0.x + 3 * nt * t * t * c1.x + t * t * t * p1.x;
+        p.y = nt * nt * nt * p0.y + 3 * nt * nt * t * c0.y + 3 * nt * t * t * c1.y + t * t * t * p1.y;
+
+        return p;
     }
-
-    function StartConfetti() {
-        W = window.innerWidth;
-        H = window.innerHeight;
-        canvas.width = W;
-        canvas.height = H;
-        (function animloop() {
-            if (animationComplete) return null;
-            animationHandler = requestAnimFrame(animloop);
-            return Draw();
-        })();
-    }
-
-    function ClearTimers() {
-        clearTimeout(reactivationTimerHandler);
-        clearTimeout(animationHandler);
-    }
-
-    function DeactivateConfetti() {
-        confettiActive = false;
-        ClearTimers();
-    }
-
-    function StopConfetti() {
-        animationComplete = true;
-        if (ctx == undefined) return;
-        ctx.clearRect(0, 0, W, H);
-    }
-
-    function RestartConfetti() {
-        ClearTimers();
-        StopConfetti();
-        reactivationTimerHandler = setTimeout(function () {
-            confettiActive = true;
-            animationComplete = false;
-            InitializeConfetti();
-        }, 100);
-
-    }
-
-    window.requestAnimFrame = (function () {
-        return window.requestAnimationFrame || 
-        window.webkitRequestAnimationFrame || 
-        window.mozRequestAnimationFrame || 
-        window.oRequestAnimationFrame || 
-        window.msRequestAnimationFrame || 
-        function (callback) {
-            return window.setTimeout(callback, 1000 / 60);
-        };
-    })();
 })();

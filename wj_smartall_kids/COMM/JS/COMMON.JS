@@ -317,8 +317,8 @@ function wordTest() {
         // canvas.width = drawImage.width;
         // canvas.height = drawImage.height;
 
-        canvas.setAttribute("width",  drawImage.width);
-        canvas.setAttribute("height", drawImage.height);
+        canvas.setAttribute('width', drawImage.width);
+        canvas.setAttribute('height', drawImage.height);
         ctx.drawImage(drawImage, 0, 0);
 
         ctx.globalCompositeOperation = 'source-atop';
@@ -340,7 +340,7 @@ function wordTest() {
         );
     }
 
-    // Event (마우스) 
+    // Event (마우스)
     $('#myCanvas').bind('mousedown', function (e) {
         if (e.button === 0) {
             e.preventDefault();
@@ -372,7 +372,7 @@ function wordTest() {
     $('#myCanvas').bind('touchstart', function (e) {
         pDraw = $('#myCanvas').offset();
         e.preventDefault();
-        if(selectColor == null) return
+        if (selectColor == null) return;
         ctx.beginPath();
         $('#colorGuide').remove();
         $('.color-palette').removeClass('glory');
@@ -386,12 +386,11 @@ function wordTest() {
     });
 
     $('#myCanvas').bind('touchmove', function (e) {
-
-        if(selectColor == null) return
+        if (selectColor == null) return;
         var event = e.originalEvent;
         e.preventDefault();
         // currP = { X: event.touches[0].pageX - pDraw.left+80, Y: event.touches[0].pageY - pDraw.top+70 };
-        currP = { X: event.touches[0].pageX - pDraw.left, Y: event.touches[0].pageY - pDraw.top  };
+        currP = { X: event.touches[0].pageX - pDraw.left, Y: event.touches[0].pageY - pDraw.top };
         draw_line(currP);
     });
 
@@ -652,9 +651,9 @@ function deleteImage($item, $drop) {
 
 function reAction() {
     $('#startButton').trigger('click');
-    setTimeout(function () {
-        $('#stopButton').trigger('click');
-    }, 3000);
+    // setTimeout(function () {
+    //     $('#stopButton').trigger('click');
+    // }, 3000);
 }
 
 function sec3Init() {
@@ -870,15 +869,15 @@ function pauseVid(el) {
 //     playVid(allBgm);
 // }
 
-function bgmSoundStop(){
+function bgmSoundStop() {
     allBgm.pause();
     turnOff = true;
-    soundChk(0)
+    // soundChk(0);
 }
-function onResume(){
+function onResume() {
     allBgm.play();
     turnOff = false;
-    soundChk(1)
+    // soundChk(1);
 }
 
 function colorGuide() {
