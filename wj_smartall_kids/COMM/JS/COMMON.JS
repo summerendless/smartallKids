@@ -81,16 +81,7 @@ function init() {
     playVid(introBgm);
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
-
-        infoColorBgm.addEventListener(
-            'ended',
-            function () {
-                // playVid(allBgm);
-                // allBgm.volume = 0.4;
-                onResume();
-            },
-            false
-        );
+        onResume();
         $('.color-palette').addClass('glory');
         infoColorBgm.addEventListener(
             'ended',
