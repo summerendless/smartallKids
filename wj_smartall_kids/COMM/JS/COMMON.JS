@@ -596,15 +596,19 @@ function deleteImage($item, $drop) {
         $('.section2').addClass('active');
         playVid(wordAnswerBgm); // 정답 단어
         // $confetti.addClass('animation');
-        reAction();
-        playVid(fanfareBgm); // 빵빠레
+
         var nowAudio = goodjobBgmList[pageWrapNum - 1];
         goodjabAudio.src = nowAudio;
         console.log('goodjabAudio::::', goodjabAudio);
 
         setTimeout(function () {
-            playVid(goodjabAudio);
+            reAction();
+            playVid(fanfareBgm); // 빵빠레
         }, 1500);
+
+        setTimeout(function () {
+            playVid(goodjabAudio);
+        }, 2500);
         // setTimeout(function () {
         //     $confetti.removeClass('animation');
         // }, 1500);
