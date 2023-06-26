@@ -88,7 +88,7 @@ function init() {
                 console.log('가이드 삭제');
                 $('#colorGuide').remove();
                 $('.color-palette').removeClass('glory');
-                playVid(allBgm);
+                playAllBgm();
             },
             false
         );
@@ -376,6 +376,7 @@ function wordTest() {
     $('#myCanvas').bind('touchmove', function (e) {
         var event = e.originalEvent;
         e.preventDefault();
+        playcolorBgm();
         // currP = { X: event.touches[0].pageX - pDraw.left+80, Y: event.touches[0].pageY - pDraw.top+70 };
         currP = { X: event.touches[0].pageX - 120, Y: event.touches[0].pageY - pDraw.top };
         draw_line(currP);
@@ -949,27 +950,36 @@ function callFinish() {
 // }
 function playVid(el) {
     el.muted = true;
-    // el.pause();
+    // // el.pause();
+    // el.currentTime = 0;
+    // el.play();
+    el.pause(); 
     el.currentTime = 0;
-    el.play();
     el.muted = false;    
+    el.play(); 
 }
 
-function pauseVid(el) {
-    el.pause();
-    el.currentTime = 0;
-}
+// function pauseVid(el) {
+//     el.pause();
+//     el.currentTime = 0;
+// }
 
-function pauseAll() {
-    $('audio.audio').each(function (i) {
-        i = i + 1;
-        $('#cardAudio' + i)[0].pause();
-        $('#cardAudio' + i)[0].currentTime = 0;
-    });
-}
+// function pauseAll() {
+//     $('audio.audio').each(function (i) {
+//         i = i + 1;
+//         $('#cardAudio' + i)[0].pause();
+//         $('#cardAudio' + i)[0].currentTime = 0;
+//     });
+// }
 
-function allBgm(){
+function playAllBgm(){
+    allBgm.volume = 0.4;
     playVid(allBgm);
+}
+
+function playcolorBgm(){
+    coloringBgm.volume = 0.7;
+    playVid(coloringBgm);
 }
 
 function colorGuide() {
