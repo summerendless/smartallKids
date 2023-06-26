@@ -872,12 +872,11 @@ function pauseVid(el) {
 function bgmSoundStop() {
     allBgm.pause();
     turnOff = true;
-    // soundChk(0);
 }
 function onResume() {
+    allBgm.volume = 1;
     allBgm.play();
     turnOff = false;
-    // soundChk(1);
 }
 
 function colorGuide() {
