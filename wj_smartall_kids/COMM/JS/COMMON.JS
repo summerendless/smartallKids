@@ -84,8 +84,7 @@ function init() {
         infoColorBgm.addEventListener(
             'ended',
             function () {
-                // playAllBgm();
-                playcolorBgm()
+                playAllBgm();
             },
             false
         );
@@ -378,14 +377,14 @@ function wordTest() {
         if (cStep < cPushArray.length) {
             cPushArray.length = cStep;
         }
-        playcolorBgm()
+        playColorBgm()
         cPushArray.push(document.getElementById('myCanvas').toDataURL());        
     });
 
     $('#myCanvas').bind('touchmove', function (e) {
         var event = e.originalEvent;
         e.preventDefault();
-        playcolorBgm();
+        playColorBgm();
         // currP = { X: event.touches[0].pageX - pDraw.left+80, Y: event.touches[0].pageY - pDraw.top+70 };
         currP = { X: event.touches[0].pageX - 120, Y: event.touches[0].pageY - pDraw.top };
         draw_line(currP);
@@ -393,7 +392,7 @@ function wordTest() {
 
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
-        playcolorBgm()
+        playColorBgm()
         // coloringBgm.pause();
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
