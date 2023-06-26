@@ -869,13 +869,14 @@ canvas {
 }
 
 #colorGuide {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     /* z-index: 2; */
-    width: 100%;
+    width: 12%;
     height: 20%;
     display: inline-block;
+    animation: loop 3s infinite;
 }
 /* #dropGuide {
     position: fixed;
@@ -893,13 +894,7 @@ canvas {
 }
 
 .colorGuide {
-    width: 12%;
-    height: 100%;
-    display: inline-block;
-    position: absolute;
-    bottom: 0;
-    left: 26%;
-    animation: loop 3s infinite;
+    display: inline-block;   
     /* animation-duration: 1.5s; */
     /* animation-iteration-count: infinite; */
 }

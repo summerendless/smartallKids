@@ -87,6 +87,7 @@ function init() {
             function () {
                 // playVid(allBgm);
                 // allBgm.volume = 0.4;
+                allBgm.play();
             },
             false
         );
@@ -390,6 +391,7 @@ function wordTest() {
             cPushArray.length = cStep;
         }
         cPushArray.push(document.getElementById('myCanvas').toDataURL());
+        coloringBgm.play()
     });
 
     $('#myCanvas').bind('touchmove', function (e) {
@@ -404,7 +406,7 @@ function wordTest() {
 
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
-        // coloringBgm.pause();
+        coloringBgm.pause();
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
         // cPushArray.push(document.getElementById('myCanvas').toDataURL());
@@ -420,7 +422,6 @@ function wordTest() {
         ctx.stroke();
         // if (lockHistory) return;
         nextBtn.classList.add('active');
-        playVid(coloringBgm);
     }
 
     function newUndo() {
