@@ -84,7 +84,8 @@ function init() {
         infoColorBgm.addEventListener(
             'ended',
             function () {
-                playAllBgm();
+                // playAllBgm();
+                playColorBgm()
             },
             false
         );
