@@ -48,6 +48,10 @@ var coloringBgm = new Audio('../../../COMM/MP3/COLORING.mp3'); // 색칠 시
 var endBgm = new Audio('../../../COMM/MP3/END.mp3'); // 단어카드 완료
 var finishBgm = new Audio('../../../COMM/MP3/GOOD.mp3'); // 마지막 참 잘했어요
 
+// var touchBgm1 = new Audio('../../../COMM/MP3/CLICKBGM.MP3'); // 크레파스, 휴지통, 화살표 버튼 선택 시
+var touchBgm2 = new Audio('../../../COMM/MP3/WRONGBGM.MP3'); // 오답 시
+var allBgm = new Audio('../../../COMM/MP3/ALLBGM.MP3'); //전체bgm
+
 const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
 const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
 const endBtn = document.querySelector('.done-btn'); // 완료 버튼
@@ -84,6 +88,7 @@ function init() {
                 console.log('가이드 삭제');
                 $('#colorGuide').remove();
                 $('.color-palette').removeClass('glory');
+                playVid(allBgm);
             },
             false
         );
@@ -388,12 +393,13 @@ function wordTest() {
     // 선 그리기
     function draw_line(p) {
         ctx.lineWidth = brushSize;
-        ctx.lineCap = brushlineCap;
-        ctx.strokeStyle = brushColor;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = "brushColor";
         ctx.lineTo(p.X, p.Y);
+        ctx.moveTo(p.X, p.Y);
         // ctx.moveTo(p.X, p.Y);
         ctx.stroke();
-        if (lockHistory) return;
+        // if (lockHistory) return;
         binBtn.classList.add('active');
         nextBtn.classList.add('active');
     }
@@ -410,7 +416,7 @@ function wordTest() {
             };
             binBtn.classList.remove('active');
         } 
-        return false;
+        
     }
     document.getElementById('undo').addEventListener('click', newUndo);
 
@@ -960,6 +966,10 @@ function pauseAll() {
         $('#cardAudio' + i)[0].pause();
         $('#cardAudio' + i)[0].currentTime = 0;
     });
+}
+
+function allBgm(){
+    playVid(allBgm);
 }
 
 function colorGuide() {
