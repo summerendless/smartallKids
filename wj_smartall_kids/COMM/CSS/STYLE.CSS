@@ -48,16 +48,17 @@
 }
 .section #canvasContainer {
     position: fixed;
-    bottom: 23%;
-    left: 20%;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
     /* transform: translateX(-50%); */
     /* width: 640px; */
-    height: 240px;
+    /* height: 240px; */
 }
 .section #canvasContainer canvas,
 .canvas-container {
     /* width: 640px !important; */
-    height: 240px !important;
+    /* height: 240px !important; */
 }
 
 .answer2,
