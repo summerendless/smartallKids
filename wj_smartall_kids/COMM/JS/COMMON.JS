@@ -80,6 +80,14 @@ function init() {
     playVid(introBgm);
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
+
+        infoColorBgm.addEventListener(
+            'ended',
+            function () {
+                playAllBgm();
+            },
+            false
+        );
         $('.color-palette').addClass('glory');
         infoColorBgm.addEventListener(
             'ended',
@@ -88,7 +96,6 @@ function init() {
                 console.log('가이드 삭제');
                 $('#colorGuide').remove();
                 $('.color-palette').removeClass('glory');
-                playVid(allBgm);
             },
             false
         );
@@ -383,7 +390,6 @@ function wordTest() {
 
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
-
         // coloringBgm.pause();
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
@@ -402,6 +408,7 @@ function wordTest() {
         // if (lockHistory) return;
         binBtn.classList.add('active');
         nextBtn.classList.add('active');
+        playColorBgm();
     }
 
     function newUndo() {
@@ -953,27 +960,37 @@ function callFinish() {
 // }
 function playVid(el) {
     el.muted = true;
-    // el.pause();
-    el.currentTime = 0;
-    el.play();
-    el.muted = false;
+    // // el.pause();
+    // el.currentTime = 0;
+    // el.play();
+    if (el.muted) {
+        el.currentTime = 0;
+        el.muted = false;
+        el.play();
+    }
 }
 
-function pauseVid(el) {
-    el.pause();
-    el.currentTime = 0;
-}
+// function pauseVid(el) {
+//     el.pause();
+//     el.currentTime = 0;
+// }
 
-function pauseAll() {
-    $('audio.audio').each(function (i) {
-        i = i + 1;
-        $('#cardAudio' + i)[0].pause();
-        $('#cardAudio' + i)[0].currentTime = 0;
-    });
-}
+// function pauseAll() {
+//     $('audio.audio').each(function (i) {
+//         i = i + 1;
+//         $('#cardAudio' + i)[0].pause();
+//         $('#cardAudio' + i)[0].currentTime = 0;
+//     });
+// }
 
-function allBgm() {
+function playAllBgm() {
+    allBgm.volume = 0.4;
     playVid(allBgm);
+}
+
+function playColorBgm() {
+    coloringBgm.volume = 1;
+    playVid(coloringBgm);
 }
 
 function colorGuide() {
