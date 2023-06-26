@@ -87,7 +87,7 @@ function init() {
             function () {
                 // playVid(allBgm);
                 // allBgm.volume = 0.4;
-                allBgm.play();
+                onResume();
             },
             false
         );
@@ -391,7 +391,7 @@ function wordTest() {
             cPushArray.length = cStep;
         }
         cPushArray.push(document.getElementById('myCanvas').toDataURL());
-        coloringBgm.play()
+        coloringBgm.play();
     });
 
     $('#myCanvas').bind('touchmove', function (e) {
