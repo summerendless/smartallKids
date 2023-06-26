@@ -155,7 +155,7 @@ function wordInit() {
         </div>`)
             .appendTo('.stick-panel')
             .children('.answer')
-            .attr('data-answer', pageWrapNum + j)
+            .attr('data-answer', j)
             .droppable({
                 accept: '#wordWrap' + ' div',
                 tolerance: 'touch',
@@ -173,10 +173,10 @@ function wordInit() {
         $('<div class="wordsBox wordsBox' + pageWrapNum + j + '"/>').appendTo('.words-section' + pageWrapNum);
 
         $('<div class="word answer-item' + '">' + '<img src="' + wordsOn[j].url + '">' + '</div>')
-            .data('word', pageWrapNum + j)
+            .data('word', j)
             .attr({
-                id: 'word' + pageWrapNum + j,
-                data: pageWrapNum + j,
+                id: 'word' + j,
+                data: j,
             })
             .appendTo('.wordsBox' + pageWrapNum + j)
             .draggable({
@@ -187,7 +187,7 @@ function wordInit() {
                 // helper: "clone",
                 //  drag: dragFix(event, aa=containmentArea),
                 drag: handleCardDrag,
-                activeClass: handleHigh,
+                stop: handleCardStop,
             });
     }
 
@@ -309,7 +309,7 @@ function wordTest() {
     let brushlineCap = 'round';
 
     let pattern;
-    let imgUrl = wordData.itemUrls[pageWrapNum].wordItem; 
+    let imgUrl = wordData.itemUrls[pageWrapNum].wordItem;
     drawImage.src = imgUrl;
     drawImage.onload = () => {
         canvas.width = drawImage.width;
@@ -365,12 +365,12 @@ function wordTest() {
         ctx.beginPath();
         $('#colorGuide').remove();
         $('.color-palette').removeClass('glory');
-        console.log('실행', cStep)
+        console.log('실행', cStep);
         cStep++;
         if (cStep < cPushArray.length) {
             cPushArray.length = cStep;
         }
-        cPushArray.push(document.getElementById('myCanvas').toDataURL());        
+        cPushArray.push(document.getElementById('myCanvas').toDataURL());
     });
 
     $('#myCanvas').bind('touchmove', function (e) {
@@ -387,14 +387,14 @@ function wordTest() {
         // coloringBgm.pause();
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
-        // cPushArray.push(document.getElementById('myCanvas').toDataURL());     
+        // cPushArray.push(document.getElementById('myCanvas').toDataURL());
     });
 
     // 선 그리기
     function draw_line(p) {
         ctx.lineWidth = brushSize;
         ctx.lineCap = 'round';
-        ctx.strokeStyle = "brushColor";
+        ctx.strokeStyle = 'brushColor';
         ctx.lineTo(p.X, p.Y);
         ctx.moveTo(p.X, p.Y);
         // ctx.moveTo(p.X, p.Y);
@@ -405,7 +405,7 @@ function wordTest() {
     }
 
     function newUndo() {
-        console.log('실행취소', cStep)
+        console.log('실행취소', cStep);
         if (cStep > 0) {
             cStep--;
             var canvasPic = new Image();
@@ -415,8 +415,7 @@ function wordTest() {
                 // ctx.clearRect(0, canvas.width, canvas.height);
             };
             binBtn.classList.remove('active');
-        } 
-        
+        }
     }
     document.getElementById('undo').addEventListener('click', newUndo);
 
@@ -646,30 +645,35 @@ function pageMove() {
 
 //드래그 이벤트
 function handleCardDrag(event, ui) {
+    // console.log(this);
     let answer = document.querySelectorAll('.answer');
     let answerName;
 
+    // if (this.classList.contains('ui-draggable-dragging')) {
+    //     console.log('드래그 중!!!!');
+    // } else {
+    //     console.log('드래그 끝!!!');
+    //     answer.classList.remove('active');
+    // }
+
     answer.forEach((el) => {
         answerName = el.getAttribute('data-answer');
-        el.parentElement.classList.remove('active');
         if (answerName == this.getAttribute('data')) {
             el.parentElement.classList.add('active');
-            console.log(el.parentElement.children);
+            // console.log(el.parentElement.children);
             el.parentElement.children[1].childNodes[0].setAttribute('src', wordData.itemUrls[pageWrapNum].itemBlink[answerName].url);
+        } else {
+            el.parentElement.classList.remove('active');
         }
     });
 }
-//수정!!!!!!!!!!!!!!!!!!!!!!!!
-function handleHigh(event, ui) {
-    var slotNumber = $(this).attr('data-answer');
-    var cardNumber = ui.draggable.data('word');
-    if (slotNumber == cardNumber) {
-        $('.ui-droppable').classList.add('ui-state-highlight');
-        // cardNumber.find('.droppableImg').fadeOut('slow');
-        // playVid(touchBgm2);
-    } else {
-        // playVid(touchBgm3);
-    }
+
+function handleCardStop(event, ui) {
+    let answer = document.querySelectorAll('.answer');
+
+    answer.forEach((el) => {
+        el.parentElement.classList.remove('active');
+    });
 }
 
 // 드롭 이벤트
@@ -738,7 +742,7 @@ function deleteImage($item, $drop) {
                 // wordImageLoad();
                 // ImgArr.splice(0);
                 // ImgArr.length = 0;
-                console.log(ImgArr)
+                console.log(ImgArr);
                 wordTest();
                 reset();
                 wordInit();
@@ -952,7 +956,7 @@ function playVid(el) {
     // el.pause();
     el.currentTime = 0;
     el.play();
-    el.muted = false;    
+    el.muted = false;
 }
 
 function pauseVid(el) {
@@ -968,7 +972,7 @@ function pauseAll() {
     });
 }
 
-function allBgm(){
+function allBgm() {
     playVid(allBgm);
 }
 
