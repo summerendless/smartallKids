@@ -48,7 +48,7 @@ var coloringBgm = new Audio('../../../COMM/MP3/COLORING.mp3'); // 색칠 시
 var endBgm = new Audio('../../../COMM/MP3/END.mp3'); // 단어카드 완료
 var finishBgm = new Audio('../../../COMM/MP3/GOOD.mp3'); // 마지막 참 잘했어요
 
-// var touchBgm1 = new Audio('../../../COMM/MP3/CLICKBGM.MP3'); // 크레파스, 휴지통, 화살표 버튼 선택 시
+var touchBgm1 = new Audio('../../../COMM/MP3/CLICKBGM.MP3'); // 크레파스, 휴지통, 화살표 버튼 선택 시
 var touchBgm2 = new Audio('../../../COMM/MP3/WRONGBGM.MP3'); // 오답 시
 var allBgm = new Audio('../../../COMM/MP3/ALLBGM.MP3'); //전체bgm
 
@@ -416,6 +416,7 @@ function wordTest() {
 
     function newUndo() {
         console.log('실행취소', cStep);
+        playVid(touchBgm1);
         if (cStep > 0) {
             cStep--;
             var canvasPic = new Image();
@@ -461,7 +462,7 @@ function wordTest() {
             color.value = colorValue; /** 변경된 색상 표시 */
             selectColor = colorValue;
             ctx.strokeStyle = color.value;
-            console.log(color.value);
+            playVid(touchBgm1);
         }
         // color.addEventListener("change", oncolorChange); /** 색상변경 함수명 */
         // colorOption.forEach((color) => color.addEventListener('click', oncolorChange));
@@ -698,6 +699,7 @@ function next(e) {
     var $this = $(this);
     if ($this.hasClass(activeClass)) {
         toDataURL();
+        playVid(touchBgm1);
         pageMove();
 
         // 캔버스에 그린 그림 변수에 담기
