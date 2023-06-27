@@ -52,7 +52,6 @@
         <!-- //confetti -->
 
         <div id="wrap" class="">
-            <!-- <div class="sectionIntro"><img src="../../../COMM/IMG/INTRO.PNG" /></div> -->
             <header>
                 <div class="indicate">
                     <ul class="pagingItemWrap">
@@ -78,28 +77,6 @@
                             <div class="color-palette">
                                 <input id="color" type="color" class="dp_n" />
                                 <div class="controls__colors color-items" id="jsColors">
-                                    <!-- <div class="controls__color color-option color-red">
-                                        <img src="../../../COMM/IMG/CRAYON_BV.png" data-color="random" alt="랜덤" />
-                                    </div> -->
-                                    <!--
-                                    <div class="controls__color color-option color-red">
-                                        <img src="../../../COMM/IMG/CRAYON_RD.png" data-color="#ff0000" alt="빨강" />
-                                    </div>
-                                    <div class="controls__color color-option color-orange">
-                                        <img src="../../../COMM/IMG/CRAYON_OR.png" data-color="#ff8c00" alt="주황" />
-                                    </div>
-                                    <div class="controls__color color-option color-yellow">
-                                        <img src="../../../COMM/IMG/CRAYON_YL.png" data-color="#ffff00" alt="노랑" />
-                                    </div>
-                                    <div class="controls__color color-option color-green">
-                                        <img src="../../../COMM/IMG/CRAYON_GN.png" data-color="#008000" alt="초록" />
-                                    </div>
-                                    <div class="controls__color color-option color-blue">
-                                        <img src="../../../COMM/IMG/CRAYON_BL.png" data-color="#0000ff" alt="파랑" />
-                                    </div>
-                                    <div class="controls__color color-option color-purple">
-                                        <img src="../../../COMM/IMG/CRAYON_PR.png" data-color="#800080" alt="보라" />
-                                    </div> -->
                                 </div>
 
                                 <!-- 뒤로 돌리기 버튼 -->
@@ -115,10 +92,6 @@
                             <div class="item-img"><img id="itemImg" /></div>
                             <div id="answerWrap" class="w100p">
                                 <div class="item-word"><img id="itemWord" /></div>
-                                <!-- <div class="item-img"><img src="../../../COMM/IMG/WORD/1_1/ITEM_1_1.PNG" alt=""></div>
-                            <div class="item-word"><img src="../../../COMM/IMG/WORD/1_1/WORD_1_1.PNG" alt=""></div>    -->
-
-                                <!-- <div class="item-img"><img id="" /></div> -->
                             </div>
                             <div id="wordWrap" class="answer-list"></div>
                         </div>
@@ -155,34 +128,11 @@
         <script>
             // ****차시 정보 변경 필수!!****
             //차시 정보
-            const pageID = 1;
+            const pageID = 4;
             var mydata = JSON.parse(JSON.stringify(data.word_data[pageID]));
         </script>
         <script src="../../../COMM/JS/CONFETTI_V1.js"></script>
         <script src="../../../COMM/JS/COMMON.JS"></script>
         <script src="../../../COMM/JS/TOUCH.JS"></script>
-        <script src="../../../COMM/JS/FABRIC_S.js"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script> -->
-
-        <style>
-            .answerCont0 {
-                left: 10%;
-                top: 10%;
-            }
-
-            .answerCont1 {
-                right: 11%;
-                top: 9%;
-            }
-            .answerCont2 {
-                left: 7%;
-                bottom: 16%;
-            }
-
-            .answerCont3 {
-                right: 8%;
-                bottom: 14%;
-            }
-        </style>
     </body>
 </html>
