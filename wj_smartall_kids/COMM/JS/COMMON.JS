@@ -81,7 +81,6 @@ function init() {
     playVid(introBgm);
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
-        onResume();
         $('.color-palette').addClass('glory');
         infoColorBgm.addEventListener(
             'ended',
@@ -90,6 +89,7 @@ function init() {
                 console.log('가이드 삭제');
                 $('#colorGuide').remove();
                 $('.color-palette').removeClass('glory');
+                onResume();
             },
             false
         );
@@ -814,6 +814,10 @@ function complatePop() {
         $('.pop-wrap').addClass('end-pop').html(html2);
         playVid(fanfareBgm); // 빵빠레
         playVid(finishBgm);
+        setTimeout(function () {
+            reAction();
+        }, 500);
+        
     });
 
     // setTimeout(function () {
@@ -882,7 +886,7 @@ function bgmSoundStop() {
     turnOff = true;
 }
 function onResume() {
-    allBgm.volume = 0.7;
+    allBgm.volume = 0.5;
     allBgm.play();
     turnOff = false;
 }

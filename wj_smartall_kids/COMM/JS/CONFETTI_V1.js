@@ -155,7 +155,7 @@ function createExploader() {
 }
 
 function createParticles() {
-    for (var i = 0; i < 600; i++) {
+    for (var i = 0; i < 500; i++) {
         var p0 = new Point(viewWidth * 0.5, viewHeight * 0.5);
         var p1 = new Point(Math.random() * viewWidth, Math.random() * viewHeight);
         var p2 = new Point(Math.random() * viewWidth, Math.random() * viewHeight);
