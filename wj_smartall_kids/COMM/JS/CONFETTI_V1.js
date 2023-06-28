@@ -21,7 +21,7 @@ Particle = function(p0, p1, p2, p3) {
     this.p3 = p3;
 
     this.time = 0;
-    this.duration = 3 + Math.random() * 2;
+    this.duration = 4 + Math.random() * 2;
     this.color =  '#' + Math.floor((Math.random() * 0xffffff)).toString(16);
 
     this.w = 8;
@@ -84,7 +84,7 @@ Loader.prototype = {
         return this._progress;
     },
     draw:function() {
-        ctx.fillStyle = '#000';
+        ctx.fillStyle = 'transparent';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, -HALF_PI, TWO_PI * this._progress - HALF_PI);
         ctx.lineTo(this.x, this.y);
@@ -120,7 +120,7 @@ Exploader.prototype = {
         this.complete = this.time === this.duration;
     },
     draw:function() {
-        ctx.fillStyle = '#000';
+        ctx.fillStyle = 'transparent';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.startRadius * (1 - this.progress), 0, TWO_PI);
         ctx.fill();
@@ -155,7 +155,7 @@ function createExploader() {
 }
 
 function createParticles() {
-    for (var i = 0; i < 128; i++) {
+    for (var i = 0; i < 600; i++) {
         var p0 = new Point(viewWidth * 0.5, viewHeight * 0.5);
         var p1 = new Point(Math.random() * viewWidth, Math.random() * viewHeight);
         var p2 = new Point(Math.random() * viewWidth, Math.random() * viewHeight);

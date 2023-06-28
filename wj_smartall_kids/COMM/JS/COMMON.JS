@@ -307,7 +307,7 @@ function wordTest() {
     var cStep = -1;
 
     let brushColor = '';
-    let brushSize = 20;
+    let brushSize = 25;
     let brushlineCap = 'round';
 
     let pattern;
