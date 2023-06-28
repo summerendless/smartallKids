@@ -540,9 +540,9 @@ canvas {
     transition: all 0.7s ease-in-out;
 }
 
-.section3 .item-img {
+.section3 .stick-panel-2 .item-img {
     width: 30%;
-    height: auto;
+    height: 11vw;
     position: absolute;
     top: 10%;
     left: 50%;
