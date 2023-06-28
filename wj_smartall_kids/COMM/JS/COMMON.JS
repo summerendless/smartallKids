@@ -304,7 +304,8 @@ function wordTest() {
     let currP = null;
     let drawImage = new Image();
 
-    var cStep = -1;
+    // var cStep = -1;
+    var cStep = 0;
 
     let brushColor = '';
     let brushSize = 25;
@@ -505,7 +506,7 @@ function pageMove() {
 
     // }
     nextBtn.classList.remove('active');
-
+    binBtn.classList.remove('active');
     selectColor = null;
     $('.section2').css('display', 'block').siblings().css('display', 'none');
     setTimeout(function () {
