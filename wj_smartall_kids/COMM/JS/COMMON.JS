@@ -813,8 +813,8 @@ function complatePop() {
     $(endBgm).on('ended', function () {
         $('.pop-wrap').addClass('end-pop').html(html2);
         playVid(fanfareBgm); // 빵빠레
-        playVid(finishBgm);
         setTimeout(function () {
+            playVid(finishBgm);
             reAction();
         }, 500);
         
