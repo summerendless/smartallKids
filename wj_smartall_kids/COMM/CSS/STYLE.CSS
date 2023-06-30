@@ -729,6 +729,12 @@ canvas {
     height: 130px;
 }
 
+.section3 .stick-panel-2.active .item-img,
+.section3 .stick-panel-2.active .item-word {
+    animation: introAni3 1s infinite;
+}
+
+
 .confetti-wrap {
     position: absolute;
     width: 100%;
@@ -877,6 +883,18 @@ canvas {
     }
     100% {
         transform: rotate(0deg);
+    }
+}
+
+@keyframes introAni3 {
+    0% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(-10deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(0deg);
     }
 }
 
