@@ -1,7 +1,7 @@
 //  변수 정리
 
 // 페이지 필요 정보
-var mainPageNum = 0;
+//var mainPageNum = 0;
 var sectionCounter = 1;
 var pageWrapNum = 0; // section의 첫 페이지
 var complatePage = 0; //완료페이지
@@ -36,11 +36,11 @@ const redo_history = [];
 const ImgArr = [];
 
 var introBgm = new Audio('../../../COMM/MP3/INTRO.mp3'); // 인트로
-var likeBgm = new Audio('../../../COMM/MP3/LIKEIT.mp3'); // 좋아요
+// var likeBgm = new Audio('../../../COMM/MP3/LIKEIT.mp3'); // 좋아요
 var goodjob2Bgm = new Audio('../../../COMM/MP3/LASTGOODJOB.mp3'); // 마지막 잘했어요
 var infoDropBgm = new Audio('../../../COMM/MP3/INFO_DROP.mp3'); // 드래그앤드랍 인포
 var infoColorBgm = new Audio('../../../COMM/MP3/INFO_COLOR.mp3'); // 색칠 인포
-var goodjobBgm = new Audio('../../../COMM/MP3/GOODJOB.mp3'); // 잘했어요
+// var goodjobBgm = new Audio('../../../COMM/MP3/GOODJOB.mp3'); // 잘했어요
 var fanfareBgm = new Audio('../../../COMM/MP3/FANFARE.mp3'); // 빵빠레
 var dropBgm3 = new Audio('../../../COMM/MP3/DROPING.mp3'); // 드래그앤드랍 시
 var doneBgm3 = new Audio('../../../COMM/MP3/DONE.mp3'); // 완료
@@ -56,7 +56,7 @@ const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
 const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
 const endBtn = document.querySelector('.done-btn'); // 완료 버튼
 
-const randomColor = ['random', '#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#800080'];
+const randomColor = ['random', '#ff0000', '#ff8c00', '#fdda24', '#008000', '#0000ff', '#800080'];
 let selectColor = null;
 // 잘했어요 음원 리스트
 const goodjobBgmList = [
@@ -87,9 +87,8 @@ function init() {
             function () {
                 this.currentTime = 0;
                 console.log('가이드 삭제');
-                $('#colorGuide').remove();
-                $('.color-palette').removeClass('glory');
-                onResume();
+                // $('#colorGuide').remove();
+                // $('.color-palette').removeClass('glory');
             },
             false
         );
@@ -271,10 +270,10 @@ function reset() {
 // 캔버스 위 그림 이미지 로드 함수
 function itemImageLoad() {
     let itemImageHtml = $('.section' + sectionCounter + ' #itemImg');
-    console.log(itemImageHtml);
-    console.log('mainPageNum', mainPageNum);
-    console.log('pageWrapNum', pageWrapNum);
-    console.log(wordData.itemUrls[pageWrapNum].mainItem);
+    // console.log(itemImageHtml);
+    // console.log('mainPageNum', mainPageNum);
+    // console.log('pageWrapNum', pageWrapNum);
+    // console.log(wordData.itemUrls[pageWrapNum].mainItem);
     $(itemImageHtml).attr('src', wordData.itemUrls[pageWrapNum].mainItem);
     // function cancelEvent(event) {
     //     if (event.preventDefault) {
@@ -334,8 +333,7 @@ function wordTest() {
             function () {
                 this.currentTime = 0;
                 console.log('가이드 삭제');
-                $('#colorGuide').remove();
-                $('.color-palette').removeClass('glory');
+               
             },
             false
         );
@@ -375,8 +373,8 @@ function wordTest() {
         e.preventDefault();
         if (selectColor == null) return;
         ctx.beginPath();
-        $('#colorGuide').remove();
-        $('.color-palette').removeClass('glory');
+        // $('#colorGuide').remove();
+        // $('.color-palette').removeClass('glory');
         console.log('실행', cStep);
         cStep++;
         if (cStep < cPushArray.length) {
@@ -427,7 +425,8 @@ function wordTest() {
                 // ctx.clearRect(0, canvas.width, canvas.height);
             };
             binBtn.classList.add('active');
-        }
+        }return;
+    
         // else {
         //     binBtn.classList.remove('active');
         // }
@@ -469,6 +468,8 @@ function wordTest() {
         // colorOption.forEach((color) => color.addEventListener('click', oncolorChange));
         $(document).on('click', '.color-option', (e) => {
             oncolorChange(e);
+            $('#colorGuide').remove();
+            $('.color-palette').removeClass('glory');
         });
     }
     colorOption();
@@ -774,7 +775,7 @@ function playAllCard() {
 }
 
 // 완료 함수
-$(document).on('click', '.done-btn', complate);
+$(document).on('click', '.done-btn.active', complate);
 function complate(event) {
     console.log('학습 완료');
 
@@ -928,6 +929,7 @@ function guideClose($this) {
 // 시작
 $(function () {
     init();
+    onResume();
     $intro.show();
     setTimeout(function () {
         $intro.fadeOut('slow');
