@@ -290,10 +290,11 @@ function itemImageLoad2(src) {
     $(itemImageHtml2).attr('src', src);
 }
 
+let cPushArray = new Array();
 //캔버스 이미지 테스트
 function wordTest() {
     let canvas = document.getElementById('myCanvas');
-    let cPushArray = new Array();
+    cPushArray = new Array();
 
     let ctx = canvas.getContext('2d');
     let isDraw = false;
@@ -373,11 +374,10 @@ function wordTest() {
         ctx.beginPath();
         // $('#colorGuide').remove();
         // $('.color-palette').removeClass('glory');
-        console.log('실행', cStep);
-        cStep++;
-        if (cStep < cPushArray.length) {
-            cPushArray.length = cStep;
-        }
+        // cStep++;
+        // if (cStep < cPushArray.length) {
+        //     cPushArray.length = cStep;
+        // }
         cPushArray.push(document.getElementById('myCanvas').toDataURL());
         coloringBgm.play();
     });
@@ -412,12 +412,12 @@ function wordTest() {
     }
 
     function newUndo() {
-        console.log('실행취소', cStep);
         playVid(touchBgm1);
-        if (cStep > 0) {
-            cStep--;
+        if (cPushArray.length > 0) {
+            // cStep--;
             var canvasPic = new Image();
-            canvasPic.src = cPushArray[cStep];
+            canvasPic.src = cPushArray[cPushArray.length - 1];
+            cPushArray.pop();
             canvasPic.onload = function () {
                 ctx.drawImage(canvasPic, 0, 0);
                 // ctx.clearRect(0, canvas.width, canvas.height);
