@@ -82,16 +82,15 @@ function init() {
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
         $('.color-palette').addClass('glory');
-        infoColorBgm.addEventListener(
-            'ended',
-            function () {
-                this.currentTime = 0;
-                console.log('가이드 삭제');
-                // $('#colorGuide').remove();
-                // $('.color-palette').removeClass('glory');
-            },
-            false
-        );
+        // infoColorBgm.addEventListener(
+        //     'ended',
+        //     function () {
+        //         this.currentTime = 0;
+        //         // $('#colorGuide').remove();
+        //         // $('.color-palette').removeClass('glory');
+        //     },
+        //     false
+        // );
     }, 3200);
 }
 
@@ -328,15 +327,15 @@ function wordTest() {
     if (pageWrapNum != 0) {
         colorGuide(playVid(infoColorBgm));
         $('.color-palette').addClass('glory');
-        infoColorBgm.addEventListener(
-            'ended',
-            function () {
-                this.currentTime = 0;
-                console.log('가이드 삭제');
+        // infoColorBgm.addEventListener(
+        //     'ended',
+        //     function () {
+        //         this.currentTime = 0;
+        //         console.log('가이드 삭제');
                
-            },
-            false
-        );
+        //     },
+        //     false
+        // );
     }
 
     // Event (마우스)
@@ -470,6 +469,7 @@ function wordTest() {
             oncolorChange(e);
             $('#colorGuide').remove();
             $('.color-palette').removeClass('glory');
+            infoColorBgm.pause();
         });
     }
     colorOption();
@@ -512,15 +512,15 @@ function pageMove() {
     $('.section2').css('display', 'block').siblings().css('display', 'none');
     setTimeout(function () {
         dropGuide(playVid(infoDropBgm));
-        infoDropBgm.addEventListener(
-            'ended',
-            function () {
-                this.currentTime = 0;
-                console.log('가이드 삭제');
-                $('#dropGuide').remove();
-            },
-            false
-        );
+        // infoDropBgm.addEventListener(
+        //     'ended',
+        //     function () {
+        //         this.currentTime = 0;
+        //         console.log('가이드 삭제');
+        //         $('#dropGuide').remove();
+        //     },
+        //     false
+        // );
     }, 500);
 }
 
@@ -564,6 +564,7 @@ function handleCardDrop(event, ui) {
 
     // var offImg = slotNumber.firstChild;
     // console.log(ui.draggable, slotNumber, cardNumber)
+    infoDropBgm.pause();
     $('#dropGuide').remove();
     if (slotNumber == cardNumber) {
         playVid(dropBgm3);
