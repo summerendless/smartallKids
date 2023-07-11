@@ -78,7 +78,6 @@ function init() {
     wordTest();
 
     wordInit();
-    playVid(introBgm);
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
         $('.color-palette').addClass('glory');
@@ -91,7 +90,7 @@ function init() {
         //     },
         //     false
         // );
-    }, 3200);
+    }, 3300);
 }
 
 //bgm재생
@@ -424,7 +423,8 @@ function wordTest() {
                 // ctx.clearRect(0, canvas.width, canvas.height);
             };
             binBtn.classList.add('active');
-        }return;
+        }
+        return;
     
         // else {
         //     binBtn.classList.remove('active');
@@ -929,10 +929,15 @@ function guideClose($this) {
 
 // 시작
 $(function () {
-    init();
     onResume();
-    $intro.show();
+    console.log(allBgm)
+    init();
     setTimeout(function () {
-        $intro.fadeOut('slow');
-    }, 3000);
+        $intro.show();
+        playVid(introBgm);
+        console.log(introBgm)
+        setTimeout(function () {
+            $intro.fadeOut('slow');
+        }, 3000);
+    }, 350);
 });
