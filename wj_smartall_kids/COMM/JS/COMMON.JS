@@ -80,6 +80,7 @@ function init() {
     wordInit();
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
+        addTriggerBtn();
         $('.color-palette').addClass('glory');
         // infoColorBgm.addEventListener(
         //     'ended',
@@ -642,7 +643,8 @@ function deleteImage($item, $drop) {
                 $('header').css('display', 'none');
                 sec3Init();
                 // playAllCard();
-                playBgm();
+                $('#startCard').trigger('click');
+                $('#startCard').click(playAllCard);
             }
             // $('.section3').css('display', 'block').siblings().css('display', 'none');
             // $('header').css('display', 'none');
@@ -939,14 +941,27 @@ function guideClose($this) {
     $this.addClass('close');
 }
 
+function addTriggerBtn() {
+    let btnWrap;
+    btnWrap = `
+            <button id="startIntro">start intro</button>
+            <button id="startCard">start card</button>
+    `;
+
+    $('<div class="bgmBtn">' + btnWrap + '</div>')
+        .appendTo('#wrap')
+        .html(btnWrap);
+}
+
 // 시작
 $(function () {
     // onResume();
     init();
     // playVid(allBgm);
     // onResume(allBgm);
+    playBgm();
     setTimeout(function () {
-        playVid(introBgm);
+        // playVid(introBgm);
         $intro.show();
         setTimeout(function () {
             $intro.fadeOut('slow');
@@ -968,14 +983,10 @@ $(function () {
 //     }, 350);
 // });
 function playBgm() {
-    $('#startBgm').trigger('click');
-    $('#startBgm').click(onResume);
-
-    if (pageWrapNum === '3') {
-        playAllCard();
-    }
+    $('#startIntro').trigger('click');
+    $('#startIntro').click(onResume);
 }
 
-window.onload = function () {
-    playBgm();
-};
+// window.onload = function () {
+//     playBgm();
+// };

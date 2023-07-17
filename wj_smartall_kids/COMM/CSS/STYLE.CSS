@@ -1018,3 +1018,11 @@ canvas {
     transform: scale(2);
     border: none;
 }
+
+/* bgm 버튼 */
+.bgmBtn {
+    /* display: none; */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
