@@ -963,11 +963,11 @@ function playBgm() {
     $('#playGuide').removeClass('show');
     setTimeout(function () {
         onResume();
-        console.log('bgm');
+        $intro.fadeOut(2000);
         setTimeout(function () {
-            $intro.fadeOut('slow');
+            // $intro.fadeOut('slow');
             colorGuide(playVid(infoColorBgm));
             $('.color-palette').addClass('glory');
-        }, 3300);
+        }, 3000);
     }, 500);
 }

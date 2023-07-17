@@ -824,7 +824,7 @@ canvas {
     }
     50% {
         opacity: 1;
-        transform: scale(0.6);
+        transform: scale(0.7);
     }
     100% {
         opacity: 1;
@@ -1011,7 +1011,7 @@ canvas {
     width: 12%;
     height: 20%;
     display: none;
-    animation: guideScale 1.4s ease-in-out infinite alternate;
+    animation: guideScale 1s ease-in-out infinite alternate;
     z-index: 2;
 }
 #playGuide.show {
