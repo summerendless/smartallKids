@@ -17,6 +17,7 @@ var $paging = $('.paging');
 // var $answerBtn = $('.answerbtn');
 var $colorGuide = $('#colorGuide'); // 색칠하기 가이드
 var $dropGuide = $('#dropGuide'); // 드래그 가이드
+var $playGuide = $('#playGuide'); // 플레이 가이드
 var $intro = $('#introBg');
 
 var $wordWrap;
@@ -904,6 +905,18 @@ function colorGuide() {
     // $(this).remove();
 }
 
+
+function playGuide() {
+    let playGuide;
+    playGuide = `
+        <div class="playGuide">
+            <img src="../../../COMM/IMG/ICON_HAND.PNG" alt="가이드 아이콘"/>
+        </div>`;
+    $('<div id="playGuide" class="show waves">' + playGuide + '</div>')
+        .appendTo('#wrap')
+        .html(playGuide);
+}
+
 function guideClose($this) {
     $this.addClass('close');
 }
@@ -939,6 +952,7 @@ function addTriggerBtn() {
 // 시작
 $(function () {
     $intro.show();
+    playGuide();
     $('.startBtn').click(playBgm);
     init();
 });
