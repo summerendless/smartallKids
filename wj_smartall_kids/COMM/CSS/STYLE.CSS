@@ -1011,7 +1011,7 @@ canvas {
     bottom: 30px;
     left: 50%;
     border: 0;
-    transform: translateX(-45%);
+    transform: translateX(-30%);
     width: 140px;
     height: 140px;
     background: url(../IMG/PLAY_BTN.png) no-repeat center / 100%;
