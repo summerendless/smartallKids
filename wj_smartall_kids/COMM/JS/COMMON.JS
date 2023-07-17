@@ -80,7 +80,7 @@ function init() {
     wordInit();
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
-        addTriggerBtn();
+        // addTriggerBtn();
         $('.color-palette').addClass('glory');
         // infoColorBgm.addEventListener(
         //     'ended',
@@ -642,26 +642,9 @@ function deleteImage($item, $drop) {
                 $('.section3').css('display', 'block').siblings().css('display', 'none');
                 $('header').css('display', 'none');
                 sec3Init();
-                setTimeout(playAllCard, 100);
-                // $('#startCard').trigger('click');
-                // $('#startCard').click(playAllCard);
-                // playAllCard();
+                playAllCard();
             }
-            // $('.section3').css('display', 'block').siblings().css('display', 'none');
-            // $('header').css('display', 'none');
-            // playAllCard();
-
-            // $('.answer-item').draggable();
-            // $item.draggable();
-            // $drop.droppable('enable');
-            // $item.removeClass('correct');
         }, 8000);
-
-        // if (complatePage == pageLength) {
-        //     complate();
-        // } else {
-        //     $nextvBtn.addClass(activeClass);
-        // }
     }
 }
 
@@ -802,7 +785,7 @@ function complatePop() {
     saveImg = '../../../COMM/IMG/CARD_SAVE.png';
     endImg = '../../../COMM/IMG/END.png';
     html =
-        `
+        `a
         <div class="pop-inner">
             <img src=` +
         saveImg +
@@ -962,13 +945,14 @@ $(function () {
     // playVid(allBgm);
     // onResume(allBgm);
     playBgm();
-    setTimeout(function () {
-        // playVid(introBgm);
-        $intro.show();
-        setTimeout(function () {
-            $intro.fadeOut('slow');
-        }, 3000);
-    }, 350);
+    $intro.show();
+    // setTimeout(function () {
+    //     // playVid(introBgm);
+    //     $intro.show();
+    //     setTimeout(function () {
+    //         $intro.fadeOut('slow');
+    //     }, 3000);
+    // }, 350);
 });
 
 // $(function () {
