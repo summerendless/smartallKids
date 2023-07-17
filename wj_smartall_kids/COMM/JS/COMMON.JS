@@ -641,7 +641,7 @@ function deleteImage($item, $drop) {
                 $('.section3').css('display', 'block').siblings().css('display', 'none');
                 $('header').css('display', 'none');
                 sec3Init();
-                playAllCard();
+                // playAllCard();
             }
         }, 8000);
     }
@@ -683,6 +683,8 @@ function sec3Init() {
         .join('');
 
     $('<div class="pageContents"/>').appendTo('.section3').html(html);
+
+    playAllCard(0);
 }
 
 // 다음버튼
@@ -728,7 +730,7 @@ function next(e) {
 }
 
 //마지막카드 오디오 재생 함수
-function playAllCard() {
+function playAllCard(idx) {
     console.log('$$$$$$$$$$$$$4분할카드 재생 시작');
     var audioArray = [];
 
@@ -738,31 +740,31 @@ function playAllCard() {
 
     console.log(audioArray);
 
-    function playNextAudio(idx) {
-        var audioElement = new Audio();
-        let sec3Panel = $('.section3 .stick-panel-2');
-        console.log(sec3Panel);
+    // function playNextAudio(idx) {
+    var audioElement = new Audio();
+    let sec3Panel = $('.section3 .stick-panel-2');
+    console.log(sec3Panel);
 
-        if (idx < audioArray.length) {
-            console.log('audio 재생중');
-            var nowAudio = audioArray[idx];
-            audioElement.src = nowAudio;
-            playVid(audioElement);
-            console.log(audioElement);
-            sec3Panel[idx].classList.add('active');
-            $(audioElement).on('ended', function () {
-                sec3Panel[idx].classList.remove('active');
-                playNextAudio(idx + 1);
-                console.log(idx, ':: 끝');
+    if (idx < audioArray.length) {
+        console.log('audio 재생중');
+        var nowAudio = audioArray[idx];
+        audioElement.src = nowAudio;
+        playVid(audioElement);
+        console.log(audioElement);
+        sec3Panel[idx].classList.add('active');
+        $(audioElement).on('ended', function () {
+            sec3Panel[idx].classList.remove('active');
+            playAllCard(idx + 1);
+            console.log(idx, ':: 끝');
 
-                if (idx === audioArray.length - 1) {
-                    endBtn.classList.add('active');
-                }
-            });
-        }
+            if (idx === audioArray.length - 1) {
+                endBtn.classList.add('active');
+            }
+        });
     }
+    // }
 
-    playNextAudio(0);
+    // playNextAudio(0);
 }
 
 // 완료 함수
@@ -944,16 +946,14 @@ $(function () {
     init();
 });
 
-function playBgm () {
+function playBgm() {
     playVid(introBgm);
     setTimeout(function () {
         onResume();
-        console.log('bgm')
+        console.log('bgm');
         setTimeout(function () {
             $intro.fadeOut('slow');
-            console.log('모션')
+            console.log('모션');
         }, 3300);
     }, 500);
-  
 }
-
