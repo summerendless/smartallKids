@@ -642,7 +642,7 @@ function deleteImage($item, $drop) {
                 $('.section3').css('display', 'block').siblings().css('display', 'none');
                 $('header').css('display', 'none');
                 sec3Init();
-                $('.playBtn').click(playAllCard);
+                $('.stick-panel-2-1').click(playAllCard);
             }
         }, 8000);
     }
@@ -662,7 +662,7 @@ function sec3Init() {
         .map(
             (item, idx) =>
                 `
-        <div class="stick-panel-2" key=${item.word} data-answer="${idx}">
+        <div class="stick-panel-2 stick-panel-2-${idx}" key=${item.word} data-answer="${idx}">
             ` +
                 item.itemOn
                     .map(
@@ -904,7 +904,6 @@ function colorGuide() {
     console.log($(this));
     // $(this).remove();
 }
-
 
 function playGuide() {
     let playGuide;
