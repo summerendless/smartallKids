@@ -78,20 +78,20 @@ function init() {
     // wordImageLoad();
     wordTest();
     wordInit();
-    setTimeout(function () {
-        colorGuide(playVid(infoColorBgm));
-        // addTriggerBtn();
-        $('.color-palette').addClass('glory');
-        // infoColorBgm.addEventListener(
-        //     'ended',
-        //     function () {
-        //         this.currentTime = 0;
-        //         // $('#colorGuide').remove();
-        //         // $('.color-palette').removeClass('glory');
-        //     },
-        //     false
-        // );
-    }, 4000);
+    // setTimeout(function () {
+    //     colorGuide(playVid(infoColorBgm));
+    //     // addTriggerBtn();
+    //     $('.color-palette').addClass('glory');
+    //     // infoColorBgm.addEventListener(
+    //     //     'ended',
+    //     //     function () {
+    //     //         this.currentTime = 0;
+    //     //         // $('#colorGuide').remove();
+    //     //         // $('.color-palette').removeClass('glory');
+    //     //     },
+    //     //     false
+    //     // );
+    // }, 4000);
 }
 
 //bgm재생
@@ -849,10 +849,9 @@ function playVid(el) {
     // el.currentTime = 0;
     // el.play();
     if (el.muted) {
-        el.autoplay = true;
         el.currentTime = 0;
-        el.muted = false;
         el.play();
+        el.muted = false;       
     }
 }
 
@@ -952,7 +951,8 @@ function playBgm() {
         console.log('bgm');
         setTimeout(function () {
             $intro.fadeOut('slow');
-            console.log('모션');
+            colorGuide(playVid(infoColorBgm));
+            $('.color-palette').addClass('glory');
         }, 3300);
     }, 500);
 }
