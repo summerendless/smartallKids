@@ -958,6 +958,7 @@ $(function () {
 
 function playBgm() {
     playVid(introBgm);
+    $('#playGuide').removeClass('show');
     setTimeout(function () {
         onResume();
         console.log('bgm');
