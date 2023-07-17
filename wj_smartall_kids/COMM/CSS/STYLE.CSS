@@ -821,7 +821,6 @@ canvas {
     0% {
         transform: scale(0.7);
         opacity: 1;
-
     }
     50% {
         opacity: 1;
@@ -871,7 +870,6 @@ canvas {
       opacity: 0;
     }
   } */
-  
 
 .animation {
     animation-name: up;
@@ -1003,7 +1001,7 @@ canvas {
     height: 100%;
     display: inline-block;
 } */
-#playGuide{
+#playGuide {
     position: absolute;
     pointer-events: none;
     bottom: 6%;
@@ -1016,11 +1014,17 @@ canvas {
     animation: guideScale 1.4s ease-in-out infinite alternate;
     z-index: 2;
 }
-#playGuide.show {display: inline-block;}
+#playGuide.show {
+    display: inline-block;
+}
 
+#playGuide.sec3Guide {
+    bottom: 63%;
+    left: 20%;
+}
 
 #playGuide:after {
-    content: "";
+    content: '';
     opacity: 0;
     animation: wave 3s 1.5s infinite linear;
 }

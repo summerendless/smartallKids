@@ -642,7 +642,7 @@ function deleteImage($item, $drop) {
                 $('.section3').css('display', 'block').siblings().css('display', 'none');
                 $('header').css('display', 'none');
                 sec3Init();
-                $('.stick-panel-2-1').click(playAllCard);
+                $('.stick-panel-2-0').click(playAllCard);
             }
         }, 8000);
     }
@@ -684,6 +684,7 @@ function sec3Init() {
         .join('');
 
     $('<div class="pageContents"/>').appendTo('.section3').html(html);
+    $('#playGuide').addClass('show sec3Guide');
 }
 
 // 다음버튼
@@ -730,6 +731,7 @@ function next(e) {
 
 //마지막카드 오디오 재생 함수
 function playAllCard() {
+    $('#playGuide').removeClass('show');
     console.log('$$$$$$$$$$$$$4분할카드 재생 시작');
     var audioArray = [];
 
