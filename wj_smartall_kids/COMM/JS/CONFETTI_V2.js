@@ -81,7 +81,7 @@
     });
 
     function InitializeButton() {
-        $('#startBgm').click(DeactivateConfetti);
+        $('#stopButton').click(DeactivateConfetti);
         $('#startButton').click(RestartConfetti);
     }
 

@@ -642,9 +642,9 @@ function deleteImage($item, $drop) {
                 $('.section3').css('display', 'block').siblings().css('display', 'none');
                 $('header').css('display', 'none');
                 sec3Init();
-                // playAllCard();
                 $('#startCard').trigger('click');
                 $('#startCard').click(playAllCard);
+                // playAllCard();
             }
             // $('.section3').css('display', 'block').siblings().css('display', 'none');
             // $('header').css('display', 'none');
@@ -667,7 +667,7 @@ function deleteImage($item, $drop) {
 function reAction() {
     $('#startButton').trigger('click');
     // setTimeout(function () {
-    //     $('#startBgm').trigger('click');
+    //     $('#stopButton').trigger('click');
     // }, 3000);
 }
 
@@ -746,6 +746,7 @@ function next(e) {
 
 //마지막카드 오디오 재생 함수
 function playAllCard() {
+    console.log('$$$$$$$$$$$$$4분할카드 재생 시작');
     var audioArray = [];
 
     wordData.itemUrls.map((item) => {
