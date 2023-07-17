@@ -52,7 +52,6 @@ var touchBgm1 = new Audio('../../../COMM/MP3/CLICKBGM.MP3'); // 크레파스, �
 var touchBgm2 = new Audio('../../../COMM/MP3/WRONGBGM.MP3'); // 오답 시
 var allBgm = new Audio('../../../COMM/MP3/ALLBGM.MP3'); //전체bgm
 
-// const sec3PlayBtn = document.querySelector('.playBtn');
 const binBtn = document.querySelector('.bin-btn'); // 휴지통 아이콘
 const nextBtn = document.querySelector('.next-btn'); // 다음으로 가기 버튼
 const endBtn = document.querySelector('.done-btn'); // 완료 버튼
@@ -748,13 +747,13 @@ function playAllCard() {
             console.log('audio 재생중');
             var nowAudio = audioArray[idx];
             audioElement.src = nowAudio;
-            playVid(audioElement);
             console.log(audioElement);
             sec3Panel[idx].classList.add('active');
+            playVid(audioElement);
             $(audioElement).on('ended', function () {
                 sec3Panel[idx].classList.remove('active');
-                playNextAudio(idx + 1);
                 console.log(idx, ':: 끝');
+                playNextAudio(idx + 1);
 
                 if (idx === audioArray.length - 1) {
                     endBtn.classList.add('active');
@@ -851,7 +850,7 @@ function playVid(el) {
     if (el.muted) {
         el.currentTime = 0;
         el.play();
-        el.muted = false;       
+        el.muted = false;
     }
 }
 
