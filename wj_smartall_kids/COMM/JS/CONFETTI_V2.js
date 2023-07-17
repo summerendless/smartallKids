@@ -17,7 +17,20 @@
     // objects
 
     var particleColors = {
-        colorOptions: ["DodgerBlue", "OliveDrab", "Gold", "pink", "SlateBlue", "lightblue", "Violet", "PaleGreen", "SteelBlue", "SandyBrown", "Chocolate", "Crimson"],
+        colorOptions: [
+            'DodgerBlue',
+            'OliveDrab',
+            'Gold',
+            'pink',
+            'SlateBlue',
+            'lightblue',
+            'Violet',
+            'PaleGreen',
+            'SteelBlue',
+            'SandyBrown',
+            'Chocolate',
+            'Crimson',
+        ],
         colorIndex: 0,
         colorIncrementer: 0,
         colorThreshold: 10,
@@ -31,27 +44,27 @@
             }
             this.colorIncrementer++;
             return this.colorOptions[this.colorIndex];
-        }
-    }
+        },
+    };
 
     function confettiParticle(color) {
         this.x = Math.random() * W; // x-coordinate
-        this.y = (Math.random() * H) - H; //y-coordinate
+        this.y = Math.random() * H - H; //y-coordinate
         this.r = RandomFromTo(10, 15); //radius;
-        this.d = (Math.random() * mp) + 10; //density;
+        this.d = Math.random() * mp + 10; //density;
         this.color = color;
         this.tilt = Math.floor(Math.random() * 10) - 10;
-        this.tiltAngleIncremental = (Math.random() * 0.07) + .05;
+        this.tiltAngleIncremental = Math.random() * 0.07 + 0.05;
         this.tiltAngle = 0;
 
         this.draw = function () {
             ctx.beginPath();
             ctx.lineWidth = this.r / 2;
             ctx.strokeStyle = this.color;
-            ctx.moveTo(this.x + this.tilt + (this.r / 4), this.y);
-            ctx.lineTo(this.x + this.tilt, this.y + this.tilt + (this.r / 4));
+            ctx.moveTo(this.x + this.tilt + this.r / 4, this.y);
+            ctx.lineTo(this.x + this.tilt, this.y + this.tilt + this.r / 4);
             return ctx.stroke();
-        }
+        };
     }
 
     $(document).ready(function () {
@@ -65,17 +78,16 @@
             canvas.width = W;
             canvas.height = H;
         });
-
     });
 
     function InitializeButton() {
-        $('#stopButton').click(DeactivateConfetti);
+        $('#startBgm').click(DeactivateConfetti);
         $('#startButton').click(RestartConfetti);
     }
 
     function SetGlobals() {
-        canvas = document.getElementById("canvas");
-        ctx = canvas.getContext("2d");
+        canvas = document.getElementById('canvas');
+        ctx = canvas.getContext('2d');
         W = window.innerWidth;
         H = window.innerHeight;
         canvas.width = W;
@@ -109,7 +121,6 @@
         return Math.floor(Math.random() * (to - from + 1) + from);
     }
 
-
     function Update() {
         var remainingFlakes = 0;
         var particle;
@@ -140,8 +151,8 @@
 
     function CheckForReposition(particle, index) {
         if ((particle.x > W + 20 || particle.x < -20 || particle.y > H) && confettiActive) {
-            if (index % 5 > 0 || index % 2 == 0) //66.67% of the flakes
-            {
+            if (index % 5 > 0 || index % 2 == 0) {
+                //66.67% of the flakes
                 repositionParticle(particle, Math.random() * W, -10, Math.floor(Math.random() * 10) - 20);
             } else {
                 if (Math.sin(angle) > 0) {
@@ -158,7 +169,7 @@
         particle.tiltAngle += particle.tiltAngleIncremental;
         particle.y += (Math.cos(angle + particle.d) + 3 + particle.r / 2) / 3;
         particle.x += Math.sin(angle);
-        particle.tilt = (Math.sin(particle.tiltAngle - (particleIndex / 3))) * 15;
+        particle.tilt = Math.sin(particle.tiltAngle - particleIndex / 3) * 15;
     }
 
     function repositionParticle(particle, xCoordinate, yCoordinate, tilt) {
@@ -203,17 +214,18 @@
             animationComplete = false;
             InitializeConfetti();
         }, 100);
-
     }
 
     window.requestAnimFrame = (function () {
-        return window.requestAnimationFrame || 
-        window.webkitRequestAnimationFrame || 
-        window.mozRequestAnimationFrame || 
-        window.oRequestAnimationFrame || 
-        window.msRequestAnimationFrame || 
-        function (callback) {
-            return window.setTimeout(callback, 1000 / 60);
-        };
+        return (
+            window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function (callback) {
+                return window.setTimeout(callback, 1000 / 60);
+            }
+        );
     })();
 })();

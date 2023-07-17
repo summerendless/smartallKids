@@ -332,7 +332,7 @@ function wordTest() {
         //     function () {
         //         this.currentTime = 0;
         //         console.log('가이드 삭제');
-               
+
         //     },
         //     false
         // );
@@ -425,7 +425,7 @@ function wordTest() {
             binBtn.classList.add('active');
         }
         return;
-    
+
         // else {
         //     binBtn.classList.remove('active');
         // }
@@ -661,7 +661,7 @@ function deleteImage($item, $drop) {
 function reAction() {
     $('#startButton').trigger('click');
     // setTimeout(function () {
-    //     $('#stopButton').trigger('click');
+    //     $('#startBgm').trigger('click');
     // }, 3000);
 }
 
@@ -819,7 +819,6 @@ function complatePop() {
             playVid(finishBgm);
             reAction();
         }, 500);
-        
     });
 
     // setTimeout(function () {
@@ -930,12 +929,12 @@ function guideClose($this) {
 // 시작
 $(function () {
     onResume();
-    console.log(allBgm)
+    console.log(allBgm);
     init();
     setTimeout(function () {
         $intro.show();
         playVid(introBgm);
-        console.log(introBgm)
+        console.log(introBgm);
         setTimeout(function () {
             $intro.fadeOut('slow');
         }, 3000);
