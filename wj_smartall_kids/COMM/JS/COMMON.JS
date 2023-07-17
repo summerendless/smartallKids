@@ -90,7 +90,7 @@ function init() {
         //     },
         //     false
         // );
-    }, 3300);
+    }, 4000);
 }
 
 //bgm재생
@@ -952,7 +952,7 @@ function playBgm () {
         setTimeout(function () {
             $intro.fadeOut('slow');
             console.log('모션')
-        }, 3000);
+        }, 3300);
     }, 500);
   
 }
