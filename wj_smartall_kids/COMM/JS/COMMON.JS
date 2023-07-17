@@ -379,7 +379,8 @@ function wordTest() {
         //     cPushArray.length = cStep;
         // }
         cPushArray.push(document.getElementById('myCanvas').toDataURL());
-        coloringBgm.play();
+        // coloringBgm.play();
+        playVid(coloringBgm);
     });
 
     $('#myCanvas').bind('touchmove', function (e) {
@@ -393,7 +394,8 @@ function wordTest() {
 
     $('#myCanvas').bind('touchend', function (e) {
         e.preventDefault();
-        coloringBgm.pause();
+        // coloringBgm.pause();
+        pauseVid(coloringBgm);
         // cStep++;
         // if (cStep < cPushArray.length) { cPushArray.length = cStep; }
         // cPushArray.push(document.getElementById('myCanvas').toDataURL());
@@ -469,7 +471,7 @@ function wordTest() {
             oncolorChange(e);
             $('#colorGuide').remove();
             $('.color-palette').removeClass('glory');
-            infoColorBgm.pause();
+            pauseVid(infoColorBgm);
         });
     }
     colorOption();
@@ -564,7 +566,8 @@ function handleCardDrop(event, ui) {
 
     // var offImg = slotNumber.firstChild;
     // console.log(ui.draggable, slotNumber, cardNumber)
-    infoDropBgm.pause();
+    // infoDropBgm.pause();
+    pauseVid(infoDropBgm);
     $('#dropGuide').remove();
     if (slotNumber == cardNumber) {
         playVid(dropBgm3);
@@ -858,6 +861,7 @@ function playVid(el) {
     // el.currentTime = 0;
     // el.play();
     if (el.muted) {
+        el.autoplay = true;
         el.currentTime = 0;
         el.muted = false;
         el.play();
@@ -888,6 +892,14 @@ function bgmSoundStop() {
 }
 function onResume() {
     allBgm.volume = 0.5;
+    // allBgm.volume = 0.5;
+    // allBgm.muted = true;
+    // pauseVid(allBgm);
+    // setTimeout(function () {
+    //     allBgm.currentTime = 0;
+    //     allBgm.muted = false;
+    //     playVid(allBgm);
+    // }, 50);
     allBgm.play();
     turnOff = false;
 }
@@ -928,15 +940,37 @@ function guideClose($this) {
 
 // 시작
 $(function () {
-    onResume();
-    console.log(allBgm);
+    // onResume();
     init();
+    // playVid(allBgm);
+    // onResume(allBgm);
     setTimeout(function () {
-        $intro.show();
         playVid(introBgm);
-        console.log(introBgm);
+        $intro.show();
         setTimeout(function () {
             $intro.fadeOut('slow');
         }, 3000);
     }, 350);
 });
+
+// $(function () {
+//     onResume();
+//     console.log(allBgm)
+//     init();
+//     setTimeout(function () {
+//         $intro.show();
+//         playVid(introBgm);
+//         console.log(introBgm)
+//         setTimeout(function () {
+//             $intro.fadeOut('slow');
+//         }, 3000);
+//     }, 350);
+// });
+function playBgm() {
+    $('#playButton').trigger('click');
+    $('#playButton').click(onResume);
+}
+
+window.onload = function () {
+    playBgm();
+};
