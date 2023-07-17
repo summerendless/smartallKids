@@ -76,7 +76,6 @@ function init() {
     itemImageLoad2(wordData.itemUrls[pageWrapNum].wordItem);
     // wordImageLoad();
     wordTest();
-
     wordInit();
     setTimeout(function () {
         colorGuide(playVid(infoColorBgm));
@@ -940,39 +939,21 @@ function addTriggerBtn() {
 
 // 시작
 $(function () {
-    // onResume();
-    init();
-    // playVid(allBgm);
-    // onResume(allBgm);
-    playBgm();
     $intro.show();
-    // setTimeout(function () {
-    //     // playVid(introBgm);
-    //     $intro.show();
-    //     setTimeout(function () {
-    //         $intro.fadeOut('slow');
-    //     }, 3000);
-    // }, 350);
+    $('.startBtn').click(playBgm);
+    init();
 });
 
-// $(function () {
-//     onResume();
-//     console.log(allBgm)
-//     init();
-//     setTimeout(function () {
-//         $intro.show();
-//         playVid(introBgm);
-//         console.log(introBgm)
-//         setTimeout(function () {
-//             $intro.fadeOut('slow');
-//         }, 3000);
-//     }, 350);
-// });
-function playBgm() {
-    $('#startIntro').trigger('click');
-    $('#startIntro').click(onResume);
+function playBgm () {
+    playVid(introBgm);
+    setTimeout(function () {
+        onResume();
+        console.log('bgm')
+        setTimeout(function () {
+            $intro.fadeOut('slow');
+            console.log('모션')
+        }, 3000);
+    }, 500);
+  
 }
 
-// window.onload = function () {
-//     playBgm();
-// };

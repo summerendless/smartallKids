@@ -1015,6 +1015,7 @@ canvas {
     width: 140px;
     height: 140px;
     background: url(../IMG/PLAY_BTN.png) no-repeat center / 100%;
+    z-index: 99;
 }
 
 /* confetti */
