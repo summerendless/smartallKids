@@ -1005,18 +1005,18 @@ canvas {
 } */
 #playGuide{
     position: absolute;
-    bottom: 0;
-    left: 55%;
+    pointer-events: none;
+    bottom: 6%;
+    left: 50%;
     border: 0;
     transform: translateX(-30%);
-    z-index: 2;
-}
-.playGuide {
     width: 12%;
     height: 20%;
-    display: inline-block;
+    display: none;
     animation: guideScale 1.4s ease-in-out infinite alternate;
+    z-index: 2;
 }
+#playGuide.show {display: inline-block;}
 
 
 #playGuide:after {
