@@ -642,8 +642,9 @@ function deleteImage($item, $drop) {
                 $('.section3').css('display', 'block').siblings().css('display', 'none');
                 $('header').css('display', 'none');
                 sec3Init();
-                $('#startCard').trigger('click');
-                $('#startCard').click(playAllCard);
+                setTimeout(playAllCard, 100);
+                // $('#startCard').trigger('click');
+                // $('#startCard').click(playAllCard);
                 // playAllCard();
             }
             // $('.section3').css('display', 'block').siblings().css('display', 'none');
