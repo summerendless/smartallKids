@@ -641,7 +641,8 @@ function deleteImage($item, $drop) {
                 $('.section3').css('display', 'block').siblings().css('display', 'none');
                 $('header').css('display', 'none');
                 sec3Init();
-                playAllCard();
+                // playAllCard();
+                playBgm();
             }
             // $('.section3').css('display', 'block').siblings().css('display', 'none');
             // $('header').css('display', 'none');
@@ -967,8 +968,12 @@ $(function () {
 //     }, 350);
 // });
 function playBgm() {
-    $('#playButton').trigger('click');
-    $('#playButton').click(onResume);
+    $('#startBgm').trigger('click');
+    $('#startBgm').click(onResume);
+
+    if (pageWrapNum === '3') {
+        playAllCard();
+    }
 }
 
 window.onload = function () {
