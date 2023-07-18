@@ -741,6 +741,30 @@ function playAllCard() {
 
     console.log(audioArray);
 
+    // function playNextAudio(idx) {
+    //     var audioElement = new Audio();
+    //     let sec3Panel = $('.section3 .stick-panel-2');
+    //     console.log(sec3Panel);
+
+    //     if (idx < audioArray.length) {
+    //         console.log('audio 재생중');
+    //         var nowAudio = audioArray[idx];
+    //         audioElement.src = nowAudio;
+    //         console.log(audioElement);
+    //         sec3Panel[idx].classList.add('active');
+    //         playVid(audioElement);
+    //         $(audioElement).on('ended', function () {
+    //             sec3Panel[idx].classList.remove('active');
+    //             console.log(idx, ':: 끝');
+    //             playNextAudio(idx + 1);
+
+    //             if (idx === audioArray.length - 1) {
+    //                 endBtn.classList.add('active');
+    //             }
+    //         });
+    //     }
+    // }
+
     function playNextAudio(idx) {
         var audioElement = new Audio();
         let sec3Panel = $('.section3 .stick-panel-2');
@@ -750,17 +774,22 @@ function playAllCard() {
             console.log('audio 재생중');
             var nowAudio = audioArray[idx];
             audioElement.src = nowAudio;
+            playVid(audioElement);
             console.log(audioElement);
             sec3Panel[idx].classList.add('active');
-            playVid(audioElement);
             $(audioElement).on('ended', function () {
                 sec3Panel[idx].classList.remove('active');
-                console.log(idx, ':: 끝');
-                playNextAudio(idx + 1);
-
                 if (idx === audioArray.length - 1) {
+                    // If it's the last audio, reset idx to 0 for repeat
                     endBtn.classList.add('active');
+                    return;
+                    // idx = 0;
+                } else {
+                    // Otherwise, move to the next audio
+                    idx++;
                 }
+                playNextAudio(idx);
+                console.log(idx, ':: 끝');
             });
         }
     }
