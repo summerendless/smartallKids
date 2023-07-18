@@ -768,29 +768,25 @@ function playAllCard() {
     function playNextAudio(idx) {
         var audioElement = new Audio();
         let sec3Panel = $('.section3 .stick-panel-2');
-        console.log(sec3Panel);
 
         if (idx < audioArray.length) {
             console.log('audio 재생중');
             var nowAudio = audioArray[idx];
             audioElement.src = nowAudio;
-            playVid(audioElement);
             console.log(audioElement);
             sec3Panel[idx].classList.add('active');
-            $(audioElement).on('ended', function () {
+            // audioElement.play();
+            playVid(audioElement);
+
+            audioElement.onended = function () {
                 sec3Panel[idx].classList.remove('active');
-                if (idx === audioArray.length - 1) {
-                    // If it's the last audio, reset idx to 0 for repeat
-                    endBtn.classList.add('active');
-                    return;
-                    // idx = 0;
-                } else {
-                    // Otherwise, move to the next audio
-                    idx++;
-                }
-                playNextAudio(idx);
                 console.log(idx, ':: 끝');
-            });
+                playNextAudio(idx + 1);
+
+                if (idx === audioArray.length - 1) {
+                    endBtn.classList.add('active');
+                }
+            };
         }
     }
 
