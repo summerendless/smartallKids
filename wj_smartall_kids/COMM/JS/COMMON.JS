@@ -769,7 +769,7 @@ function playAllCard() {
         var audioElement = new Audio();
         let sec3Panel = $('.section3 .stick-panel-2');
 
-        if (idx < audioArray.length) {
+        if (idx < audioArray.length + 1) {
             console.log('audio 재생중');
             var nowAudio = audioArray[idx];
             audioElement.src = nowAudio;
