@@ -769,45 +769,30 @@ function playAllCard() {
         var audioElement = new Audio();
         let sec3Panel = $('.section3 .stick-panel-2');
 
-        if (idx < audioArray.length + 1) {
-            if (idx === 4) {
+        if (idx < audioArray.length) {
+            console.log('audio 재생중');
+            var nowAudio = audioArray[idx];
+            audioElement.src = nowAudio;
+            alert(nowAudio);
+            console.log(audioElement);
+            sec3Panel[idx].classList.add('active');
+
+            //임시
+            if (idx === 3) {
                 endBtn.classList.add('active');
-            } else {
-                console.log('audio 재생중');
-                var nowAudio = audioArray[idx];
-                audioElement.src = nowAudio;
-                console.log(audioElement);
-                sec3Panel[idx].classList.add('active');
-                // audioElement.play();
-                playVid(audioElement);
-
-                audioElement.onended = function () {
-                    sec3Panel[idx].classList.remove('active');
-                    console.log(idx, ':: 끝');
-                    playNextAudio(idx + 1);
-
-                    // if (idx === audioArray.length - 1) {
-                    //     endBtn.classList.add('active');
-                    // }
-                };
             }
-            // console.log('audio 재생중');
-            // var nowAudio = audioArray[idx];
-            // audioElement.src = nowAudio;
-            // console.log(audioElement);
-            // sec3Panel[idx].classList.add('active');
-            // // audioElement.play();
-            // playVid(audioElement);
+            // audioElement.play();
+            playVid(audioElement);
 
-            // audioElement.onended = function () {
-            //     sec3Panel[idx].classList.remove('active');
-            //     console.log(idx, ':: 끝');
-            //     playNextAudio(idx + 1);
+            audioElement.onended = function () {
+                sec3Panel[idx].classList.remove('active');
+                console.log(idx, ':: 끝');
+                playNextAudio(idx + 1);
 
-            //     if (idx === audioArray.length - 1) {
-            //         endBtn.classList.add('active');
-            //     }
-            // };
+                // if (idx === audioArray.length - 1) {
+                //     endBtn.classList.add('active');
+                // }
+            };
         }
     }
 
