@@ -773,7 +773,6 @@ function playAllCard() {
             console.log('audio 재생중');
             var nowAudio = audioArray[idx];
             audioElement.src = nowAudio;
-            alert(nowAudio);
             console.log(audioElement);
             sec3Panel[idx].classList.add('active');
 
@@ -789,9 +788,9 @@ function playAllCard() {
                 console.log(idx, ':: 끝');
                 playNextAudio(idx + 1);
 
-                // if (idx === audioArray.length - 1) {
-                //     endBtn.classList.add('active');
-                // }
+                if (idx === audioArray.length - 1) {
+                    endBtn.classList.add('active');
+                }
             };
         }
     }
