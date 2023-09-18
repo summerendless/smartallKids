@@ -609,50 +609,86 @@ function deleteImage($item, $drop) {
         goodjabAudio.src = nowAudio;
         console.log('goodjabAudio::::', goodjabAudio);
 
-        setTimeout(function () {
-            reAction();
-            playVid(fanfareBgm); // 빵빠레
-        }, 1500);
-
-        setTimeout(function () {
-            playVid(goodjabAudio);
-        }, 2500);
         // setTimeout(function () {
-        //     $confetti.removeClass('animation');
+        //     reAction();
+        //     console.log('확인')
+        //     playVid(fanfareBgm); // 빵빠레
         // }, 1500);
-        setTimeout(function () {
-            sectionCounter = 1;
-            let vars = $pagingItem.get(pageWrapNum - 1);
-            $(vars).addClass('on');
-            let pageWrapArr = $pageWrap.get(pageWrapNum);
-            $(pageWrapArr).addClass('on');
 
-            //임시 :::: 1번만하고 최종 카드 보이기
-            if (complatePage < 4) {
-                itemImageLoad();
-                itemImageLoad2();
-                // wordImageLoad();
-                // ImgArr.splice(0);
-                // ImgArr.length = 0;
-                console.log(ImgArr);
-                wordTest();
-                reset();
-                wordInit();
-            } else {
-                $('.section3').css('display', 'block').siblings().css('display', 'none');
-                $('header').css('display', 'none');
-                sec3Init();
-                $('.stick-panel-2-0').click(playAllCard);
-            }
-        }, 8000);
+        $(wordAnswerBgm).on('ended', function () {
+            playVid(fanfareBgm); // 빵빠레
+            reAction();
+            setTimeout(function () {
+                playVid(goodjabAudio);
+            }, 200);
+        });
+
+        // setTimeout(function () {
+        //     playVid(goodjabAudio);
+        // }, 2500);
+
+        $(goodjabAudio).on('ended', function () {
+            setTimeout(function () {
+                sectionCounter = 1;
+                let vars = $pagingItem.get(pageWrapNum - 1);
+                $(vars).addClass('on');
+                let pageWrapArr = $pageWrap.get(pageWrapNum);
+                $(pageWrapArr).addClass('on');
+
+                //임시 :::: 1번만하고 최종 카드 보이기
+                if (complatePage < 4) {
+                    itemImageLoad();
+                    itemImageLoad2();
+                    console.log(ImgArr);
+                    wordTest();
+                    reset();
+                    wordInit();
+
+                    // wordImageLoad();
+                    // ImgArr.splice(0);
+                    // ImgArr.length = 0;
+                } else {
+                    $('.section3').css('display', 'block').siblings().css('display', 'none');
+                    $('header').css('display', 'none');
+                    sec3Init();
+                    $('.stick-panel-2-0').click(playAllCard);
+                }
+            }, 3000); //09-14 드랍 컨페티로 변경 후 800 > 3000으로 변경
+        });
+
+        // setTimeout(function () {
+        //     sectionCounter = 1;
+        //     let vars = $pagingItem.get(pageWrapNum - 1);
+        //     $(vars).addClass('on');
+        //     let pageWrapArr = $pageWrap.get(pageWrapNum);
+        //     $(pageWrapArr).addClass('on');
+
+        //     //임시 :::: 1번만하고 최종 카드 보이기
+        //     if (complatePage < 4) {
+        //         itemImageLoad();
+        //         itemImageLoad2();
+        //         // wordImageLoad();
+        //         // ImgArr.splice(0);
+        //         // ImgArr.length = 0;
+        //         console.log(ImgArr);
+        //         wordTest();
+        //         reset();
+        //         wordInit();
+        //     } else {
+        //         $('.section3').css('display', 'block').siblings().css('display', 'none');
+        //         $('header').css('display', 'none');
+        //         sec3Init();
+        //         $('.stick-panel-2-0').click(playAllCard);
+        //     }
+        // }, 8000);
     }
 }
 
 function reAction() {
     $('#startButton').trigger('click');
-    // setTimeout(function () {
-    //     $('#stopButton').trigger('click');
-    // }, 3000);
+    setTimeout(function () {
+        $('#stopButton').trigger('click');
+    }, 3000);
 }
 
 function sec3Init() {
@@ -686,7 +722,7 @@ function sec3Init() {
     $('<div class="pageContents"/>').appendTo('.section3').html(html);
     $('#playGuide').addClass('show sec3Guide');
 }
-
+console.log(complatePage);
 // 다음버튼
 $(document).on('click', '.next-btn', next);
 function next(e) {
@@ -766,10 +802,9 @@ function playAllCard() {
     // }
 
     function playNextAudio(idx) {
-        var audioElement = new Audio();
-        let sec3Panel = $('.section3 .stick-panel-2');
-
         if (idx < audioArray.length) {
+            var audioElement = new Audio();
+            let sec3Panel = $('.section3 .stick-panel-2');
             console.log('audio 재생중');
             var nowAudio = audioArray[idx];
             audioElement.src = nowAudio;
@@ -817,7 +852,7 @@ function complatePop() {
     saveImg = '../../../COMM/IMG/CARD_SAVE.png';
     endImg = '../../../COMM/IMG/END.png';
     html =
-        `a
+        `
         <div class="pop-inner">
             <img src=` +
         saveImg +
